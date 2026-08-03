@@ -16,8 +16,9 @@
     "typecheck": "tsc --noEmit",
     "content:sync": "node scripts/sync-brick-docs.mjs",
     "content:check": "node scripts/check-content.mjs",
+    "verify:repository-contract": "node scripts/verify-repository-contract.mjs",
     "check:focused": "npm run content:check && npm run typecheck",
-    "check:repository": "npm run content:check && npm run typecheck && npm run lint && npm run build && node --test tests/rendered-html.test.mjs",
+    "check:repository": "npm run verify:repository-contract && npm run content:check && npm run typecheck && npm run lint && npm run build && node --test tests/rendered-html.test.mjs",
     "verify": "npm run check:repository",
     "test:all": "npm run check:repository"
   },
