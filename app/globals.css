@@ -151,6 +151,7 @@
   .hero-actions { margin-block-start: 2rem; }
   .hero-proof { display: flex; flex-wrap: wrap; gap: .5rem; margin: 1rem 0 0; padding: 0; list-style: none; }
   .hero-proof li { display: flex; }
+  .hero-proof .brick-badge { gap: .35rem; }
   .hero-proof svg { color: var(--brick-color-success-text); }
   .hero-visual { position: relative; min-width: 0; }
   .hero-visual-intro { display: none; }
@@ -325,7 +326,9 @@
   @media (max-width: 1320px) {
     .hero { min-height: auto; grid-template-columns: 1fr; gap: 0; padding-block: 0 5rem; }
     .hero-copy, .hero-visual { width: min(100%, 58rem); margin-inline: auto; }
-    .hero-copy { display: flex; min-height: calc(100svh - var(--site-header-height)); flex-direction: column; align-items: flex-start; justify-content: center; padding-block: clamp(2.75rem, 6dvh, 4.5rem); }
+    .hero-copy { display: flex; min-height: calc(100svh - var(--site-header-height)); flex-direction: column; align-items: center; justify-content: center; padding-block: clamp(2.75rem, 6dvh, 4.5rem); text-align: center; }
+    .hero-lede { margin-inline: auto; }
+    .hero-actions, .hero-proof { justify-content: center; }
     .hero-title { font-size: clamp(4.2rem, min(8vw, 10dvh), 7rem); }
     .hero-visual { padding-block-start: clamp(4rem, 8vw, 6rem); }
     .hero-visual-intro { position: relative; z-index: 2; display: grid; max-width: 38rem; gap: .55rem; margin-block-end: 1.25rem; }

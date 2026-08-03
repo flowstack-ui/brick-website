@@ -28,6 +28,8 @@ test("homepage hero retains its height-aware first-viewport contract", async () 
   assert.match(css, /@media \(min-width: 1321px\) and \(max-height: 820px\)/, "short wide desktop windows must receive an explicit hero layout policy");
   assert.match(css, /@media \(max-width: 1320px\)/, "hero must stack before the live composition becomes cramped");
   assert.match(css, /min-height: calc\(100svh - var\(--site-header-height\)\)/, "stacked conversion content must own the initial viewport before the demo begins");
+  assert.match(css, /\.hero-proof \.brick-badge \{ gap: \.35rem; \}/, "package badges must separate their status icon from their label");
+  assert.match(css, /\.hero-actions, \.hero-proof \{ justify-content: center; \}/, "stacked actions, install context, and proof must share a centered axis");
   const homepageSource = await readFile(new URL("../app/page.tsx", import.meta.url), "utf8");
   assert.match(homepageSource, /Live Brick composition/, "stacked hero must identify the live component demonstration");
   assert.match(homepageSource, /Meet Northstar, built entirely with Brick/, "stacked demo eyebrow must introduce a titled section");
