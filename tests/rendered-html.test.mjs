@@ -113,6 +113,8 @@ test("Atom hero retains its readable connected-layer composition", async () => {
   assert.match(atomSource, /className="layer-symbol"/, "each layer must have a dedicated visual anchor");
   assert.doesNotMatch(css, /rotateX\(54deg\)/, "layer labels must not be flattened by the previous perspective transform");
   assert.match(css, /\.layer-diagram::before[^}]*linear-gradient/, "layer composition must retain a visible connection spine");
+  assert.match(css, /\.layer-diagram \{[^}]*background-color: var\(--brick-color-surface-base\);/, "diagram must use an opaque surface that blocks the page grid");
+  assert.doesNotMatch(css, /\.layer-diagram \{[^}]*var\(--site-grid\)/, "diagram must not draw a second grid over the page grid");
   assert.match(css, /\.brick-layer \{[^}]*width: min\(100%, 27rem\);/, "Brick must remain the visual focus of the relationship diagram");
 });
 
