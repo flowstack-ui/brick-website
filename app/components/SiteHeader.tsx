@@ -2,15 +2,24 @@
 
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Button } from "@flowstack-ui/brick/button";
 import { Dialog } from "@flowstack-ui/brick/dialog";
 import { Drawer } from "@flowstack-ui/brick/drawer";
 import { Input } from "@flowstack-ui/brick/input";
+import { NavList } from "@flowstack-ui/brick/nav-list";
 import { MarkGithubIcon } from "@primer/octicons-react";
 import {
+  ArrowRight,
   ArrowUpRight,
+  Atom,
+  Blocks,
+  BookOpen,
+  Home,
   Menu,
   Moon,
+  Package,
+  Palette,
   Search,
   Sun,
   X,
@@ -25,6 +34,14 @@ const nav = [
   { href: "/atom/", label: "Atom" },
 ];
 
+const drawerNav = [
+  { href: "/", label: "Home", description: "See what Brick makes possible", icon: Home },
+  { href: "/docs/", label: "Docs", description: "Learn the system", icon: BookOpen },
+  { href: "/components/", label: "Components", description: "Explore all 75 component owners", icon: Blocks },
+  { href: "/themes/", label: "Themes", description: "Shape the visual voice", icon: Palette },
+  { href: "/atom/", label: "Atom", description: "Understand the foundation", icon: Atom },
+];
+
 type Appearance = "light" | "dark";
 
 function applyAppearance(value: Appearance) {
@@ -34,6 +51,7 @@ function applyAppearance(value: Appearance) {
 }
 
 export function SiteHeader() {
+  const pathname = usePathname();
   const [appearance, setAppearance] = useState<Appearance>("light");
   const [query, setQuery] = useState("");
   const [searchOpen, setSearchOpen] = useState(false);
@@ -188,26 +206,83 @@ export function SiteHeader() {
             </Drawer.Trigger>
             <Drawer.Portal>
               <Drawer.Overlay />
-              <Drawer.Content placement="end" size="sm" className="mobile-drawer">
-                <Drawer.Header>
-                  <Drawer.Title>Explore Brick</Drawer.Title>
-                  <Drawer.Description>Product, components, and foundations.</Drawer.Description>
-                  <Drawer.Close asChild>
-                    <Button aria-label="Close navigation" className="drawer-close" tone="neutral" variant="ghost" size="sm">
-                      <X size={18} aria-hidden="true" />
-                    </Button>
-                  </Drawer.Close>
+              <Drawer.Content placement="end" size="md" className="mobile-drawer">
+                <Drawer.Header className="mobile-drawer-header">
+                  <div className="drawer-brand-row">
+                    <Drawer.Close asChild>
+                      <Link className="drawer-brand" href="/" aria-label="Brick UI home">
+                        <BrandMark />
+                        <span className="drawer-version">v{source.version}</span>
+                      </Link>
+                    </Drawer.Close>
+                    <Drawer.Close asChild>
+                      <Button aria-label="Close navigation" className="drawer-close" tone="neutral" variant="ghost" size="md">
+                        <X size={19} aria-hidden="true" />
+                      </Button>
+                    </Drawer.Close>
+                  </div>
+                  <span className="drawer-kicker">Finished by default</span>
+                  <Drawer.Title>Build interfaces from pieces that belong together.</Drawer.Title>
+                  <Drawer.Description>Explore the component system, its visual language, and the accessible foundation beneath it.</Drawer.Description>
                 </Drawer.Header>
-                <Drawer.Body>
-                  <nav className="mobile-nav" aria-label="Mobile navigation">
-                    <Drawer.Close asChild><Link href="/">Home</Link></Drawer.Close>
-                    {nav.map((item) => (
-                      <Drawer.Close asChild key={item.href}><a href={item.href}>{item.label}</a></Drawer.Close>
-                    ))}
-                  </nav>
+                <Drawer.Body className="mobile-drawer-body">
+                  <div className="drawer-nav-group">
+                    <span className="drawer-nav-label">Explore</span>
+                    <NavList.Root aria-label="Mobile navigation" className="drawer-primary-nav" size="lg" tone="accent" variant="soft">
+                      <NavList.List>
+                        {drawerNav.map(({ href, label, description, icon: Icon }) => (
+                          <NavList.Item key={href}>
+                            <Drawer.Close asChild>
+                              <NavList.Link
+                                active={href === "/" ? pathname === "/" : pathname.startsWith(href)}
+                                description={description}
+                                href={href}
+                                startIcon={<Icon aria-hidden="true" />}
+                              >
+                                {label}
+                              </NavList.Link>
+                            </Drawer.Close>
+                          </NavList.Item>
+                        ))}
+                      </NavList.List>
+                    </NavList.Root>
+                  </div>
+
+                  <div className="drawer-nav-group drawer-resource-group">
+                    <span className="drawer-nav-label">Resources</span>
+                    <NavList.Root aria-label="Brick resources" className="drawer-resource-nav" size="md" tone="neutral" variant="soft">
+                      <NavList.List>
+                        <NavList.Item>
+                          <NavList.Link
+                            endIcon={<ArrowUpRight aria-hidden="true" />}
+                            href="https://github.com/flowstack-ui/brick"
+                            startIcon={<MarkGithubIcon aria-hidden="true" />}
+                            target="_blank"
+                            rel="noreferrer"
+                          >
+                            GitHub repository
+                          </NavList.Link>
+                        </NavList.Item>
+                        <NavList.Item>
+                          <NavList.Link
+                            endIcon={<ArrowUpRight aria-hidden="true" />}
+                            href="https://www.npmjs.com/package/@flowstack-ui/brick"
+                            startIcon={<Package aria-hidden="true" />}
+                            target="_blank"
+                            rel="noreferrer"
+                          >
+                            npm package
+                          </NavList.Link>
+                        </NavList.Item>
+                      </NavList.List>
+                    </NavList.Root>
+                  </div>
                 </Drawer.Body>
-                <Drawer.Footer>
-                  <Button href="/docs/getting-started/" fullWidth>Get started</Button>
+                <Drawer.Footer className="mobile-drawer-footer">
+                  <p className="drawer-proof"><span>75 components</span><span>React 18 + 19</span><span>Static CSS</span></p>
+                  <Drawer.Close asChild>
+                    <Button href="/docs/getting-started/" endIcon={<ArrowRight size={17} />} fullWidth>Get started</Button>
+                  </Drawer.Close>
                 </Drawer.Footer>
               </Drawer.Content>
             </Drawer.Portal>

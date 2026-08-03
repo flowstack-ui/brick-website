@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { readFile } from "node:fs/promises";
 import test from "node:test";
 
 async function render(pathname) {
@@ -11,6 +12,14 @@ async function render(pathname) {
     { waitUntil() {}, passThroughOnException() {} },
   );
 }
+
+test("mobile drawer retains its branded reference composition", async () => {
+  const headerSource = await readFile(new URL("../app/components/SiteHeader.tsx", import.meta.url), "utf8");
+  assert.match(headerSource, /<BrandMark \/>/, "drawer must retain Brick identity");
+  assert.match(headerSource, /<NavList\.Root/, "drawer navigation must use the published Brick navigation primitive");
+  assert.match(headerSource, /Build interfaces from pieces that belong together\./, "drawer must retain its product-specific title");
+  assert.match(headerSource, /pathname\.startsWith\(href\)/, "drawer must identify the current product section");
+});
 
 const routes = [
   ["/", /Build interfaces that already feel finished/i],
