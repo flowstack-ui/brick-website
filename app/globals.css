@@ -379,6 +379,8 @@
   .theme-checks { display: grid; gap: .6rem; }.theme-checks span { display: flex; align-items: center; gap: .5rem; color: var(--brick-color-text-secondary); }.theme-checks svg { color: var(--brick-color-success-text); }
   .token-grid { display: grid; grid-template-columns: 1fr 1fr; gap: .8rem; }.token-values { display: flex; flex-wrap: wrap; gap: .4rem; }
   .theme-cta, .atom-choice { display: flex; align-items: center; justify-content: space-between; gap: 2rem; margin-block: 2rem 7rem; padding: 2.2rem; border: 1px solid var(--brick-color-accent-border); border-radius: 1.2rem; background: var(--brick-color-accent-soft); }.theme-cta h2, .theme-cta p, .atom-choice h2, .atom-choice p { margin: 0; }.theme-cta > div:first-child, .atom-choice > div:first-child { display: grid; gap: .45rem; }
+  .atom-choice > div:first-child { min-width: 0; flex: 1 1 auto; }
+  .atom-choice .brick-button { flex: 0 0 auto; white-space: nowrap; }
 
   .flowstack-context { display: grid; grid-template-columns: minmax(0, .8fr) minmax(32rem, 1.2fr); align-items: center; gap: clamp(3rem, 8vw, 9rem); }
   .flowstack-context { padding-block-end: clamp(2rem, 3vw, 3rem); }

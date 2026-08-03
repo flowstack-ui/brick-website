@@ -40,6 +40,7 @@
 - Raised the Atom hero, added explicit description-to-action spacing, and moved its layer visual below the copy at the 1180px content-pressure boundary with tighter mobile rhythm.
 - Moved the Flowstack relationship story to one centered, near-full-width lane at 1080px before its two-column composition becomes squeezed.
 - Rebuilt the Clear Ownership introduction with explanatory copy, a shared centered card lane, tighter section transition, and comfortable icon-to-title spacing.
+- Kept the final `Start with Brick` action on one line by assigning intermediate-width compression to the wrapping copy column.
 
 ## 0.1.0 — 2026-08-02
 

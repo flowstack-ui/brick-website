@@ -11,6 +11,7 @@ Brick UI Website is implemented as a multi-route product and documentation site.
 - The Atom hero stacks its diagram below the copy at the 1180px content-pressure boundary and uses a compact mobile-first top rhythm.
 - The following Flowstack relationship story stacks at 1080px and centers both its copy and pathway on one shared responsive lane.
 - The Clear Ownership section shares one centered editorial lane between its explanatory heading and cards, with a restrained transition from the Flowstack story.
+- The final Atom-versus-Brick choice lets its copy wrap before compressing the action and preserves the existing narrow stacked layout.
 - Local search, light/dark appearance, responsive navigation, sitemap, robots, social card, favicon, and AI-readable documentation are present.
 - The site accent theme explicitly pairs purple solid actions with a white foreground in both appearances and verifies every solid interaction state at WCAG AA contrast.
 - The reviewed dependency is `@flowstack-ui/brick@0.1.0` at source commit `3351412342c6e0cd6af9f7403e2e7535bdfe72a0`.

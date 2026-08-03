@@ -137,6 +137,13 @@ test("Atom ownership section retains one aligned editorial lane", async () => {
   assert.match(css, /\.ownership-section \{ padding-block-start: clamp\(2rem, 3vw, 3rem\); \}/, "ownership section must begin without an oversized upper transition");
 });
 
+test("Atom closing choice preserves one-line action priority", async () => {
+  const css = await readFile(new URL("../app/globals.css", import.meta.url), "utf8");
+  assert.match(css, /\.atom-choice > div:first-child \{ min-width: 0; flex: 1 1 auto; \}/, "closing copy must absorb available compression and wrap normally");
+  assert.match(css, /\.atom-choice \.brick-button \{ flex: 0 0 auto; white-space: nowrap; \}/, "closing action must retain its intrinsic one-line label");
+  assert.match(css, /\.theme-cta, \.atom-choice \{ align-items: flex-start; flex-direction: column;/, "closing choice must still stack when the narrow layout genuinely requires it");
+});
+
 test("homepage hero retains its height-aware first-viewport contract", async () => {
   const css = await readFile(new URL("../app/globals.css", import.meta.url), "utf8");
   assert.match(css, /padding-block: clamp\(2\.75rem, 6dvh, 5rem\)/, "hero vertical rhythm must respond to viewport height");
