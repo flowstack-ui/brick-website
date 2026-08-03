@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased
+
+- Replaced category-level component placeholders with dedicated examples for all 75 component routes.
+- Added a content-contract check that prevents component routes from shipping without an explicit preview.
+- Corrected solid accent-button contrast by defining the paired white foreground token in light and dark appearances.
+
 ## 0.1.0 — 2026-08-02
 
 - Established the independent Brick UI product website.

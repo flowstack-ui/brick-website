@@ -2,7 +2,8 @@
 
 ## Next
 
-- Replace initial synchronized reference pages with deliberately authored component examples as component work evolves.
+- Review page-level spacing rhythm across the home, catalog, guide, and component layouts.
+- Deepen component examples with additional states and recipes as component work evolves.
 - Add automated cross-browser visual and accessibility coverage when the browser runtime is available in CI.
 - Connect the final `brick-ui.com` custom domain after the first hosted version is approved.
 
