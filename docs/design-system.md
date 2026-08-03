@@ -33,7 +33,7 @@ current composition no longer fits or reads comfortably.
 | --- | --- | --- |
 | Above 1320px | Full centered navigation, labeled search with shortcut, appearance and GitHub actions | Homepage hero pairs its conversion column with the live composition |
 | 1320px and below | Full header remains until its own content transition | Homepage conversion content owns the first viewport through its package badges; the titled live Brick composition follows in the same lane |
-| 1180px and below | Primary navigation moves into the drawer; labeled search remains; the menu action appears | Documentation rail is removed |
+| 1180px and below | Primary navigation moves into the drawer; labeled search remains; the menu action appears | Documentation rail is removed; the Atom hero moves its complete layer visual below the copy before either column becomes cramped |
 | 1080px and below | Header retains its 1180px contract | The theme story stacks its copy above the complete comparison before either column becomes cramped |
 | 900px and below | Header height reduces and search becomes icon-only; the complete Brick identity, version, appearance, GitHub, and menu remain available | Documentation becomes in-flow, dense demonstrations simplify, and the three-card promise grid stacks before its reading measure becomes cramped |
 | 640px and below | Full wordmark and version remain visible while identity and action spacing compact; search becomes a full-screen task surface | One-column mobile compositions, 1rem gutters, full-width primary actions |

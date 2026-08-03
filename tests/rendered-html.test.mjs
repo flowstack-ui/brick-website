@@ -116,6 +116,10 @@ test("Atom hero retains its readable connected-layer composition", async () => {
   assert.match(css, /\.layer-diagram \{[^}]*background-color: var\(--brick-color-surface-base\);/, "diagram must use an opaque surface that blocks the page grid");
   assert.doesNotMatch(css, /\.layer-diagram \{[^}]*var\(--site-grid\)/, "diagram must not draw a second grid over the page grid");
   assert.match(css, /\.brick-layer \{[^}]*width: min\(100%, 27rem\);/, "Brick must remain the visual focus of the relationship diagram");
+  assert.match(css, /\.atom-copy \{ display: grid; justify-items: start; gap: 1rem; \}/, "Atom hero copy must own explicit vertical rhythm");
+  assert.match(css, /\.atom-copy \.brick-button \{ margin-block-start: \.5rem; \}/, "Atom action must remain separated from its description");
+  assert.match(css, /@media \(max-width: 1180px\)[\s\S]*\.atom-hero \{ grid-template-columns: 1fr; gap: 3\.5rem; \}/, "Atom diagram must move below the copy before either hero column becomes cramped");
+  assert.match(css, /\.atom-hero \{ gap: 2\.5rem; padding-block: 2\.25rem 3\.5rem; \}/, "narrow Atom hero must begin higher and keep a restrained copy-to-diagram transition");
 });
 
 test("homepage hero retains its height-aware first-viewport contract", async () => {

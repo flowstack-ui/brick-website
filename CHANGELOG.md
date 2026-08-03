@@ -37,6 +37,7 @@
 - Added a supporting Flowstack product-path explanation to the Atom relationship page and a persistent `Part of Flowstack · A Swifty product` footer endorsement without changing the Brick-owned header or hero.
 - Replaced the Atom hero's flattened perspective rectangles with a connected, readable three-node layer composition and strengthened the light-appearance footer version foreground.
 - Removed the Atom layer frame's competing internal grid while retaining an opaque surface and soft depth treatment over the page grid.
+- Raised the Atom hero, added explicit description-to-action spacing, and moved its layer visual below the copy at the 1180px content-pressure boundary with tighter mobile rhythm.
 
 ## 0.1.0 — 2026-08-02
 
