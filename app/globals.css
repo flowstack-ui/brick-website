@@ -446,6 +446,8 @@
   @media (max-width: 1080px) {
     .theme-story { grid-template-columns: 1fr; gap: 3rem; }
     .theme-story-copy { max-width: 42rem; }
+    .flowstack-context { grid-template-columns: 1fr; gap: 3rem; }
+    .flowstack-context-copy, .flowstack-path { width: min(100%, 52rem); margin-inline: auto; }
   }
 
   @media (max-width: 900px) {
@@ -457,7 +459,7 @@
     .catalog-story, .token-section { grid-template-columns: 1fr; }.catalog-copy, .token-copy { max-width: 42rem; }.catalog-art { order: 2; }
     .closing-cta { grid-template-columns: 1fr; align-items: start; }.closing-actions { justify-items: start; }
     .docs-shell { display: block; }.docs-sidebar { position: static; max-height: none; margin-block-end: 2rem; overflow: visible; }.docs-sidebar nav { display: flex; overflow-x: auto; padding-block-end: .5rem; }.docs-sidebar .docs-nav-label, .docs-sidebar nav a:nth-of-type(n+7) { display: none; }.docs-sidebar a { white-space: nowrap; }
-    .themes-hero, .flowstack-context { grid-template-columns: 1fr; }.flowstack-context { gap: 3rem; }.flowstack-path { width: min(100%, 44rem); }.theme-orbit { min-height: 28rem; }
+    .themes-hero { grid-template-columns: 1fr; }.theme-orbit { min-height: 28rem; }
   }
 
   @media (max-width: 640px) {

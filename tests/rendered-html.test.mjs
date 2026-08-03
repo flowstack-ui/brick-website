@@ -97,12 +97,15 @@ test("Flowstack relationship remains supporting product context", async () => {
   const headerSource = await readFile(new URL("../app/components/SiteHeader.tsx", import.meta.url), "utf8");
   const homepageSource = await readFile(new URL("../app/page.tsx", import.meta.url), "utf8");
   const atomSource = await readFile(new URL("../app/atom/page.tsx", import.meta.url), "utf8");
+  const css = await readFile(new URL("../app/globals.css", import.meta.url), "utf8");
   assert.doesNotMatch(headerSource, /Swifty|Flowstack/, "global product navigation must remain Brick-owned");
   assert.match(homepageSource, /Atom, Flowstack’s headless foundation/, "homepage may introduce the ecosystem only after the Brick hero");
   assert.match(atomSource, /Part of Flowstack/, "Atom relationship page must explain ecosystem membership");
   assert.match(atomSource, /<ol className="flowstack-path"/, "ecosystem explanation must retain an ordered product path");
   assert.match(atomSource, /name: "Atom"[\s\S]*name: "Brick"[\s\S]*name: "Your product"/, "product path must preserve layer ownership");
   assert.doesNotMatch(atomSource, /Theme|Colors|Blocks as|Blocks pack/, "ecosystem explanation must not present prospective packs as published products");
+  assert.match(css, /@media \(max-width: 1080px\)[\s\S]*\.flowstack-context \{ grid-template-columns: 1fr; gap: 3rem; \}/, "Flowstack story must stack before its copy and pathway become cramped");
+  assert.match(css, /\.flowstack-context-copy, \.flowstack-path \{ width: min\(100%, 52rem\); margin-inline: auto; \}/, "stacked Flowstack story must share one centered content lane");
 });
 
 test("Atom hero retains its readable connected-layer composition", async () => {
