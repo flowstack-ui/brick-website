@@ -14,7 +14,7 @@
 - Made the browser favicon host-relative and removed the duplicate shortcut declaration so preview deployments do not request the unresolved future custom domain twice.
 - Added stable browser identity and explicit search semantics to the homepage workspace filter and site-search field.
 - Implemented the advertised Command/Control-K search shortcut, aligned the header action cluster and compact search icon, replaced the generic code glyph with the GitHub mark, and documented content-driven responsive breakpoints.
-- Rebuilt the mobile drawer as a branded, route-aware Brick composition with semantic surface treatment, vertically aligned icon navigation, product resources, a centered action footer, and a full-screen narrow-mobile state.
+- Rebuilt the mobile drawer as a branded, route-aware Brick composition with semantic surface treatment, aligned and comfortably spaced icon navigation, product resources, a centered action footer, and a full-screen narrow-mobile state.
 
 ## 0.1.0 — 2026-08-02
 
