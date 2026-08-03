@@ -23,6 +23,7 @@
 - Gave the responsive search trigger a stable accessible name when its visible label collapses at the icon-only breakpoint.
 - Rebuilt the Northstar Preview and Publish dialogs with consistent icon-led headers, a structured preview summary, a launch checklist, and balanced actions instead of stretched status badges.
 - Rebuilt search as a structured command surface with a dedicated header and close action, grouped component and guide results, separated rows, an honest result-count footer, an empty state, and a full-screen narrow-mobile presentation.
+- Tightened the transition into The Brick Promise, aligned its heading on one centered axis, authored feature-card icon spacing, reduced card dead space, and replaced padded ghost actions with precise editorial links.
 
 ## 0.1.0 — 2026-08-02
 

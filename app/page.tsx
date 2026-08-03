@@ -93,7 +93,7 @@ export default function Home() {
                   <Card.Title as="h3">{pillar.title}</Card.Title>
                 </Card.Header>
                 <Card.Content><Text tone="secondary">{pillar.body}</Text></Card.Content>
-                <Card.Footer><WebsiteButton href={pillar.link} tone="neutral" variant="ghost" size="sm" endIcon={<ArrowRight size={14} />}>{pillar.label}</WebsiteButton></Card.Footer>
+                <Card.Footer><a className="pillar-link" href={pillar.link}>{pillar.label}<ArrowRight size={14} aria-hidden="true" /></a></Card.Footer>
               </Card.Root>
             ))}
           </Grid.Root>
