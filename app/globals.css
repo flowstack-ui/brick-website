@@ -49,9 +49,9 @@
   :root[data-brick-appearance="dark"] {
     --site-grid: color-mix(in srgb, var(--brick-color-border-subtle), transparent 56%);
     --site-glow: color-mix(in srgb, #8c6cff, transparent 72%);
-    --brick-color-accent-solid: #7659e8;
-    --brick-color-accent-solid-hover: #8367ef;
-    --brick-color-accent-solid-pressed: #684bd6;
+    --brick-color-accent-solid: #684bd6;
+    --brick-color-accent-solid-hover: #7050dc;
+    --brick-color-accent-solid-pressed: #5d3fc4;
     --brick-color-accent-on-solid: #ffffff;
     --brick-color-accent-soft: #2a204d;
     --brick-color-accent-soft-hover: #352960;

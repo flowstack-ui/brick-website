@@ -156,7 +156,7 @@ export function ProductWorkspace() {
                 <Card.Description>Architectural warmth</Card.Description>
               </Card.Header>
               <Card.Content>
-                <div className="swatch-row" aria-label="Theme color samples"><span /><span /><span /><span /></div>
+                <div className="swatch-row" role="img" aria-label="Theme colors: iris purple, muted magenta, amber, and green"><span /><span /><span /><span /></div>
               </Card.Content>
             </Card.Root>
             <Card.Root size="sm" variant="outline">
