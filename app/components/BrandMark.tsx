@@ -1,6 +1,6 @@
 export function BrandMark({ compact = false }: { compact?: boolean }) {
   return (
-    <span className="brand" aria-label="Brick UI">
+    <span className="brand" role="img" aria-label="Brick UI">
       <span className="brand-mark" aria-hidden="true">
         <span />
         <span />
@@ -10,4 +10,3 @@ export function BrandMark({ compact = false }: { compact?: boolean }) {
     </span>
   );
 }
-

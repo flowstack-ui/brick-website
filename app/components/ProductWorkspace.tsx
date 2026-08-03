@@ -14,6 +14,7 @@ import { Switch } from "@flowstack-ui/brick/switch";
 import { Table } from "@flowstack-ui/brick/table";
 import { Tabs } from "@flowstack-ui/brick/tabs";
 import { Text } from "@flowstack-ui/brick/text";
+import { BrandMark } from "./BrandMark";
 import {
   ArrowRight,
   Check,
@@ -34,21 +35,29 @@ const pages = [
   { name: "Journal", status: "Draft", owner: "MK", updated: "1h" },
 ];
 
+const workspaceSections = [
+  { id: "pages", label: "Pages", title: "Pages", description: "Shape the structure of your site.", icon: FileText },
+  { id: "content", label: "Content", title: "Content", description: "Review the copy shared across your pages.", icon: Circle },
+  { id: "theme", label: "Theme", title: "Theme", description: "Tune the visual direction of Northstar.", icon: Sparkles },
+  { id: "settings", label: "Settings", title: "Settings", description: "Control publishing and project behavior.", icon: Settings2 },
+] as const;
+
+type WorkspaceSection = (typeof workspaceSections)[number]["id"];
+
 export function ProductWorkspace() {
   const [query, setQuery] = useState("");
   const [autoPublish, setAutoPublish] = useState(true);
+  const [activeSection, setActiveSection] = useState<WorkspaceSection>("pages");
 
   const filteredPages = pages.filter((page) => page.name.toLowerCase().includes(query.toLowerCase()));
+  const currentSection = workspaceSections.find((section) => section.id === activeSection) ?? workspaceSections[0];
 
   return (
     <section className="workspace-window" aria-label="Live Brick website project workspace example">
       <div className="workspace-titlebar">
-        <div className="window-controls" aria-hidden="true"><span /><span /><span /></div>
+        <BrandMark compact />
         <Badge tone="accent" variant="soft" size="sm">Live composition</Badge>
-        <HStack gap="2" align="center" className="workspace-presence">
-          <Avatar alt="Will Donin" fallback="WD" size="xs" status="online" />
-          <Avatar alt="Alex Nguyen" fallback="AN" size="xs" />
-        </HStack>
+        <Avatar className="workspace-owner" alt="Will Donin, project owner" fallback="WD" size="sm" status="online" />
       </div>
 
       <div className="workspace-body">
@@ -58,10 +67,21 @@ export function ProductWorkspace() {
             <span><strong>Northstar</strong><small>Website project</small></span>
           </div>
           <nav aria-label="Workspace example navigation">
-            <a className="is-current" href="#workspace-pages"><FileText size={15} aria-hidden="true" />Pages</a>
-            <a href="#workspace-content"><Circle size={15} aria-hidden="true" />Content</a>
-            <a href="#workspace-theme"><Sparkles size={15} aria-hidden="true" />Theme</a>
-            <a href="#workspace-settings"><Settings2 size={15} aria-hidden="true" />Settings</a>
+            {workspaceSections.map(({ id, label, icon: Icon }) => (
+              <Button
+                key={id}
+                className="workspace-nav-button"
+                fullWidth
+                size="xs"
+                tone={activeSection === id ? "accent" : "neutral"}
+                variant={activeSection === id ? "soft" : "ghost"}
+                startIcon={<Icon size={15} aria-hidden="true" />}
+                aria-pressed={activeSection === id}
+                onPress={() => setActiveSection(id)}
+              >
+                {label}
+              </Button>
+            ))}
           </nav>
           <div className="sidebar-meter">
             <HStack justify="between" align="center"><Text variant="caption">Launch readiness</Text><Text variant="caption" weight="medium">84%</Text></HStack>
@@ -74,11 +94,23 @@ export function ProductWorkspace() {
         <div className="workspace-main" id="workspace-pages">
           <div className="workspace-toolbar">
             <div>
-              <Text as="h2" variant="title-sm">Pages</Text>
-              <Text tone="secondary" variant="body-sm">Shape the structure of your site.</Text>
+              <Text as="h2" variant="title-sm">{currentSection.title}</Text>
+              <Text tone="secondary" variant="body-sm">{currentSection.description}</Text>
             </div>
             <HStack gap="2">
-              <Button tone="neutral" variant="outline" size="sm" startIcon={<Globe2 size={15} />}>Preview</Button>
+              <Dialog.Root>
+                <Dialog.Trigger asChild>
+                  <Button tone="neutral" variant="outline" size="sm" startIcon={<Globe2 size={15} />}>Preview</Button>
+                </Dialog.Trigger>
+                <Dialog.Portal>
+                  <Dialog.Overlay />
+                  <Dialog.Content size="sm">
+                    <Dialog.Header><Dialog.Title>Northstar preview</Dialog.Title><Dialog.Description>The latest approved content and theme are ready to inspect.</Dialog.Description></Dialog.Header>
+                    <Dialog.Body><Badge tone="success" variant="soft"><Check size={13} aria-hidden="true" /> Preview ready</Badge></Dialog.Body>
+                    <Dialog.Footer><Dialog.Close asChild><Button>Close preview</Button></Dialog.Close></Dialog.Footer>
+                  </Dialog.Content>
+                </Dialog.Portal>
+              </Dialog.Root>
               <Dialog.Root>
                 <Dialog.Trigger asChild>
                   <Button size="sm" startIcon={<Sparkles size={15} />}>Publish</Button>
@@ -106,7 +138,7 @@ export function ProductWorkspace() {
             </HStack>
           </div>
 
-          <Tabs.Root defaultValue="all" variant="soft" size="sm">
+          {activeSection === "pages" ? <><Tabs.Root defaultValue="all" variant="soft" size="sm">
             <div className="workspace-filter-row">
               <Tabs.List ariaLabel="Page status">
                 <Tabs.Trigger value="all">All</Tabs.Trigger>
@@ -163,15 +195,39 @@ export function ProductWorkspace() {
                 <div className="swatch-row" role="img" aria-label="Theme colors: iris purple, muted magenta, amber, and green"><span /><span /><span /><span /></div>
               </Card.Content>
             </Card.Root>
-            <Card.Root size="sm" variant="outline">
+            <Card.Root size="sm" variant="outline" className="auto-publish-card">
               <Card.Header>
-                <Card.Title as="h3">Auto publish</Card.Title>
-                <Card.Action><Switch.Root checked={autoPublish} onCheckedChange={setAutoPublish} aria-label="Auto publish"><Switch.Thumb /></Switch.Root></Card.Action>
+                <HStack className="auto-publish-heading" align="center" justify="between">
+                  <Card.Title as="h3">Auto publish</Card.Title>
+                  <Switch.Root checked={autoPublish} onCheckedChange={setAutoPublish} aria-label="Auto publish"><Switch.Thumb /></Switch.Root>
+                </HStack>
                 <Card.Description>Deploy after every approved update.</Card.Description>
               </Card.Header>
-              <Card.Footer><Button tone="neutral" variant="ghost" size="sm" endIcon={<ChevronRight size={14} />}>Open settings</Button></Card.Footer>
+              <Card.Footer><Button tone="neutral" variant="soft" size="xs" endIcon={<ChevronRight size={13} />} onPress={() => setActiveSection("settings")}>Open settings</Button></Card.Footer>
             </Card.Root>
           </div>
+          </> : (
+            <Card.Root size="sm" variant="subtle" className="workspace-section-card">
+              <Card.Header>
+                <Badge tone="accent" variant="soft" size="sm">{currentSection.label} view</Badge>
+                <Card.Title as="h3">
+                  {activeSection === "content" && "Three reusable entries are connected"}
+                  {activeSection === "theme" && "Architectural warmth"}
+                  {activeSection === "settings" && "Publishing preferences"}
+                </Card.Title>
+                <Card.Description>
+                  {activeSection === "content" && "Homepage intro, services summary, and journal metadata stay consistent across the project."}
+                  {activeSection === "theme" && "Iris purple, muted magenta, amber, and green form Northstar’s current semantic palette."}
+                  {activeSection === "settings" && "Choose whether approved changes should publish automatically."}
+                </Card.Description>
+              </Card.Header>
+              <Card.Content>
+                {activeSection === "content" && <HStack gap="2" wrap><Badge tone="success">Homepage ready</Badge><Badge tone="neutral">3 entries</Badge></HStack>}
+                {activeSection === "theme" && <div className="swatch-row" role="img" aria-label="Theme colors: iris purple, muted magenta, amber, and green"><span /><span /><span /><span /></div>}
+                {activeSection === "settings" && <HStack justify="between" align="center"><Text weight="medium">Auto publish</Text><Switch.Root checked={autoPublish} onCheckedChange={setAutoPublish} aria-label="Auto publish from settings"><Switch.Thumb /></Switch.Root></HStack>}
+              </Card.Content>
+            </Card.Root>
+          )}
         </div>
       </div>
 

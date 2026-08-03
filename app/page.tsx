@@ -48,7 +48,7 @@ export default function Home() {
       <main id="main-content">
         <section className="hero section-shell">
           <div className="hero-copy">
-            <Badge tone="accent" variant="soft" shape="pill">Brick {source.version} is here</Badge>
+            <Badge tone="accent" variant="soft" shape="pill">Brick v{source.version} is here</Badge>
             <Text as="h1" className="hero-title" wrap="balance">
               Build interfaces that already feel <span>finished.</span>
             </Text>
@@ -60,15 +60,16 @@ export default function Home() {
               <WebsiteButton href="/components/" size="lg" tone="neutral" variant="soft">Explore 75 components</WebsiteButton>
             </HStack>
             <InstallCommand />
-            <div className="hero-proof" aria-label="Brick package qualities">
-              <span><Check size={14} aria-hidden="true" /> React 18 and 19</span>
-              <span><Check size={14} aria-hidden="true" /> Static CSS</span>
-              <span><Check size={14} aria-hidden="true" /> MIT licensed</span>
-            </div>
+            <ul className="hero-proof" aria-label="Brick package qualities">
+              <li><Badge tone="neutral" variant="soft" size="sm"><Check size={13} aria-hidden="true" /> React 18 and 19</Badge></li>
+              <li><Badge tone="neutral" variant="soft" size="sm"><Check size={13} aria-hidden="true" /> Static CSS</Badge></li>
+              <li><Badge tone="neutral" variant="soft" size="sm"><Check size={13} aria-hidden="true" /> MIT licensed</Badge></li>
+            </ul>
           </div>
           <div className="hero-visual">
             <div className="hero-visual-intro">
               <Badge tone="accent" variant="soft" size="sm">Live Brick composition</Badge>
+              <Text as="h2" variant="title-lg">Meet Northstar, built entirely with Brick.</Text>
               <Text as="p" variant="body-sm" tone="secondary">
                 Northstar is a demo website project assembled from published Brick components.
               </Text>

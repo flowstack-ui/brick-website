@@ -27,9 +27,17 @@ test("homepage hero retains its height-aware first-viewport contract", async () 
   assert.match(css, /min-height: clamp\(30rem, 66dvh, 35rem\)/, "workspace must compress only within its usable height range");
   assert.match(css, /@media \(min-width: 1321px\) and \(max-height: 820px\)/, "short wide desktop windows must receive an explicit hero layout policy");
   assert.match(css, /@media \(max-width: 1320px\)/, "hero must stack before the live composition becomes cramped");
+  assert.match(css, /min-height: calc\(100svh - var\(--site-header-height\)\)/, "stacked conversion content must own the initial viewport before the demo begins");
   const homepageSource = await readFile(new URL("../app/page.tsx", import.meta.url), "utf8");
   assert.match(homepageSource, /Live Brick composition/, "stacked hero must identify the live component demonstration");
+  assert.match(homepageSource, /Meet Northstar, built entirely with Brick/, "stacked demo eyebrow must introduce a titled section");
   assert.match(homepageSource, /demo website project assembled from published Brick components/, "stacked hero must explain the demonstration context");
+  assert.match(homepageSource, /Brick v\{source\.version\} is here/, "release eyebrow must present the version with its conventional prefix");
+  assert.match(homepageSource, /<ul className="hero-proof"/, "package qualities must retain list semantics while using badges");
+  const workspaceSource = await readFile(new URL("../app/components/ProductWorkspace.tsx", import.meta.url), "utf8");
+  assert.match(workspaceSource, /setActiveSection\(id\)/, "workspace navigation must update its selected view");
+  assert.match(workspaceSource, /aria-pressed=\{activeSection === id\}/, "workspace navigation must expose its selected state");
+  assert.match(workspaceSource, /<BrandMark compact \/>/, "workspace title bar must carry Brick identity");
 });
 
 const routes = [

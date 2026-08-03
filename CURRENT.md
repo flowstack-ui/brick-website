@@ -2,7 +2,7 @@
 
 Brick UI Website is implemented as a multi-route product and documentation site.
 
-- Home page demonstrates a composed website-project workspace made from the published Brick package.
+- Home page demonstrates a composed, stateful website-project workspace made from the published Brick package, with a conversion-first stacked viewport and a compact mobile presentation.
 - All 75 component owners have routes sourced from reviewed package documentation and a dedicated live example built from that component's public package export.
 - Guides cover installation, theming, accessibility, and composition.
 - Theme and Atom relationship pages explain the visual and behavioral ownership boundaries.

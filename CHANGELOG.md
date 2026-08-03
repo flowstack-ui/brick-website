@@ -17,6 +17,8 @@
 - Rebuilt the mobile drawer as a branded, route-aware Brick composition with semantic surface treatment, aligned and comfortably spaced icon navigation, product resources, a centered action footer, and a full-screen narrow-mobile state.
 - Reworked the homepage hero around viewport height so its complete conversion column remains visible on ordinary desktops while the live workspace compresses only to a usable minimum and may continue naturally on shorter layouts.
 - Moved the hero composition transition ahead of workspace crowding, aligned its stacked content lane, gave the secondary action a quiet filled surface, and made the narrow demonstration explicitly identify itself as a live Brick composition.
+- Refined the stacked hero into a conversion-first viewport, replaced its line separator with whitespace, presented package qualities as neutral badges, titled the live Northstar section, protected the gradient headline punctuation, and prefixed the release version with `v`.
+- Made the Northstar sidebar, preview, settings handoff, and publishing preference genuinely interactive; added Brick identity to its title bar; simplified its owner presence; and corrected the auto-publish card’s action scale and alignment.
 
 ## 0.1.0 — 2026-08-02
 
