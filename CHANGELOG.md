@@ -25,6 +25,8 @@
 - Rebuilt search as a structured command surface with a dedicated header and close action, grouped component and guide results, separated rows, an honest result-count footer, an empty state, and a full-screen narrow-mobile presentation.
 - Tightened the transition into The Brick Promise, aligned its heading on one centered axis, authored feature-card icon spacing, reduced card dead space, and replaced padded ghost actions with precise editorial links.
 - Explicitly centered The Brick Promise title and description through Brick Text alignment props so their different measure widths share one visible axis.
+- Balanced The Brick Promise copy on one shared measure and moved its three-card layout to a content-driven 900px stack transition.
+- Replaced the separate dark-tile favicon artwork with a larger transparent rendering of the established three-part Brick mark.
 
 ## 0.1.0 — 2026-08-02
 

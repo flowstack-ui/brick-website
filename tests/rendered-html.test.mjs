@@ -37,10 +37,19 @@ test("homepage promise section retains its editorial feature-grid contract", asy
   const css = await readFile(new URL("../app/globals.css", import.meta.url), "utf8");
   assert.match(homepageSource, /className="pillar-link"/, "feature-card destinations must use aligned editorial links");
   assert.match(homepageSource, /id="principles-title"[^>]*align="center"/, "feature-grid title must explicitly center through the Brick Text API");
-  assert.match(homepageSource, /variant="body-lg" tone="secondary" align="center"/, "feature-grid description must explicitly share the title alignment");
+  assert.match(homepageSource, /variant="body-lg" tone="secondary" align="center" wrap="balance"/, "feature-grid description must share the title alignment and balanced wrapping");
   assert.match(css, /\.section-heading \{ display: grid;[^}]*justify-items: center;/, "section heading must share one centered layout axis");
+  assert.match(css, /\.section-heading :is\(h2, p\) \{ width: 100%; max-width: 44rem; \}/, "feature-grid heading copy must share one measure");
   assert.match(css, /\.pillar-card \.pillar-icon, \.pillar-card \.brick-card-title \{ grid-column: 1 \/ -1; \}/, "feature icon and title must occupy authored full-width rows");
   assert.match(css, /\.pillar-card \{ min-height: 16\.5rem; \}/, "feature cards must avoid the previous dead-space floor");
+  assert.match(css, /@media \(max-width: 900px\)[\s\S]*\.pillar-grid \{ grid-template-columns: 1fr !important; \}\.pillar-card \{ min-height: 0; \}/, "feature cards must stack before their content measure becomes cramped");
+});
+
+test("favicon reuses the transparent Brick brand mark", async () => {
+  const favicon = await readFile(new URL("../public/favicon.svg", import.meta.url), "utf8");
+  assert.equal((favicon.match(/<rect\b/g) ?? []).length, 3, "favicon must contain the same three-part masonry mark as the wordmark");
+  assert.doesNotMatch(favicon, /<rect[^>]*width="64"[^>]*height="64"/, "favicon must not add a theme-specific background tile");
+  assert.match(favicon, /#6847E8[\s\S]*#C45BD8[\s\S]*#EAA64A/, "favicon must retain the Brick mark color order");
 });
 
 test("homepage hero retains its height-aware first-viewport contract", async () => {
