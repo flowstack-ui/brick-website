@@ -288,7 +288,7 @@
   .layer-diagram { display: grid; gap: .8rem; perspective: 900px; }
   .layer { display: grid; min-height: 7rem; place-items: center; align-content: center; gap: .35rem; border: 1px solid var(--brick-color-border-subtle); border-radius: 1rem; background: var(--brick-color-surface-raised); box-shadow: 0 1rem 2rem color-mix(in srgb, var(--brick-color-shadow), transparent 80%); transform: rotateX(54deg) rotateZ(-4deg); }
   .layer span { display: inline-flex; align-items: center; gap: .45rem; font-weight: 650; }.layer small { color: var(--brick-color-text-muted); }
-  .brick-layer { border-color: var(--brick-color-accent-border); background: var(--brick-color-accent-soft); color: var(--brick-color-accent-text); }.application-layer { margin-inline: 2rem; }.atom-layer { margin-inline: -2rem 2rem; background: var(--brick-color-text-primary); color: var(--brick-color-surface-canvas); }
+  .brick-layer { border-color: var(--brick-color-accent-border); background: var(--brick-color-accent-soft); color: var(--brick-color-accent-text); }.brick-layer small { color: var(--brick-color-accent-text); }.application-layer { margin-inline: 2rem; }.atom-layer { margin-inline: -2rem 2rem; background: var(--brick-color-text-primary); color: var(--brick-color-surface-canvas); }.atom-layer small { color: var(--brick-color-surface-canvas); }
   .ownership-grid { max-width: 65rem; }
 
   .not-found { display: grid; min-height: 70dvh; place-items: center; align-content: center; gap: 1rem; text-align: center; }.not-found > * { margin: 0; }.not-found-code { color: var(--brick-color-accent-text); font-family: var(--site-font-mono); font-size: 1rem; letter-spacing: .2em; }

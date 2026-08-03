@@ -37,6 +37,13 @@ for (const [appearance, source] of [["light", light], ["dark", dark]]) {
     const ratio = contrast(foreground, background);
     assert(ratio >= 4.5, `${appearance} accent ${state} contrast is ${ratio.toFixed(2)}:1; expected at least 4.5:1`);
   }
+  for (const [label, foregroundToken, backgroundToken] of [
+    ["Brick layer caption", "--brick-color-accent-text", "--brick-color-accent-soft"],
+    ["Atom layer caption", "--brick-color-surface-canvas", "--brick-color-text-primary"],
+  ]) {
+    const ratio = contrast(token(source, foregroundToken), token(source, backgroundToken));
+    assert(ratio >= 4.5, `${appearance} ${label} contrast is ${ratio.toFixed(2)}:1; expected at least 4.5:1`);
+  }
 }
 
 const lightSecondary = token(light, "--brick-color-text-secondary");
@@ -50,5 +57,7 @@ assert.match(css, /a:not\(\.brick-button\)\s*\{\s*color:\s*inherit/, "global lin
 for (const selector of ["\\.shortcut", "\\.workspace-project small", "\\.footer-meta"]) {
   assert.match(css, new RegExp(`${selector}\\s*\\{[^}]*color:\\s*var\\(--brick-color-text-secondary\\)`), `${selector} must use secondary text on its tinted light surface`);
 }
+assert.match(css, /\.brick-layer small\s*\{\s*color:\s*var\(--brick-color-accent-text\)/, "Brick layer caption must use its paired accent foreground");
+assert.match(css, /\.atom-layer small\s*\{\s*color:\s*var\(--brick-color-surface-canvas\)/, "Atom layer caption must use its inverse surface foreground");
 
 console.log("Verified Studio action and authored small-text contrast assignments.");

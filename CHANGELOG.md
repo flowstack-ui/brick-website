@@ -10,6 +10,7 @@
 - Replaced the homepage demo's nested main landmark with a named section and repaired its internal heading hierarchy.
 - Prevented the website's global anchor rule from overriding Brick Button-link foregrounds and strengthened meaningful small text on light tinted surfaces.
 - Kept the embedded Studio theme demonstrations synchronized with the qualified dark accent interaction scale.
+- Corrected the Atom relationship diagram's caption contrast in both appearances and gave the grouped diagram valid image semantics.
 
 ## 0.1.0 — 2026-08-02
 

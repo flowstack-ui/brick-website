@@ -25,7 +25,7 @@ export default function AtomPage() {
           <Text as="p" variant="body-lg" tone="secondary" className="page-lede">Brick is the finished visual layer. Atom is the independent headless foundation that owns the difficult interaction and accessibility underneath it.</Text>
           <WebsiteButton href="https://atom-ui.com/" target="_blank" rel="noreferrer" endIcon={<ArrowRight size={15} />}>Visit atom-ui.com</WebsiteButton>
         </div>
-        <div className="layer-diagram" aria-label="Atom and Brick product layers">
+        <div className="layer-diagram" role="img" aria-label="Product layers: application composition, Brick presentation, and Atom behavior">
           <div className="layer application-layer"><span>Application</span><small>brand · routes · data · workflows</small></div>
           <div className="layer brick-layer"><span><Blocks size={18} /> Brick</span><small>finished components · tokens · recipes</small></div>
           <div className="layer atom-layer"><span>Atom</span><small>behavior · semantics · accessibility</small></div>
