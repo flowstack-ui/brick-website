@@ -21,7 +21,14 @@ export function SiteFooter() {
         <a href="https://www.npmjs.com/package/@flowstack-ui/brick">npm <ArrowUpRight size={13} aria-hidden="true" /></a>
         <a href="https://github.com/flowstack-ui/brick">GitHub <ArrowUpRight size={13} aria-hidden="true" /></a>
       </div>
-      <p className="footer-meta">MIT licensed · Built with Brick</p>
+      <div className="footer-meta">
+        <p className="footer-endorsement">
+          <span>Part of <a href="https://github.com/flowstack-ui">Flowstack</a></span>
+          <span aria-hidden="true">·</span>
+          <span>A <a href="https://swifty.us/">Swifty</a> product</span>
+        </p>
+        <p className="footer-legal">MIT licensed · Built with Brick · © 2026 Swifty LLC</p>
+      </div>
     </footer>
   );
 }

@@ -87,7 +87,22 @@ test("mobile footer retains its centered touch-friendly composition", async () =
   assert.match(css, /\.footer-brand \.brand-word \{ display: inline; \}\.footer-brand \.version-pill \{ display: inline-flex; \}/, "footer brand and version must remain visible at every mobile size");
   assert.match(css, /\.footer-links \{ display: grid;[^}]*grid-template-columns: repeat\(2, minmax\(0, 1fr\)\);/, "mobile footer destinations must use a stable two-column grid");
   assert.match(css, /\.footer-links a \{ min-height: 2\.75rem; justify-content: center;/, "mobile footer destinations must preserve touch height and centered labels");
-  assert.match(css, /\.footer-meta \{ grid-column: auto; width: 100%; text-align: center; \}/, "mobile footer metadata must share the footer axis");
+  assert.match(footerSource, /Part of <a href="https:\/\/github\.com\/flowstack-ui">Flowstack<\/a>/, "footer must identify Brick's Flowstack membership");
+  assert.match(footerSource, /A <a href="https:\/\/swifty\.us\/">Swifty<\/a> product/, "footer must identify Swifty ownership without replacing Brick identity");
+  assert.match(css, /\.footer-meta \{ grid-column: auto; width: 100%; flex-direction: column;[^}]*text-align: center; \}/, "mobile footer metadata must share the footer axis");
+  assert.match(css, /\.footer-endorsement \{ justify-content: center; \}/, "mobile endorsement must remain centered when its phrases wrap");
+});
+
+test("Flowstack relationship remains supporting product context", async () => {
+  const headerSource = await readFile(new URL("../app/components/SiteHeader.tsx", import.meta.url), "utf8");
+  const homepageSource = await readFile(new URL("../app/page.tsx", import.meta.url), "utf8");
+  const atomSource = await readFile(new URL("../app/atom/page.tsx", import.meta.url), "utf8");
+  assert.doesNotMatch(headerSource, /Swifty|Flowstack/, "global product navigation must remain Brick-owned");
+  assert.match(homepageSource, /Atom, Flowstack’s headless foundation/, "homepage may introduce the ecosystem only after the Brick hero");
+  assert.match(atomSource, /Part of Flowstack/, "Atom relationship page must explain ecosystem membership");
+  assert.match(atomSource, /<ol className="flowstack-path"/, "ecosystem explanation must retain an ordered product path");
+  assert.match(atomSource, /name: "Atom"[\s\S]*name: "Brick"[\s\S]*name: "Your product"/, "product path must preserve layer ownership");
+  assert.doesNotMatch(atomSource, /Theme|Colors|Blocks as|Blocks pack/, "ecosystem explanation must not present prospective packs as published products");
 });
 
 test("homepage hero retains its height-aware first-viewport contract", async () => {

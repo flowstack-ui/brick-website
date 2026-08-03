@@ -34,6 +34,7 @@
 - Reworked the narrow-mobile footer around one centered axis with a stable two-column destination grid, touch-friendly link height, and centered metadata.
 - Added the source-backed version badge beside the complete footer wordmark and kept both visible at every responsive size.
 - Kept the complete header wordmark and source-backed version visible through the supported 320px minimum by compacting spacing instead of hiding identity.
+- Added a supporting Flowstack product-path explanation to the Atom relationship page and a persistent `Part of Flowstack · A Swifty product` footer endorsement without changing the Brick-owned header or hero.
 
 ## 0.1.0 — 2026-08-02
 

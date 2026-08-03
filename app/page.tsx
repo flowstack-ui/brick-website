@@ -24,7 +24,7 @@ const pillars = [
   {
     icon: ShieldCheck,
     title: "Accessible by foundation",
-    body: "Behavior, semantics, focus, keyboard, portals, and interaction come from published Atom primitives.",
+    body: "Behavior, semantics, focus, keyboard, portals, and interaction come from Atom, Flowstack’s headless foundation.",
     link: "/atom/",
     label: "Meet Atom",
   },

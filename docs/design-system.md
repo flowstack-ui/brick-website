@@ -11,6 +11,18 @@ The site direction is **architectural warmth**: precise modular geometry without
 
 The design supports reduced motion, forced colors, keyboard navigation, narrow mobile layouts, and large editorial screens.
 
+## Product relationship
+
+Brick remains the primary identity in global navigation, the homepage hero,
+documentation, and component demonstrations. Flowstack appears only where it
+helps explain the Atom-to-Brick product path. Swifty appears as a quiet
+ownership endorsement in the global footer.
+
+Until dedicated Flowstack and Swifty marks are approved, both relationships
+use readable text rather than provisional artwork. The public language is
+`Part of Flowstack` for ecosystem membership, `A Swifty product` for ownership,
+and `Built on Atom` for Brick's released technical foundation.
+
 ## Responsive contract
 
 Breakpoints follow content pressure rather than named devices. Components use
