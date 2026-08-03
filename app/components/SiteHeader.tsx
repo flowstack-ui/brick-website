@@ -109,12 +109,13 @@ export function SiteHeader() {
         <Dialog.Root open={searchOpen} onOpenChange={setSearchOpen}>
           <Dialog.Trigger asChild>
             <Button
+              aria-label="Search Brick documentation"
               aria-keyshortcuts="Meta+K Control+K"
               className="search-trigger"
               tone="neutral"
               variant="soft"
               size="sm"
-              startIcon={<Search size={15} />}
+              startIcon={<Search size={15} aria-hidden="true" />}
             >
               Search <kbd className="shortcut">⌘K</kbd>
             </Button>

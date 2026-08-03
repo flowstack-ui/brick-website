@@ -20,6 +20,7 @@
 - Refined the stacked hero into a conversion-first viewport, replaced its line separator with whitespace, presented package qualities as neutral badges, titled the live Northstar section, protected the gradient headline punctuation, and prefixed the release version with `v`.
 - Made the Northstar sidebar, preview, settings handoff, and publishing preference genuinely interactive; added Brick identity to its title bar; simplified its owner presence; and corrected the auto-publish card’s action scale and alignment.
 - Centered the complete stacked conversion group and added explicit spacing between each package-quality badge icon and label.
+- Gave the responsive search trigger a stable accessible name when its visible label collapses at the icon-only breakpoint.
 
 ## 0.1.0 — 2026-08-02
 
