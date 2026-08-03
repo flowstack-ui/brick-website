@@ -35,6 +35,7 @@
 - Added the source-backed version badge beside the complete footer wordmark and kept both visible at every responsive size.
 - Kept the complete header wordmark and source-backed version visible through the supported 320px minimum by compacting spacing instead of hiding identity.
 - Added a supporting Flowstack product-path explanation to the Atom relationship page and a persistent `Part of Flowstack · A Swifty product` footer endorsement without changing the Brick-owned header or hero.
+- Replaced the Atom hero's flattened perspective rectangles with a connected, readable three-node layer composition and strengthened the light-appearance footer version foreground.
 
 ## 0.1.0 — 2026-08-02
 

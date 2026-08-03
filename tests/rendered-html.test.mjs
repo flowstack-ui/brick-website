@@ -105,6 +105,17 @@ test("Flowstack relationship remains supporting product context", async () => {
   assert.doesNotMatch(atomSource, /Theme|Colors|Blocks as|Blocks pack/, "ecosystem explanation must not present prospective packs as published products");
 });
 
+test("Atom hero retains its readable connected-layer composition", async () => {
+  const atomSource = await readFile(new URL("../app/atom/page.tsx", import.meta.url), "utf8");
+  const css = await readFile(new URL("../app/globals.css", import.meta.url), "utf8");
+  assert.match(atomSource, /Flowstack layers/, "hero visual must identify the layer system it depicts");
+  assert.match(atomSource, /03 · Application[\s\S]*02 · Presentation[\s\S]*01 · Behavior/, "hero visual must expose a clear top-to-foundation sequence");
+  assert.match(atomSource, /className="layer-symbol"/, "each layer must have a dedicated visual anchor");
+  assert.doesNotMatch(css, /rotateX\(54deg\)/, "layer labels must not be flattened by the previous perspective transform");
+  assert.match(css, /\.layer-diagram::before[^}]*linear-gradient/, "layer composition must retain a visible connection spine");
+  assert.match(css, /\.brick-layer \{[^}]*width: min\(100%, 27rem\);/, "Brick must remain the visual focus of the relationship diagram");
+});
+
 test("homepage hero retains its height-aware first-viewport contract", async () => {
   const css = await readFile(new URL("../app/globals.css", import.meta.url), "utf8");
   assert.match(css, /padding-block: clamp\(2\.75rem, 6dvh, 5rem\)/, "hero vertical rhythm must respond to viewport height");

@@ -4,7 +4,7 @@ import { WebsiteButton } from "@/app/components/WebsiteButton";
 import { Card } from "@flowstack-ui/brick/card";
 import { Grid } from "@flowstack-ui/brick/grid";
 import { Text } from "@flowstack-ui/brick/text";
-import { ArrowRight, Blocks, Eye, Keyboard, Layers3, ShieldCheck } from "lucide-react";
+import { ArrowRight, Blocks, CircleDot, Eye, Keyboard, Layers3, PanelsTopLeft, ShieldCheck } from "lucide-react";
 
 export const metadata: Metadata = { title: "Built on Atom", description: "Understand how Atom and Brick form independent layers in the Flowstack ecosystem." };
 
@@ -32,9 +32,19 @@ export default function AtomPage() {
           <WebsiteButton href="https://atom-ui.com/" target="_blank" rel="noreferrer" endIcon={<ArrowRight size={15} />}>Visit atom-ui.com</WebsiteButton>
         </div>
         <div className="layer-diagram" role="img" aria-label="Product layers: application composition, Brick presentation, and Atom behavior">
-          <div className="layer application-layer"><span>Application</span><small>brand · routes · data · workflows</small></div>
-          <div className="layer brick-layer"><span><Blocks size={18} /> Brick</span><small>finished components · tokens · recipes</small></div>
-          <div className="layer atom-layer"><span>Atom</span><small>behavior · semantics · accessibility</small></div>
+          <div className="layer-diagram-heading" aria-hidden="true"><span>Flowstack layers</span><small>foundation to finished product</small></div>
+          <div className="layer application-layer">
+            <span className="layer-symbol"><PanelsTopLeft size={20} aria-hidden="true" /></span>
+            <span className="layer-copy"><small>03 · Application</small><strong>Your product</strong><span>brand · routes · data · workflows</span></span>
+          </div>
+          <div className="layer brick-layer">
+            <span className="layer-symbol"><Blocks size={20} aria-hidden="true" /></span>
+            <span className="layer-copy"><small>02 · Presentation</small><strong>Brick</strong><span>finished components · tokens · recipes</span></span>
+          </div>
+          <div className="layer atom-layer">
+            <span className="layer-symbol"><CircleDot size={20} aria-hidden="true" /></span>
+            <span className="layer-copy"><small>01 · Behavior</small><strong>Atom</strong><span>semantics · accessibility · interaction</span></span>
+          </div>
         </div>
       </section>
       <section className="flowstack-context section-shell" aria-labelledby="flowstack-context-title">
