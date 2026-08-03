@@ -15,10 +15,14 @@ async function render(pathname) {
 
 test("mobile drawer retains its branded reference composition", async () => {
   const headerSource = await readFile(new URL("../app/components/SiteHeader.tsx", import.meta.url), "utf8");
+  const css = await readFile(new URL("../app/globals.css", import.meta.url), "utf8");
   assert.match(headerSource, /<BrandMark \/>/, "drawer must retain Brick identity");
   assert.match(headerSource, /<NavList\.Root/, "drawer navigation must use the published Brick navigation primitive");
   assert.match(headerSource, /Build interfaces from pieces that belong together\./, "drawer must retain its product-specific title");
   assert.match(headerSource, /pathname\.startsWith\(href\)/, "drawer must identify the current product section");
+  assert.doesNotMatch(css, /\.version-pill \{ display: none; \}/, "header version must remain visible at every supported width");
+  assert.doesNotMatch(css, /\.brand-word \{ display: none; \}/, "header wordmark must remain visible at every supported width");
+  assert.match(css, /\.site-header \{ gap: \.5rem; padding-inline: \.75rem; \}\.brand-link, \.brand \{ gap: \.4rem; \}/, "narrow header must compact spacing instead of hiding identity");
 });
 
 test("search dialog retains its structured responsive composition", async () => {
@@ -80,7 +84,6 @@ test("mobile footer retains its centered touch-friendly composition", async () =
   const footerSource = await readFile(new URL("../app/components/SiteFooter.tsx", import.meta.url), "utf8");
   assert.match(footerSource, /<BrandMark \/>[\s\S]*className="version-pill footer-version">v\{source\.version\}/, "footer must present the same complete brand and source-backed version treatment as the header");
   assert.match(css, /\.site-footer \{ grid-template-columns: 1fr; justify-items: center;[^}]*text-align: center; \}/, "mobile footer must establish one intentional centered axis");
-  assert.match(css, /\.version-pill \{ display: none; \}\.footer-brand \.version-pill \{ display: inline-flex; \}/, "footer version must remain visible when the header version becomes compact");
   assert.match(css, /\.footer-brand \.brand-word \{ display: inline; \}\.footer-brand \.version-pill \{ display: inline-flex; \}/, "footer brand and version must remain visible at every mobile size");
   assert.match(css, /\.footer-links \{ display: grid;[^}]*grid-template-columns: repeat\(2, minmax\(0, 1fr\)\);/, "mobile footer destinations must use a stable two-column grid");
   assert.match(css, /\.footer-links a \{ min-height: 2\.75rem; justify-content: center;/, "mobile footer destinations must preserve touch height and centered labels");
