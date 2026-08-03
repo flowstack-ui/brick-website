@@ -77,7 +77,11 @@ test("homepage catalog story retains its component-constellation contract", asyn
 
 test("mobile footer retains its centered touch-friendly composition", async () => {
   const css = await readFile(new URL("../app/globals.css", import.meta.url), "utf8");
+  const footerSource = await readFile(new URL("../app/components/SiteFooter.tsx", import.meta.url), "utf8");
+  assert.match(footerSource, /<BrandMark \/>[\s\S]*className="version-pill footer-version">v\{source\.version\}/, "footer must present the same complete brand and source-backed version treatment as the header");
   assert.match(css, /\.site-footer \{ grid-template-columns: 1fr; justify-items: center;[^}]*text-align: center; \}/, "mobile footer must establish one intentional centered axis");
+  assert.match(css, /\.version-pill \{ display: none; \}\.footer-brand \.version-pill \{ display: inline-flex; \}/, "footer version must remain visible when the header version becomes compact");
+  assert.match(css, /\.footer-brand \.brand-word \{ display: inline; \}\.footer-brand \.version-pill \{ display: inline-flex; \}/, "footer brand and version must remain visible at every mobile size");
   assert.match(css, /\.footer-links \{ display: grid;[^}]*grid-template-columns: repeat\(2, minmax\(0, 1fr\)\);/, "mobile footer destinations must use a stable two-column grid");
   assert.match(css, /\.footer-links a \{ min-height: 2\.75rem; justify-content: center;/, "mobile footer destinations must preserve touch height and centered labels");
   assert.match(css, /\.footer-meta \{ grid-column: auto; width: 100%; text-align: center; \}/, "mobile footer metadata must share the footer axis");

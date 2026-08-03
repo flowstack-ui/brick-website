@@ -32,6 +32,7 @@
 - Tightened the theme-to-catalog transition and replaced oversized generic icon tiles with a compact, labeled component constellation centered on the source-backed catalog count.
 - Isolated the catalog constellation's internal blueprint grid on an opaque semantic surface so it no longer overlaps the page grid.
 - Reworked the narrow-mobile footer around one centered axis with a stable two-column destination grid, touch-friendly link height, and centered metadata.
+- Added the source-backed version badge beside the complete footer wordmark and kept both visible at every responsive size.
 
 ## 0.1.0 — 2026-08-02
 

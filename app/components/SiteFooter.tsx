@@ -1,12 +1,16 @@
 import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 import { BrandMark } from "./BrandMark";
+import { source } from "@/app/lib/content";
 
 export function SiteFooter() {
   return (
     <footer className="site-footer">
       <div className="footer-brand">
-        <BrandMark />
+        <div className="footer-brand-heading">
+          <BrandMark />
+          <span className="version-pill footer-version">v{source.version}</span>
+        </div>
         <p>Finished React components, built on accessible foundations.</p>
       </div>
       <div className="footer-links">
