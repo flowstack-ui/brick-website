@@ -80,10 +80,10 @@ export default function Home() {
         </section>
 
         <section className="principles section-shell" aria-labelledby="principles-title">
-          <div className="section-heading">
+          <div className="section-heading promise-heading">
             <Badge variant="outline" tone="neutral">The Brick promise</Badge>
-            <Text as="h2" id="principles-title" variant="display" align="center" wrap="balance">A strong visual layer, without the platform weight.</Text>
-            <Text as="p" variant="body-lg" tone="secondary" align="center" wrap="balance">Brick sits between headless primitives and a sprawling UI platform: focused, polished, and explicit about what your application still owns.</Text>
+            <Text as="h2" id="principles-title" variant="display" align="start" wrap="balance">A strong visual layer, without the platform weight.</Text>
+            <Text as="p" variant="body-lg" tone="secondary" align="start" wrap="pretty">Brick sits between headless primitives and a sprawling UI platform: focused, polished, and explicit about what your application still owns.</Text>
           </div>
           <Grid.Root columns={3} gap="4" className="pillar-grid">
             {pillars.map(({ icon: Icon, ...pillar }, index) => (

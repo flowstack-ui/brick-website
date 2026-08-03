@@ -36,10 +36,12 @@ test("homepage promise section retains its editorial feature-grid contract", asy
   const homepageSource = await readFile(new URL("../app/page.tsx", import.meta.url), "utf8");
   const css = await readFile(new URL("../app/globals.css", import.meta.url), "utf8");
   assert.match(homepageSource, /className="pillar-link"/, "feature-card destinations must use aligned editorial links");
-  assert.match(homepageSource, /id="principles-title"[^>]*align="center"/, "feature-grid title must explicitly center through the Brick Text API");
-  assert.match(homepageSource, /variant="body-lg" tone="secondary" align="center" wrap="balance"/, "feature-grid description must share the title alignment and balanced wrapping");
+  assert.match(homepageSource, /className="section-heading promise-heading"/, "feature-grid introduction must opt into its editorial alignment contract");
+  assert.match(homepageSource, /id="principles-title"[^>]*align="start"/, "feature-grid title must explicitly use the editorial start axis through the Brick Text API");
+  assert.match(homepageSource, /variant="body-lg" tone="secondary" align="start" wrap="pretty"/, "feature-grid description must share the title axis without forcing a pyramidal wrap");
   assert.match(css, /\.section-heading \{ display: grid;[^}]*justify-items: center;/, "section heading must share one centered layout axis");
   assert.match(css, /\.section-heading :is\(h2, p\) \{ width: 100%; max-width: 44rem; \}/, "feature-grid heading copy must share one measure");
+  assert.match(css, /\.promise-heading \{ max-width: 52rem; justify-items: start; margin-inline: 0; text-align: start; \}/, "promise heading must align with the feature-card grid instead of forming a centered pyramid");
   assert.match(css, /\.pillar-card \.pillar-icon, \.pillar-card \.brick-card-title \{ grid-column: 1 \/ -1; \}/, "feature icon and title must occupy authored full-width rows");
   assert.match(css, /\.pillar-card \{ min-height: 16\.5rem; \}/, "feature cards must avoid the previous dead-space floor");
   assert.match(css, /@media \(max-width: 900px\)[\s\S]*\.pillar-grid \{ grid-template-columns: 1fr !important; \}\.pillar-card \{ min-height: 0; \}/, "feature cards must stack before their content measure becomes cramped");

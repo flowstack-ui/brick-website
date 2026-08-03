@@ -233,6 +233,7 @@
   .section-heading { display: grid; max-width: 48rem; justify-items: center; gap: 1rem; margin: 0 auto 2.75rem; text-align: center; }
   .section-heading > * { margin: 0; }
   .section-heading :is(h2, p) { width: 100%; max-width: 44rem; }
+  .promise-heading { max-width: 52rem; justify-items: start; margin-inline: 0; text-align: start; }
   .compact-heading { justify-items: start; margin-inline: 0; text-align: start; }
   .pillar-grid { align-items: stretch; }
   .pillar-card { min-height: 16.5rem; }

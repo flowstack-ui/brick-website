@@ -26,6 +26,7 @@
 - Tightened the transition into The Brick Promise, aligned its heading on one centered axis, authored feature-card icon spacing, reduced card dead space, and replaced padded ghost actions with precise editorial links.
 - Explicitly centered The Brick Promise title and description through Brick Text alignment props so their different measure widths share one visible axis.
 - Balanced The Brick Promise copy on one shared measure and moved its three-card layout to a content-driven 900px stack transition.
+- Replaced The Brick Promise's centered pyramid with an editorial introduction aligned to the feature-card grid.
 - Replaced the separate dark-tile favicon artwork with a larger transparent rendering of the established three-part Brick mark.
 
 ## 0.1.0 — 2026-08-02
