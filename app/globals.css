@@ -304,7 +304,7 @@
   @media (max-width: 900px) {
     :root { --site-header-height: 4rem; }
     .site-header { padding-inline: 1rem; }.version-pill { display: none; }
-    .search-trigger { inline-size: 2.25rem; min-inline-size: 2.25rem; padding-inline: 0; }.search-trigger .brick-button__content { display: none; }.search-trigger .brick-button__icon { margin: 0; }
+    .search-trigger { inline-size: 2.25rem; min-inline-size: 2.25rem; justify-content: center; padding-inline: 0; }.search-trigger .brick-button__content { display: none; }.search-trigger .brick-button__icon { margin: 0; }
     .workspace-body { grid-template-columns: 9rem minmax(0, 1fr); }.workspace-bottom-grid { grid-template-columns: 1fr; }.workspace-table .brick-table__head:nth-child(3), .workspace-table .brick-table__cell:nth-child(3) { display: none; }
     .theme-story, .catalog-story, .token-section { grid-template-columns: 1fr; }.theme-story-copy, .catalog-copy, .token-copy { max-width: 42rem; }.catalog-art { order: 2; }.theme-story { gap: 3rem; }
     .closing-cta { grid-template-columns: 1fr; align-items: start; }.closing-actions { justify-items: start; }

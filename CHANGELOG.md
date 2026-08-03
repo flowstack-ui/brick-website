@@ -13,7 +13,7 @@
 - Corrected the Atom relationship diagram's caption contrast in both appearances and gave the grouped diagram valid image semantics.
 - Made the browser favicon host-relative and removed the duplicate shortcut declaration so preview deployments do not request the unresolved future custom domain twice.
 - Added stable browser identity and explicit search semantics to the homepage workspace filter and site-search field.
-- Implemented the advertised Command/Control-K search shortcut, aligned the header action cluster, replaced the generic code glyph with the GitHub mark, and documented content-driven responsive breakpoints.
+- Implemented the advertised Command/Control-K search shortcut, aligned the header action cluster and compact search icon, replaced the generic code glyph with the GitHub mark, and documented content-driven responsive breakpoints.
 
 ## 0.1.0 — 2026-08-02
 
