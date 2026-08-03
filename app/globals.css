@@ -101,11 +101,13 @@
   .desktop-nav { display: flex; align-items: center; gap: .25rem; }
   .desktop-nav a { padding: .55rem .72rem; border-radius: .5rem; color: var(--brick-color-text-secondary); font-size: .9rem; font-weight: 550; text-decoration: none; }
   .desktop-nav a:hover { background: var(--brick-color-surface-subtle); color: var(--brick-color-text-primary); }
-  .header-actions { display: flex; justify-content: flex-end; align-items: center; gap: .25rem; }
-  .search-trigger { min-width: 9.75rem; justify-content: flex-start; }
-  .shortcut { margin-inline-start: auto; color: var(--brick-color-text-secondary); font-family: var(--site-font-mono); font-size: .7rem; }
-  .icon-action { min-inline-size: 2.25rem; padding-inline: .6rem; }
-  .mobile-menu-trigger { display: none; min-inline-size: 2.25rem; padding-inline: .55rem; }
+  .header-actions { display: flex; justify-content: flex-end; align-items: center; gap: .625rem; }
+  .header-icon-actions { display: flex; align-items: center; gap: .25rem; }
+  .search-trigger { min-width: 10.5rem; justify-content: flex-start; }
+  .search-trigger .brick-button__content { display: flex; flex: 1; min-width: 0; align-items: center; gap: .5rem; }
+  .shortcut { margin-inline-start: auto; padding: .12rem .34rem; border: 1px solid var(--brick-color-border-subtle); border-radius: .3rem; background: var(--brick-color-surface-raised); color: var(--brick-color-text-secondary); font-family: var(--site-font-mono); font-size: .68rem; font-weight: 500; line-height: 1.2; }
+  .icon-action { inline-size: 2.25rem; min-inline-size: 2.25rem; padding-inline: 0; }
+  .mobile-menu-trigger { display: none; inline-size: 2.25rem; min-inline-size: 2.25rem; padding-inline: 0; }
 
   .search-dialog { --brick-dialog-max-inline-size: 43rem; }
   .search-results { display: grid; gap: .25rem; margin-block-start: 1rem; }
@@ -301,8 +303,8 @@
 
   @media (max-width: 900px) {
     :root { --site-header-height: 4rem; }
-    .site-header { padding-inline: 1rem; }.version-pill, .github-action { display: none; }
-    .search-trigger { min-inline-size: 2.25rem; padding-inline: .55rem; }.search-trigger .brick-button__content { font-size: 0; }.search-trigger .brick-button__icon { margin: 0; }
+    .site-header { padding-inline: 1rem; }.version-pill { display: none; }
+    .search-trigger { inline-size: 2.25rem; min-inline-size: 2.25rem; padding-inline: 0; }.search-trigger .brick-button__content { display: none; }.search-trigger .brick-button__icon { margin: 0; }
     .workspace-body { grid-template-columns: 9rem minmax(0, 1fr); }.workspace-bottom-grid { grid-template-columns: 1fr; }.workspace-table .brick-table__head:nth-child(3), .workspace-table .brick-table__cell:nth-child(3) { display: none; }
     .theme-story, .catalog-story, .token-section { grid-template-columns: 1fr; }.theme-story-copy, .catalog-copy, .token-copy { max-width: 42rem; }.catalog-art { order: 2; }.theme-story { gap: 3rem; }
     .closing-cta { grid-template-columns: 1fr; align-items: start; }.closing-actions { justify-items: start; }
@@ -312,7 +314,7 @@
 
   @media (max-width: 640px) {
     :root { --site-gutter: 1rem; }
-    .brand-word { display: none; }.header-actions { gap: 0; }
+    .brand-word { display: none; }.header-actions { gap: .375rem; }
     .hero { min-height: auto; padding-block: 3.5rem 5rem; }.hero-title, .page-title { font-size: clamp(3.25rem, 16vw, 5rem); }.hero-actions { align-items: stretch; }.hero-actions .brick-button { width: 100%; }.hero-proof { display: grid; grid-template-columns: 1fr 1fr; }
     .workspace-window { overflow: visible; border: 0; background: transparent; box-shadow: none; transform: none; }.workspace-titlebar, .workspace-body { display: none; }.workspace-mobile-card { display: grid; gap: 1rem; padding: 1.1rem; border: 1px solid var(--brick-color-accent-border); border-radius: 1.1rem; background: var(--brick-color-surface-raised); box-shadow: 0 1.5rem 4rem color-mix(in srgb, var(--brick-color-shadow), transparent 72%); }
     .principles, .theme-story, .catalog-story, .closing-cta, .token-section, .theme-comparison, .ownership-section { padding-block: 4.5rem; }.pillar-grid, .docs-path-grid, .component-card-grid, .comparison-grid, .ownership-grid { grid-template-columns: 1fr !important; }.pillar-card { min-height: 0; }

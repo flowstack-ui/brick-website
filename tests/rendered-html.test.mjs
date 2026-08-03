@@ -33,6 +33,9 @@ for (const [pathname, expected] of routes) {
     if (pathname === "/") {
       assert.match(html, /<link rel="icon" href="\/favicon\.svg" type="image\/svg\+xml"\s*\/?>/, "favicon must resolve against the current host");
       assert.doesNotMatch(html, /https:\/\/brick-ui\.com\/favicon\.svg/, "favicon must not depend on the future custom domain");
+      assert.match(html, /aria-keyshortcuts="Meta\+K Control\+K"/, "search trigger must expose its implemented keyboard shortcuts");
+      assert.match(html, /<kbd class="shortcut">⌘K<\/kbd>/, "search shortcut must be presented as a key command");
+      assert.match(html, /octicon-mark-github/, "GitHub action must use the recognizable GitHub mark");
       const inputs = [...html.matchAll(/<input\b[^>]*>/g)].map((match) => match[0]);
       assert.ok(inputs.length > 0, "homepage must render its workspace filter");
       for (const input of inputs) {

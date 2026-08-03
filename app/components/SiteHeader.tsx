@@ -6,9 +6,9 @@ import { Button } from "@flowstack-ui/brick/button";
 import { Dialog } from "@flowstack-ui/brick/dialog";
 import { Drawer } from "@flowstack-ui/brick/drawer";
 import { Input } from "@flowstack-ui/brick/input";
+import { MarkGithubIcon } from "@primer/octicons-react";
 import {
   ArrowUpRight,
-  Code2,
   Menu,
   Moon,
   Search,
@@ -36,6 +36,7 @@ function applyAppearance(value: Appearance) {
 export function SiteHeader() {
   const [appearance, setAppearance] = useState<Appearance>("light");
   const [query, setQuery] = useState("");
+  const [searchOpen, setSearchOpen] = useState(false);
 
   useEffect(() => {
     const saved = localStorage.getItem("brick-website-appearance") as Appearance | null;
@@ -44,6 +45,18 @@ export function SiteHeader() {
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setAppearance(resolved);
     applyAppearance(resolved);
+  }, []);
+
+  useEffect(() => {
+    const openSearch = (event: KeyboardEvent) => {
+      if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === "k") {
+        event.preventDefault();
+        setSearchOpen(true);
+      }
+    };
+
+    window.addEventListener("keydown", openSearch);
+    return () => window.removeEventListener("keydown", openSearch);
   }, []);
 
   const results = useMemo(() => {
@@ -75,10 +88,17 @@ export function SiteHeader() {
       </nav>
 
       <div className="header-actions">
-        <Dialog.Root>
+        <Dialog.Root open={searchOpen} onOpenChange={setSearchOpen}>
           <Dialog.Trigger asChild>
-            <Button className="search-trigger" tone="neutral" variant="soft" size="sm" startIcon={<Search size={15} />}>
-              Search <span className="shortcut">⌘K</span>
+            <Button
+              aria-keyshortcuts="Meta+K Control+K"
+              className="search-trigger"
+              tone="neutral"
+              variant="soft"
+              size="sm"
+              startIcon={<Search size={15} />}
+            >
+              Search <kbd className="shortcut">⌘K</kbd>
             </Button>
           </Dialog.Trigger>
           <Dialog.Portal>
@@ -135,62 +155,64 @@ export function SiteHeader() {
           </Dialog.Portal>
         </Dialog.Root>
 
-        <Button
-          aria-label={`Use ${appearance === "light" ? "dark" : "light"} appearance`}
-          className="icon-action"
-          tone="neutral"
-          variant="ghost"
-          size="sm"
-          onPress={toggleAppearance}
-        >
-          {appearance === "light" ? <Moon size={17} aria-hidden="true" /> : <Sun size={17} aria-hidden="true" />}
-        </Button>
+        <div className="header-icon-actions">
+          <Button
+            aria-label={`Use ${appearance === "light" ? "dark" : "light"} appearance`}
+            className="icon-action"
+            tone="neutral"
+            variant="ghost"
+            size="sm"
+            onPress={toggleAppearance}
+          >
+            {appearance === "light" ? <Moon size={17} aria-hidden="true" /> : <Sun size={17} aria-hidden="true" />}
+          </Button>
 
-        <Button
-          aria-label="Brick on GitHub"
-          className="icon-action github-action"
-          href="https://github.com/flowstack-ui/brick"
-          target="_blank"
-          rel="noreferrer"
-          tone="neutral"
-          variant="ghost"
-          size="sm"
-        >
-          <Code2 size={17} aria-hidden="true" />
-        </Button>
+          <Button
+            aria-label="Brick on GitHub"
+            className="icon-action github-action"
+            href="https://github.com/flowstack-ui/brick"
+            target="_blank"
+            rel="noreferrer"
+            tone="neutral"
+            variant="ghost"
+            size="sm"
+          >
+            <MarkGithubIcon size={17} aria-hidden="true" />
+          </Button>
 
-        <Drawer.Root>
-          <Drawer.Trigger asChild>
-            <Button aria-label="Open navigation" className="mobile-menu-trigger" tone="neutral" variant="ghost" size="sm">
-              <Menu size={19} aria-hidden="true" />
-            </Button>
-          </Drawer.Trigger>
-          <Drawer.Portal>
-            <Drawer.Overlay />
-            <Drawer.Content placement="end" size="sm" className="mobile-drawer">
-              <Drawer.Header>
-                <Drawer.Title>Explore Brick</Drawer.Title>
-                <Drawer.Description>Product, components, and foundations.</Drawer.Description>
-                <Drawer.Close asChild>
-                  <Button aria-label="Close navigation" className="drawer-close" tone="neutral" variant="ghost" size="sm">
-                    <X size={18} aria-hidden="true" />
-                  </Button>
-                </Drawer.Close>
-              </Drawer.Header>
-              <Drawer.Body>
-                <nav className="mobile-nav" aria-label="Mobile navigation">
-                  <Drawer.Close asChild><Link href="/">Home</Link></Drawer.Close>
-                  {nav.map((item) => (
-                    <Drawer.Close asChild key={item.href}><a href={item.href}>{item.label}</a></Drawer.Close>
-                  ))}
-                </nav>
-              </Drawer.Body>
-              <Drawer.Footer>
-                <Button href="/docs/getting-started/" fullWidth>Get started</Button>
-              </Drawer.Footer>
-            </Drawer.Content>
-          </Drawer.Portal>
-        </Drawer.Root>
+          <Drawer.Root>
+            <Drawer.Trigger asChild>
+              <Button aria-label="Open navigation" className="mobile-menu-trigger" tone="neutral" variant="ghost" size="sm">
+                <Menu size={19} aria-hidden="true" />
+              </Button>
+            </Drawer.Trigger>
+            <Drawer.Portal>
+              <Drawer.Overlay />
+              <Drawer.Content placement="end" size="sm" className="mobile-drawer">
+                <Drawer.Header>
+                  <Drawer.Title>Explore Brick</Drawer.Title>
+                  <Drawer.Description>Product, components, and foundations.</Drawer.Description>
+                  <Drawer.Close asChild>
+                    <Button aria-label="Close navigation" className="drawer-close" tone="neutral" variant="ghost" size="sm">
+                      <X size={18} aria-hidden="true" />
+                    </Button>
+                  </Drawer.Close>
+                </Drawer.Header>
+                <Drawer.Body>
+                  <nav className="mobile-nav" aria-label="Mobile navigation">
+                    <Drawer.Close asChild><Link href="/">Home</Link></Drawer.Close>
+                    {nav.map((item) => (
+                      <Drawer.Close asChild key={item.href}><a href={item.href}>{item.label}</a></Drawer.Close>
+                    ))}
+                  </nav>
+                </Drawer.Body>
+                <Drawer.Footer>
+                  <Button href="/docs/getting-started/" fullWidth>Get started</Button>
+                </Drawer.Footer>
+              </Drawer.Content>
+            </Drawer.Portal>
+          </Drawer.Root>
+        </div>
       </div>
     </header>
   );

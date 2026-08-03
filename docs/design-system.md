@@ -10,3 +10,22 @@ The site direction is **architectural warmth**: precise modular geometry without
 - Light and dark appearances remap semantic roles rather than swapping arbitrary colors.
 
 The design supports reduced motion, forced colors, keyboard navigation, narrow mobile layouts, and large editorial screens.
+
+## Responsive contract
+
+Breakpoints follow content pressure rather than named devices. Components use
+fluid sizing between these transitions; a breakpoint exists only when the
+current composition no longer fits or reads comfortably.
+
+| Width | Header contract | Page contract |
+| --- | --- | --- |
+| Above 1180px | Full centered navigation, labeled search with shortcut, appearance and GitHub actions | Multi-column editorial and documentation layouts |
+| 1180px and below | Primary navigation moves into the drawer; labeled search remains; the menu action appears | Hero stacks, documentation rail is removed |
+| 900px and below | Header height reduces, version hides, and search becomes icon-only; appearance, GitHub, and menu remain available | Documentation becomes in-flow and dense demonstrations simplify |
+| 640px and below | Wordmark hides but the Brick mark and all essential actions remain | One-column mobile compositions, 1rem gutters, full-width primary actions |
+
+Responsive review must cover 1440px, the 1180px boundary, 1024px, the 900px
+boundary, 768px, the 640px boundary, 390px, and the supported 320px minimum.
+At every width verify navigation reachability, action alignment, wrapping,
+horizontal overflow, readable content order, and touch targets. Test both
+appearances at 1440px and 390px, plus any width where a color or surface changes.
