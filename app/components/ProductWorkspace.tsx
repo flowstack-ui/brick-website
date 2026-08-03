@@ -177,14 +177,15 @@ export function ProductWorkspace() {
 
       <div className="workspace-mobile-card">
         <HStack justify="between" align="center">
-          <VStack gap="1"><Text variant="caption" tone="secondary">Northstar</Text><Text weight="semibold">Launch overview</Text></VStack>
+          <VStack gap="1"><Text variant="caption" tone="secondary">Northstar · demo project</Text><Text weight="semibold">Responsive launch overview</Text></VStack>
           <Avatar alt="Will Donin" fallback="WD" size="sm" status="online" />
         </HStack>
         <Divider />
         <Stack gap="3">
+          <Text variant="body-sm" tone="secondary">A compact website-project view assembled from Brick components.</Text>
           <HStack justify="between"><Text tone="secondary">Pages ready</Text><Badge tone="success">2 of 3</Badge></HStack>
           <Progress.Root value={84} size="sm" aria-label="Mobile launch readiness"><Progress.Track><Progress.Indicator /></Progress.Track></Progress.Root>
-          <Button fullWidth endIcon={<ArrowRight size={15} />}>Review launch</Button>
+          <Button href="/components/" fullWidth endIcon={<ArrowRight size={15} />}>Explore the components</Button>
         </Stack>
       </div>
     </section>

@@ -25,7 +25,11 @@ test("homepage hero retains its height-aware first-viewport contract", async () 
   const css = await readFile(new URL("../app/globals.css", import.meta.url), "utf8");
   assert.match(css, /padding-block: clamp\(2\.75rem, 6dvh, 5rem\)/, "hero vertical rhythm must respond to viewport height");
   assert.match(css, /min-height: clamp\(30rem, 66dvh, 35rem\)/, "workspace must compress only within its usable height range");
-  assert.match(css, /@media \(min-width: 1181px\) and \(max-height: 820px\)/, "short desktop windows must receive an explicit hero layout policy");
+  assert.match(css, /@media \(min-width: 1321px\) and \(max-height: 820px\)/, "short wide desktop windows must receive an explicit hero layout policy");
+  assert.match(css, /@media \(max-width: 1320px\)/, "hero must stack before the live composition becomes cramped");
+  const homepageSource = await readFile(new URL("../app/page.tsx", import.meta.url), "utf8");
+  assert.match(homepageSource, /Live Brick composition/, "stacked hero must identify the live component demonstration");
+  assert.match(homepageSource, /demo website project assembled from published Brick components/, "stacked hero must explain the demonstration context");
 });
 
 const routes = [

@@ -57,7 +57,7 @@ export default function Home() {
             </Text>
             <HStack gap="3" wrap className="hero-actions">
               <WebsiteButton href="/docs/getting-started/" size="lg" endIcon={<ArrowRight size={17} />}>Get started</WebsiteButton>
-              <WebsiteButton href="/components/" size="lg" tone="neutral" variant="outline">Explore 75 components</WebsiteButton>
+              <WebsiteButton href="/components/" size="lg" tone="neutral" variant="soft">Explore 75 components</WebsiteButton>
             </HStack>
             <InstallCommand />
             <div className="hero-proof" aria-label="Brick package qualities">
@@ -67,6 +67,12 @@ export default function Home() {
             </div>
           </div>
           <div className="hero-visual">
+            <div className="hero-visual-intro">
+              <Badge tone="accent" variant="soft" size="sm">Live Brick composition</Badge>
+              <Text as="p" variant="body-sm" tone="secondary">
+                Northstar is a demo website project assembled from published Brick components.
+              </Text>
+            </div>
             <div className="hero-glow" aria-hidden="true" />
             <ProductWorkspace />
           </div>

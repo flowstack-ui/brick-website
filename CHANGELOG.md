@@ -16,6 +16,7 @@
 - Implemented the advertised Command/Control-K search shortcut, aligned the header action cluster and compact search icon, replaced the generic code glyph with the GitHub mark, and documented content-driven responsive breakpoints.
 - Rebuilt the mobile drawer as a branded, route-aware Brick composition with semantic surface treatment, aligned and comfortably spaced icon navigation, product resources, a centered action footer, and a full-screen narrow-mobile state.
 - Reworked the homepage hero around viewport height so its complete conversion column remains visible on ordinary desktops while the live workspace compresses only to a usable minimum and may continue naturally on shorter layouts.
+- Moved the hero composition transition ahead of workspace crowding, aligned its stacked content lane, gave the secondary action a quiet filled surface, and made the narrow demonstration explicitly identify itself as a live Brick composition.
 
 ## 0.1.0 — 2026-08-02
 
