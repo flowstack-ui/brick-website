@@ -75,6 +75,14 @@ test("homepage catalog story retains its component-constellation contract", asyn
   assert.match(css, /\.catalog-art::before \{[^}]*background-color: var\(--brick-color-surface-base\);/, "catalog blueprint must block the page grid before drawing its own line system");
 });
 
+test("mobile footer retains its centered touch-friendly composition", async () => {
+  const css = await readFile(new URL("../app/globals.css", import.meta.url), "utf8");
+  assert.match(css, /\.site-footer \{ grid-template-columns: 1fr; justify-items: center;[^}]*text-align: center; \}/, "mobile footer must establish one intentional centered axis");
+  assert.match(css, /\.footer-links \{ display: grid;[^}]*grid-template-columns: repeat\(2, minmax\(0, 1fr\)\);/, "mobile footer destinations must use a stable two-column grid");
+  assert.match(css, /\.footer-links a \{ min-height: 2\.75rem; justify-content: center;/, "mobile footer destinations must preserve touch height and centered labels");
+  assert.match(css, /\.footer-meta \{ grid-column: auto; width: 100%; text-align: center; \}/, "mobile footer metadata must share the footer axis");
+});
+
 test("homepage hero retains its height-aware first-viewport contract", async () => {
   const css = await readFile(new URL("../app/globals.css", import.meta.url), "utf8");
   assert.match(css, /padding-block: clamp\(2\.75rem, 6dvh, 5rem\)/, "hero vertical rhythm must respond to viewport height");
