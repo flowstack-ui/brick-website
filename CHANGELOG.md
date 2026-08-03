@@ -30,6 +30,7 @@
 - Replaced the separate dark-tile favicon artwork with a larger transparent rendering of the established three-part Brick mark.
 - Tightened the promise-to-theme transition, gave the theme action a quiet filled surface over the page grid, and stacked the theme comparison at its 1080px content-pressure boundary.
 - Tightened the theme-to-catalog transition and replaced oversized generic icon tiles with a compact, labeled component constellation centered on the source-backed catalog count.
+- Isolated the catalog constellation's internal blueprint grid on an opaque semantic surface so it no longer overlaps the page grid.
 
 ## 0.1.0 — 2026-08-02
 
