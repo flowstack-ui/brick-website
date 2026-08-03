@@ -21,6 +21,13 @@ test("mobile drawer retains its branded reference composition", async () => {
   assert.match(headerSource, /pathname\.startsWith\(href\)/, "drawer must identify the current product section");
 });
 
+test("homepage hero retains its height-aware first-viewport contract", async () => {
+  const css = await readFile(new URL("../app/globals.css", import.meta.url), "utf8");
+  assert.match(css, /padding-block: clamp\(2\.75rem, 6dvh, 5rem\)/, "hero vertical rhythm must respond to viewport height");
+  assert.match(css, /min-height: clamp\(30rem, 66dvh, 35rem\)/, "workspace must compress only within its usable height range");
+  assert.match(css, /@media \(min-width: 1181px\) and \(max-height: 820px\)/, "short desktop windows must receive an explicit hero layout policy");
+});
+
 const routes = [
   ["/", /Build interfaces that already feel finished/i],
   ["/components", /75 component owners/i],
