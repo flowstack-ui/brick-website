@@ -36,6 +36,8 @@ test("homepage promise section retains its editorial feature-grid contract", asy
   const homepageSource = await readFile(new URL("../app/page.tsx", import.meta.url), "utf8");
   const css = await readFile(new URL("../app/globals.css", import.meta.url), "utf8");
   assert.match(homepageSource, /className="pillar-link"/, "feature-card destinations must use aligned editorial links");
+  assert.match(homepageSource, /id="principles-title"[^>]*align="center"/, "feature-grid title must explicitly center through the Brick Text API");
+  assert.match(homepageSource, /variant="body-lg" tone="secondary" align="center"/, "feature-grid description must explicitly share the title alignment");
   assert.match(css, /\.section-heading \{ display: grid;[^}]*justify-items: center;/, "section heading must share one centered layout axis");
   assert.match(css, /\.pillar-card \.pillar-icon, \.pillar-card \.brick-card-title \{ grid-column: 1 \/ -1; \}/, "feature icon and title must occupy authored full-width rows");
   assert.match(css, /\.pillar-card \{ min-height: 16\.5rem; \}/, "feature cards must avoid the previous dead-space floor");
