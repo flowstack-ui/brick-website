@@ -104,10 +104,24 @@ export function ProductWorkspace() {
                 </Dialog.Trigger>
                 <Dialog.Portal>
                   <Dialog.Overlay />
-                  <Dialog.Content size="sm">
-                    <Dialog.Header><Dialog.Title>Northstar preview</Dialog.Title><Dialog.Description>The latest approved content and theme are ready to inspect.</Dialog.Description></Dialog.Header>
-                    <Dialog.Body><Badge tone="success" variant="soft"><Check size={13} aria-hidden="true" /> Preview ready</Badge></Dialog.Body>
-                    <Dialog.Footer><Dialog.Close asChild><Button>Close preview</Button></Dialog.Close></Dialog.Footer>
+                  <Dialog.Content size="sm" className="workspace-dialog">
+                    <Dialog.Header className="workspace-dialog-header">
+                      <span className="workspace-dialog-icon"><Globe2 size={18} aria-hidden="true" /></span>
+                      <div className="workspace-dialog-copy">
+                        <Dialog.Title>Northstar preview</Dialog.Title>
+                        <Dialog.Description>The latest approved content and theme are ready to inspect.</Dialog.Description>
+                      </div>
+                    </Dialog.Header>
+                    <Dialog.Body>
+                      <div className="workspace-preview-summary">
+                        <div className="workspace-preview-address" aria-hidden="true"><span /><span>northstar.site</span></div>
+                        <div className="workspace-preview-details">
+                          <div><Text weight="semibold">3 pages ready</Text><Text variant="body-sm" tone="secondary">Home, Services, and Journal</Text></div>
+                          <div><Text weight="semibold">Theme applied</Text><Text variant="body-sm" tone="secondary">Architectural warmth</Text></div>
+                        </div>
+                      </div>
+                    </Dialog.Body>
+                    <Dialog.Footer><Dialog.Close asChild><Button>Done</Button></Dialog.Close></Dialog.Footer>
                   </Dialog.Content>
                 </Dialog.Portal>
               </Dialog.Root>
@@ -117,16 +131,20 @@ export function ProductWorkspace() {
                 </Dialog.Trigger>
                 <Dialog.Portal>
                   <Dialog.Overlay />
-                  <Dialog.Content size="sm">
-                    <Dialog.Header>
-                      <Dialog.Title>Ready to publish</Dialog.Title>
-                      <Dialog.Description>Three pages are ready for the live site.</Dialog.Description>
+                  <Dialog.Content size="sm" className="workspace-dialog">
+                    <Dialog.Header className="workspace-dialog-header">
+                      <span className="workspace-dialog-icon"><Sparkles size={18} aria-hidden="true" /></span>
+                      <div className="workspace-dialog-copy">
+                        <Dialog.Title>Ready to publish</Dialog.Title>
+                        <Dialog.Description>Northstar has passed its launch checks.</Dialog.Description>
+                      </div>
                     </Dialog.Header>
                     <Dialog.Body>
-                      <VStack gap="3">
-                        <Badge tone="success" variant="soft"><Check size={13} aria-hidden="true" /> Checks passed</Badge>
-                        <Text tone="secondary">The site will remain editable after publishing.</Text>
-                      </VStack>
+                      <ul className="workspace-publish-checklist">
+                        <li><span><Check size={14} aria-hidden="true" /></span><div><Text weight="medium">Content approved</Text><Text variant="body-sm" tone="secondary">Three pages are ready.</Text></div></li>
+                        <li><span><Check size={14} aria-hidden="true" /></span><div><Text weight="medium">Theme connected</Text><Text variant="body-sm" tone="secondary">All semantic tokens resolve.</Text></div></li>
+                        <li><span><Check size={14} aria-hidden="true" /></span><div><Text weight="medium">Editing stays open</Text><Text variant="body-sm" tone="secondary">You can continue after publishing.</Text></div></li>
+                      </ul>
                     </Dialog.Body>
                     <Dialog.Footer>
                       <Dialog.Close asChild><Button tone="neutral" variant="outline">Not yet</Button></Dialog.Close>

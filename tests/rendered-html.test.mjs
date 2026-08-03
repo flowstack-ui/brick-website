@@ -40,6 +40,9 @@ test("homepage hero retains its height-aware first-viewport contract", async () 
   assert.match(workspaceSource, /setActiveSection\(id\)/, "workspace navigation must update its selected view");
   assert.match(workspaceSource, /aria-pressed=\{activeSection === id\}/, "workspace navigation must expose its selected state");
   assert.match(workspaceSource, /<BrandMark compact \/>/, "workspace title bar must carry Brick identity");
+  assert.match(workspaceSource, /workspace-preview-summary/, "preview dialog must use a structured product summary");
+  assert.match(workspaceSource, /workspace-publish-checklist/, "publish dialog must use a structured launch checklist");
+  assert.doesNotMatch(workspaceSource, /<Dialog\.Body><Badge/, "dialog bodies must not stretch a status badge as their primary layout");
 });
 
 const routes = [

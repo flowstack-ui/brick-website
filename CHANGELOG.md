@@ -21,6 +21,7 @@
 - Made the Northstar sidebar, preview, settings handoff, and publishing preference genuinely interactive; added Brick identity to its title bar; simplified its owner presence; and corrected the auto-publish card’s action scale and alignment.
 - Centered the package-quality badges only at the 640px narrow-mobile transition and added explicit spacing between each badge icon and label.
 - Gave the responsive search trigger a stable accessible name when its visible label collapses at the icon-only breakpoint.
+- Rebuilt the Northstar Preview and Publish dialogs with consistent icon-led headers, a structured preview summary, a launch checklist, and balanced actions instead of stretched status badges.
 
 ## 0.1.0 — 2026-08-02
 
