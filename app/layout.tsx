@@ -12,10 +12,6 @@ export const metadata: Metadata = {
     template: "%s · Brick UI",
   },
   description: "Finished, accessible React components built on Flowstack Atom. Coherent defaults, semantic theming, and public customization hooks.",
-  icons: {
-    icon: "/favicon.svg",
-    shortcut: "/favicon.svg",
-  },
   openGraph: {
     type: "website",
     siteName: "Brick UI",
@@ -47,7 +43,10 @@ const appearanceScript = `
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" data-brick-theme="studio" suppressHydrationWarning>
-      <head><script dangerouslySetInnerHTML={{ __html: appearanceScript }} /></head>
+      <head>
+        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+        <script dangerouslySetInnerHTML={{ __html: appearanceScript }} />
+      </head>
       <body>
         <a className="skip-link" href="#main-content">Skip to content</a>
         <div className="site-canvas">

@@ -31,6 +31,8 @@ for (const [pathname, expected] of routes) {
     assert.match(html, /Brick UI/);
     assert.doesNotMatch(html, /vinext-starter|Your site is taking shape/);
     if (pathname === "/") {
+      assert.match(html, /<link rel="icon" href="\/favicon\.svg" type="image\/svg\+xml"\s*\/?>/, "favicon must resolve against the current host");
+      assert.doesNotMatch(html, /https:\/\/brick-ui\.com\/favicon\.svg/, "favicon must not depend on the future custom domain");
       assert.equal((html.match(/<main\b/g) ?? []).length, 1, "homepage must have exactly one main landmark");
       const headingLevels = [...html.matchAll(/<h([1-6])\b/g)].map((match) => Number(match[1]));
       assert.equal(headingLevels[0], 1, "homepage heading hierarchy must start at h1");

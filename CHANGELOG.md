@@ -11,6 +11,7 @@
 - Prevented the website's global anchor rule from overriding Brick Button-link foregrounds and strengthened meaningful small text on light tinted surfaces.
 - Kept the embedded Studio theme demonstrations synchronized with the qualified dark accent interaction scale.
 - Corrected the Atom relationship diagram's caption contrast in both appearances and gave the grouped diagram valid image semantics.
+- Made the browser favicon host-relative and removed the duplicate shortcut declaration so preview deployments do not request the unresolved future custom domain twice.
 
 ## 0.1.0 — 2026-08-02
 
