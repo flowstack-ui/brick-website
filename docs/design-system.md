@@ -22,11 +22,12 @@ current composition no longer fits or reads comfortably.
 | Above 1320px | Full centered navigation, labeled search with shortcut, appearance and GitHub actions | Homepage hero pairs its conversion column with the live composition |
 | 1320px and below | Full header remains until its own content transition | Homepage conversion content owns the first viewport through its package badges; the titled live Brick composition follows in the same lane |
 | 1180px and below | Primary navigation moves into the drawer; labeled search remains; the menu action appears | Documentation rail is removed |
+| 1080px and below | Header retains its 1180px contract | The theme story stacks its copy above the complete comparison before either column becomes cramped |
 | 900px and below | Header height reduces, version hides, and search becomes icon-only; appearance, GitHub, and menu remain available | Documentation becomes in-flow, dense demonstrations simplify, and the three-card promise grid stacks before its reading measure becomes cramped |
 | 640px and below | Wordmark hides but the Brick mark and all essential actions remain; search becomes a full-screen task surface | One-column mobile compositions, 1rem gutters, full-width primary actions |
 
 Responsive review must cover 1440px, the 1320px hero boundary, 1280px, the
-1180px header boundary, 1024px, the 900px boundary, 768px, the 640px boundary,
+1180px header boundary, the 1080px theme-story boundary, 1024px, the 900px boundary, 768px, the 640px boundary,
 390px, and the supported 320px minimum.
 At every width verify navigation reachability, action alignment, wrapping,
 horizontal overflow, readable content order, and touch targets. Test both

@@ -104,7 +104,7 @@ export default function Home() {
             <Badge tone="accent" variant="soft">The first Brick theme</Badge>
             <Text as="h2" id="theme-story-title" variant="display" wrap="balance">One anatomy. A completely different voice.</Text>
             <Text as="p" variant="body-lg" tone="secondary">The website theme changes public semantic roles—not component internals. Purple expression, warm surfaces, and softened geometry flow through the whole catalog.</Text>
-            <WebsiteButton href="/themes/" tone="neutral" variant="outline" endIcon={<ArrowRight size={15} />}>Explore theming</WebsiteButton>
+            <WebsiteButton href="/themes/" tone="neutral" variant="soft" endIcon={<ArrowRight size={15} />}>Explore theming</WebsiteButton>
           </div>
           <div className="theme-pair">
             <div className="theme-sample theme-sample-default" data-brick-appearance="light">
