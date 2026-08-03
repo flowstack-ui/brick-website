@@ -33,6 +33,11 @@ for (const [pathname, expected] of routes) {
     if (pathname === "/") {
       assert.match(html, /<link rel="icon" href="\/favicon\.svg" type="image\/svg\+xml"\s*\/?>/, "favicon must resolve against the current host");
       assert.doesNotMatch(html, /https:\/\/brick-ui\.com\/favicon\.svg/, "favicon must not depend on the future custom domain");
+      const inputs = [...html.matchAll(/<input\b[^>]*>/g)].map((match) => match[0]);
+      assert.ok(inputs.length > 0, "homepage must render its workspace filter");
+      for (const input of inputs) {
+        assert.match(input, /\s(?:id|name)="[^"]+"/, "every homepage input must have browser autofill identity");
+      }
       assert.equal((html.match(/<main\b/g) ?? []).length, 1, "homepage must have exactly one main landmark");
       const headingLevels = [...html.matchAll(/<h([1-6])\b/g)].map((match) => Number(match[1]));
       assert.equal(headingLevels[0], 1, "homepage heading hierarchy must start at h1");

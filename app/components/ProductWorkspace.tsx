@@ -116,10 +116,14 @@ export function ProductWorkspace() {
               </Tabs.List>
               <Input
                 aria-label="Filter example pages"
+                autoComplete="off"
+                id="workspace-page-filter"
+                name="workspace-page-filter"
                 value={query}
                 onChange={(event) => setQuery(event.currentTarget.value)}
                 placeholder="Filter pages"
                 size="sm"
+                type="search"
                 startAdornment={<Search size={14} aria-hidden="true" />}
                 clearable
                 onClear={() => setQuery("")}

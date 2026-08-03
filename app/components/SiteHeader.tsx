@@ -91,10 +91,14 @@ export function SiteHeader() {
               <Dialog.Body>
                 <Input
                   autoFocus
+                  autoComplete="off"
+                  id="brick-site-search"
+                  name="brick-site-search"
                   value={query}
                   onChange={(event) => setQuery(event.currentTarget.value)}
                   placeholder="Search 75 components…"
                   startAdornment={<Search size={16} aria-hidden="true" />}
+                  type="search"
                   clearable
                   onClear={() => setQuery("")}
                 />

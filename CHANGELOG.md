@@ -12,6 +12,7 @@
 - Kept the embedded Studio theme demonstrations synchronized with the qualified dark accent interaction scale.
 - Corrected the Atom relationship diagram's caption contrast in both appearances and gave the grouped diagram valid image semantics.
 - Made the browser favicon host-relative and removed the duplicate shortcut declaration so preview deployments do not request the unresolved future custom domain twice.
+- Added stable browser identity and explicit search semantics to the homepage workspace filter and site-search field.
 
 ## 0.1.0 — 2026-08-02
 
