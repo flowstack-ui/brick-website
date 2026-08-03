@@ -39,4 +39,16 @@ for (const [appearance, source] of [["light", light], ["dark", dark]]) {
   }
 }
 
-console.log("Verified Studio solid-accent contrast in light and dark interaction states.");
+const lightSecondary = token(light, "--brick-color-text-secondary");
+for (const surface of ["--brick-color-surface-base", "--brick-color-surface-subtle"]) {
+  const background = token(light, surface);
+  const ratio = contrast(lightSecondary, background);
+  assert(ratio >= 4.5, `light secondary text on ${surface} is ${ratio.toFixed(2)}:1; expected at least 4.5:1`);
+}
+
+assert.match(css, /a:not\(\.brick-button\)\s*\{\s*color:\s*inherit/, "global link color must not override Brick Button links");
+for (const selector of ["\\.shortcut", "\\.workspace-project small", "\\.footer-meta"]) {
+  assert.match(css, new RegExp(`${selector}\\s*\\{[^}]*color:\\s*var\\(--brick-color-text-secondary\\)`), `${selector} must use secondary text on its tinted light surface`);
+}
+
+console.log("Verified Studio action and authored small-text contrast assignments.");

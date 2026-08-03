@@ -8,6 +8,8 @@
 - Darkened the Studio dark-appearance accent interaction scale and added automated WCAG AA contrast verification for solid actions.
 - Gave the homepage theme swatches valid grouped-image semantics and a descriptive accessible name.
 - Replaced the homepage demo's nested main landmark with a named section and repaired its internal heading hierarchy.
+- Prevented the website's global anchor rule from overriding Brick Button-link foregrounds and strengthened meaningful small text on light tinted surfaces.
+- Kept the embedded Studio theme demonstrations synchronized with the qualified dark accent interaction scale.
 
 ## 0.1.0 — 2026-08-02
 
