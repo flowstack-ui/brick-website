@@ -22,6 +22,7 @@
 - Centered the package-quality badges only at the 640px narrow-mobile transition and added explicit spacing between each badge icon and label.
 - Gave the responsive search trigger a stable accessible name when its visible label collapses at the icon-only breakpoint.
 - Rebuilt the Northstar Preview and Publish dialogs with consistent icon-led headers, a structured preview summary, a launch checklist, and balanced actions instead of stretched status badges.
+- Rebuilt search as a structured command surface with a dedicated header and close action, grouped component and guide results, separated rows, an honest result-count footer, an empty state, and a full-screen narrow-mobile presentation.
 
 ## 0.1.0 — 2026-08-02
 

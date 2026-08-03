@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { Badge } from "@flowstack-ui/brick/badge";
 import { Button } from "@flowstack-ui/brick/button";
 import { Dialog } from "@flowstack-ui/brick/dialog";
 import { Drawer } from "@flowstack-ui/brick/drawer";
@@ -77,14 +78,19 @@ export function SiteHeader() {
     return () => window.removeEventListener("keydown", openSearch);
   }, []);
 
-  const results = useMemo(() => {
+  const searchResults = useMemo(() => {
     const normalized = query.trim().toLowerCase();
-    if (!normalized) return components.slice(0, 8);
-    const componentResults = components
-      .filter((component) => `${component.title} ${component.description} ${component.category}`.toLowerCase().includes(normalized))
-      .slice(0, 8);
-    return componentResults;
+    const componentResults = (normalized
+      ? components.filter((component) => `${component.title} ${component.description} ${component.category}`.toLowerCase().includes(normalized))
+      : components
+    ).slice(0, 6);
+    const guideResults = Object.entries(guides)
+      .filter(([, guide]) => !normalized || `${guide.title} ${guide.eyebrow} ${guide.description}`.toLowerCase().includes(normalized))
+      .slice(0, 4);
+    return { componentResults, guideResults };
   }, [query]);
+
+  const resultCount = searchResults.componentResults.length + searchResults.guideResults.length;
 
   const toggleAppearance = () => {
     const next = appearance === "light" ? "dark" : "light";
@@ -123,11 +129,17 @@ export function SiteHeader() {
           <Dialog.Portal>
             <Dialog.Overlay />
             <Dialog.Content size="lg" className="search-dialog">
-              <Dialog.Header>
-                <Dialog.Title>Search Brick</Dialog.Title>
-                <Dialog.Description>Find components, guides, and concepts.</Dialog.Description>
-              </Dialog.Header>
-              <Dialog.Body>
+              <Dialog.Header className="search-dialog-header">
+                <div className="search-dialog-heading">
+                  <span className="search-dialog-icon"><Search size={18} aria-hidden="true" /></span>
+                  <div>
+                    <Dialog.Title>Search Brick</Dialog.Title>
+                    <Dialog.Description>Find components, guides, and concepts.</Dialog.Description>
+                  </div>
+                  <Dialog.Close asChild>
+                    <Button aria-label="Close search" className="search-dialog-close" tone="neutral" variant="ghost" size="sm"><X size={18} aria-hidden="true" /></Button>
+                  </Dialog.Close>
+                </div>
                 <Input
                   autoFocus
                   autoComplete="off"
@@ -141,34 +153,49 @@ export function SiteHeader() {
                   clearable
                   onClear={() => setQuery("")}
                 />
-                <div className="search-results" aria-live="polite">
-                  {results.map((component) => (
-                    <Dialog.Close asChild key={component.slug}>
-                      <a href={`/components/${component.slug}/`} className="search-result">
-                        <span>
-                          <strong>{component.title}</strong>
-                          <small>{component.category}</small>
-                        </span>
-                        <ArrowUpRight size={16} aria-hidden="true" />
-                      </a>
-                    </Dialog.Close>
-                  ))}
-                  {query && results.length === 0 && (
-                    <p className="search-empty">No component matches “{query}”. Try a category such as forms or navigation.</p>
+              </Dialog.Header>
+              <Dialog.Body className="search-dialog-body">
+                <div className="search-result-groups" aria-live="polite">
+                  {searchResults.componentResults.length > 0 && (
+                    <section className="search-result-group" aria-labelledby="search-components-label">
+                      <div className="search-group-heading"><span id="search-components-label">Components</span><small>{searchResults.componentResults.length}</small></div>
+                      <div className="search-result-list">
+                        {searchResults.componentResults.map((component) => (
+                          <Dialog.Close asChild key={component.slug}>
+                            <a href={`/components/${component.slug}/`} className="search-result">
+                              <span className="search-result-icon"><Package size={16} aria-hidden="true" /></span>
+                              <span className="search-result-copy"><strong>{component.title}</strong><small>{component.description}</small></span>
+                              <span className="search-result-meta"><Badge tone="neutral" variant="soft" size="sm">{component.category}</Badge><ArrowRight size={15} aria-hidden="true" /></span>
+                            </a>
+                          </Dialog.Close>
+                        ))}
+                      </div>
+                    </section>
+                  )}
+                  {searchResults.guideResults.length > 0 && (
+                    <section className="search-result-group" aria-labelledby="search-guides-label">
+                      <div className="search-group-heading"><span id="search-guides-label">Guides</span><small>{searchResults.guideResults.length}</small></div>
+                      <div className="search-result-list">
+                        {searchResults.guideResults.map(([slug, guide]) => (
+                          <Dialog.Close asChild key={slug}>
+                            <a href={`/docs/${slug}/`} className="search-result">
+                              <span className="search-result-icon"><BookOpen size={16} aria-hidden="true" /></span>
+                              <span className="search-result-copy"><strong>{guide.title}</strong><small>{guide.description}</small></span>
+                              <span className="search-result-meta"><Badge tone="accent" variant="soft" size="sm">Guide</Badge><ArrowRight size={15} aria-hidden="true" /></span>
+                            </a>
+                          </Dialog.Close>
+                        ))}
+                      </div>
+                    </section>
+                  )}
+                  {resultCount === 0 && (
+                    <div className="search-empty"><span><Search size={18} aria-hidden="true" /></span><strong>No results for “{query}”</strong><small>Try a component, guide, or category such as forms.</small></div>
                   )}
                 </div>
-                <div className="search-guides">
-                  {Object.entries(guides).map(([slug, guide]) => (
-                    <Dialog.Close asChild key={slug}>
-                      <a href={`/docs/${slug}/`}>{guide.title}</a>
-                    </Dialog.Close>
-                  ))}
-                </div>
               </Dialog.Body>
-              <Dialog.Footer>
-                <Dialog.Close asChild>
-                  <Button tone="neutral" variant="ghost" size="sm">Close</Button>
-                </Dialog.Close>
+              <Dialog.Footer className="search-dialog-footer">
+                <span>{resultCount} {resultCount === 1 ? "result" : "results"}</span>
+                <span className="search-footer-shortcut"><kbd>Esc</kbd> to close</span>
               </Dialog.Footer>
             </Dialog.Content>
           </Dialog.Portal>

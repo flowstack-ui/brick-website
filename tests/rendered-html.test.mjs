@@ -21,6 +21,17 @@ test("mobile drawer retains its branded reference composition", async () => {
   assert.match(headerSource, /pathname\.startsWith\(href\)/, "drawer must identify the current product section");
 });
 
+test("search dialog retains its structured responsive composition", async () => {
+  const headerSource = await readFile(new URL("../app/components/SiteHeader.tsx", import.meta.url), "utf8");
+  const css = await readFile(new URL("../app/globals.css", import.meta.url), "utf8");
+  assert.match(headerSource, /aria-label="Close search"/, "search must provide a top-right close control");
+  assert.match(headerSource, /searchResults\.componentResults/, "search must distinguish component results");
+  assert.match(headerSource, /searchResults\.guideResults/, "search must distinguish guide results");
+  assert.match(headerSource, /search-dialog-footer/, "search must retain a distinct utility footer");
+  assert.doesNotMatch(headerSource, />Close<\/Button>/, "search must not rely on a visually ambiguous footer close button");
+  assert.match(css, /\.search-dialog, \.search-dialog\[data-state="closed"\].*block-size: 100dvb/, "narrow-mobile search must use the available screen");
+});
+
 test("homepage hero retains its height-aware first-viewport contract", async () => {
   const css = await readFile(new URL("../app/globals.css", import.meta.url), "utf8");
   assert.match(css, /padding-block: clamp\(2\.75rem, 6dvh, 5rem\)/, "hero vertical rhythm must respond to viewport height");
