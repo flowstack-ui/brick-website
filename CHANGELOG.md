@@ -7,6 +7,7 @@
 - Corrected solid accent-button contrast by defining the paired white foreground token in light and dark appearances.
 - Darkened the Studio dark-appearance accent interaction scale and added automated WCAG AA contrast verification for solid actions.
 - Gave the homepage theme swatches valid grouped-image semantics and a descriptive accessible name.
+- Replaced the homepage demo's nested main landmark with a named section and repaired its internal heading hierarchy.
 
 ## 0.1.0 — 2026-08-02
 

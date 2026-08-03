@@ -41,7 +41,7 @@ export function ProductWorkspace() {
   const filteredPages = pages.filter((page) => page.name.toLowerCase().includes(query.toLowerCase()));
 
   return (
-    <div className="workspace-window" aria-label="Live Brick website project workspace example">
+    <section className="workspace-window" aria-label="Live Brick website project workspace example">
       <div className="workspace-titlebar">
         <div className="window-controls" aria-hidden="true"><span /><span /><span /></div>
         <Badge tone="accent" variant="soft" size="sm">Live composition</Badge>
@@ -71,10 +71,10 @@ export function ProductWorkspace() {
           </div>
         </aside>
 
-        <main className="workspace-main" id="workspace-pages">
+        <div className="workspace-main" id="workspace-pages">
           <div className="workspace-toolbar">
             <div>
-              <Text as="h3" variant="title-sm">Pages</Text>
+              <Text as="h2" variant="title-sm">Pages</Text>
               <Text tone="secondary" variant="body-sm">Shape the structure of your site.</Text>
             </div>
             <HStack gap="2">
@@ -152,7 +152,7 @@ export function ProductWorkspace() {
           <div className="workspace-bottom-grid">
             <Card.Root size="sm" variant="subtle">
               <Card.Header>
-                <Card.Title as="h4">Theme direction</Card.Title>
+                <Card.Title as="h3">Theme direction</Card.Title>
                 <Card.Description>Architectural warmth</Card.Description>
               </Card.Header>
               <Card.Content>
@@ -161,14 +161,14 @@ export function ProductWorkspace() {
             </Card.Root>
             <Card.Root size="sm" variant="outline">
               <Card.Header>
-                <Card.Title as="h4">Auto publish</Card.Title>
+                <Card.Title as="h3">Auto publish</Card.Title>
                 <Card.Action><Switch.Root checked={autoPublish} onCheckedChange={setAutoPublish} aria-label="Auto publish"><Switch.Thumb /></Switch.Root></Card.Action>
                 <Card.Description>Deploy after every approved update.</Card.Description>
               </Card.Header>
               <Card.Footer><Button tone="neutral" variant="ghost" size="sm" endIcon={<ChevronRight size={14} />}>Open settings</Button></Card.Footer>
             </Card.Root>
           </div>
-        </main>
+        </div>
       </div>
 
       <div className="workspace-mobile-card">
@@ -183,6 +183,6 @@ export function ProductWorkspace() {
           <Button fullWidth endIcon={<ArrowRight size={15} />}>Review launch</Button>
         </Stack>
       </div>
-    </div>
+    </section>
   );
 }

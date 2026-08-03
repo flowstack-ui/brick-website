@@ -30,5 +30,13 @@ for (const [pathname, expected] of routes) {
     assert.match(html, expected);
     assert.match(html, /Brick UI/);
     assert.doesNotMatch(html, /vinext-starter|Your site is taking shape/);
+    if (pathname === "/") {
+      assert.equal((html.match(/<main\b/g) ?? []).length, 1, "homepage must have exactly one main landmark");
+      const headingLevels = [...html.matchAll(/<h([1-6])\b/g)].map((match) => Number(match[1]));
+      assert.equal(headingLevels[0], 1, "homepage heading hierarchy must start at h1");
+      for (let index = 1; index < headingLevels.length; index += 1) {
+        assert.ok(headingLevels[index] <= headingLevels[index - 1] + 1, `homepage heading order skips from h${headingLevels[index - 1]} to h${headingLevels[index]}`);
+      }
+    }
   });
 }
