@@ -59,8 +59,19 @@ test("homepage theme story retains its content-pressure contract", async () => {
   const css = await readFile(new URL("../app/globals.css", import.meta.url), "utf8");
   assert.match(homepageSource, /href="\/themes\/" tone="neutral" variant="soft"/, "theme story action must use a quiet filled surface over the page grid");
   assert.match(css, /\.principles \{[^}]*padding-block-end: clamp\(3rem, 5vw, 5rem\);/, "promise section must not contribute an oversized lower gap");
-  assert.match(css, /\.theme-story \{[^}]*padding-block-start: clamp\(3rem, 5vw, 5rem\);/, "theme story must own a restrained upper transition");
+  assert.match(css, /\.theme-story \{[^}]*padding-block: clamp\(3rem, 5vw, 5rem\);/, "theme story must own restrained transitions on both sides");
   assert.match(css, /@media \(max-width: 1080px\) \{\s*\.theme-story \{ grid-template-columns: 1fr; gap: 3rem; \}/, "theme story must stack when its live comparison starts squeezing the copy");
+});
+
+test("homepage catalog story retains its component-constellation contract", async () => {
+  const homepageSource = await readFile(new URL("../app/page.tsx", import.meta.url), "utf8");
+  const css = await readFile(new URL("../app/globals.css", import.meta.url), "utf8");
+  assert.match(homepageSource, /catalog-module module-actions/, "catalog visual must identify a real component family");
+  assert.match(homepageSource, /catalog-module module-fields/, "catalog visual must represent form controls rather than generic boxes");
+  assert.match(homepageSource, /catalog-module module-navigation/, "catalog visual must represent navigation components");
+  assert.match(homepageSource, /catalog-core[^>]*>[\s\S]*\{components\.length\}/, "catalog visual must keep the source-backed component count at its center");
+  assert.doesNotMatch(homepageSource, /catalog-block block-/, "catalog visual must not regress to oversized generic icon tiles");
+  assert.match(css, /\.catalog-story \{[^}]*padding-block-start: clamp\(3rem, 5vw, 5rem\);/, "catalog story must own a restrained transition from the theme story");
 });
 
 test("homepage hero retains its height-aware first-viewport contract", async () => {

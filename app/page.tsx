@@ -5,14 +5,16 @@ import { Grid } from "@flowstack-ui/brick/grid";
 import { HStack } from "@flowstack-ui/brick/stack";
 import { Text } from "@flowstack-ui/brick/text";
 import {
+  AppWindow,
   ArrowRight,
-  Blocks,
-  Braces,
   Check,
-  Layers,
+  Menu,
+  MessageSquare,
+  MousePointer2,
   Palette,
   ShieldCheck,
   Sparkles,
+  TextCursorInput,
 } from "lucide-react";
 import { InstallCommand } from "./components/InstallCommand";
 import { ProductWorkspace } from "./components/ProductWorkspace";
@@ -128,10 +130,16 @@ export default function Home() {
 
         <section className="catalog-story section-shell" aria-labelledby="catalog-title">
           <div className="catalog-art" aria-hidden="true">
-            <span className="catalog-block block-a"><Braces size={22} /></span>
-            <span className="catalog-block block-b"><Layers size={22} /></span>
-            <span className="catalog-block block-c"><Blocks size={22} /></span>
-            <span className="catalog-count">{components.length}</span>
+            <span className="catalog-connector connector-a" />
+            <span className="catalog-connector connector-b" />
+            <span className="catalog-connector connector-c" />
+            <span className="catalog-connector connector-d" />
+            <span className="catalog-module module-actions"><MousePointer2 size={16} /><span><strong>Actions</strong><small>Button · Toggle</small></span></span>
+            <span className="catalog-module module-fields"><TextCursorInput size={16} /><span><strong>Fields</strong><small>Input · Select</small></span></span>
+            <span className="catalog-module module-navigation"><Menu size={16} /><span><strong>Navigation</strong><small>Menu · Sidebar</small></span></span>
+            <span className="catalog-module module-feedback"><MessageSquare size={16} /><span><strong>Feedback</strong><small>Dialog · Toast</small></span></span>
+            <span className="catalog-module module-layout"><AppWindow size={16} /><span><strong>Structure</strong><small>Card · Layout</small></span></span>
+            <span className="catalog-core"><small>Brick catalog</small><strong>{components.length}</strong><span>component owners</span></span>
           </div>
           <div className="catalog-copy">
             <Badge variant="outline" tone="neutral">Complete catalog</Badge>
