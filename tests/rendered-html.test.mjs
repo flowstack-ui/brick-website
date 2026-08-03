@@ -125,6 +125,18 @@ test("Atom hero retains its readable connected-layer composition", async () => {
   assert.match(css, /\.atom-hero \{ gap: 2\.5rem; padding-block: 2\.25rem 3\.5rem; \}/, "narrow Atom hero must begin higher and keep a restrained copy-to-diagram transition");
 });
 
+test("Atom ownership section retains one aligned editorial lane", async () => {
+  const atomSource = await readFile(new URL("../app/atom/page.tsx", import.meta.url), "utf8");
+  const css = await readFile(new URL("../app/globals.css", import.meta.url), "utf8");
+  assert.match(atomSource, /id="ownership-title"/, "ownership section must expose a named heading");
+  assert.match(atomSource, /Atom owns the behavioral contract\. Brick owns the finished visual system\./, "ownership heading must explain the division rather than relying on a title alone");
+  assert.match(atomSource, /className="ownership-card"/, "ownership cards must opt into their authored alignment contract");
+  assert.match(css, /\.ownership-section \.ownership-heading, \.ownership-grid \{ width: min\(100%, 65rem\); max-width: 65rem; margin-inline: auto; \}/, "ownership heading and cards must share one centered lane");
+  assert.match(css, /\.ownership-card \.brick-card-header \{ align-items: center; gap: 1rem; \}/, "ownership card icons must retain comfortable title spacing");
+  assert.match(css, /\.flowstack-context \{ padding-block-end: clamp\(2rem, 3vw, 3rem\); \}/, "preceding story must not contribute an oversized lower transition");
+  assert.match(css, /\.ownership-section \{ padding-block-start: clamp\(2rem, 3vw, 3rem\); \}/, "ownership section must begin without an oversized upper transition");
+});
+
 test("homepage hero retains its height-aware first-viewport contract", async () => {
   const css = await readFile(new URL("../app/globals.css", import.meta.url), "utf8");
   assert.match(css, /padding-block: clamp\(2\.75rem, 6dvh, 5rem\)/, "hero vertical rhythm must respond to viewport height");
