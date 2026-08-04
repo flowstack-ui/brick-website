@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Renamed the public Docs destination to Guides across desktop, mobile, metadata, and overview identity, and removed the duplicated component catalog and category links from the Guides rail while retaining the established `/docs/` URLs.
 - Replaced the ambiguous grid icon between component pagination links with a clearly labeled, quiet category-return control.
 - Normalized Source docs, Changelog, and Playground as one equally weighted set of external maintainer links.
 - Corrected the Field live example to rely on Label's automatic required-state indicator instead of composing a duplicate RequiredIndicator.

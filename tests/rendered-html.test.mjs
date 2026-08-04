@@ -191,6 +191,8 @@ test("documentation rails retain readable scalable navigation", async () => {
   assert.match(css, /@media \(max-width: 900px\)[\s\S]*\.docs-shell \{ display: block; \}/, "the remaining documentation navigation must reflow before narrow layouts");
   assert.match(shellSource, /<OnThisPage items=\{toc\} \/>/, "the documentation shell must render page-owned table-of-contents data");
   assert.match(shellSource, /\["getting-started", "theming", "composition", "accessibility"\]/, "the documentation navigation must follow the overview's recommended learning route");
+  assert.match(shellSource, /aria-label="Guide navigation"[\s\S]*docs-nav-label">Guides<[\s\S]*href="\/docs\/">Overview/, "the learning rail must present itself as Guides with a clear overview entry");
+  assert.doesNotMatch(shellSource, /docs-nav-label">Components|categories\.map|All components/, "component discovery must not be duplicated inside the Guides rail");
   assert.doesNotMatch(shellSource, /Introduction[\s\S]*Details[\s\S]*Next steps/, "the right rail must not ship a generic placeholder outline");
   assert.match(railSource, /aria-current=\{activeId === item\.id \? "location"/, "the visible page section must be exposed to assistive technology");
   assert.match(railSource, /getBoundingClientRect\(\)\.top <= anchorOffset/, "the right rail must track actual document sections while scrolling");
@@ -279,7 +281,7 @@ test("icon-led cards and the Docs learning route use explicit composition patter
   assert.match(homepageSource, /<Card\.Header className="icon-card-header">/, "homepage feature cards must opt into the shared icon composition");
   assert.match(atomSource, /<Card\.Header className="icon-card-header">/, "Atom ownership cards must opt into the shared icon composition");
   assert.match(css, /\.icon-card-header \{ grid-template-columns: minmax\(0, 1fr\); gap: \.8rem; \}/, "icon card headers must own a comfortable explicit vertical gap");
-  assert.match(docsSource, /Documentation · v\{source\.version\}/, "documentation version badge must use the conventional version prefix");
+  assert.match(docsSource, /Guides · v\{source\.version\}/, "guides version badge must use the conventional version prefix");
   assert.match(docsSource, /Recommended learning route[\s\S]*Build confidence in four moves/, "documentation overview must explain the intended onboarding sequence");
   assert.match(css, /\.docs-path-heading \{ display: grid; gap: \.65rem;/, "the overview route description must sit below the learning-route title on the same reading axis");
   assert.match(css, /\.docs-path-card \{[^}]*min-height: 0;/, "overview guide cards must derive height from their content rather than an oversized presentation minimum");

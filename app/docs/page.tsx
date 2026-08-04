@@ -9,7 +9,7 @@ import { DocsShell } from "@/app/components/DocsShell";
 import { WebsiteButton } from "@/app/components/WebsiteButton";
 import { source } from "@/app/lib/content";
 
-export const metadata: Metadata = { title: "Documentation", description: "Learn how to install, compose, theme, and ship interfaces with Brick." };
+export const metadata: Metadata = { title: "Guides", description: "Learn how to install, compose, theme, and ship interfaces with Brick." };
 
 const paths = [
   { id: "getting-started-path", step: "01", time: "Start here", icon: BookOpen, title: "Getting started", body: "Install Brick and build your first finished surface.", outcome: "A working component", href: "/docs/getting-started/" },
@@ -18,11 +18,11 @@ const paths = [
   { id: "accessibility-path", step: "04", time: "Verify together", icon: ShieldCheck, title: "Accessibility", body: "Understand what Atom, Brick, and your application each own.", outcome: "A complete experience", href: "/docs/accessibility/" },
 ];
 
-export default function DocsOverview() {
+export default function GuidesOverview() {
   return (
-    <DocsShell current="docs" toc={[{ id: "guide-paths", label: "Choose a path" }, { id: "explore-components", label: "Explore components" }]}>
+    <DocsShell current="guides" toc={[{ id: "guide-paths", label: "Choose a path" }, { id: "explore-components", label: "Explore components" }]}>
       <article className="docs-article">
-        <Badge tone="accent" variant="soft">Documentation · v{source.version}</Badge>
+        <Badge tone="accent" variant="soft">Guides · v{source.version}</Badge>
         <Text as="h1" className="page-title" wrap="balance">Build with Brick</Text>
         <Text as="p" variant="body-lg" tone="secondary" className="page-lede">Start with a coherent visual system, then customize through explicit public contracts instead of rebuilding every control.</Text>
         <div className="docs-overview-proof" aria-label="Brick documentation scope">

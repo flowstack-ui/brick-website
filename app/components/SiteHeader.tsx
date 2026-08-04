@@ -29,7 +29,7 @@ import { BrandMark } from "./BrandMark";
 import { components, guides, source } from "@/app/lib/content";
 
 const nav = [
-  { href: "/docs/", label: "Docs" },
+  { href: "/docs/", label: "Guides" },
   { href: "/components/", label: "Components" },
   { href: "/themes/", label: "Themes" },
   { href: "/atom/", label: "Atom" },
@@ -37,7 +37,7 @@ const nav = [
 
 const drawerNav = [
   { href: "/", label: "Home", description: "See what Brick makes possible", icon: Home },
-  { href: "/docs/", label: "Docs", description: "Learn the system", icon: BookOpen },
+  { href: "/docs/", label: "Guides", description: "Learn the system", icon: BookOpen },
   { href: "/components/", label: "Components", description: "Explore all 75 component owners", icon: Blocks },
   { href: "/themes/", label: "Themes", description: "Shape the visual voice", icon: Palette },
   { href: "/atom/", label: "Atom", description: "Understand the foundation", icon: Atom },

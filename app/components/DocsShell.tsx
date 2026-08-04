@@ -1,4 +1,4 @@
-import { guides, categories } from "@/app/lib/content";
+import { guides } from "@/app/lib/content";
 import Link from "next/link";
 import { ComponentDocsNavigation } from "@/app/components/ComponentDocsNavigation";
 import { OnThisPage } from "@/app/components/OnThisPage";
@@ -10,17 +10,14 @@ export function DocsShell({ children, componentSlug, current, toc }: { children:
   return (
     <main id="main-content" className="docs-shell section-shell">
       {componentSlug ? <ComponentDocsNavigation currentSlug={componentSlug} toc={toc} /> : (
-        <aside className="docs-sidebar" aria-label="Documentation navigation">
+        <aside className="docs-sidebar" aria-label="Guide navigation">
           <nav>
-            <span className="docs-nav-label">Start here</span>
-            <Link className={current === "docs" ? "is-current" : ""} href="/docs/">Overview</Link>
+            <span className="docs-nav-label">Guides</span>
+            <Link className={current === "guides" ? "is-current" : ""} href="/docs/">Overview</Link>
             {guideOrder.map((slug) => {
               const guide = guides[slug];
               return <Link key={slug} className={current === slug ? "is-current" : ""} href={`/docs/${slug}/`}>{guide.title}</Link>;
             })}
-            <span className="docs-nav-label">Components</span>
-            <Link className={current === "components" ? "is-current" : ""} href="/components/">All components</Link>
-            {categories.map((category) => <Link key={category} href={`/components/#${category.toLowerCase().replaceAll(" ", "-").replaceAll("&", "and")}`}>{category}</Link>)}
           </nav>
         </aside>
       )}
