@@ -233,7 +233,7 @@ test("component discovery and rendering remain consumer-first Brick compositions
   assert.doesNotMatch(previewSource, /case "field":[^;]*Field\.RequiredIndicator/, "the Field preview must not add a second required indicator to Label's automatic one");
   assert.match(previewSource, /case "swipeable-item":[^;]*preview-swipeable-content[^;]*size="sm" tone="danger" variant="ghost"/, "the Swipeable Item preview must use the complete padded content composition and bounded action recipe");
   assert.match(css, /\.preview-swipeable-content \{[^}]*grid-template-columns: minmax\(0, 1fr\) auto;[^}]*padding: var\(--brick-space-4\);/, "Swipeable Item preview content must remain fully visible inside its component boundary");
-  assert.match(componentSource, /\["data-grid", "sidebar", "tree", "tree-grid"\][^?]*\? " example-canvas--structure"/, "structure-heavy examples must opt into their own natural-height canvas");
+  assert.match(componentSource, /\["collapsible", "data-grid", "sidebar", "tree", "tree-grid"\][^?]*\? " example-canvas--structure"/, "expanding and structure-heavy examples must opt into their own natural-height canvas");
   assert.match(componentSource, /className="example-specimen"><ComponentPreview/, "the preview frame must own measure without applying width to a component's first rendered element");
   assert.match(css, /\.example-specimen \{ width: min\(100%, 34rem\); \}/, "the neutral specimen wrapper must own the generic preview measure");
   assert.doesNotMatch(css, /\.example-canvas > \* \{ width:/, "the preview canvas must not stretch portaled-component triggers when their Root renders no host");
@@ -242,10 +242,14 @@ test("component discovery and rendering remain consumer-first Brick compositions
   assert.match(previewSource, /case "sidebar":[^;]*collapsedState="offcanvas"[^;]*Northstar workspace[^;]*Workspace navigation[^;]*preview-sidebar-main/, "Sidebar must demonstrate a finished coordinated application shell instead of raw unplaced anatomy");
   assert.doesNotMatch(previewSource, /case "sidebar":[^;]*collapsedState="rail"/, "Sidebar must not collapse full text navigation into an unadapted clipped rail");
   assert.match(previewSource, /case "context-menu":[^;]*preview-context-target[^;]*Project canvas[^;]*Shift \+ F10/, "Context Menu must expose a visible purposeful target with pointer and keyboard instructions");
-  assert.match(css, /\.preview-context-target \{[^}]*min-height: 12rem;[^}]*border: 1px solid var\(--brick-color-accent-border\);[^}]*cursor: context-menu;/, "Context Menu target must read as a bounded interactive region");
-  assert.match(previewSource, /case "hover-card":[^;]*preview-hover-trigger[^;]*preview-hover-profile[^;]*HoverCard\.Arrow/, "Hover Card must visibly relate its genuine profile destination to a structured passive preview");
+  assert.match(css, /\.preview-context-target \{[^}]*min-height: 12rem;[^}]*border: 2px dashed var\(--brick-color-border-strong\);[^}]*cursor: context-menu;/, "Context Menu target must read as a visible dashed interaction region");
+  assert.match(previewSource, /case "collapsible":[^;]*className="preview-collapsible"[^;]*Collapsible\.Content/, "Collapsible must expose a bounded specimen that opens below its anchored trigger");
+  assert.match(previewSource, /case "hover-card":[^;]*preview-hover-identity[^;]*preview-hover-action[^;]*Preview profile[^;]*preview-hover-profile[^;]*HoverCard\.Arrow/, "Hover Card must separate profile identity, preview affordance, and structured passive content");
   assert.match(previewSource, /case "menubar":[^;]*preview-menubar-content[^;]*ItemLabel>New project[^;]*Shortcut>⌘N/, "Menubar must use its full item anatomy for command labels and shortcuts");
   assert.match(css, /\.preview-menubar-content \{ min-inline-size: 12rem; \}/, "Menubar preview content must retain a command-appropriate width");
+  assert.match(previewSource, /case "navigation-menu":[^;]*NavigationMenu\.Trigger>Guides[^;]*NavigationMenu\.Content[^;]*NavigationMenu\.Trigger>Components[^;]*NavigationMenu\.Viewport/, "Navigation Menu must demonstrate disclosure triggers, destination panels, and the measured viewport");
+  assert.match(previewSource, /href="#navigation-menu-preview" onClick=\{\(event\) => event\.preventDefault\(\)\}/, "example Navigation Menu destinations must preserve link anatomy without leaving the documentation page");
+  assert.doesNotMatch(previewSource, /case "navigation-menu":[^;]*href="\/docs\//, "Navigation Menu preview must not use live site routes as inert demonstration controls");
   assert.match(markdownSource, /<Code[^>]*data-code-kind=\{inlineCodeKind/, "inline technical literals must use the published Brick Code component with semantic token styling");
   assert.match(markdownSource, /<Table\.Container[\s\S]*<Table\.Root[\s\S]*<Table\.Header/, "Markdown API matrices must use the published Brick Table anatomy");
   assert.match(css, /\.catalog-outcomes \{[^}]*grid-template-columns: repeat\(3/, "the full-width outcome discovery surface must retain a scannable desktop grid");

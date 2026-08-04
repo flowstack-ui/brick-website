@@ -12,9 +12,11 @@
 - Corrected the Swipeable Item preview with padded responsive content and bounded small ghost actions so its interactive state remains fully legible.
 - Gave Data Grid, Tree, and Tree Grid a natural-height full-width structure canvas; added complete outlined data and a real Tree Grid child row so expansion grows downward without recentering the preview.
 - Rebuilt the Sidebar preview as a finished Northstar application shell with structured Nav List navigation, branded regions, main-content controls, responsive metrics, and an honest offcanvas collapse state.
-- Rebuilt the Context Menu preview trigger as a clearly bounded project-canvas region with purposeful content and explicit pointer and keyboard instructions.
+- Rebuilt the Context Menu preview trigger as a clearly dashed project-canvas interaction region with purposeful content and explicit pointer and keyboard instructions.
 - Rebuilt Hover Card as a related profile trigger and structured passive profile preview with an Arrow, and gave Menubar commands their proper label/shortcut anatomy and stable popup width.
 - Moved generic example width onto a neutral specimen wrapper so Popover, Tooltip, Dropdown Menu, and other hostless-root triggers retain their natural control width.
+- Replaced the Navigation Menu's ordinary live-route links and empty Viewport with real Guides and Components disclosure triggers, populated destination panels, Indicator, and in-place example links.
+- Separated the Hover Card trigger's profile identity from its preview affordance, and anchored Collapsible to a natural-height canvas so disclosure content opens downward without moving its trigger.
 - Removed the redundant Docs rails from the component catalog, rebuilt its no-results treatment as query-aware guidance, and let discovery results use the full reading width.
 - Simplified and aligned the component navigator, replaced the dense two-column usage comparison with a single readable decision lane, and moved advanced-reference framing back to normal-case prose.
 - Gave API content a proper public-contract introduction, roomier tables, and named subsections for compound APIs; grouped dense stable-class and token runs into scannable technical clusters.
