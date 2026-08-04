@@ -215,6 +215,9 @@ test("documentation rails retain readable scalable navigation", async () => {
 test("component discovery and rendering remain consumer-first Brick compositions", async () => {
   const catalogSource = await readFile(new URL("../app/components/ComponentCatalog.tsx", import.meta.url), "utf8");
   const previewSource = await readFile(new URL("../app/components/ComponentPreview.tsx", import.meta.url), "utf8");
+  const canvasSource = await readFile(new URL("../app/components/ComponentExampleCanvas.tsx", import.meta.url), "utf8");
+  const layoutSource = await readFile(new URL("../app/lib/component-example-layout.ts", import.meta.url), "utf8");
+  const components = JSON.parse(await readFile(new URL("../content/components.json", import.meta.url), "utf8"));
   const componentSource = await readFile(new URL("../app/components/[slug]/page.tsx", import.meta.url), "utf8");
   const componentDocSource = await readFile(new URL("../app/components/ComponentDocument.tsx", import.meta.url), "utf8");
   const markdownSource = await readFile(new URL("../app/components/MarkdownArticle.tsx", import.meta.url), "utf8");
@@ -235,11 +238,17 @@ test("component discovery and rendering remain consumer-first Brick compositions
   assert.doesNotMatch(previewSource, /case "field":[^;]*Field\.RequiredIndicator/, "the Field preview must not add a second required indicator to Label's automatic one");
   assert.match(previewSource, /case "swipeable-item":[^;]*preview-swipeable-content[^;]*size="sm" tone="danger" variant="ghost"/, "the Swipeable Item preview must use the complete padded content composition and bounded action recipe");
   assert.match(css, /\.preview-swipeable-content \{[^}]*grid-template-columns: minmax\(0, 1fr\) auto;[^}]*padding: var\(--brick-space-4\);/, "Swipeable Item preview content must remain fully visible inside its component boundary");
-  assert.match(componentSource, /\["collapsible", "data-grid", "sidebar", "tree", "tree-grid"\][^?]*\? " example-canvas--structure"/, "expanding and structure-heavy examples must opt into their own natural-height canvas");
-  assert.match(componentSource, /className="example-specimen"><ComponentPreview/, "the preview frame must own measure without applying width to a component's first rendered element");
-  assert.match(css, /\.example-specimen \{ width: min\(100%, 34rem\); \}/, "the neutral specimen wrapper must own the generic preview measure");
+  const mappedSlugs = [...layoutSource.matchAll(/^\s+"([^"]+)": "(?:compact|form|overlay|expanding|structural|interaction)",$/gm)].map((match) => match[1]).sort();
+  assert.deepEqual(mappedSlugs, components.map((component) => component.slug).sort(), "all 75 component owners must receive one explicit example-stage behavior mode");
+  assert.match(componentSource, /<ComponentExampleCanvas slug=\{component\.slug\} \/>/, "component routes must use the shared behavior-aware example stage");
+  assert.match(canvasSource, /className="example-canvas" data-layout=\{mode\}[\s\S]*className="example-specimen"[\s\S]*<ComponentPreview/, "the shared stage must expose its behavior mode while a neutral wrapper owns specimen measure");
+  assert.match(css, /\.example-specimen \{[^}]*width: min\(100%, 34rem\);/, "the neutral specimen wrapper must own the generic preview measure");
   assert.doesNotMatch(css, /\.example-canvas > \* \{ width:/, "the preview canvas must not stretch portaled-component triggers when their Root renders no host");
-  assert.match(css, /\.example-canvas--structure \{[^}]*min-height: 0;[^}]*align-content: start;[^}]*place-items: start stretch;/, "expanding structures must grow downward without recentering or shifting their example header");
+  assert.match(css, /\.example-canvas \{[^}]*isolation: isolate;[^}]*linear-gradient\(145deg,[^}]*var\(--brick-color-accent-soft\)[^}]*var\(--brick-color-info-soft\)/, "the example stage must use an opaque theme-semantic architectural gradient");
+  assert.match(css, /\.example-canvas::after \{[^}]*background-image: linear-gradient[^}]*background-size: 4rem 4rem;[^}]*mask-image: radial-gradient/, "the stage blueprint must remain restrained and fade before competing with the specimen");
+  assert.match(css, /\.example-canvas\[data-layout="expanding"\] \{[^}]*min-height: 0;[^}]*align-content: start;[^}]*place-items: start center;/, "disclosure examples must keep their top anchor and grow only downward");
+  assert.match(css, /\.example-canvas\[data-layout="structural"\] \{[^}]*align-content: start;[^}]*place-items: start stretch;/, "structural examples must use the complete available stage width");
+  assert.doesNotMatch(css, /example-canvas--structure/, "one-off legacy stage exceptions must not survive the shared layout contract");
   assert.match(previewSource, /case "tree-grid":[^;]*rowCount=\{3\}[^;]*parentValue="src"[^;]*level=\{2\}/, "Tree Grid must render a real child row for its expanded branch");
   assert.match(previewSource, /case "sidebar":[^;]*collapsedState="offcanvas"[^;]*Northstar workspace[^;]*Workspace navigation[^;]*preview-sidebar-main/, "Sidebar must demonstrate a finished coordinated application shell instead of raw unplaced anatomy");
   assert.doesNotMatch(previewSource, /case "sidebar":[^;]*collapsedState="rail"/, "Sidebar must not collapse full text navigation into an unadapted clipped rail");

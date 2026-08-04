@@ -4,6 +4,7 @@ Brick UI Website is implemented as a multi-route product and documentation site.
 
 - Home page demonstrates a composed, stateful website-project workspace made from the published Brick package, with a conversion-first stacked viewport and a compact mobile presentation.
 - All 75 component owners have routes sourced from reviewed package documentation and a dedicated live example built from that component's public package export.
+- All 75 live examples are presented through one light/dark architectural stage with explicit compact, form, overlay, expanding, structural, or interaction geometry; disclosures remain top-anchored and grow only downward.
 - The component catalog is a full-width, outcome-led discovery hub without documentation rails; scoped search, category filters, source-backed results, and a query-aware empty state replace one undifferentiated card wall.
 - Component routes use a searchable, route-aware category navigator with aligned category groups on desktop and a paired Components/On-this-page toolbar with full-height Brick drawers on narrow screens.
 - Component guides present source-backed consumer guidance, setup, examples, a single-lane usage decision, roomier multi-part API sections, accessibility, responsive behavior, grouped styling references, and optional advanced reference before linking to maintainer evidence and changelogs.

@@ -11,6 +11,30 @@ The site direction is **architectural warmth**: precise modular geometry without
 
 The design supports reduced motion, forced colors, keyboard navigation, narrow mobile layouts, and large editorial screens.
 
+## Component example stage
+
+Every component route uses one shared architectural stage rather than a
+generic centered box. The stage is an opaque semantic surface with restrained
+accent and information glows plus a faint blueprint mesh. It adapts naturally
+to both Brick appearances, removes decoration in Forced Colors, and never lets
+the page grid compete with the demonstrated component.
+
+Each public component owner is assigned exactly one behavior mode:
+
+- `compact` centers small actions, indicators, and inline content;
+- `form` gives fields and input groups a narrower readable measure;
+- `overlay` centers natural-width triggers while portalled content remains free;
+- `expanding` fixes disclosure content to a top anchor so only the stage bottom
+  moves as content opens or closes;
+- `structural` gives application and collection compositions the full stage
+  width; and
+- `interaction` gives gesture or instruction-led previews a clear bounded
+  region.
+
+These are website presentation contracts, not Brick component variants.
+Future component routes must choose a mode explicitly, and the complete mapping
+is verified against the synchronized component catalog.
+
 ## Product relationship
 
 Brick remains the primary identity in global navigation, the homepage hero,

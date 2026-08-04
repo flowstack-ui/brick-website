@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Replaced the generic dotted component canvas and one-off layout exceptions with one light/dark architectural example stage, explicitly classified all 75 component owners across six behavior modes, kept disclosures top-anchored while the stage grows downward, and preserved natural trigger sizing, full-width structures, responsive geometry, and Forced Colors.
 - Anchored the desktop search dialog to a stable safe viewport offset so changing result counts only move its bottom edge, while preserving the full-screen narrow-mobile composition.
 - Connected the Command/Control-K search dialog to Brick Dialog's explicit `initialFocus` contract so its search input is immediately ready for typing without racing native autofocus.
 - Renamed the public Docs destination to Guides across desktop, mobile, metadata, and overview identity, and removed the duplicated component catalog and category links from the Guides rail while retaining the established `/docs/` URLs.

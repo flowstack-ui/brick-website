@@ -516,10 +516,17 @@
   .live-example { overflow: hidden; margin-block-start: 3rem; scroll-margin-top: calc(var(--site-header-height) + 2rem); border: 1px solid var(--brick-color-border-subtle); border-radius: 1rem; background: var(--brick-color-surface-raised); }
   .example-header { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 1rem 1.15rem; border-block-end: 1px solid var(--brick-color-border-subtle); background: var(--brick-color-surface-base); }
   .example-header > div { display: grid; gap: .2rem; }.example-header > div > span { color: var(--brick-color-text-muted); font-size: .67rem; text-transform: uppercase; letter-spacing: .09em; }
-  .example-canvas { display: grid; min-height: 18rem; place-items: center; padding: clamp(1.5rem, 5vw, 4rem); background-image: radial-gradient(circle at 1px 1px, var(--brick-color-border-subtle) 1px, transparent 0); background-size: 1.4rem 1.4rem; }
-  .example-specimen { width: min(100%, 34rem); }
-  .example-canvas--structure { min-height: 0; align-content: start; place-items: start stretch; padding: clamp(1rem, 3vw, 2rem); }
-  .example-canvas--structure > .example-specimen { width: 100%; }
+  .example-canvas { position: relative; isolation: isolate; display: grid; min-height: 19rem; place-items: center; overflow: hidden; padding: clamp(1.75rem, 5vw, 4rem); background: linear-gradient(145deg, color-mix(in srgb, var(--brick-color-surface-base), var(--brick-color-accent-soft) 10%), var(--brick-color-surface-base) 46%, color-mix(in srgb, var(--brick-color-surface-base), var(--brick-color-info-soft) 12%)); box-shadow: 0 1px 0 color-mix(in srgb, var(--brick-color-border-subtle), transparent 20%) inset; }
+  .example-canvas::before { position: absolute; z-index: -2; inset: 0; background: radial-gradient(circle at 24% 18%, color-mix(in srgb, var(--brick-color-accent-soft), transparent 8%), transparent 34%), radial-gradient(circle at 78% 82%, color-mix(in srgb, var(--brick-color-info-soft), transparent 22%), transparent 32%), radial-gradient(circle at 52% 46%, color-mix(in srgb, var(--brick-color-surface-raised), transparent 18%), transparent 42%); content: ""; }
+  .example-canvas::after { position: absolute; z-index: -1; inset: 0; background-image: linear-gradient(color-mix(in srgb, var(--brick-color-border-subtle), transparent 46%) 1px, transparent 1px), linear-gradient(90deg, color-mix(in srgb, var(--brick-color-border-subtle), transparent 46%) 1px, transparent 1px); background-position: center; background-size: 4rem 4rem; content: ""; opacity: .62; mask-image: radial-gradient(ellipse 72% 72% at center, black 18%, transparent 78%); }
+  .example-specimen { position: relative; z-index: 1; width: min(100%, 34rem); }
+  .example-canvas[data-layout="form"] { min-height: 22rem; }
+  .example-canvas[data-layout="form"] > .example-specimen { width: min(100%, 28rem); }
+  .example-canvas[data-layout="overlay"] { min-height: 20rem; }
+  .example-canvas[data-layout="interaction"] { min-height: 21rem; }
+  .example-canvas[data-layout="expanding"] { min-height: 0; align-content: start; place-items: start center; padding-block: clamp(3rem, 6vw, 4.5rem); }
+  .example-canvas[data-layout="structural"] { min-height: 17rem; align-content: start; place-items: start stretch; padding: clamp(1.25rem, 3vw, 2.25rem); }
+  .example-canvas[data-layout="structural"] > .example-specimen { width: 100%; }
   .preview-form { width: min(100%, 25rem); }.preview-card { width: min(100%, 28rem); }
   .preview-collapsible { width: min(100%, 30rem); }
   .preview-hover-trigger { display: inline-flex; align-items: center; gap: 1.25rem; padding: .65rem .7rem .65rem .8rem; border: 1px solid var(--brick-color-border-subtle); border-radius: .75rem; background: var(--brick-color-surface-raised); text-decoration: none; }
@@ -802,6 +809,10 @@
     .component-accessibility, .component-styling { padding: 1rem; }
     .component-maintainer-actions { align-items: stretch; flex-direction: column; }
     .component-maintainer-actions .brick-button { width: 100%; }
+    .example-canvas { min-height: 16rem; padding: 1.25rem; }
+    .example-canvas[data-layout="form"], .example-canvas[data-layout="overlay"], .example-canvas[data-layout="interaction"] { min-height: 18rem; }
+    .example-canvas[data-layout="expanding"] { min-height: 0; padding-block: 2rem; }
+    .example-canvas[data-layout="structural"] { min-height: 0; padding: 1rem; }
     .guide-visual { padding: 1rem; border-radius: 1rem; }
     .guide-setup-track, .guide-theme-map, .guide-a11y-map, .guide-composition-map { grid-template-columns: 1fr; }
     .guide-setup-track::before { display: none; }
@@ -835,6 +846,8 @@
     .brand-mark span, .catalog-module, .catalog-core, .project-glyph, .pillar-icon, .orbit-center, .orbit-chip, .layer, .layer-symbol, .flowstack-step { border: 1px solid CanvasText; background: Canvas; color: CanvasText; }
     .theme-orbit, .theme-orbit::before, .theme-orbit::after { border-color: CanvasText; background: Canvas; }
     .docs-shell::before, .catalog-shell::before { background: Canvas; }
+    .example-canvas { background: Canvas; }
+    .example-canvas::before, .example-canvas::after { display: none; }
     .hero-title span { color: CanvasText; background: none; }
   }
 }
