@@ -99,8 +99,9 @@ Brick UI Website is implemented as a multi-route product and documentation site.
 - Footer navigation retains full touch targets while its focus indicator wraps only the visible text-and-icon label.
 - Markdown fences are pre-tokenized with a fine-grained build-time Shiki adapter and rendered through the published Brick Code Block with language metadata, a compact stateful copy action, and a WCAG-qualified light/dark syntax palette; the deployed browser does not receive the tokenizer.
 - Code Block overflow landmarks retain keyboard scrolling and receive unique article-scoped names such as `TSX code example 1`, preventing repeated-language examples from sharing one landmark label.
-- Documentation Code Blocks normalize mobile text adjustment on their native
-  `pre` owner so long imports retain the same authored size as short commands.
+- Documentation Code Blocks disable automatic mobile text inflation on their
+  native `pre` owner so long imports retain the same authored size as short
+  commands.
 - Component example canvases expose contained horizontal touch scrolling for
   specimens wider than a phone viewport, and their Interactive status badge
   remains one non-shrinking line while the title column contracts.

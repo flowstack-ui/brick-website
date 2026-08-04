@@ -1,7 +1,8 @@
 # Changelog
 
-- Normalized mobile text adjustment on documentation Code Blocks so long
-  scrollable imports retain the same typography as short command examples.
+- Disabled automatic mobile text inflation on documentation Code Blocks after
+  physical-phone review showed that normalization alone did not keep long
+  scrollable imports at the same size as short command examples.
 - Made component canvases contained horizontal scroll owners on mobile so wide
   specimens remain reachable instead of being clipped, and kept the
   Interactive badge on one stable line while the title column contracts.
