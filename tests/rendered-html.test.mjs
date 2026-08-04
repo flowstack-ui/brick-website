@@ -150,10 +150,17 @@ test("Themes hero retains its semantic instrument composition", async () => {
   assert.match(themesSource, /className="theme-copy"/, "theme hero copy must own explicit vertical rhythm");
   assert.match(themesSource, /<Sparkles size=\{13\} aria-hidden="true" \/>/, "theme eyebrow icon must remain decorative");
   assert.match(themesSource, /className="theme-actions"/, "theme actions must opt into authored description spacing");
+  assert.match(themesSource, /href="\/components\/" tone="neutral" variant="soft"/, "theme secondary action must use the opaque quiet treatment over the page grid");
   assert.match(themesSource, /role="img" aria-label="Brick semantic theme instrument/, "theme visual must expose one grouped accessible summary");
   assert.match(themesSource, /Semantic core[\s\S]*Accent[\s\S]*Surface[\s\S]*Type[\s\S]*Motion/, "theme instrument must retain its meaning-first semantic roles");
+  assert.match(themesSource, /A theme is not a coat of paint\./, "comparison story must explain the semantic contract before presenting visual expressions");
+  assert.match(themesSource, /Same Brick component tree/g, "both expressions must identify their unchanged component contract");
+  assert.match(themesSource, /Semantic map[\s\S]*04 connected systems/, "token families must read as one connected semantic system");
   assert.match(css, /\.theme-copy > \.brick-badge \{ gap: \.4rem; \}/, "theme eyebrow must separate its icon from its label");
   assert.match(css, /\.theme-actions \{ margin-block-start: \.5rem; \}/, "theme actions must remain separated from the description");
+  assert.match(css, /\.theme-comparison, \.token-section \{ padding-block: clamp\(2\.75rem, 4vw, 4rem\); \}/, "theme story transitions must use restrained section rhythm");
+  assert.match(css, /\.comparison-panel \{[^}]*background-image: radial-gradient/, "theme expressions must sit on authored opaque presentation surfaces");
+  assert.match(css, /\.token-family \{[^}]*grid-template-columns:/, "semantic token groups must retain their structured map anatomy");
   assert.match(css, /\.theme-orbit \{[^}]*aspect-ratio: 1;[^}]*border-radius: 50%;/, "theme instrument outer geometry must remain a true circle");
   assert.match(css, /\.theme-orbit \{[^}]*conic-gradient/, "theme instrument must retain its restrained semantic spectrum");
   assert.doesNotMatch(css, /\.theme-orbit \{[^}]*min-height:/, "theme instrument must not recreate an ellipse through an unrelated minimum height");
