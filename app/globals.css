@@ -137,6 +137,11 @@
   .search-trigger .brick-button__content { display: flex; flex: 1; min-width: 0; align-items: center; gap: .5rem; }
   .shortcut { margin-inline-start: auto; padding: .12rem .34rem; border: 1px solid var(--brick-color-border-subtle); border-radius: .3rem; background: var(--brick-color-surface-raised); color: var(--brick-color-text-secondary); font-family: var(--site-font-mono); font-size: .68rem; font-weight: 500; line-height: 1.2; }
   .icon-action { inline-size: 2.25rem; min-inline-size: 2.25rem; padding-inline: 0; }
+  .icon-action .brick-button__content { display: grid; inline-size: 1.0625rem; block-size: 1.0625rem; place-items: center; line-height: 0; }
+  .appearance-icon { grid-area: 1 / 1; display: inline-grid; place-items: center; }
+  .appearance-icon-dark { display: none; }
+  :root[data-brick-appearance="dark"] .appearance-icon-light { display: none; }
+  :root[data-brick-appearance="dark"] .appearance-icon-dark { display: inline-grid; }
   .mobile-menu-trigger { display: none; inline-size: 2.25rem; min-inline-size: 2.25rem; padding-inline: 0; }
 
   .search-dialog { --search-dialog-top: clamp(calc(1rem + env(safe-area-inset-top)), 10dvb, 6rem); --brick-dialog-max-inline-size: 43rem; --brick-dialog-max-block-size: min(46rem, calc(100dvb - var(--search-dialog-top) - 1rem - env(safe-area-inset-bottom))); inset-block-start: var(--search-dialog-top); transform: translateX(-50%) scale(1); transform-origin: 50% 0; }

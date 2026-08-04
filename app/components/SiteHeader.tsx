@@ -53,19 +53,9 @@ function applyAppearance(value: Appearance) {
 
 export function SiteHeader() {
   const pathname = usePathname();
-  const [appearance, setAppearance] = useState<Appearance>("light");
   const [query, setQuery] = useState("");
   const [searchOpen, setSearchOpen] = useState(false);
   const searchInputRef = useRef<HTMLInputElement>(null);
-
-  useEffect(() => {
-    const saved = localStorage.getItem("brick-website-appearance") as Appearance | null;
-    const resolved = saved ?? (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
-    // The pre-paint script already applied this external preference; state only synchronizes the control label.
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    setAppearance(resolved);
-    applyAppearance(resolved);
-  }, []);
 
   useEffect(() => {
     const openSearch = (event: KeyboardEvent) => {
@@ -94,8 +84,8 @@ export function SiteHeader() {
   const resultCount = searchResults.componentResults.length + searchResults.guideResults.length;
 
   const toggleAppearance = () => {
-    const next = appearance === "light" ? "dark" : "light";
-    setAppearance(next);
+    const current: Appearance = document.documentElement.dataset.brickAppearance === "dark" ? "dark" : "light";
+    const next: Appearance = current === "light" ? "dark" : "light";
     applyAppearance(next);
   };
 
@@ -204,14 +194,15 @@ export function SiteHeader() {
 
         <div className="header-icon-actions">
           <Button
-            aria-label={`Use ${appearance === "light" ? "dark" : "light"} appearance`}
+            aria-label="Toggle color appearance"
             className="icon-action"
             tone="neutral"
             variant="ghost"
             size="sm"
             onPress={toggleAppearance}
           >
-            {appearance === "light" ? <Moon size={17} aria-hidden="true" /> : <Sun size={17} aria-hidden="true" />}
+            <span className="appearance-icon appearance-icon-light"><Moon size={17} aria-hidden="true" /></span>
+            <span className="appearance-icon appearance-icon-dark"><Sun size={17} aria-hidden="true" /></span>
           </Button>
 
           <Button

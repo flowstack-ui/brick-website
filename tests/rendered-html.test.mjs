@@ -25,6 +25,20 @@ test("mobile drawer retains its branded reference composition", async () => {
   assert.match(css, /\.site-header \{ gap: \.5rem; padding-inline: \.75rem; \}\.brand-link, \.brand \{ gap: \.4rem; \}/, "narrow header must compact spacing instead of hiding identity");
 });
 
+test("appearance and homepage selection paint are stable on first render", async () => {
+  const headerSource = await readFile(new URL("../app/components/SiteHeader.tsx", import.meta.url), "utf8");
+  const workspaceSource = await readFile(new URL("../app/components/ProductWorkspace.tsx", import.meta.url), "utf8");
+  const css = await readFile(new URL("../app/globals.css", import.meta.url), "utf8");
+  assert.match(headerSource, /aria-label="Toggle color appearance"/, "the appearance action must have a hydration-stable accessible name");
+  assert.match(headerSource, /appearance-icon-light[\s\S]*<Moon[\s\S]*appearance-icon-dark[\s\S]*<Sun/, "both appearance icons must exist in server and client markup");
+  assert.doesNotMatch(headerSource, /useState<Appearance>\("light"\)/, "the control must not guess a light appearance before reading the pre-paint document state");
+  assert.match(headerSource, /document\.documentElement\.dataset\.brickAppearance === "dark"/, "the toggle must use the appearance already established by the pre-paint script");
+  assert.match(css, /\.icon-action \.brick-button__content \{ display: grid; inline-size: 1\.0625rem; block-size: 1\.0625rem; place-items: center; line-height: 0; \}/, "header icon actions must share one centered inner geometry");
+  assert.match(css, /\.appearance-icon \{ grid-area: 1 \/ 1; display: inline-grid; place-items: center; \}/, "both stable appearance icons must occupy the same centered cell");
+  assert.match(css, /:root\[data-brick-appearance="dark"\] \.appearance-icon-light \{ display: none; \}[\s\S]*:root\[data-brick-appearance="dark"\] \.appearance-icon-dark \{ display: inline-grid; \}/, "CSS must select the correct server-rendered icon from the pre-paint root attribute");
+  assert.doesNotMatch(workspaceSource, /<Tabs\.Indicator \/>/, "the soft workspace Tabs must rely on its server-stable selected Trigger instead of a measured line indicator");
+});
+
 test("search dialog retains its structured responsive composition", async () => {
   const headerSource = await readFile(new URL("../app/components/SiteHeader.tsx", import.meta.url), "utf8");
   const css = await readFile(new URL("../app/globals.css", import.meta.url), "utf8");

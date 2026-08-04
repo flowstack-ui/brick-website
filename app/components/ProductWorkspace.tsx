@@ -162,7 +162,6 @@ export function ProductWorkspace() {
                 <Tabs.Trigger value="all">All</Tabs.Trigger>
                 <Tabs.Trigger value="ready">Ready</Tabs.Trigger>
                 <Tabs.Trigger value="draft">Draft</Tabs.Trigger>
-                <Tabs.Indicator />
               </Tabs.List>
               <Input
                 aria-label="Filter example pages"
