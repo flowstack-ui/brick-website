@@ -211,6 +211,8 @@ test("documentation rails retain readable scalable navigation", async () => {
   assert.match(catalogSource, /<main id="main-content" className="catalog-shell section-shell">/, "the component catalog must own a focused full-width discovery surface");
   assert.doesNotMatch(catalogSource, /DocsShell/, "the catalog must not duplicate its own filters with a documentation rail");
   assert.match(css, /\.docs-sidebar a:focus-visible, \.docs-rail a:focus-visible \{ outline: 2px solid var\(--brick-color-focus-ring\); outline-offset: -2px; \}/, "scrollable documentation rails must use an inset semantic focus ring that cannot be clipped");
+  assert.match(css, /\.component-docs-sidebar \.brick-input:focus-within \{ box-shadow: inset 0 0 0 var\(--brick-border-focus-width\) var\(--brick-input-focus-ring\); \}/, "the component rail search field must draw its focus ring inside the scroll boundary");
+  assert.match(css, /\.component-docs-sidebar \.brick-accordion-trigger:focus-visible \{ outline-offset: calc\(-1 \* var\(--brick-border-focus-width\)\); \}/, "the component rail category triggers must draw focus inside the scroll boundary");
   assert.match(css, /\.site-canvas :focus-visible \{ outline-color: var\(--brick-color-focus-ring\); \}/, "authored focus indicators must inherit the website's semantic purple focus color");
   assert.match(css, /@media \(forced-colors: active\)[\s\S]*\.site-canvas :focus-visible \{ outline-color: Highlight; \}/, "forced-colors users must retain the system focus indicator color");
 });

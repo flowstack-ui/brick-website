@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Moved the component rail's Input and Accordion focus indicators inside their geometry so the independently scrollable navigation no longer clips keyboard focus at either inline edge, including Forced Colors.
 - Migrated component-rail destinations to client navigation and preserved the desktop rail's independent scroll position across component routes, while allowing each newly opened component article to begin at its introduction.
 - Corrected compact and overlay example centering by shrink-wrapping their neutral specimen owner, and added a restrained appearance-aware contrast pedestal for compact, form, overlay, and expanding previews so transparent controls remain legible over the colorful stage.
 - Increased the component stage's visual separation with a bright pastel light gradient and a saturated purple-blue dark gradient so examples remain clearly legible instead of sinking into the surrounding dark canvas.
