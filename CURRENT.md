@@ -16,6 +16,9 @@ Brick UI Website is implemented as a multi-route product and documentation site.
   and this website consumes that exact npm release. A deterministic prebuild
   step assembles route-owned and preview-owned CSS from those public files;
   production never reads the sibling Brick checkout or package-private source.
+- Getting Started and Theming explain the complete and modular delivery modes,
+  and every synchronized component guide names `styles/core.css` plus its
+  matching component stylesheet while preserving `styles.css` as the default.
 - The final six-route local production matrix scores 94–97 Performance on
   Lighthouse's simulated mobile profile and 100 Accessibility, Best Practices,
   and SEO, with 0 CLS and no more than 18 ms total blocking time. Home scores

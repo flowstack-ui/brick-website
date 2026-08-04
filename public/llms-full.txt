@@ -1,7 +1,7 @@
 # Brick UI — complete public documentation
 
 Package version: 0.1.1
-Source commit: f5f7eae3da4525a4cbc786d6d21a905d228d9072
+Source commit: 4fc8f6671c1e7aa0a4a08acd2ba169156118f3eb
 
 # Accordion
 
@@ -26,6 +26,19 @@ should not alter layout length. Use Dialog, Drawer, Popover, or Menu for layers.
 import { Accordion } from "@flowstack-ui/brick/accordion";
 import "@flowstack-ui/brick/styles.css";
 ```
+
+The complete stylesheet above is the recommended default. For a measured
+route-aware build, replace it with the shared foundation and this component's
+stylesheet:
+
+```tsx
+import "@flowstack-ui/brick/styles/core.css"; // once at the application root
+import "@flowstack-ui/brick/styles/accordion.css";
+```
+
+Add the modular stylesheet for every other Brick component the route renders.
+Do not combine modular styles with `styles.css` or `tokens.css`.
+
 
 ## Quick start
 
@@ -200,6 +213,19 @@ or generated action copy.
 import { AlertDialog } from "@flowstack-ui/brick/alert-dialog";
 import "@flowstack-ui/brick/styles.css";
 ```
+
+The complete stylesheet above is the recommended default. For a measured
+route-aware build, replace it with the shared foundation and this component's
+stylesheet:
+
+```tsx
+import "@flowstack-ui/brick/styles/core.css"; // once at the application root
+import "@flowstack-ui/brick/styles/alert-dialog.css";
+```
+
+Add the modular stylesheet for every other Brick component the route renders.
+Do not combine modular styles with `styles.css` or `tokens.css`.
+
 
 The namespace is also available from `@flowstack-ui/brick`. Advanced consumers
 may import the canonical direct parts from the AlertDialog subpath.
@@ -493,6 +519,19 @@ import { AppBar } from "@flowstack-ui/brick/app-bar";
 import "@flowstack-ui/brick/styles.css";
 ```
 
+The complete stylesheet above is the recommended default. For a measured
+route-aware build, replace it with the shared foundation and this component's
+stylesheet:
+
+```tsx
+import "@flowstack-ui/brick/styles/core.css"; // once at the application root
+import "@flowstack-ui/brick/styles/app-bar.css";
+```
+
+Add the modular stylesheet for every other Brick component the route renders.
+Do not combine modular styles with `styles.css` or `tokens.css`.
+
+
 Named part exports and the root package export are also available.
 
 ## Quick start
@@ -653,6 +692,19 @@ import { AspectRatio } from "@flowstack-ui/brick";
 import { AspectRatio } from "@flowstack-ui/brick/aspect-ratio";
 import "@flowstack-ui/brick/styles.css";
 ```
+
+The complete stylesheet above is the recommended default. For a measured
+route-aware build, replace it with the shared foundation and this component's
+stylesheet:
+
+```tsx
+import "@flowstack-ui/brick/styles/core.css"; // once at the application root
+import "@flowstack-ui/brick/styles/aspect-ratio.css";
+```
+
+Add the modular stylesheet for every other Brick component the route renders.
+Do not combine modular styles with `styles.css` or `tokens.css`.
+
 
 The subpath also exports `AspectRatioRoot`, `AspectRatioRootProps`,
 `AspectRatioVariant`, `AspectRatioRadius`, and `AspectRatioOverflow`.
@@ -840,6 +892,19 @@ import { Avatar } from "@flowstack-ui/brick/avatar";
 import "@flowstack-ui/brick/styles.css";
 ```
 
+The complete stylesheet above is the recommended default. For a measured
+route-aware build, replace it with the shared foundation and this component's
+stylesheet:
+
+```tsx
+import "@flowstack-ui/brick/styles/core.css"; // once at the application root
+import "@flowstack-ui/brick/styles/avatar.css";
+```
+
+Add the modular stylesheet for every other Brick component the route renders.
+Do not combine modular styles with `styles.css` or `tokens.css`.
+
+
 ## Quick start
 
 ```tsx
@@ -971,6 +1036,19 @@ import { Badge } from "@flowstack-ui/brick/badge";
 import "@flowstack-ui/brick/styles.css";
 ```
 
+The complete stylesheet above is the recommended default. For a measured
+route-aware build, replace it with the shared foundation and this component's
+stylesheet:
+
+```tsx
+import "@flowstack-ui/brick/styles/core.css"; // once at the application root
+import "@flowstack-ui/brick/styles/badge.css";
+```
+
+Add the modular stylesheet for every other Brick component the route renders.
+Do not combine modular styles with `styles.css` or `tokens.css`.
+
+
 ## Quick start
 
 ```tsx
@@ -1098,6 +1176,19 @@ import { BottomNavigation } from "@flowstack-ui/brick/bottom-navigation";
 import { Icon } from "@flowstack-ui/brick/icon";
 import "@flowstack-ui/brick/styles.css";
 ```
+
+The complete stylesheet above is the recommended default. For a measured
+route-aware build, replace it with the shared foundation and this component's
+stylesheet:
+
+```tsx
+import "@flowstack-ui/brick/styles/core.css"; // once at the application root
+import "@flowstack-ui/brick/styles/bottom-navigation.css";
+```
+
+Add the modular stylesheet for every other Brick component the route renders.
+Do not combine modular styles with `styles.css` or `tokens.css`.
+
 
 ## Quick start
 
@@ -1241,6 +1332,19 @@ import { Breadcrumb } from "@flowstack-ui/brick";
 // or: import { Breadcrumb } from "@flowstack-ui/brick/breadcrumb";
 import "@flowstack-ui/brick/styles.css";
 ```
+
+The complete stylesheet above is the recommended default. For a measured
+route-aware build, replace it with the shared foundation and this component's
+stylesheet:
+
+```tsx
+import "@flowstack-ui/brick/styles/core.css"; // once at the application root
+import "@flowstack-ui/brick/styles/breadcrumb.css";
+```
+
+Add the modular stylesheet for every other Brick component the route renders.
+Do not combine modular styles with `styles.css` or `tokens.css`.
+
 
 Brick requires its exact public Atom dependency and React 18 or newer.
 
@@ -1568,6 +1672,19 @@ import { Button } from "@flowstack-ui/brick/button";
 
 import "@flowstack-ui/brick/styles.css";
 ```
+
+The complete stylesheet above is the recommended default. For a measured
+route-aware build, replace it with the shared foundation and this component's
+stylesheet:
+
+```tsx
+import "@flowstack-ui/brick/styles/core.css"; // once at the application root
+import "@flowstack-ui/brick/styles/button.css";
+```
+
+Add the modular stylesheet for every other Brick component the route renders.
+Do not combine modular styles with `styles.css` or `tokens.css`.
+
 
 Brick currently requires React 18 or newer and the package's exact released
 Atom dependency.
@@ -1951,6 +2068,19 @@ import { Card } from "@flowstack-ui/brick/card";
 import "@flowstack-ui/brick/styles.css";
 ```
 
+The complete stylesheet above is the recommended default. For a measured
+route-aware build, replace it with the shared foundation and this component's
+stylesheet:
+
+```tsx
+import "@flowstack-ui/brick/styles/core.css"; // once at the application root
+import "@flowstack-ui/brick/styles/card.css";
+```
+
+Add the modular stylesheet for every other Brick component the route renders.
+Do not combine modular styles with `styles.css` or `tokens.css`.
+
+
 `Card` and its public types are also exported from `@flowstack-ui/brick`.
 
 ## Quick start
@@ -2271,6 +2401,19 @@ import { Checkbox } from "@flowstack-ui/brick/checkbox";
 import "@flowstack-ui/brick/styles.css";
 ```
 
+The complete stylesheet above is the recommended default. For a measured
+route-aware build, replace it with the shared foundation and this component's
+stylesheet:
+
+```tsx
+import "@flowstack-ui/brick/styles/core.css"; // once at the application root
+import "@flowstack-ui/brick/styles/checkbox.css";
+```
+
+Add the modular stylesheet for every other Brick component the route renders.
+Do not combine modular styles with `styles.css` or `tokens.css`.
+
+
 ## Quick start
 
 ```tsx
@@ -2404,6 +2547,19 @@ choice. The group does not own business validation or persistence.
 import { CheckboxGroup } from "@flowstack-ui/brick/checkbox-group";
 import "@flowstack-ui/brick/styles.css";
 ```
+
+The complete stylesheet above is the recommended default. For a measured
+route-aware build, replace it with the shared foundation and this component's
+stylesheet:
+
+```tsx
+import "@flowstack-ui/brick/styles/core.css"; // once at the application root
+import "@flowstack-ui/brick/styles/checkbox-group.css";
+```
+
+Add the modular stylesheet for every other Brick component the route renders.
+Do not combine modular styles with `styles.css` or `tokens.css`.
+
 
 ## Quick start
 
@@ -2562,6 +2718,19 @@ import { Chip } from "@flowstack-ui/brick";
 import { Chip } from "@flowstack-ui/brick/chip";
 import "@flowstack-ui/brick/styles.css";
 ```
+
+The complete stylesheet above is the recommended default. For a measured
+route-aware build, replace it with the shared foundation and this component's
+stylesheet:
+
+```tsx
+import "@flowstack-ui/brick/styles/core.css"; // once at the application root
+import "@flowstack-ui/brick/styles/chip.css";
+```
+
+Add the modular stylesheet for every other Brick component the route renders.
+Do not combine modular styles with `styles.css` or `tokens.css`.
+
 
 ## Quick start
 
@@ -2744,6 +2913,19 @@ import { Code } from "@flowstack-ui/brick/code";
 import "@flowstack-ui/brick/styles.css";
 ```
 
+The complete stylesheet above is the recommended default. For a measured
+route-aware build, replace it with the shared foundation and this component's
+stylesheet:
+
+```tsx
+import "@flowstack-ui/brick/styles/core.css"; // once at the application root
+import "@flowstack-ui/brick/styles/code.css";
+```
+
+Add the modular stylesheet for every other Brick component the route renders.
+Do not combine modular styles with `styles.css` or `tokens.css`.
+
+
 `Code` is also available from `@flowstack-ui/brick`.
 
 ## Quick start
@@ -2877,6 +3059,19 @@ terminal output, executable sandboxes, or accidental layout overflow.
 import { CodeBlock } from "@flowstack-ui/brick/code-block";
 import "@flowstack-ui/brick/styles.css";
 ```
+
+The complete stylesheet above is the recommended default. For a measured
+route-aware build, replace it with the shared foundation and this component's
+stylesheet:
+
+```tsx
+import "@flowstack-ui/brick/styles/core.css"; // once at the application root
+import "@flowstack-ui/brick/styles/code-block.css";
+```
+
+Add the modular stylesheet for every other Brick component the route renders.
+Do not combine modular styles with `styles.css` or `tokens.css`.
+
 
 `CodeBlock` and every direct part are also available from the package root.
 
@@ -3059,6 +3254,19 @@ import { Collapsible } from "@flowstack-ui/brick/collapsible";
 import "@flowstack-ui/brick/styles.css";
 ```
 
+The complete stylesheet above is the recommended default. For a measured
+route-aware build, replace it with the shared foundation and this component's
+stylesheet:
+
+```tsx
+import "@flowstack-ui/brick/styles/core.css"; // once at the application root
+import "@flowstack-ui/brick/styles/collapsible.css";
+```
+
+Add the modular stylesheet for every other Brick component the route renders.
+Do not combine modular styles with `styles.css` or `tokens.css`.
+
+
 ## Quick start
 
 ```tsx
@@ -3219,6 +3427,19 @@ import { Field } from "@flowstack-ui/brick/field";
 import "@flowstack-ui/brick/styles.css";
 ```
 
+The complete stylesheet above is the recommended default. For a measured
+route-aware build, replace it with the shared foundation and this component's
+stylesheet:
+
+```tsx
+import "@flowstack-ui/brick/styles/core.css"; // once at the application root
+import "@flowstack-ui/brick/styles/combobox.css";
+```
+
+Add the modular stylesheet for every other Brick component the route renders.
+Do not combine modular styles with `styles.css` or `tokens.css`.
+
+
 ## Quick start
 
 ```tsx
@@ -3369,6 +3590,19 @@ import { Container } from "@flowstack-ui/brick/container";
 
 import "@flowstack-ui/brick/styles.css";
 ```
+
+The complete stylesheet above is the recommended default. For a measured
+route-aware build, replace it with the shared foundation and this component's
+stylesheet:
+
+```tsx
+import "@flowstack-ui/brick/styles/core.css"; // once at the application root
+import "@flowstack-ui/brick/styles/container.css";
+```
+
+Add the modular stylesheet for every other Brick component the route renders.
+Do not combine modular styles with `styles.css` or `tokens.css`.
+
 
 Public exports are `Container`, `ContainerProps`, `ContainerElement`,
 `ContainerMeasure`, and `ContainerGutter`.
@@ -3567,6 +3801,19 @@ import { ContextMenu } from "@flowstack-ui/brick/context-menu";
 import "@flowstack-ui/brick/styles.css";
 ```
 
+The complete stylesheet above is the recommended default. For a measured
+route-aware build, replace it with the shared foundation and this component's
+stylesheet:
+
+```tsx
+import "@flowstack-ui/brick/styles/core.css"; // once at the application root
+import "@flowstack-ui/brick/styles/context-menu.css";
+```
+
+Add the modular stylesheet for every other Brick component the route renders.
+Do not combine modular styles with `styles.css` or `tokens.css`.
+
+
 ## Quick start
 
 ```tsx
@@ -3706,6 +3953,19 @@ import { DataGrid } from "@flowstack-ui/brick";
 // or import { DataGrid } from "@flowstack-ui/brick/data-grid";
 import "@flowstack-ui/brick/styles.css";
 ```
+
+The complete stylesheet above is the recommended default. For a measured
+route-aware build, replace it with the shared foundation and this component's
+stylesheet:
+
+```tsx
+import "@flowstack-ui/brick/styles/core.css"; // once at the application root
+import "@flowstack-ui/brick/styles/data-grid.css";
+```
+
+Add the modular stylesheet for every other Brick component the route renders.
+Do not combine modular styles with `styles.css` or `tokens.css`.
+
 
 ## Quick start
 
@@ -3924,6 +4184,19 @@ loading, routing, or generated action copy.
 import { Dialog } from "@flowstack-ui/brick/dialog";
 import "@flowstack-ui/brick/styles.css";
 ```
+
+The complete stylesheet above is the recommended default. For a measured
+route-aware build, replace it with the shared foundation and this component's
+stylesheet:
+
+```tsx
+import "@flowstack-ui/brick/styles/core.css"; // once at the application root
+import "@flowstack-ui/brick/styles/dialog.css";
+```
+
+Add the modular stylesheet for every other Brick component the route renders.
+Do not combine modular styles with `styles.css` or `tokens.css`.
+
 
 The namespace is also available from `@flowstack-ui/brick`. Advanced consumers
 may import the canonical direct parts from the Dialog subpath.
@@ -4217,6 +4490,19 @@ import { Divider } from "@flowstack-ui/brick/divider";
 import "@flowstack-ui/brick/styles.css";
 ```
 
+The complete stylesheet above is the recommended default. For a measured
+route-aware build, replace it with the shared foundation and this component's
+stylesheet:
+
+```tsx
+import "@flowstack-ui/brick/styles/core.css"; // once at the application root
+import "@flowstack-ui/brick/styles/divider.css";
+```
+
+Add the modular stylesheet for every other Brick component the route renders.
+Do not combine modular styles with `styles.css` or `tokens.css`.
+
+
 Public exports are `Divider`, `DividerProps`, `DividerLineProps`,
 `DividerLabelProps`, `DividerComposedProps`, `DividerElement`,
 `DividerOrientation`, `DividerVariant`, `DividerThickness`,
@@ -4384,6 +4670,19 @@ content. Drawer does not own application navigation or responsive shell policy.
 import { Drawer } from "@flowstack-ui/brick/drawer";
 import "@flowstack-ui/brick/styles.css";
 ```
+
+The complete stylesheet above is the recommended default. For a measured
+route-aware build, replace it with the shared foundation and this component's
+stylesheet:
+
+```tsx
+import "@flowstack-ui/brick/styles/core.css"; // once at the application root
+import "@flowstack-ui/brick/styles/drawer.css";
+```
+
+Add the modular stylesheet for every other Brick component the route renders.
+Do not combine modular styles with `styles.css` or `tokens.css`.
+
 
 ## Quick start
 
@@ -4558,6 +4857,19 @@ import { DropdownMenu } from "@flowstack-ui/brick/dropdown-menu";
 import "@flowstack-ui/brick/styles.css";
 ```
 
+The complete stylesheet above is the recommended default. For a measured
+route-aware build, replace it with the shared foundation and this component's
+stylesheet:
+
+```tsx
+import "@flowstack-ui/brick/styles/core.css"; // once at the application root
+import "@flowstack-ui/brick/styles/dropdown-menu.css";
+```
+
+Add the modular stylesheet for every other Brick component the route renders.
+Do not combine modular styles with `styles.css` or `tokens.css`.
+
+
 ## Quick start
 
 ```tsx
@@ -4689,6 +5001,19 @@ import { Feed } from "@flowstack-ui/brick";
 // or import { Feed } from "@flowstack-ui/brick/feed";
 import "@flowstack-ui/brick/styles.css";
 ```
+
+The complete stylesheet above is the recommended default. For a measured
+route-aware build, replace it with the shared foundation and this component's
+stylesheet:
+
+```tsx
+import "@flowstack-ui/brick/styles/core.css"; // once at the application root
+import "@flowstack-ui/brick/styles/feed.css";
+```
+
+Add the modular stylesheet for every other Brick component the route renders.
+Do not combine modular styles with `styles.css` or `tokens.css`.
+
 
 ## Quick start
 
@@ -4893,6 +5218,19 @@ import { Field } from "@flowstack-ui/brick/field";
 import "@flowstack-ui/brick/styles.css";
 ```
 
+The complete stylesheet above is the recommended default. For a measured
+route-aware build, replace it with the shared foundation and this component's
+stylesheet:
+
+```tsx
+import "@flowstack-ui/brick/styles/core.css"; // once at the application root
+import "@flowstack-ui/brick/styles/field.css";
+```
+
+Add the modular stylesheet for every other Brick component the route renders.
+Do not combine modular styles with `styles.css` or `tokens.css`.
+
+
 ## Quick start
 
 ```tsx
@@ -5048,6 +5386,19 @@ values.
 import { Fieldset } from "@flowstack-ui/brick/fieldset";
 import "@flowstack-ui/brick/styles.css";
 ```
+
+The complete stylesheet above is the recommended default. For a measured
+route-aware build, replace it with the shared foundation and this component's
+stylesheet:
+
+```tsx
+import "@flowstack-ui/brick/styles/core.css"; // once at the application root
+import "@flowstack-ui/brick/styles/fieldset.css";
+```
+
+Add the modular stylesheet for every other Brick component the route renders.
+Do not combine modular styles with `styles.css` or `tokens.css`.
+
 
 ## Quick start
 
@@ -5207,6 +5558,19 @@ import { FileUpload } from "@flowstack-ui/brick/file-upload";
 import { Field } from "@flowstack-ui/brick/field";
 import "@flowstack-ui/brick/styles.css";
 ```
+
+The complete stylesheet above is the recommended default. For a measured
+route-aware build, replace it with the shared foundation and this component's
+stylesheet:
+
+```tsx
+import "@flowstack-ui/brick/styles/core.css"; // once at the application root
+import "@flowstack-ui/brick/styles/file-upload.css";
+```
+
+Add the modular stylesheet for every other Brick component the route renders.
+Do not combine modular styles with `styles.css` or `tokens.css`.
+
 
 The same exports are available from `@flowstack-ui/brick`.
 
@@ -5372,6 +5736,19 @@ import { Form } from "@flowstack-ui/brick/form";
 import "@flowstack-ui/brick/styles.css";
 ```
 
+The complete stylesheet above is the recommended default. For a measured
+route-aware build, replace it with the shared foundation and this component's
+stylesheet:
+
+```tsx
+import "@flowstack-ui/brick/styles/core.css"; // once at the application root
+import "@flowstack-ui/brick/styles/form.css";
+```
+
+Add the modular stylesheet for every other Brick component the route renders.
+Do not combine modular styles with `styles.css` or `tokens.css`.
+
+
 ## Quick start
 
 ```tsx
@@ -5513,6 +5890,19 @@ import { Grid } from "@flowstack-ui/brick/grid";
 
 import "@flowstack-ui/brick/styles.css";
 ```
+
+The complete stylesheet above is the recommended default. For a measured
+route-aware build, replace it with the shared foundation and this component's
+stylesheet:
+
+```tsx
+import "@flowstack-ui/brick/styles/core.css"; // once at the application root
+import "@flowstack-ui/brick/styles/grid.css";
+```
+
+Add the modular stylesheet for every other Brick component the route renders.
+Do not combine modular styles with `styles.css` or `tokens.css`.
+
 
 Public exports are `Grid`, `GridRootProps`, `GridItemProps`,
 `GridRootElement`, `GridItemElement`, `GridColumns`, `GridLine`, `GridSpan`,
@@ -5777,6 +6167,19 @@ import { Hide } from "@flowstack-ui/brick";
 import "@flowstack-ui/brick/styles.css";
 ```
 
+The complete stylesheet above is the recommended default. For a measured
+route-aware build, replace it with the shared foundation and this component's
+stylesheet:
+
+```tsx
+import "@flowstack-ui/brick/styles/core.css"; // once at the application root
+import "@flowstack-ui/brick/styles/hide.css";
+```
+
+Add the modular stylesheet for every other Brick component the route renders.
+Do not combine modular styles with `styles.css` or `tokens.css`.
+
+
 Exports: `Hide`, `HideProps`, `HideBreakpoint`, and `HideElement`.
 
 ## Quick start
@@ -5873,6 +6276,19 @@ Popover for click-open interactive content and Tooltip for a short label.
 import { HoverCard } from "@flowstack-ui/brick/hover-card";
 import "@flowstack-ui/brick/styles.css";
 ```
+
+The complete stylesheet above is the recommended default. For a measured
+route-aware build, replace it with the shared foundation and this component's
+stylesheet:
+
+```tsx
+import "@flowstack-ui/brick/styles/core.css"; // once at the application root
+import "@flowstack-ui/brick/styles/hover-card.css";
+```
+
+Add the modular stylesheet for every other Brick component the route renders.
+Do not combine modular styles with `styles.css` or `tokens.css`.
+
 
 ## Quick start
 
@@ -6029,6 +6445,19 @@ import { Icon } from "@flowstack-ui/brick/icon";
 
 import "@flowstack-ui/brick/styles.css";
 ```
+
+The complete stylesheet above is the recommended default. For a measured
+route-aware build, replace it with the shared foundation and this component's
+stylesheet:
+
+```tsx
+import "@flowstack-ui/brick/styles/core.css"; // once at the application root
+import "@flowstack-ui/brick/styles/icon.css";
+```
+
+Add the modular stylesheet for every other Brick component the route renders.
+Do not combine modular styles with `styles.css` or `tokens.css`.
+
 
 Public exports are `Icon`, `IconProps`, `IconSize`, and `IconTone`.
 
@@ -6263,6 +6692,19 @@ appropriate. Use `href` for a deliberate icon-only navigation link.
 import { IconButton } from "@flowstack-ui/brick/icon-button";
 import "@flowstack-ui/brick/styles.css";
 ```
+
+The complete stylesheet above is the recommended default. For a measured
+route-aware build, replace it with the shared foundation and this component's
+stylesheet:
+
+```tsx
+import "@flowstack-ui/brick/styles/core.css"; // once at the application root
+import "@flowstack-ui/brick/styles/icon-button.css";
+```
+
+Add the modular stylesheet for every other Brick component the route renders.
+Do not combine modular styles with `styles.css` or `tokens.css`.
+
 
 `IconButton` and its public types are also exported from
 `@flowstack-ui/brick`.
@@ -6539,6 +6981,19 @@ import { Image } from "@flowstack-ui/brick/image";
 import "@flowstack-ui/brick/styles.css";
 ```
 
+The complete stylesheet above is the recommended default. For a measured
+route-aware build, replace it with the shared foundation and this component's
+stylesheet:
+
+```tsx
+import "@flowstack-ui/brick/styles/core.css"; // once at the application root
+import "@flowstack-ui/brick/styles/image.css";
+```
+
+Add the modular stylesheet for every other Brick component the route renders.
+Do not combine modular styles with `styles.css` or `tokens.css`.
+
+
 Public exports are `Image`, `ImageRootProps`, `ImageContentProps`,
 `ImageFallbackProps`, `ImageFit`, `ImagePosition`, `ImageRadius`, and
 `ImageFrame`.
@@ -6747,6 +7202,19 @@ import { Input } from "@flowstack-ui/brick/input";
 
 import "@flowstack-ui/brick/styles.css";
 ```
+
+The complete stylesheet above is the recommended default. For a measured
+route-aware build, replace it with the shared foundation and this component's
+stylesheet:
+
+```tsx
+import "@flowstack-ui/brick/styles/core.css"; // once at the application root
+import "@flowstack-ui/brick/styles/input.css";
+```
+
+Add the modular stylesheet for every other Brick component the route renders.
+Do not combine modular styles with `styles.css` or `tokens.css`.
+
 
 Public exports are `Input`, `InputProps`, `InputVariant`, `InputSize`,
 `InputShape`, and `InputType`.
@@ -7090,6 +7558,19 @@ import { Link } from "@flowstack-ui/brick";
 import "@flowstack-ui/brick/styles.css";
 ```
 
+The complete stylesheet above is the recommended default. For a measured
+route-aware build, replace it with the shared foundation and this component's
+stylesheet:
+
+```tsx
+import "@flowstack-ui/brick/styles/core.css"; // once at the application root
+import "@flowstack-ui/brick/styles/link.css";
+```
+
+Add the modular stylesheet for every other Brick component the route renders.
+Do not combine modular styles with `styles.css` or `tokens.css`.
+
+
 Brick requires the exact public Atom dependency declared by the package and
 React 18 or newer.
 
@@ -7362,6 +7843,19 @@ import { List } from "@flowstack-ui/brick/list";
 import "@flowstack-ui/brick/styles.css";
 ```
 
+The complete stylesheet above is the recommended default. For a measured
+route-aware build, replace it with the shared foundation and this component's
+stylesheet:
+
+```tsx
+import "@flowstack-ui/brick/styles/core.css"; // once at the application root
+import "@flowstack-ui/brick/styles/list.css";
+```
+
+Add the modular stylesheet for every other Brick component the route renders.
+Do not combine modular styles with `styles.css` or `tokens.css`.
+
+
 Public exports include `List`, `ListRootProps`, `ListItemProps`,
 `ListLeadingProps`, `ListContentProps`, `ListTitleProps`,
 `ListDescriptionProps`, `ListTrailingProps`, `ListVariant`, `ListSize`,
@@ -7612,6 +8106,19 @@ import { Menubar } from "@flowstack-ui/brick/menubar";
 import "@flowstack-ui/brick/styles.css";
 ```
 
+The complete stylesheet above is the recommended default. For a measured
+route-aware build, replace it with the shared foundation and this component's
+stylesheet:
+
+```tsx
+import "@flowstack-ui/brick/styles/core.css"; // once at the application root
+import "@flowstack-ui/brick/styles/menubar.css";
+```
+
+Add the modular stylesheet for every other Brick component the route renders.
+Do not combine modular styles with `styles.css` or `tokens.css`.
+
+
 ## Quick start
 
 ```tsx
@@ -7747,6 +8254,19 @@ import { Field, MultiSelect } from "@flowstack-ui/brick";
 import { MultiSelect } from "@flowstack-ui/brick/multi-select";
 import "@flowstack-ui/brick/styles.css";
 ```
+
+The complete stylesheet above is the recommended default. For a measured
+route-aware build, replace it with the shared foundation and this component's
+stylesheet:
+
+```tsx
+import "@flowstack-ui/brick/styles/core.css"; // once at the application root
+import "@flowstack-ui/brick/styles/multi-select.css";
+```
+
+Add the modular stylesheet for every other Brick component the route renders.
+Do not combine modular styles with `styles.css` or `tokens.css`.
+
 
 Both entrypoints export `MultiSelect`, `MultiSelectRoot`, `MultiSelectTrigger`, `MultiSelectValue`,
 `MultiSelectIcon`, `MultiSelectPortal`, `MultiSelectContent`, `MultiSelectListbox`,
@@ -8045,6 +8565,19 @@ import { NavList } from "@flowstack-ui/brick/nav-list";
 import "@flowstack-ui/brick/styles.css";
 ```
 
+The complete stylesheet above is the recommended default. For a measured
+route-aware build, replace it with the shared foundation and this component's
+stylesheet:
+
+```tsx
+import "@flowstack-ui/brick/styles/core.css"; // once at the application root
+import "@flowstack-ui/brick/styles/nav-list.css";
+```
+
+Add the modular stylesheet for every other Brick component the route renders.
+Do not combine modular styles with `styles.css` or `tokens.css`.
+
+
 Nav List is also exported from `@flowstack-ui/brick`.
 
 ## Quick start
@@ -8275,6 +8808,19 @@ import { NavigationMenu } from "@flowstack-ui/brick/navigation-menu";
 import "@flowstack-ui/brick/styles.css";
 ```
 
+The complete stylesheet above is the recommended default. For a measured
+route-aware build, replace it with the shared foundation and this component's
+stylesheet:
+
+```tsx
+import "@flowstack-ui/brick/styles/core.css"; // once at the application root
+import "@flowstack-ui/brick/styles/navigation-menu.css";
+```
+
+Add the modular stylesheet for every other Brick component the route renders.
+Do not combine modular styles with `styles.css` or `tokens.css`.
+
+
 ## Quick start
 
 ```tsx
@@ -8415,6 +8961,19 @@ import { NotificationBadge } from "@flowstack-ui/brick/badge";
 import "@flowstack-ui/brick/styles.css";
 ```
 
+The complete stylesheet above is the recommended default. For a measured
+route-aware build, replace it with the shared foundation and this component's
+stylesheet:
+
+```tsx
+import "@flowstack-ui/brick/styles/core.css"; // once at the application root
+import "@flowstack-ui/brick/styles/badge.css";
+```
+
+Add the modular stylesheet for every other Brick component the route renders.
+Do not combine modular styles with `styles.css` or `tokens.css`.
+
+
 `NotificationBadge` and its public types are also exported from
 `@flowstack-ui/brick`. There is no separate `notification-badge` package
 subpath.
@@ -8552,6 +9111,19 @@ import { Field, NumberInput } from "@flowstack-ui/brick";
 import "@flowstack-ui/brick/styles.css";
 ```
 
+The complete stylesheet above is the recommended default. For a measured
+route-aware build, replace it with the shared foundation and this component's
+stylesheet:
+
+```tsx
+import "@flowstack-ui/brick/styles/core.css"; // once at the application root
+import "@flowstack-ui/brick/styles/number-input.css";
+```
+
+Add the modular stylesheet for every other Brick component the route renders.
+Do not combine modular styles with `styles.css` or `tokens.css`.
+
+
 ## Quick start
 ```tsx
 <Field.Root id="quantity" required>
@@ -8645,6 +9217,19 @@ import { Field, OTPField } from "@flowstack-ui/brick";
 import "@flowstack-ui/brick/styles.css";
 ```
 
+The complete stylesheet above is the recommended default. For a measured
+route-aware build, replace it with the shared foundation and this component's
+stylesheet:
+
+```tsx
+import "@flowstack-ui/brick/styles/core.css"; // once at the application root
+import "@flowstack-ui/brick/styles/otp-field.css";
+```
+
+Add the modular stylesheet for every other Brick component the route renders.
+Do not combine modular styles with `styles.css` or `tokens.css`.
+
+
 ## Quick start
 ```tsx
 <Field.Root id="verification" required>
@@ -8730,6 +9315,19 @@ Do not use Pagination for unknown totals, load-more flows, tabs, steps, carousel
 ## Installation and imports
 
 Import `Pagination` from `@flowstack-ui/brick` or `@flowstack-ui/brick/pagination`, and load `@flowstack-ui/brick/styles.css` once.
+
+
+The complete stylesheet above is the recommended default. For a measured
+route-aware build, replace it with the shared foundation and this component's
+stylesheet:
+
+```tsx
+import "@flowstack-ui/brick/styles/core.css"; // once at the application root
+import "@flowstack-ui/brick/styles/pagination.css";
+```
+
+Add the modular stylesheet for every other Brick component the route renders.
+Do not combine modular styles with `styles.css` or `tokens.css`.
 
 ## Quick start
 
@@ -8887,6 +9485,19 @@ import { Field, PasswordToggleField } from "@flowstack-ui/brick";
 import "@flowstack-ui/brick/styles.css";
 ```
 
+The complete stylesheet above is the recommended default. For a measured
+route-aware build, replace it with the shared foundation and this component's
+stylesheet:
+
+```tsx
+import "@flowstack-ui/brick/styles/core.css"; // once at the application root
+import "@flowstack-ui/brick/styles/password-toggle-field.css";
+```
+
+Add the modular stylesheet for every other Brick component the route renders.
+Do not combine modular styles with `styles.css` or `tokens.css`.
+
+
 ## Quick start
 ```tsx
 <Field.Root id="password" required>
@@ -8982,6 +9593,19 @@ for work that requires modal focus and an explicit task boundary.
 import { Popover } from "@flowstack-ui/brick/popover";
 import "@flowstack-ui/brick/styles.css";
 ```
+
+The complete stylesheet above is the recommended default. For a measured
+route-aware build, replace it with the shared foundation and this component's
+stylesheet:
+
+```tsx
+import "@flowstack-ui/brick/styles/core.css"; // once at the application root
+import "@flowstack-ui/brick/styles/popover.css";
+```
+
+Add the modular stylesheet for every other Brick component the route renders.
+Do not combine modular styles with `styles.css` or `tokens.css`.
+
 
 ## Quick start
 
@@ -9153,6 +9777,19 @@ compact spaces. Progress is not an input or status message.
 import { Progress } from "@flowstack-ui/brick/progress";
 import "@flowstack-ui/brick/styles.css";
 ```
+
+The complete stylesheet above is the recommended default. For a measured
+route-aware build, replace it with the shared foundation and this component's
+stylesheet:
+
+```tsx
+import "@flowstack-ui/brick/styles/core.css"; // once at the application root
+import "@flowstack-ui/brick/styles/progress.css";
+```
+
+Add the modular stylesheet for every other Brick component the route renders.
+Do not combine modular styles with `styles.css` or `tokens.css`.
+
 
 ## Quick start
 
@@ -9361,6 +9998,19 @@ import { ProgressCircle } from "@flowstack-ui/brick/progress-circle";
 import "@flowstack-ui/brick/styles.css";
 ```
 
+The complete stylesheet above is the recommended default. For a measured
+route-aware build, replace it with the shared foundation and this component's
+stylesheet:
+
+```tsx
+import "@flowstack-ui/brick/styles/core.css"; // once at the application root
+import "@flowstack-ui/brick/styles/progress-circle.css";
+```
+
+Add the modular stylesheet for every other Brick component the route renders.
+Do not combine modular styles with `styles.css` or `tokens.css`.
+
+
 ## Quick start
 
 ```tsx
@@ -9563,6 +10213,19 @@ import { RadioGroup } from "@flowstack-ui/brick/radio-group";
 import "@flowstack-ui/brick/styles.css";
 ```
 
+The complete stylesheet above is the recommended default. For a measured
+route-aware build, replace it with the shared foundation and this component's
+stylesheet:
+
+```tsx
+import "@flowstack-ui/brick/styles/core.css"; // once at the application root
+import "@flowstack-ui/brick/styles/radio-group.css";
+```
+
+Add the modular stylesheet for every other Brick component the route renders.
+Do not combine modular styles with `styles.css` or `tokens.css`.
+
+
 ## Quick start
 
 ```tsx
@@ -9718,6 +10381,19 @@ import { Field } from "@flowstack-ui/brick/field";
 import "@flowstack-ui/brick/styles.css";
 ```
 
+The complete stylesheet above is the recommended default. For a measured
+route-aware build, replace it with the shared foundation and this component's
+stylesheet:
+
+```tsx
+import "@flowstack-ui/brick/styles/core.css"; // once at the application root
+import "@flowstack-ui/brick/styles/rating.css";
+```
+
+Add the modular stylesheet for every other Brick component the route renders.
+Do not combine modular styles with `styles.css` or `tokens.css`.
+
+
 ## Quick start
 
 ```tsx
@@ -9839,6 +10515,19 @@ import { ScrollArea } from "@flowstack-ui/brick";
 import { ScrollArea } from "@flowstack-ui/brick/scroll-area";
 import "@flowstack-ui/brick/styles.css";
 ```
+
+The complete stylesheet above is the recommended default. For a measured
+route-aware build, replace it with the shared foundation and this component's
+stylesheet:
+
+```tsx
+import "@flowstack-ui/brick/styles/core.css"; // once at the application root
+import "@flowstack-ui/brick/styles/scroll-area.css";
+```
+
+Add the modular stylesheet for every other Brick component the route renders.
+Do not combine modular styles with `styles.css` or `tokens.css`.
+
 
 ## Quick start
 
@@ -10011,6 +10700,19 @@ import { Field, Select } from "@flowstack-ui/brick";
 import { Select } from "@flowstack-ui/brick/select";
 import "@flowstack-ui/brick/styles.css";
 ```
+
+The complete stylesheet above is the recommended default. For a measured
+route-aware build, replace it with the shared foundation and this component's
+stylesheet:
+
+```tsx
+import "@flowstack-ui/brick/styles/core.css"; // once at the application root
+import "@flowstack-ui/brick/styles/select.css";
+```
+
+Add the modular stylesheet for every other Brick component the route renders.
+Do not combine modular styles with `styles.css` or `tokens.css`.
+
 
 Both entrypoints export `Select`, `SelectRoot`, `SelectTrigger`, `SelectValue`,
 `SelectIcon`, `SelectPortal`, `SelectContent`, `SelectListbox`,
@@ -10308,6 +11010,19 @@ import { Show } from "@flowstack-ui/brick";
 import "@flowstack-ui/brick/styles.css";
 ```
 
+The complete stylesheet above is the recommended default. For a measured
+route-aware build, replace it with the shared foundation and this component's
+stylesheet:
+
+```tsx
+import "@flowstack-ui/brick/styles/core.css"; // once at the application root
+import "@flowstack-ui/brick/styles/show.css";
+```
+
+Add the modular stylesheet for every other Brick component the route renders.
+Do not combine modular styles with `styles.css` or `tokens.css`.
+
+
 Exports: `Show`, `ShowProps`, `ShowBreakpoint`, and `ShowElement`.
 
 ## Quick start
@@ -10406,6 +11121,19 @@ breakpoints, routing, persistence, scrollspy, or mobile Drawer switching.
 import { Sidebar } from "@flowstack-ui/brick/sidebar";
 import "@flowstack-ui/brick/styles.css";
 ```
+
+The complete stylesheet above is the recommended default. For a measured
+route-aware build, replace it with the shared foundation and this component's
+stylesheet:
+
+```tsx
+import "@flowstack-ui/brick/styles/core.css"; // once at the application root
+import "@flowstack-ui/brick/styles/sidebar.css";
+```
+
+Add the modular stylesheet for every other Brick component the route renders.
+Do not combine modular styles with `styles.css` or `tokens.css`.
+
 
 ## Quick start
 
@@ -10581,6 +11309,19 @@ import { Skeleton } from "@flowstack-ui/brick/skeleton";
 import "@flowstack-ui/brick/styles.css";
 ```
 
+The complete stylesheet above is the recommended default. For a measured
+route-aware build, replace it with the shared foundation and this component's
+stylesheet:
+
+```tsx
+import "@flowstack-ui/brick/styles/core.css"; // once at the application root
+import "@flowstack-ui/brick/styles/skeleton.css";
+```
+
+Add the modular stylesheet for every other Brick component the route renders.
+Do not combine modular styles with `styles.css` or `tokens.css`.
+
+
 ## Quick start
 
 ```tsx
@@ -10715,6 +11456,19 @@ Import the global Brick stylesheet once:
 ```ts
 import "@flowstack-ui/brick/styles.css";
 ```
+
+The complete stylesheet above is the recommended default. For a measured
+route-aware build, replace it with the shared foundation and this component's
+stylesheet:
+
+```tsx
+import "@flowstack-ui/brick/styles/core.css"; // once at the application root
+import "@flowstack-ui/brick/styles/skip-link.css";
+```
+
+Add the modular stylesheet for every other Brick component the route renders.
+Do not combine modular styles with `styles.css` or `tokens.css`.
+
 
 Import from the package root or focused subpath:
 
@@ -10973,6 +11727,19 @@ import { Field } from "@flowstack-ui/brick/field";
 import "@flowstack-ui/brick/styles.css";
 ```
 
+The complete stylesheet above is the recommended default. For a measured
+route-aware build, replace it with the shared foundation and this component's
+stylesheet:
+
+```tsx
+import "@flowstack-ui/brick/styles/core.css"; // once at the application root
+import "@flowstack-ui/brick/styles/slider.css";
+```
+
+Add the modular stylesheet for every other Brick component the route renders.
+Do not combine modular styles with `styles.css` or `tokens.css`.
+
+
 ## Quick start
 
 ```tsx
@@ -11115,6 +11882,19 @@ import { HStack, Stack, VStack } from "@flowstack-ui/brick/stack";
 
 import "@flowstack-ui/brick/styles.css";
 ```
+
+The complete stylesheet above is the recommended default. For a measured
+route-aware build, replace it with the shared foundation and this component's
+stylesheet:
+
+```tsx
+import "@flowstack-ui/brick/styles/core.css"; // once at the application root
+import "@flowstack-ui/brick/styles/stack.css";
+```
+
+Add the modular stylesheet for every other Brick component the route renders.
+Do not combine modular styles with `styles.css` or `tokens.css`.
+
 
 Public exports are `Stack`, `HStack`, `VStack`, `StackProps`, `HStackProps`,
 `VStackProps`, `StackElement`, `StackDirection`, `StackGap`, `StackAlign`, and
@@ -11325,6 +12105,19 @@ import { Surface } from "@flowstack-ui/brick/surface";
 import "@flowstack-ui/brick/styles.css";
 ```
 
+The complete stylesheet above is the recommended default. For a measured
+route-aware build, replace it with the shared foundation and this component's
+stylesheet:
+
+```tsx
+import "@flowstack-ui/brick/styles/core.css"; // once at the application root
+import "@flowstack-ui/brick/styles/surface.css";
+```
+
+Add the modular stylesheet for every other Brick component the route renders.
+Do not combine modular styles with `styles.css` or `tokens.css`.
+
+
 Public exports are `Surface`, `SurfaceProps`, `SurfaceElement`,
 `SurfaceLevel`, `SurfaceElevation`, `SurfaceRadius`, and `SurfaceInset`.
 
@@ -11530,6 +12323,19 @@ import { SwipeableItem } from "@flowstack-ui/brick";
 import "@flowstack-ui/brick/styles.css";
 ```
 
+The complete stylesheet above is the recommended default. For a measured
+route-aware build, replace it with the shared foundation and this component's
+stylesheet:
+
+```tsx
+import "@flowstack-ui/brick/styles/core.css"; // once at the application root
+import "@flowstack-ui/brick/styles/swipeable-item.css";
+```
+
+Add the modular stylesheet for every other Brick component the route renders.
+Do not combine modular styles with `styles.css` or `tokens.css`.
+
+
 ## Quick start
 
 ```tsx
@@ -11701,6 +12507,19 @@ import { Switch } from "@flowstack-ui/brick/switch";
 import "@flowstack-ui/brick/styles.css";
 ```
 
+The complete stylesheet above is the recommended default. For a measured
+route-aware build, replace it with the shared foundation and this component's
+stylesheet:
+
+```tsx
+import "@flowstack-ui/brick/styles/core.css"; // once at the application root
+import "@flowstack-ui/brick/styles/switch.css";
+```
+
+Add the modular stylesheet for every other Brick component the route renders.
+Do not combine modular styles with `styles.css` or `tokens.css`.
+
+
 ## Quick start
 
 ```tsx
@@ -11852,6 +12671,19 @@ import { Table } from "@flowstack-ui/brick";
 // or import { Table } from "@flowstack-ui/brick/table";
 import "@flowstack-ui/brick/styles.css";
 ```
+
+The complete stylesheet above is the recommended default. For a measured
+route-aware build, replace it with the shared foundation and this component's
+stylesheet:
+
+```tsx
+import "@flowstack-ui/brick/styles/core.css"; // once at the application root
+import "@flowstack-ui/brick/styles/table.css";
+```
+
+Add the modular stylesheet for every other Brick component the route renders.
+Do not combine modular styles with `styles.css` or `tokens.css`.
+
 
 Public exports include `Table`, `TableContainer`, `TableRoot`, `TableCaption`,
 `TableHeader`, `TableBody`, `TableFooter`, `TableRow`, `TableHead`, `TableCell`,
@@ -12059,6 +12891,19 @@ import { Tabs } from "@flowstack-ui/brick/tabs";
 import "@flowstack-ui/brick/styles.css";
 ```
 
+The complete stylesheet above is the recommended default. For a measured
+route-aware build, replace it with the shared foundation and this component's
+stylesheet:
+
+```tsx
+import "@flowstack-ui/brick/styles/core.css"; // once at the application root
+import "@flowstack-ui/brick/styles/tabs.css";
+```
+
+Add the modular stylesheet for every other Brick component the route renders.
+Do not combine modular styles with `styles.css` or `tokens.css`.
+
+
 ## Quick start
 
 ```tsx
@@ -12218,6 +13063,19 @@ import { Text } from "@flowstack-ui/brick/text";
 
 import "@flowstack-ui/brick/styles.css";
 ```
+
+The complete stylesheet above is the recommended default. For a measured
+route-aware build, replace it with the shared foundation and this component's
+stylesheet:
+
+```tsx
+import "@flowstack-ui/brick/styles/core.css"; // once at the application root
+import "@flowstack-ui/brick/styles/text.css";
+```
+
+Add the modular stylesheet for every other Brick component the route renders.
+Do not combine modular styles with `styles.css` or `tokens.css`.
+
 
 Public exports are `Text`, `TextProps`, `TextElement`, `TextVariant`,
 `TextTone`, `TextWeight`, `TextAlign`, `TextWrap`, and `TextLineClamp`.
@@ -12474,6 +13332,19 @@ import { Textarea } from "@flowstack-ui/brick/textarea";
 import "@flowstack-ui/brick/styles.css";
 ```
 
+The complete stylesheet above is the recommended default. For a measured
+route-aware build, replace it with the shared foundation and this component's
+stylesheet:
+
+```tsx
+import "@flowstack-ui/brick/styles/core.css"; // once at the application root
+import "@flowstack-ui/brick/styles/textarea.css";
+```
+
+Add the modular stylesheet for every other Brick component the route renders.
+Do not combine modular styles with `styles.css` or `tokens.css`.
+
+
 ## Quick start
 
 ```tsx
@@ -12722,6 +13593,19 @@ import { Toaster, toast } from "@flowstack-ui/brick/toast";
 import "@flowstack-ui/brick/styles.css";
 ```
 
+The complete stylesheet above is the recommended default. For a measured
+route-aware build, replace it with the shared foundation and this component's
+stylesheet:
+
+```tsx
+import "@flowstack-ui/brick/styles/core.css"; // once at the application root
+import "@flowstack-ui/brick/styles/toast.css";
+```
+
+Add the modular stylesheet for every other Brick component the route renders.
+Do not combine modular styles with `styles.css` or `tokens.css`.
+
+
 The same exports are available from `@flowstack-ui/brick`.
 
 ## Quick start
@@ -12868,6 +13752,19 @@ import { Toggle } from "@flowstack-ui/brick/toggle";
 import "@flowstack-ui/brick/styles.css";
 ```
 
+The complete stylesheet above is the recommended default. For a measured
+route-aware build, replace it with the shared foundation and this component's
+stylesheet:
+
+```tsx
+import "@flowstack-ui/brick/styles/core.css"; // once at the application root
+import "@flowstack-ui/brick/styles/toggle.css";
+```
+
+Add the modular stylesheet for every other Brick component the route renders.
+Do not combine modular styles with `styles.css` or `tokens.css`.
+
+
 `Toggle` is also exported from `@flowstack-ui/brick`.
 
 ## Quick start
@@ -12996,6 +13893,19 @@ navigation. Required selection and persistence remain application policy.
 import { ToggleGroup } from "@flowstack-ui/brick/toggle-group";
 import "@flowstack-ui/brick/styles.css";
 ```
+
+The complete stylesheet above is the recommended default. For a measured
+route-aware build, replace it with the shared foundation and this component's
+stylesheet:
+
+```tsx
+import "@flowstack-ui/brick/styles/core.css"; // once at the application root
+import "@flowstack-ui/brick/styles/toggle-group.css";
+```
+
+Add the modular stylesheet for every other Brick component the route renders.
+Do not combine modular styles with `styles.css` or `tokens.css`.
+
 
 ## Quick start
 
@@ -13134,6 +14044,19 @@ Use ordinary Buttons in Stack when every control needs its own Tab stop. Toolbar
 
 Import `Toolbar` from `@flowstack-ui/brick` or `@flowstack-ui/brick/toolbar`, and load `@flowstack-ui/brick/styles.css` once.
 
+
+The complete stylesheet above is the recommended default. For a measured
+route-aware build, replace it with the shared foundation and this component's
+stylesheet:
+
+```tsx
+import "@flowstack-ui/brick/styles/core.css"; // once at the application root
+import "@flowstack-ui/brick/styles/toolbar.css";
+```
+
+Add the modular stylesheet for every other Brick component the route renders.
+Do not combine modular styles with `styles.css` or `tokens.css`.
+
 ## Quick start
 
 ```tsx
@@ -13244,6 +14167,19 @@ HoverCard for previews and Popover for click-open interactive content.
 import { Tooltip } from "@flowstack-ui/brick/tooltip";
 import "@flowstack-ui/brick/styles.css";
 ```
+
+The complete stylesheet above is the recommended default. For a measured
+route-aware build, replace it with the shared foundation and this component's
+stylesheet:
+
+```tsx
+import "@flowstack-ui/brick/styles/core.css"; // once at the application root
+import "@flowstack-ui/brick/styles/tooltip.css";
+```
+
+Add the modular stylesheet for every other Brick component the route renders.
+Do not combine modular styles with `styles.css` or `tokens.css`.
+
 
 ## Quick start
 
@@ -13395,6 +14331,19 @@ import { Tree } from "@flowstack-ui/brick";
 // or import { Tree } from "@flowstack-ui/brick/tree";
 import "@flowstack-ui/brick/styles.css";
 ```
+
+The complete stylesheet above is the recommended default. For a measured
+route-aware build, replace it with the shared foundation and this component's
+stylesheet:
+
+```tsx
+import "@flowstack-ui/brick/styles/core.css"; // once at the application root
+import "@flowstack-ui/brick/styles/tree.css";
+```
+
+Add the modular stylesheet for every other Brick component the route renders.
+Do not combine modular styles with `styles.css` or `tokens.css`.
+
 
 ## Quick start
 
@@ -13591,6 +14540,19 @@ import { TreeGrid } from "@flowstack-ui/brick";
 // or import { TreeGrid } from "@flowstack-ui/brick/tree-grid";
 import "@flowstack-ui/brick/styles.css";
 ```
+
+The complete stylesheet above is the recommended default. For a measured
+route-aware build, replace it with the shared foundation and this component's
+stylesheet:
+
+```tsx
+import "@flowstack-ui/brick/styles/core.css"; // once at the application root
+import "@flowstack-ui/brick/styles/tree-grid.css";
+```
+
+Add the modular stylesheet for every other Brick component the route renders.
+Do not combine modular styles with `styles.css` or `tokens.css`.
+
 
 ## Quick start
 
@@ -13808,6 +14770,19 @@ Do not hide text that benefits everyone, keyboard-focusable content, essential i
 import { VisuallyHidden } from "@flowstack-ui/brick/visually-hidden";
 import "@flowstack-ui/brick/styles.css";
 ```
+
+The complete stylesheet above is the recommended default. For a measured
+route-aware build, replace it with the shared foundation and this component's
+stylesheet:
+
+```tsx
+import "@flowstack-ui/brick/styles/core.css"; // once at the application root
+import "@flowstack-ui/brick/styles/visually-hidden.css";
+```
+
+Add the modular stylesheet for every other Brick component the route renders.
+Do not combine modular styles with `styles.css` or `tokens.css`.
+
 
 ## Quick start
 

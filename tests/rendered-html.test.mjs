@@ -464,7 +464,9 @@ test("reader-facing guides pair visual orientation with practical guidance", asy
   assert.match(guides.accessibility.body, /Field\.Description[\s\S]*Field\.Error[\s\S]*complete the task with only a keyboard/, "accessibility must include a consumer example and an actionable test path");
   assert.match(guides.composition.body, /Grid\.Root[\s\S]*The Grid owns page arrangement[\s\S]*lightest owner/, "composition must connect public code to ownership guidance");
   assert.match(guides["getting-started"].body, /Confirm your setup[\s\S]*keyboard focus is visible/, "getting started must include a concrete setup checkpoint");
+  assert.match(guides["getting-started"].body, /styles\/core\.css[\s\S]*styles\/button\.css[\s\S]*styles\/card\.css[\s\S]*Do not combine the modular path with `styles\.css` or `tokens\.css`/, "getting started must present the complete default and measured modular alternative without mixing delivery modes");
   assert.match(guides.theming.body, /data-brick-theme="studio"[\s\S]*resting, hover, pressed, focus, disabled, and invalid/, "theming must show scope and a release checklist");
+  assert.match(guides.theming.body, /One theme contract, two delivery modes[\s\S]*styles\/core\.css[\s\S]*Changing CSS delivery must never change semantic token names/, "theming must explain that complete and modular CSS share one semantic contract");
   assert.match(css, /@media \(max-width: 640px\)[\s\S]*\.guide-setup-track, \.guide-theme-map, \.guide-a11y-map, \.guide-composition-map \{ grid-template-columns: 1fr; \}/, "all four visual guides must stack at the narrow-mobile boundary");
   assert.match(css, /\.guide-visual-heading \{[^}]*justify-items: center;[^}]*text-align: center;/, "each guide eyebrow, title, and summary must share one centered visual axis above its map");
   assert.match(css, /\.guide-visual-heading h2 \{ width: 100%; \}/, "guide-map titles must own the full introduction width before centering wrapped lines");

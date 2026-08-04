@@ -31,6 +31,9 @@ for (const component of components) {
   const exportSlug = component.slug === "notification-badge" ? "badge" : component.slug;
   if (!brickManifest.exports[`./${exportSlug}`]) errors.push(`component is not a public Brick export: ${component.slug}`);
   if (!docs[component.slug]?.startsWith("# ")) errors.push(`component has no synchronized documentation: ${component.slug}`);
+  if (!docs[component.slug]?.includes('@flowstack-ui/brick/styles.css')) errors.push(`component is missing the complete stylesheet default: ${component.slug}`);
+  if (!docs[component.slug]?.includes('@flowstack-ui/brick/styles/core.css')) errors.push(`component is missing the modular CSS foundation: ${component.slug}`);
+  if (!docs[component.slug]?.includes(`@flowstack-ui/brick/styles/${exportSlug}.css`)) errors.push(`component is missing its modular stylesheet: ${component.slug}`);
   if (!llms.includes(`/components/${component.slug}`)) errors.push(`component missing from llms.txt: ${component.slug}`);
   if (!previewFileSet.has(`${component.slug}.tsx`)) errors.push(`component has no route-scoped live preview: ${component.slug}`);
   if (!previewSource.includes(`previews/${component.slug}`)) errors.push(`component preview is not registered: ${component.slug}`);
@@ -45,6 +48,8 @@ for (const [slug, guide] of Object.entries(guides)) {
   if (!guide.title || !guide.description || !guide.body?.startsWith("## ")) errors.push(`incomplete guide: ${slug}`);
   try { await access(path.join(root, "app/docs/[slug]/page.tsx")); } catch { errors.push("missing guide route"); }
 }
+if (!guides["getting-started"].body.includes('@flowstack-ui/brick/styles/core.css')) errors.push("getting started is missing the modular CSS path");
+if (!guides.theming.body.includes("One theme contract, two delivery modes")) errors.push("theming is missing CSS delivery-mode guidance");
 if (provenance.package !== "@flowstack-ui/brick") errors.push("provenance has the wrong package name");
 if (provenance.version !== brickManifest.version) errors.push(`content reviewed for Brick ${provenance.version}, installed ${brickManifest.version}`);
 if (siteManifest.dependencies["@flowstack-ui/brick"] !== brickManifest.version) errors.push("Brick must be installed as the exact reviewed version");

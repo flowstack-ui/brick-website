@@ -7,6 +7,9 @@
   Text's start-aligned default cannot diverge from the centered badge.
 - Removed the orphaned root-import line from component introductions because
   the complete installation and imports section already owns that guidance.
+- Synchronized Brick's per-component modular CSS instructions and expanded
+  Getting Started and Theming so the complete default and measured route-aware
+  alternative are explicit without mixing stylesheet modes.
 
 ## 2026-08-04 — llms.txt discovery contract
 
