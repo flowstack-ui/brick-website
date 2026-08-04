@@ -161,6 +161,8 @@ test("Themes hero retains its semantic instrument composition", async () => {
   assert.match(css, /\.theme-comparison, \.token-section \{ padding-block: clamp\(2\.75rem, 4vw, 4rem\); \}/, "theme story transitions must use restrained section rhythm");
   assert.match(css, /\.comparison-panel \{[^}]*background-image: radial-gradient/, "theme expressions must sit on authored opaque presentation surfaces");
   assert.match(css, /\.token-family \{[^}]*grid-template-columns:/, "semantic token groups must retain their structured map anatomy");
+  assert.match(css, /@media \(max-width: 900px\)[\s\S]*\.theme-cta \{ align-items: flex-start; flex-direction: column; gap: 1\.25rem; \}/, "theme closing action must stack at its content-pressure breakpoint");
+  assert.match(css, /\.theme-cta > div:first-child, \.theme-cta \.install-command \{ width: 100%; max-width: none; \}/, "stacked theme CTA copy and install command must use the complete available width");
   assert.match(css, /\.theme-orbit \{[^}]*aspect-ratio: 1;[^}]*border-radius: 50%;/, "theme instrument outer geometry must remain a true circle");
   assert.match(css, /\.theme-orbit \{[^}]*conic-gradient/, "theme instrument must retain its restrained semantic spectrum");
   assert.doesNotMatch(css, /\.theme-orbit \{[^}]*min-height:/, "theme instrument must not recreate an ellipse through an unrelated minimum height");

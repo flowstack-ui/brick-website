@@ -511,6 +511,8 @@
     .pillar-grid { grid-template-columns: 1fr !important; }.pillar-card { min-height: 0; }
     .catalog-story, .token-section { grid-template-columns: 1fr; }.catalog-copy, .token-copy { max-width: 42rem; }.catalog-art { order: 2; }
     .closing-cta { grid-template-columns: 1fr; align-items: start; }.closing-actions { justify-items: start; }
+    .theme-cta { align-items: flex-start; flex-direction: column; gap: 1.25rem; }
+    .theme-cta > div:first-child, .theme-cta .install-command { width: 100%; max-width: none; }
     .docs-shell { display: block; }.docs-sidebar { position: static; max-height: none; margin-block-end: 2rem; overflow: visible; }.docs-sidebar nav { display: flex; overflow-x: auto; padding-block-end: .5rem; }.docs-sidebar .docs-nav-label, .docs-sidebar nav a:nth-of-type(n+7) { display: none; }.docs-sidebar a { white-space: nowrap; }
     .themes-hero { grid-template-columns: 1fr; }
   }
