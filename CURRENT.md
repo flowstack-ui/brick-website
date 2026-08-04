@@ -21,6 +21,13 @@ Brick UI Website is implemented as a multi-route product and documentation site.
 - Unknown paths return a designed Brick recovery page with real 404 status,
   explicit noindex/no-follow metadata, no inherited canonical/social identity,
   and useful home, catalog, guide, and theme destinations.
+- All 75 live examples now cross route-scoped dynamic boundaries instead of
+  sharing one monolithic client implementation. The representative Button
+  route is 25.5% smaller raw and 24.3% smaller gzip, and every component route
+  is protected by a build-time JavaScript budget.
+- The canonical 1200×630 social card preserves the approved artwork as a
+  110,597-byte JPEG, an 89.5% reduction from the previous PNG, and its size and
+  dimensions are enforced during verification.
 
 - Home page demonstrates a composed, stateful website-project workspace made from the published Brick package, with a conversion-first stacked viewport and a compact mobile presentation.
 - All 75 component owners have routes sourced from reviewed package documentation and a dedicated live example built from that component's public package export.

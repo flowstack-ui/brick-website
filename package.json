@@ -20,9 +20,10 @@
     "syntax:sync": "node scripts/generate-syntax-tokens.mjs",
     "syntax:check": "node scripts/generate-syntax-tokens.mjs --check",
     "theme:check": "node scripts/check-theme-contrast.mjs",
+    "performance:check": "node scripts/check-performance.mjs",
     "verify:repository-contract": "node scripts/verify-repository-contract.mjs",
     "check:focused": "npm run content:check && npm run typecheck",
-    "check:repository": "npm run verify:repository-contract && npm run content:check && npm run theme:check && npm run typecheck && npm run lint && npm run build && node --test tests/rendered-html.test.mjs",
+    "check:repository": "npm run verify:repository-contract && npm run content:check && npm run theme:check && npm run typecheck && npm run lint && npm run build && npm run performance:check && node --test tests/rendered-html.test.mjs",
     "verify": "npm run check:repository",
     "test:all": "npm run check:repository"
   },

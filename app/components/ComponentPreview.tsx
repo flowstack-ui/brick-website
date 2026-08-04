@@ -1,168 +1,91 @@
 "use client";
 
-import { Accordion } from "@flowstack-ui/brick/accordion";
-import { AlertDialog } from "@flowstack-ui/brick/alert-dialog";
-import { AppBar } from "@flowstack-ui/brick/app-bar";
-import { AspectRatio } from "@flowstack-ui/brick/aspect-ratio";
-import { Avatar } from "@flowstack-ui/brick/avatar";
-import { Badge, NotificationBadge } from "@flowstack-ui/brick/badge";
-import { BottomNavigation } from "@flowstack-ui/brick/bottom-navigation";
-import { Breadcrumb } from "@flowstack-ui/brick/breadcrumb";
-import { Button } from "@flowstack-ui/brick/button";
-import { Card } from "@flowstack-ui/brick/card";
-import { Checkbox } from "@flowstack-ui/brick/checkbox";
-import { CheckboxGroup } from "@flowstack-ui/brick/checkbox-group";
-import { Chip } from "@flowstack-ui/brick/chip";
-import { Code } from "@flowstack-ui/brick/code";
-import { CodeBlock } from "@flowstack-ui/brick/code-block";
-import { Collapsible } from "@flowstack-ui/brick/collapsible";
-import { Combobox } from "@flowstack-ui/brick/combobox";
-import { Container } from "@flowstack-ui/brick/container";
-import { ContextMenu } from "@flowstack-ui/brick/context-menu";
-import { DataGrid } from "@flowstack-ui/brick/data-grid";
-import { Dialog } from "@flowstack-ui/brick/dialog";
-import { Divider } from "@flowstack-ui/brick/divider";
-import { Drawer } from "@flowstack-ui/brick/drawer";
-import { DropdownMenu } from "@flowstack-ui/brick/dropdown-menu";
-import { Feed } from "@flowstack-ui/brick/feed";
-import { Field } from "@flowstack-ui/brick/field";
-import { Fieldset } from "@flowstack-ui/brick/fieldset";
-import { FileUpload } from "@flowstack-ui/brick/file-upload";
-import { Form } from "@flowstack-ui/brick/form";
-import { Grid } from "@flowstack-ui/brick/grid";
-import { Hide } from "@flowstack-ui/brick/hide";
-import { HoverCard } from "@flowstack-ui/brick/hover-card";
-import { Icon } from "@flowstack-ui/brick/icon";
-import { IconButton } from "@flowstack-ui/brick/icon-button";
-import { Image } from "@flowstack-ui/brick/image";
-import { Input } from "@flowstack-ui/brick/input";
-import { Link } from "@flowstack-ui/brick/link";
-import { List } from "@flowstack-ui/brick/list";
-import { Menubar } from "@flowstack-ui/brick/menubar";
-import { MultiSelect } from "@flowstack-ui/brick/multi-select";
-import { NavList } from "@flowstack-ui/brick/nav-list";
-import { NavigationMenu } from "@flowstack-ui/brick/navigation-menu";
-import { NumberInput } from "@flowstack-ui/brick/number-input";
-import { OTPField } from "@flowstack-ui/brick/otp-field";
-import { Pagination } from "@flowstack-ui/brick/pagination";
-import { PasswordToggleField } from "@flowstack-ui/brick/password-toggle-field";
-import { Popover } from "@flowstack-ui/brick/popover";
-import { Progress } from "@flowstack-ui/brick/progress";
-import { ProgressCircle } from "@flowstack-ui/brick/progress-circle";
-import { RadioGroup } from "@flowstack-ui/brick/radio-group";
-import { Rating } from "@flowstack-ui/brick/rating";
-import { ScrollArea } from "@flowstack-ui/brick/scroll-area";
-import { Select } from "@flowstack-ui/brick/select";
-import { Show } from "@flowstack-ui/brick/show";
-import { Sidebar } from "@flowstack-ui/brick/sidebar";
-import { Skeleton } from "@flowstack-ui/brick/skeleton";
-import { SkipLink } from "@flowstack-ui/brick/skip-link";
-import { Slider } from "@flowstack-ui/brick/slider";
-import { HStack, VStack } from "@flowstack-ui/brick/stack";
-import { Surface } from "@flowstack-ui/brick/surface";
-import { SwipeableItem } from "@flowstack-ui/brick/swipeable-item";
-import { Switch } from "@flowstack-ui/brick/switch";
-import { Table } from "@flowstack-ui/brick/table";
-import { Tabs } from "@flowstack-ui/brick/tabs";
+import dynamic from "next/dynamic";
 import { Text } from "@flowstack-ui/brick/text";
-import { Textarea } from "@flowstack-ui/brick/textarea";
-import { Toaster, toast } from "@flowstack-ui/brick/toast";
-import { Toggle } from "@flowstack-ui/brick/toggle";
-import { ToggleGroup } from "@flowstack-ui/brick/toggle-group";
-import { Toolbar } from "@flowstack-ui/brick/toolbar";
-import { Tooltip } from "@flowstack-ui/brick/tooltip";
-import { Tree } from "@flowstack-ui/brick/tree";
-import { TreeGrid } from "@flowstack-ui/brick/tree-grid";
-import { VisuallyHidden } from "@flowstack-ui/brick/visually-hidden";
-import { Bell, Check, Eye, Home, Inbox, Menu, MousePointer2, Search, Settings, Star } from "lucide-react";
 
-const cities = [{ label: "New York", value: "new-york" }, { label: "Madrid", value: "madrid" }];
+const previews = {
+  "accordion": dynamic(() => import("@/components/previews/accordion")),
+  "alert-dialog": dynamic(() => import("@/components/previews/alert-dialog")),
+  "app-bar": dynamic(() => import("@/components/previews/app-bar")),
+  "aspect-ratio": dynamic(() => import("@/components/previews/aspect-ratio")),
+  "avatar": dynamic(() => import("@/components/previews/avatar")),
+  "badge": dynamic(() => import("@/components/previews/badge")),
+  "bottom-navigation": dynamic(() => import("@/components/previews/bottom-navigation")),
+  "breadcrumb": dynamic(() => import("@/components/previews/breadcrumb")),
+  "button": dynamic(() => import("@/components/previews/button")),
+  "card": dynamic(() => import("@/components/previews/card")),
+  "checkbox": dynamic(() => import("@/components/previews/checkbox")),
+  "checkbox-group": dynamic(() => import("@/components/previews/checkbox-group")),
+  "chip": dynamic(() => import("@/components/previews/chip")),
+  "code": dynamic(() => import("@/components/previews/code")),
+  "code-block": dynamic(() => import("@/components/previews/code-block")),
+  "collapsible": dynamic(() => import("@/components/previews/collapsible")),
+  "combobox": dynamic(() => import("@/components/previews/combobox")),
+  "container": dynamic(() => import("@/components/previews/container")),
+  "context-menu": dynamic(() => import("@/components/previews/context-menu")),
+  "data-grid": dynamic(() => import("@/components/previews/data-grid")),
+  "dialog": dynamic(() => import("@/components/previews/dialog")),
+  "divider": dynamic(() => import("@/components/previews/divider")),
+  "drawer": dynamic(() => import("@/components/previews/drawer")),
+  "dropdown-menu": dynamic(() => import("@/components/previews/dropdown-menu")),
+  "feed": dynamic(() => import("@/components/previews/feed")),
+  "field": dynamic(() => import("@/components/previews/field")),
+  "fieldset": dynamic(() => import("@/components/previews/fieldset")),
+  "file-upload": dynamic(() => import("@/components/previews/file-upload")),
+  "form": dynamic(() => import("@/components/previews/form")),
+  "grid": dynamic(() => import("@/components/previews/grid")),
+  "hide": dynamic(() => import("@/components/previews/hide")),
+  "hover-card": dynamic(() => import("@/components/previews/hover-card")),
+  "icon": dynamic(() => import("@/components/previews/icon")),
+  "icon-button": dynamic(() => import("@/components/previews/icon-button")),
+  "image": dynamic(() => import("@/components/previews/image")),
+  "input": dynamic(() => import("@/components/previews/input")),
+  "link": dynamic(() => import("@/components/previews/link")),
+  "list": dynamic(() => import("@/components/previews/list")),
+  "menubar": dynamic(() => import("@/components/previews/menubar")),
+  "multi-select": dynamic(() => import("@/components/previews/multi-select")),
+  "nav-list": dynamic(() => import("@/components/previews/nav-list")),
+  "navigation-menu": dynamic(() => import("@/components/previews/navigation-menu")),
+  "notification-badge": dynamic(() => import("@/components/previews/notification-badge")),
+  "number-input": dynamic(() => import("@/components/previews/number-input")),
+  "otp-field": dynamic(() => import("@/components/previews/otp-field")),
+  "pagination": dynamic(() => import("@/components/previews/pagination")),
+  "password-toggle-field": dynamic(() => import("@/components/previews/password-toggle-field")),
+  "popover": dynamic(() => import("@/components/previews/popover")),
+  "progress": dynamic(() => import("@/components/previews/progress")),
+  "progress-circle": dynamic(() => import("@/components/previews/progress-circle")),
+  "radio-group": dynamic(() => import("@/components/previews/radio-group")),
+  "rating": dynamic(() => import("@/components/previews/rating")),
+  "scroll-area": dynamic(() => import("@/components/previews/scroll-area")),
+  "select": dynamic(() => import("@/components/previews/select")),
+  "show": dynamic(() => import("@/components/previews/show")),
+  "sidebar": dynamic(() => import("@/components/previews/sidebar")),
+  "skeleton": dynamic(() => import("@/components/previews/skeleton")),
+  "skip-link": dynamic(() => import("@/components/previews/skip-link")),
+  "slider": dynamic(() => import("@/components/previews/slider")),
+  "stack": dynamic(() => import("@/components/previews/stack")),
+  "surface": dynamic(() => import("@/components/previews/surface")),
+  "swipeable-item": dynamic(() => import("@/components/previews/swipeable-item")),
+  "switch": dynamic(() => import("@/components/previews/switch")),
+  "table": dynamic(() => import("@/components/previews/table")),
+  "tabs": dynamic(() => import("@/components/previews/tabs")),
+  "text": dynamic(() => import("@/components/previews/text")),
+  "textarea": dynamic(() => import("@/components/previews/textarea")),
+  "toast": dynamic(() => import("@/components/previews/toast")),
+  "toggle": dynamic(() => import("@/components/previews/toggle")),
+  "toggle-group": dynamic(() => import("@/components/previews/toggle-group")),
+  "toolbar": dynamic(() => import("@/components/previews/toolbar")),
+  "tooltip": dynamic(() => import("@/components/previews/tooltip")),
+  "tree": dynamic(() => import("@/components/previews/tree")),
+  "tree-grid": dynamic(() => import("@/components/previews/tree-grid")),
+  "visually-hidden": dynamic(() => import("@/components/previews/visually-hidden")),
+} as const;
 
-function ToastPreview() {
-  return <><Button onPress={() => toast.success("Release published", { description: "Brick 0.1.0 is ready." })}>Show toast</Button><Toaster /></>;
-}
-
-function UnknownPreview({ slug }: { slug: never }) {
+function UnknownPreview({ slug }: { slug: string }) {
   return <Text>Missing preview for {slug}</Text>;
 }
 
 export function ComponentPreview({ slug }: { slug: string }) {
-  switch (slug) {
-    case "accordion": return <Accordion.Root defaultValue="foundations"><Accordion.Item value="foundations"><Accordion.Header><Accordion.Trigger>Foundations <Accordion.Indicator /></Accordion.Trigger></Accordion.Header><Accordion.Content><Accordion.ContentInner>Tokens, type, spacing, and motion.</Accordion.ContentInner></Accordion.Content></Accordion.Item><Accordion.Item value="components"><Accordion.Header><Accordion.Trigger>Components <Accordion.Indicator /></Accordion.Trigger></Accordion.Header><Accordion.Content><Accordion.ContentInner>Finished UI built on Atom behavior.</Accordion.ContentInner></Accordion.Content></Accordion.Item></Accordion.Root>;
-    case "alert-dialog": return <AlertDialog.Root><AlertDialog.Trigger asChild><Button tone="danger" variant="outline">Remove project</Button></AlertDialog.Trigger><AlertDialog.Portal><AlertDialog.Overlay /><AlertDialog.Content><AlertDialog.Header><AlertDialog.Title>Remove project?</AlertDialog.Title><AlertDialog.Description>This action cannot be undone.</AlertDialog.Description></AlertDialog.Header><AlertDialog.Footer><AlertDialog.Cancel asChild><Button tone="neutral" variant="outline">Keep project</Button></AlertDialog.Cancel><AlertDialog.Action asChild><Button tone="danger">Remove</Button></AlertDialog.Action></AlertDialog.Footer></AlertDialog.Content></AlertDialog.Portal></AlertDialog.Root>;
-    case "app-bar": return <AppBar.Root><AppBar.Toolbar><AppBar.Start><strong>Brick</strong></AppBar.Start><AppBar.Center>Workspace</AppBar.Center><AppBar.End><IconButton aria-label="Open settings" variant="ghost"><Settings /></IconButton></AppBar.End></AppBar.Toolbar></AppBar.Root>;
-    case "aspect-ratio": return <AspectRatio.Root ratio={16 / 9} radius="lg" variant="outline"><div className="preview-art"><span>16 : 9</span></div></AspectRatio.Root>;
-    case "avatar": return <HStack gap="3" align="center"><Avatar alt="Flowstack Design" fallback="FD" /><Avatar alt="Brick" fallback="BR" /><Avatar alt="Atom" fallback="AT" /></HStack>;
-    case "badge": return <HStack gap="2" wrap><Badge>Draft</Badge><Badge tone="success">Ready</Badge><Badge tone="accent" variant="outline">Brick</Badge></HStack>;
-    case "bottom-navigation": return <BottomNavigation.Root ariaLabel="Preview navigation" defaultValue="home"><BottomNavigation.Item href="#home" value="home"><BottomNavigation.Icon><Icon><Home /></Icon></BottomNavigation.Icon><BottomNavigation.Label>Home</BottomNavigation.Label></BottomNavigation.Item><BottomNavigation.Item href="#inbox" value="inbox"><BottomNavigation.Icon><Icon><Inbox /></Icon></BottomNavigation.Icon><BottomNavigation.Label>Inbox</BottomNavigation.Label></BottomNavigation.Item><BottomNavigation.Item href="#settings" value="settings"><BottomNavigation.Icon><Icon><Settings /></Icon></BottomNavigation.Icon><BottomNavigation.Label>Settings</BottomNavigation.Label></BottomNavigation.Item></BottomNavigation.Root>;
-    case "breadcrumb": return <Breadcrumb.Root><Breadcrumb.List><Breadcrumb.Item><Breadcrumb.Link href="/">Home</Breadcrumb.Link></Breadcrumb.Item><Breadcrumb.Separator /><Breadcrumb.Item><Breadcrumb.Link href="/components">Components</Breadcrumb.Link></Breadcrumb.Item><Breadcrumb.Separator /><Breadcrumb.Item><Breadcrumb.Page>Breadcrumb</Breadcrumb.Page></Breadcrumb.Item></Breadcrumb.List></Breadcrumb.Root>;
-    case "button": return <HStack gap="3" wrap><Button>Save changes</Button><Button tone="neutral" variant="outline">Cancel</Button><Button variant="ghost">Learn more</Button></HStack>;
-    case "card": return <Card.Root><Card.Header><Card.Title as="h3">Quarterly report</Card.Title><Card.Description>Updated five minutes ago</Card.Description></Card.Header><Card.Content>Conversion improved across every checkout step.</Card.Content><Card.Footer><Button>Open report</Button></Card.Footer></Card.Root>;
-    case "checkbox": return <Checkbox defaultChecked>Email updates</Checkbox>;
-    case "checkbox-group": return <CheckboxGroup.Root aria-label="Features" defaultValue={["search"]}><CheckboxGroup.Item value="search"><CheckboxGroup.ItemLabel>Search</CheckboxGroup.ItemLabel></CheckboxGroup.Item><CheckboxGroup.Item value="themes"><CheckboxGroup.ItemLabel>Themes</CheckboxGroup.ItemLabel></CheckboxGroup.Item></CheckboxGroup.Root>;
-    case "chip": return <HStack gap="2" wrap><Chip.Root><Chip.Label>Riley Chen</Chip.Label><Chip.RemoveTrigger ariaLabel="Remove Riley Chen" /></Chip.Root><Chip.Root tone="accent"><Chip.Label>Design system</Chip.Label></Chip.Root></HStack>;
-    case "code": return <Text as="p">Use <Code>aria-label</Code> to give an icon action its accessible name.</Text>;
-    case "code-block": return <CodeBlock.Root value={'<Button tone="accent">Publish</Button>'} language="tsx"><CodeBlock.Header><CodeBlock.Title>Button.tsx</CodeBlock.Title><CodeBlock.Language /><CodeBlock.Actions><CodeBlock.CopyTrigger>Copy</CodeBlock.CopyTrigger></CodeBlock.Actions></CodeBlock.Header><CodeBlock.Content aria-label="Button source"><span style={{ color: "var(--brick-syntax-punctuation)" }}>&lt;</span><span style={{ color: "var(--brick-syntax-type)" }}>Button</span> <span style={{ color: "var(--brick-syntax-property)" }}>tone</span><span style={{ color: "var(--brick-syntax-punctuation)" }}>=</span><span style={{ color: "var(--brick-syntax-string)" }}>&quot;accent&quot;</span><span style={{ color: "var(--brick-syntax-punctuation)" }}>&gt;</span>Publish<span style={{ color: "var(--brick-syntax-punctuation)" }}>&lt;/</span><span style={{ color: "var(--brick-syntax-type)" }}>Button</span><span style={{ color: "var(--brick-syntax-punctuation)" }}>&gt;</span></CodeBlock.Content></CodeBlock.Root>;
-    case "collapsible": return <Collapsible.Root className="preview-collapsible"><Collapsible.Trigger>Advanced settings <Collapsible.Indicator /></Collapsible.Trigger><Collapsible.Content><Collapsible.ContentInner>Motion, density, and accessibility options.</Collapsible.ContentInner></Collapsible.Content></Collapsible.Root>;
-    case "combobox": return <Field.Root id="preview-city"><Field.Label>City</Field.Label><Combobox.Root options={cities}><Combobox.Control><Combobox.Input placeholder="Search cities" /><Combobox.Clear aria-label="Clear city" /><Combobox.Trigger aria-label="Toggle city options" /></Combobox.Control><Combobox.Portal><Combobox.Content><Combobox.Listbox>{cities.map(city => <Combobox.Item key={city.value} label={city.label} value={city.value}>{city.label}</Combobox.Item>)}<Combobox.Empty>No matching cities</Combobox.Empty></Combobox.Listbox></Combobox.Content></Combobox.Portal></Combobox.Root></Field.Root>;
-    case "container": return <Container measure="narrow"><Surface bordered inset="md"><Text as="h3" variant="title-sm">A centered, bounded content region</Text></Surface></Container>;
-    case "context-menu": return <ContextMenu.Root><ContextMenu.Trigger className="preview-context-target"><span className="preview-context-icon"><MousePointer2 size={20} aria-hidden="true" /></span><Text as="h3" variant="title-sm">Project canvas</Text><Text as="p" tone="secondary" variant="body-sm">Right-click here, or focus the canvas and press Shift + F10.</Text></ContextMenu.Trigger><ContextMenu.Portal><ContextMenu.Content><ContextMenu.Item value="copy">Copy</ContextMenu.Item><ContextMenu.Item value="duplicate">Duplicate</ContextMenu.Item><ContextMenu.Item value="remove" tone="danger">Remove</ContextMenu.Item></ContextMenu.Content></ContextMenu.Portal></ContextMenu.Root>;
-    case "data-grid": return <DataGrid.Container><DataGrid.Root aria-label="Projects" columnCount={2} rowCount={3} variant="outline"><DataGrid.Caption>Current projects</DataGrid.Caption><DataGrid.Header><DataGrid.Row rowIndex={1}><DataGrid.ColumnHeader columnIndex={1}>Project</DataGrid.ColumnHeader><DataGrid.ColumnHeader columnIndex={2}>Status</DataGrid.ColumnHeader></DataGrid.Row></DataGrid.Header><DataGrid.Body><DataGrid.Row rowIndex={2} value="atom" selectable><DataGrid.Cell columnIndex={1}>Atom</DataGrid.Cell><DataGrid.Cell columnIndex={2}>Published</DataGrid.Cell></DataGrid.Row><DataGrid.Row rowIndex={3} value="brick" selectable><DataGrid.Cell columnIndex={1}>Brick</DataGrid.Cell><DataGrid.Cell columnIndex={2}>Ready</DataGrid.Cell></DataGrid.Row></DataGrid.Body></DataGrid.Root></DataGrid.Container>;
-    case "dialog": return <Dialog.Root><Dialog.Trigger asChild><Button>Edit profile</Button></Dialog.Trigger><Dialog.Portal><Dialog.Overlay /><Dialog.Content size="sm"><Dialog.Header><Dialog.Title>Edit profile</Dialog.Title><Dialog.Description>Update the information visible to your team.</Dialog.Description></Dialog.Header><Dialog.Body><Input aria-label="Display name" defaultValue="Flowstack" /></Dialog.Body><Dialog.Footer><Dialog.Close asChild><Button tone="neutral" variant="outline">Cancel</Button></Dialog.Close><Dialog.Close asChild><Button>Save</Button></Dialog.Close></Dialog.Footer></Dialog.Content></Dialog.Portal></Dialog.Root>;
-    case "divider": return <VStack gap="4"><Text>Current workspace</Text><Divider /><Text tone="secondary">Archived workspace</Text></VStack>;
-    case "drawer": return <Drawer.Root><Drawer.Trigger asChild><Button>Open settings</Button></Drawer.Trigger><Drawer.Portal><Drawer.Overlay /><Drawer.Content><Drawer.Header><Drawer.Title>Settings</Drawer.Title></Drawer.Header><Drawer.Body>Workspace preferences live here.</Drawer.Body><Drawer.Footer><Drawer.Close asChild><Button>Done</Button></Drawer.Close></Drawer.Footer></Drawer.Content></Drawer.Portal></Drawer.Root>;
-    case "dropdown-menu": return <DropdownMenu.Root><DropdownMenu.Trigger asChild><Button variant="outline">Actions</Button></DropdownMenu.Trigger><DropdownMenu.Portal><DropdownMenu.Content><DropdownMenu.Item value="duplicate">Duplicate</DropdownMenu.Item><DropdownMenu.Item value="rename">Rename</DropdownMenu.Item><DropdownMenu.Item value="delete" tone="danger">Delete</DropdownMenu.Item></DropdownMenu.Content></DropdownMenu.Portal></DropdownMenu.Root>;
-    case "feed": return <Feed.Root aria-label="Release activity" setSize={2}><Feed.Item aria-labelledby="feed-published" index={0}><Text as="h3" id="feed-published" variant="title-sm">Release published</Text><Text tone="secondary">Brick 0.1.0 is ready.</Text></Feed.Item><Feed.Item aria-labelledby="feed-review" index={1}><Text as="h3" id="feed-review" variant="title-sm">Review requested</Text><Text tone="secondary">Morgan requested review.</Text></Feed.Item></Feed.Root>;
-    case "field": return <Field.Root id="preview-email" required><Field.Label>Email</Field.Label><Input type="email" placeholder="you@example.com" /><Field.Description>Use your work address.</Field.Description></Field.Root>;
-    case "fieldset": return <Fieldset.Root><Fieldset.Legend>Notifications</Fieldset.Legend><Fieldset.Description>Select all that apply.</Fieldset.Description><VStack gap="2"><Checkbox>Email</Checkbox><Checkbox>Product updates</Checkbox></VStack></Fieldset.Root>;
-    case "file-upload": return <Field.Root id="preview-files"><Field.Label>Attachments</Field.Label><FileUpload.Root accept="image/*,.pdf" maxSize={5000000} multiple><FileUpload.HiddenInput /><FileUpload.Dropzone><Text>Drop files here</Text><FileUpload.Trigger /></FileUpload.Dropzone></FileUpload.Root><Field.Description>PDF or image, up to 5 MB.</Field.Description></Field.Root>;
-    case "form": return <Form className="preview-form" preventDefaultOnSubmit><Field.Root id="preview-name"><Field.Label>Name</Field.Label><Input name="name" defaultValue="Flowstack" /></Field.Root><Button type="submit">Save</Button></Form>;
-    case "grid": return <Grid.Root minItemSize="sm" gap="3"><Surface bordered inset="md">Account</Surface><Surface bordered inset="md">Billing</Surface><Surface bordered inset="md">Security</Surface></Grid.Root>;
-    case "hide": return <VStack gap="3"><Hide from="md"><Badge tone="accent">Visible below md</Badge></Hide><Text tone="secondary" variant="body-sm">Resize the viewport to see Hide respond.</Text></VStack>;
-    case "hover-card": return <HoverCard.Root><HoverCard.Trigger asChild><Link className="preview-hover-trigger" href="#ada"><span className="preview-hover-identity"><Avatar alt="" fallback="AL" /><span className="preview-hover-copy"><strong>Ada Lovelace</strong><small>@ada</small></span></span><span className="preview-hover-action"><Eye size={15} aria-hidden="true" /> Preview profile</span></Link></HoverCard.Trigger><HoverCard.Portal><HoverCard.Content align="start" size="lg"><HStack className="preview-hover-profile"><Avatar alt="" fallback="AL" /><div><Text weight="semibold">Ada Lovelace</Text><Text as="p" tone="secondary" variant="body-sm">Mathematician and early computing author.</Text><HStack gap="2" wrap><Badge tone="success" variant="soft">Available</Badge><Text tone="secondary" variant="caption">4 shared projects</Text></HStack></div></HStack><HoverCard.Arrow /></HoverCard.Content></HoverCard.Portal></HoverCard.Root>;
-    case "icon": return <HStack gap="4"><Icon tone="success" size="lg"><Check /></Icon><Icon tone="accent" size="lg"><Star /></Icon><Icon size="lg"><Bell /></Icon></HStack>;
-    case "icon-button": return <HStack gap="2"><IconButton aria-label="Search workspace"><Search /></IconButton><IconButton aria-label="Notifications" variant="outline"><Bell /></IconButton><IconButton aria-label="Open menu" variant="ghost"><Menu /></IconButton></HStack>;
-    case "image": return <Image.Root src="/brick-social-card.png" ratio={16 / 9} radius="lg"><Image.Content alt="Brick UI component system artwork" width={1200} height={630} /><Image.Fallback>Brick artwork</Image.Fallback></Image.Root>;
-    case "input": return <Field.Root id="preview-account-email"><Field.Label>Email</Field.Label><Input name="email" placeholder="you@example.com" type="email" /><Field.Description>Use your work address.</Field.Description></Field.Root>;
-    case "link": return <HStack gap="4" wrap><Link href="/docs">Read the guides</Link><Link href="/components" variant="plain">Browse components</Link></HStack>;
-    case "list": return <List.Root><List.Item>Package build</List.Item><List.Item>Browser checks</List.Item><List.Item>Release notes</List.Item></List.Root>;
-    case "menubar": return <Menubar.Root><Menubar.Menu value="file"><Menubar.Trigger>File</Menubar.Trigger><Menubar.Portal><Menubar.Content className="preview-menubar-content"><Menubar.Item value="new"><Menubar.ItemLabel>New project</Menubar.ItemLabel><Menubar.Shortcut>⌘N</Menubar.Shortcut></Menubar.Item><Menubar.Item value="open"><Menubar.ItemLabel>Open project</Menubar.ItemLabel><Menubar.Shortcut>⌘O</Menubar.Shortcut></Menubar.Item></Menubar.Content></Menubar.Portal></Menubar.Menu><Menubar.Menu value="edit"><Menubar.Trigger>Edit</Menubar.Trigger><Menubar.Portal><Menubar.Content className="preview-menubar-content"><Menubar.Item value="undo"><Menubar.ItemLabel>Undo</Menubar.ItemLabel><Menubar.Shortcut>⌘Z</Menubar.Shortcut></Menubar.Item></Menubar.Content></Menubar.Portal></Menubar.Menu></Menubar.Root>;
-    case "multi-select": return <Field.Root id="preview-skills"><Field.Label>Team skills</Field.Label><MultiSelect.Root defaultValue={["design"]}><MultiSelect.Trigger><MultiSelect.Value placeholder="Choose skills" /><MultiSelect.Icon /></MultiSelect.Trigger><MultiSelect.Content><MultiSelect.Viewport><MultiSelect.Group><MultiSelect.Label>Disciplines</MultiSelect.Label><MultiSelect.Item value="design"><MultiSelect.ItemText>Design</MultiSelect.ItemText><MultiSelect.ItemIndicator /></MultiSelect.Item><MultiSelect.Item value="engineering"><MultiSelect.ItemText>Engineering</MultiSelect.ItemText><MultiSelect.ItemIndicator /></MultiSelect.Item></MultiSelect.Group></MultiSelect.Viewport></MultiSelect.Content></MultiSelect.Root></Field.Root>;
-    case "nav-list": return <NavList.Root aria-label="Settings"><NavList.List><NavList.Item><NavList.Link active href="#profile">Profile</NavList.Link></NavList.Item><NavList.Item><NavList.Link href="#security">Security</NavList.Link></NavList.Item><NavList.Item><NavList.Link href="#billing">Billing</NavList.Link></NavList.Item></NavList.List></NavList.Root>;
-    case "navigation-menu": return <NavigationMenu.Root aria-label="Example product navigation" className="preview-navigation-menu"><NavigationMenu.List><NavigationMenu.Item value="guides"><NavigationMenu.Trigger>Guides</NavigationMenu.Trigger><NavigationMenu.Content><div className="preview-navigation-panel"><NavigationMenu.Link href="#navigation-menu-preview" onClick={(event) => event.preventDefault()}><Text weight="semibold">Getting started</Text><Text as="p" tone="secondary" variant="body-sm">Install Brick and compose the first interface.</Text></NavigationMenu.Link><NavigationMenu.Link href="#navigation-menu-preview" onClick={(event) => event.preventDefault()}><Text weight="semibold">Theming</Text><Text as="p" tone="secondary" variant="body-sm">Change expression without changing behavior.</Text></NavigationMenu.Link></div></NavigationMenu.Content></NavigationMenu.Item><NavigationMenu.Item value="components"><NavigationMenu.Trigger>Components</NavigationMenu.Trigger><NavigationMenu.Content><div className="preview-navigation-panel"><NavigationMenu.Link href="#navigation-menu-preview" onClick={(event) => event.preventDefault()}><Text weight="semibold">Actions</Text><Text as="p" tone="secondary" variant="body-sm">Buttons, toggles, and toolbars.</Text></NavigationMenu.Link><NavigationMenu.Link href="#navigation-menu-preview" onClick={(event) => event.preventDefault()}><Text weight="semibold">Overlays</Text><Text as="p" tone="secondary" variant="body-sm">Dialogs, drawers, and popovers.</Text></NavigationMenu.Link></div></NavigationMenu.Content></NavigationMenu.Item><NavigationMenu.Indicator /></NavigationMenu.List><NavigationMenu.Viewport id="navigation-menu-preview" /></NavigationMenu.Root>;
-    case "notification-badge": return <NotificationBadge count={3}><Button tone="neutral" variant="outline" startIcon={<Inbox />}>Inbox</Button></NotificationBadge>;
-    case "number-input": return <Field.Root id="preview-quantity"><Field.Label>Quantity</Field.Label><NumberInput.Root defaultValue={3} min={1}><NumberInput.Input /><NumberInput.Increment aria-label="Increase quantity" /><NumberInput.Decrement aria-label="Decrease quantity" /></NumberInput.Root></Field.Root>;
-    case "otp-field": return <Field.Root id="preview-code"><Field.Label>Verification code</Field.Label><OTPField.Root length={6} name="code"><OTPField.Group>{[0,1,2].map(index => <OTPField.Input index={index} key={index} />)}</OTPField.Group><OTPField.Separator /><OTPField.Group>{[3,4,5].map(index => <OTPField.Input index={index} key={index} />)}</OTPField.Group></OTPField.Root></Field.Root>;
-    case "pagination": return <Pagination.Root totalPages={8} defaultPage={3} aria-label="Result pages"><Pagination.List><Pagination.Previous /><Pagination.Items /><Pagination.Next /></Pagination.List></Pagination.Root>;
-    case "password-toggle-field": return <Field.Root id="preview-password"><Field.Label>Password</Field.Label><PasswordToggleField.Root><PasswordToggleField.Input defaultValue="correct horse" /><PasswordToggleField.Toggle /></PasswordToggleField.Root></Field.Root>;
-    case "popover": return <Popover.Root><Popover.Trigger asChild><Button variant="outline">Details</Button></Popover.Trigger><Popover.Portal><Popover.Content><Popover.Title>Release details</Popover.Title><Popover.Body>All package checks passed.</Popover.Body></Popover.Content></Popover.Portal></Popover.Root>;
-    case "progress": return <Progress.Root value={64}><Progress.Label>Upload files</Progress.Label><Progress.Value /><Progress.Track><Progress.Indicator /></Progress.Track></Progress.Root>;
-    case "progress-circle": return <ProgressCircle.Root value={64}><ProgressCircle.Circle><ProgressCircle.Track /><ProgressCircle.Indicator /></ProgressCircle.Circle><ProgressCircle.Value /><ProgressCircle.Label>Export report</ProgressCircle.Label></ProgressCircle.Root>;
-    case "radio-group": return <RadioGroup.Root aria-label="Notification channel" defaultValue="email"><RadioGroup.Item value="email">Email</RadioGroup.Item><RadioGroup.Item value="sms">SMS</RadioGroup.Item></RadioGroup.Root>;
-    case "rating": return <Field.Root><Field.Label>Product rating</Field.Label><Rating.Root defaultValue={3}>{[1,2,3,4,5].map(value => <Rating.Item key={value} value={value} />)}</Rating.Root></Field.Root>;
-    case "scroll-area": return <ScrollArea.Root className="preview-scroll-area"><ScrollArea.Viewport aria-label="Recent activity" focusable><VStack gap="3">{["Published Brick 0.1.0", "Updated component docs", "Verified theme tokens", "Ran browser checks", "Prepared release notes"].map(item => <Surface inset="sm" level="subtle" key={item}>{item}</Surface>)}</VStack></ScrollArea.Viewport></ScrollArea.Root>;
-    case "select": return <Field.Root id="preview-plan"><Field.Label>Plan</Field.Label><Select.Root defaultValue="team"><Select.Trigger><Select.Value placeholder="Choose a plan" /><Select.Icon /></Select.Trigger><Select.Content><Select.Viewport><Select.Group><Select.Label>Available plans</Select.Label><Select.Item value="starter"><Select.ItemText>Starter</Select.ItemText><Select.ItemIndicator /></Select.Item><Select.Item value="team"><Select.ItemText>Team</Select.ItemText><Select.ItemIndicator /></Select.Item></Select.Group></Select.Viewport></Select.Content></Select.Root></Field.Root>;
-    case "show": return <VStack gap="3"><Show from="md"><Badge tone="success">Visible from md</Badge></Show><Text tone="secondary" variant="body-sm">Resize the viewport to see Show respond.</Text></VStack>;
-    case "sidebar": return <Sidebar.Root className="preview-sidebar" collapsedState="offcanvas"><Sidebar.Panel aria-label="Northstar workspace"><Sidebar.Header><span className="preview-sidebar-brand"><span aria-hidden="true">N</span><Text weight="semibold">Northstar</Text></span></Sidebar.Header><Sidebar.Content><NavList.Root aria-label="Workspace navigation" size="sm" tone="neutral"><NavList.List><NavList.Item><NavList.Link active href="#overview" startIcon={<Home size={15} />}>Overview</NavList.Link></NavList.Item><NavList.Item><NavList.Link href="#inbox" startIcon={<Inbox size={15} />}>Inbox</NavList.Link></NavList.Item><NavList.Item><NavList.Link href="#settings" startIcon={<Settings size={15} />}>Settings</NavList.Link></NavList.Item></NavList.List></NavList.Root></Sidebar.Content><Sidebar.Footer><Badge tone="success" variant="soft">v0.1.0</Badge></Sidebar.Footer></Sidebar.Panel><Sidebar.Main asChild><section className="preview-sidebar-main"><div className="preview-sidebar-toolbar"><Sidebar.Trigger aria-label="Toggle workspace sidebar"><Menu size={17} /></Sidebar.Trigger><Badge tone="accent" variant="outline">Live</Badge></div><div><Text as="h3" variant="title-sm">Project overview</Text><Text as="p" tone="secondary" variant="body-sm">A finished shell with coordinated navigation and content.</Text></div><div className="preview-sidebar-metrics"><Surface bordered inset="sm"><Text weight="semibold">12</Text><Text tone="secondary" variant="caption">Pages</Text></Surface><Surface bordered inset="sm"><Text weight="semibold">Ready</Text><Text tone="secondary" variant="caption">Status</Text></Surface></div></section></Sidebar.Main></Sidebar.Root>;
-    case "skeleton": return <VStack gap="3"><Skeleton loading variant="rounded"><div>Loaded heading</div></Skeleton><Skeleton loading variant="text"><div>Loaded body content</div></Skeleton><Skeleton loading variant="circular"><div>Avatar</div></Skeleton></VStack>;
-    case "skip-link": return <div className="preview-skip"><SkipLink.Root href="#preview-main">Skip to preview content</SkipLink.Root><Text tone="secondary">Press Tab to reveal the skip link.</Text><SkipLink.Target id="preview-main"><Text as="span" weight="semibold">Preview content target</Text></SkipLink.Target></div>;
-    case "slider": return <Field.Root><Field.Label>Volume</Field.Label><Slider.Root defaultValue={[40]} name="volume"><Slider.Track><Slider.Range /><Slider.Thumb /></Slider.Track></Slider.Root><Field.Description>Choose from 0 to 100.</Field.Description></Field.Root>;
-    case "stack": return <VStack gap="3"><Text as="h3" variant="title-md">Account settings</Text><Text tone="secondary">Manage your workspace details.</Text><HStack gap="2" wrap><Button>Save changes</Button><Button tone="neutral" variant="outline">Cancel</Button></HStack></VStack>;
-    case "surface": return <HStack gap="3" wrap><Surface bordered inset="md" level="base">Base</Surface><Surface bordered inset="md" level="subtle">Subtle</Surface><Surface bordered inset="md" level="raised">Raised</Surface></HStack>;
-    case "swipeable-item": return <SwipeableItem.Root variant="outline"><SwipeableItem.Actions aria-label="Archive actions" side="start"><Button size="sm" variant="ghost">Archive</Button></SwipeableItem.Actions><SwipeableItem.Content className="preview-swipeable-content"><Text>Quarterly report</Text><Badge>Ready</Badge></SwipeableItem.Content><SwipeableItem.Actions aria-label="Delete actions" side="end"><Button size="sm" tone="danger" variant="ghost">Delete</Button></SwipeableItem.Actions></SwipeableItem.Root>;
-    case "switch": return <HStack gap="3" align="center"><Switch.Root aria-label="Weekly reports" defaultChecked><Switch.Thumb /></Switch.Root><Text>Weekly reports</Text></HStack>;
-    case "table": return <Table.Container><Table.Root><Table.Caption>Release results</Table.Caption><Table.Header><Table.Row><Table.Head>Package</Table.Head><Table.Head>Status</Table.Head></Table.Row></Table.Header><Table.Body><Table.Row><Table.Cell>Atom</Table.Cell><Table.Cell>Published</Table.Cell></Table.Row><Table.Row><Table.Cell>Brick</Table.Cell><Table.Cell>Published</Table.Cell></Table.Row></Table.Body></Table.Root></Table.Container>;
-    case "tabs": return <Tabs.Root defaultValue="overview"><Tabs.List ariaLabel="Account sections"><Tabs.Trigger value="overview">Overview</Tabs.Trigger><Tabs.Trigger value="activity">Activity</Tabs.Trigger><Tabs.Indicator /></Tabs.List><Tabs.Content value="overview"><Surface inset="md" level="subtle">Overview panel</Surface></Tabs.Content><Tabs.Content value="activity"><Surface inset="md" level="subtle">Activity panel</Surface></Tabs.Content></Tabs.Root>;
-    case "text": return <VStack gap="2"><Text as="h3" variant="title-md">Account settings</Text><Text tone="secondary">Manage the details used across your workspace.</Text><Text variant="body-sm" tone="muted">Last updated today</Text></VStack>;
-    case "textarea": return <Field.Root id="preview-summary"><Field.Label>Project summary</Field.Label><Textarea.Root name="summary" placeholder="Explain the intended result." /><Field.Description>Keep it concise and specific.</Field.Description></Field.Root>;
-    case "toast": return <ToastPreview />;
-    case "toggle": return <HStack gap="2"><Toggle aria-label="Favorite" defaultPressed><Star /> Favorite</Toggle><Toggle aria-label="Notifications"><Bell /> Alerts</Toggle></HStack>;
-    case "toggle-group": return <ToggleGroup.Root aria-label="Alignment" defaultValue="start"><ToggleGroup.Item value="start">Start</ToggleGroup.Item><ToggleGroup.Item value="center">Center</ToggleGroup.Item><ToggleGroup.Item value="end">End</ToggleGroup.Item></ToggleGroup.Root>;
-    case "toolbar": return <Toolbar.Root ariaLabel="Document tools"><Toolbar.Button>Undo</Toolbar.Button><Toolbar.Button>Redo</Toolbar.Button><Toolbar.Separator /><Toolbar.ToggleGroup aria-label="Document status"><Toolbar.ToggleItem value="favorite" aria-label="Favorite"><Star /></Toolbar.ToggleItem></Toolbar.ToggleGroup><Toolbar.Link href="#help">Help</Toolbar.Link></Toolbar.Root>;
-    case "tooltip": return <Tooltip.Root><Tooltip.Trigger asChild><IconButton aria-label="Notifications"><Bell /></IconButton></Tooltip.Trigger><Tooltip.Portal><Tooltip.Content>Notifications</Tooltip.Content></Tooltip.Portal></Tooltip.Root>;
-    case "tree": return <Tree.Root aria-label="Repository" defaultExpandedValue={["src"]} showGuide variant="outline"><Tree.Item value="src"><Tree.ItemContent><Tree.Indicator /><Tree.ItemText>src</Tree.ItemText></Tree.ItemContent><Tree.Group><Tree.Item value="components"><Tree.ItemContent><Tree.Indicator /><Tree.ItemText>components</Tree.ItemText></Tree.ItemContent></Tree.Item><Tree.Item value="index"><Tree.ItemContent><Tree.Indicator /><Tree.ItemText>index.ts</Tree.ItemText></Tree.ItemContent></Tree.Item></Tree.Group></Tree.Item></Tree.Root>;
-    case "tree-grid": return <TreeGrid.Container><TreeGrid.Root aria-label="Release files" columnCount={2} rowCount={3} defaultExpandedValue={["src"]} variant="outline"><TreeGrid.Caption>Release files</TreeGrid.Caption><TreeGrid.Header><TreeGrid.Row value="header" rowIndex={1} selectable={false}><TreeGrid.ColumnHeader columnIndex={1}>Name</TreeGrid.ColumnHeader><TreeGrid.ColumnHeader columnIndex={2}>Type</TreeGrid.ColumnHeader></TreeGrid.Row></TreeGrid.Header><TreeGrid.Body><TreeGrid.Row value="src" rowIndex={2} level={1} expandable selectable><TreeGrid.RowHeader columnIndex={1}><TreeGrid.Indicator />src</TreeGrid.RowHeader><TreeGrid.Cell columnIndex={2}>Folder</TreeGrid.Cell></TreeGrid.Row><TreeGrid.Row value="index" parentValue="src" rowIndex={3} level={2} selectable><TreeGrid.RowHeader columnIndex={1}><TreeGrid.Indicator />index.ts</TreeGrid.RowHeader><TreeGrid.Cell columnIndex={2}>TypeScript</TreeGrid.Cell></TreeGrid.Row></TreeGrid.Body></TreeGrid.Root></TreeGrid.Container>;
-    case "visually-hidden": return <HStack gap="3" align="center"><IconButton aria-label="Search"><Search /><VisuallyHidden.Root>Search</VisuallyHidden.Root></IconButton><Text tone="secondary">The button includes a visually hidden text label.</Text></HStack>;
-    default: return <UnknownPreview slug={slug as never} />;
-  }
+  const Preview = previews[slug as keyof typeof previews];
+  return Preview ? <Preview /> : <UnknownPreview slug={slug} />;
 }

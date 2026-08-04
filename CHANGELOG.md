@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+- Split all 75 component examples into route-scoped dynamic client modules,
+  reducing representative component-route JavaScript by 25.5% raw and 24.3%
+  gzip; replaced the 1.05 MB social PNG with a visually qualified 111 KB JPEG;
+  and added build-time budgets for every component route plus the canonical
+  social image dimensions and size.
 - Centralized production discovery metadata for all 84 indexable routes with
   unique search titles/descriptions, self-canonicals, page-specific Open Graph
   and Twitter cards, slashless internal and generated URLs, exact sitemap and

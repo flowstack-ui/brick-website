@@ -34,3 +34,9 @@ because they own interactive search, expansion, and narrow-screen drawers.
 The document parser, section ordering, syntax tokens, and Markdown rendering
 remain build/server work. Published Brick components own the resulting visual
 anatomy; application routing and content selection remain website-owned.
+
+Live examples use a route-scoped dynamic registry. Every component preview is
+an independent client module under `components/previews/`; the shared registry
+does not import all 75 implementations into one browser bundle. Build-time
+budgets and the social-asset contract are recorded in
+[performance.md](performance.md).

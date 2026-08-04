@@ -1,11 +1,11 @@
-import { access, readFile } from "node:fs/promises";
+import { access, readFile, readdir } from "node:fs/promises";
 import path from "node:path";
 
 const root = path.resolve(import.meta.dirname, "..");
 const errors = [];
 const readJson = async (file) => JSON.parse(await readFile(path.join(root, file), "utf8"));
 
-const [components, docs, provenance, brickManifest, siteManifest, guides, llms, llmsFull, previewSource] = await Promise.all([
+const [components, docs, provenance, brickManifest, siteManifest, guides, llms, llmsFull, previewSource, previewFiles] = await Promise.all([
   readJson("content/components.json"),
   readJson("content/component-docs.json"),
   readJson("content/brick-source.json"),
@@ -15,7 +15,9 @@ const [components, docs, provenance, brickManifest, siteManifest, guides, llms, 
   readFile(path.join(root, "public/llms.txt"), "utf8"),
   readFile(path.join(root, "public/llms-full.txt"), "utf8"),
   readFile(path.join(root, "app/components/ComponentPreview.tsx"), "utf8"),
+  readdir(path.join(root, "components/previews")),
 ]);
+const previewFileSet = new Set(previewFiles);
 
 if (components.length !== 75) errors.push(`expected 75 components, found ${components.length}`);
 const slugs = new Set();
@@ -30,8 +32,11 @@ for (const component of components) {
   if (!brickManifest.exports[`./${exportSlug}`]) errors.push(`component is not a public Brick export: ${component.slug}`);
   if (!docs[component.slug]?.startsWith("# ")) errors.push(`component has no synchronized documentation: ${component.slug}`);
   if (!llms.includes(`/components/${component.slug}`)) errors.push(`component missing from llms.txt: ${component.slug}`);
-  if (!previewSource.includes(`case "${component.slug}"`)) errors.push(`component has no dedicated live preview: ${component.slug}`);
+  if (!previewFileSet.has(`${component.slug}.tsx`)) errors.push(`component has no route-scoped live preview: ${component.slug}`);
+  if (!previewSource.includes(`previews/${component.slug}`)) errors.push(`component preview is not registered: ${component.slug}`);
 }
+
+if (previewFileSet.size !== components.length) errors.push(`expected ${components.length} route-scoped previews, found ${previewFileSet.size}`);
 
 for (const slug of Object.keys(docs)) {
   if (!slugs.has(slug)) errors.push(`unlisted component documentation: ${slug}`);

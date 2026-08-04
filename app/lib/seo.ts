@@ -3,7 +3,7 @@ import source from "@/content/brick-source.json";
 
 export const siteOrigin = "https://brick-ui.com";
 export const siteName = "Brick UI";
-export const socialImagePath = "/brick-social-card.png";
+export const socialImagePath = "/brick-social-card.jpg";
 const socialImageAlt = "Brick UI components arranged as a finished interface system";
 
 export const homepageDescription =
@@ -59,7 +59,7 @@ function sharedMetadata({ title, description, path }: PageMetadata): Metadata {
           width: 1200,
           height: 630,
           alt: socialImageAlt,
-          type: "image/png",
+          type: "image/jpeg",
         },
       ],
     },

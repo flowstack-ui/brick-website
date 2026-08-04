@@ -327,6 +327,10 @@ test("documentation rails retain readable scalable navigation", async () => {
 test("component discovery and rendering remain consumer-first Brick compositions", async () => {
   const catalogSource = await readFile(new URL("../app/components/ComponentCatalog.tsx", import.meta.url), "utf8");
   const previewSource = await readFile(new URL("../app/components/ComponentPreview.tsx", import.meta.url), "utf8");
+  const preview = async (slug) => readFile(new URL(`../components/previews/${slug}.tsx`, import.meta.url), "utf8");
+  const [fieldPreview, swipeablePreview, treeGridPreview, sidebarPreview, contextMenuPreview, collapsiblePreview, hoverCardPreview, menubarPreview, navigationMenuPreview] = await Promise.all([
+    "field", "swipeable-item", "tree-grid", "sidebar", "context-menu", "collapsible", "hover-card", "menubar", "navigation-menu",
+  ].map(preview));
   const canvasSource = await readFile(new URL("../app/components/ComponentExampleCanvas.tsx", import.meta.url), "utf8");
   const layoutSource = await readFile(new URL("../app/lib/component-example-layout.ts", import.meta.url), "utf8");
   const components = JSON.parse(await readFile(new URL("../content/components.json", import.meta.url), "utf8"));
@@ -349,12 +353,14 @@ test("component discovery and rendering remain consumer-first Brick compositions
   assert.match(componentDocSource, /Source docs<\/WebsiteButton>[\s\S]*Changelog<\/WebsiteButton>[\s\S]*Playground<\/WebsiteButton>/, "maintainer destinations must remain one equally weighted external-link group");
   assert.doesNotMatch(componentDocSource, /variant="soft"[^>]*>Source docs/, "source docs must not receive unexplained emphasis over peer GitHub destinations");
   assert.match(css, /@media \(max-width: 640px\)[\s\S]*\.component-maintainer \.brick-card-header \{ grid-template-columns: 1fr; justify-items: center; \}[\s\S]*\.component-maintainer \.brick-card-header > div \{ width: 100%; grid-template-columns: 1fr; justify-items: center; text-align: center; \}[\s\S]*\.component-maintainer-actions \{ display: grid; grid-template-columns: repeat\(3, minmax\(0, 1fr\)\);[\s\S]*\.component-pagination \{ grid-template-columns: minmax\(0, 1fr\) auto minmax\(0, 1fr\);/, "mobile component footers must center the maintainer identity and preserve compact three-action rows");
-  assert.match(previewSource, /case "field":[^;]*required><Field\.Label>Email<\/Field\.Label>/, "the Field preview must rely on Label's required-state indicator contract");
-  assert.doesNotMatch(previewSource, /case "field":[^;]*Field\.RequiredIndicator/, "the Field preview must not add a second required indicator to Label's automatic one");
-  assert.match(previewSource, /case "swipeable-item":[^;]*preview-swipeable-content[^;]*size="sm" tone="danger" variant="ghost"/, "the Swipeable Item preview must use the complete padded content composition and bounded action recipe");
+  assert.match(fieldPreview, /required><Field\.Label>Email<\/Field\.Label>/, "the Field preview must rely on Label's required-state indicator contract");
+  assert.doesNotMatch(fieldPreview, /Field\.RequiredIndicator/, "the Field preview must not add a second required indicator to Label's automatic one");
+  assert.match(swipeablePreview, /preview-swipeable-content[\s\S]*size="sm" tone="danger" variant="ghost"/, "the Swipeable Item preview must use the complete padded content composition and bounded action recipe");
   assert.match(css, /\.preview-swipeable-content \{[^}]*grid-template-columns: minmax\(0, 1fr\) auto;[^}]*padding: var\(--brick-space-4\);/, "Swipeable Item preview content must remain fully visible inside its component boundary");
   const mappedSlugs = [...layoutSource.matchAll(/^\s+"([^"]+)": "(?:compact|form|overlay|expanding|structural|interaction)",$/gm)].map((match) => match[1]).sort();
   assert.deepEqual(mappedSlugs, components.map((component) => component.slug).sort(), "all 75 component owners must receive one explicit example-stage behavior mode");
+  assert.equal([...previewSource.matchAll(/dynamic\(\(\) => import\("@\/components\/previews\/[^"\)]+"\)\)/g)].length, components.length, "all previews must cross an explicit route-scoped dynamic boundary");
+  assert.doesNotMatch(previewSource, /@flowstack-ui\/brick\/(?!text)/, "the preview registry must not import component implementations into one shared client bundle");
   assert.match(componentSource, /<ComponentExampleCanvas slug=\{component\.slug\} \/>/, "component routes must use the shared behavior-aware example stage");
   assert.match(canvasSource, /className="example-canvas" data-layout=\{mode\}[\s\S]*className="example-specimen"[\s\S]*<ComponentPreview/, "the shared stage must expose its behavior mode while a neutral wrapper owns specimen measure");
   assert.match(css, /\.example-specimen \{[^}]*width: min\(100%, 34rem\);/, "the neutral specimen wrapper must own the generic preview measure");
@@ -368,18 +374,18 @@ test("component discovery and rendering remain consumer-first Brick compositions
   assert.match(css, /\.example-canvas:is\(\[data-layout="compact"\], \[data-layout="overlay"\]\) > \.example-specimen \{ width: fit-content; max-width: 100%; \}/, "compact and overlay specimens must shrink-wrap their content on the canvas center axis");
   assert.match(css, /\.example-canvas:is\(\[data-layout="compact"\], \[data-layout="form"\], \[data-layout="overlay"\], \[data-layout="expanding"\]\) > \.example-specimen \{[^}]*background: color-mix\(in srgb, var\(--brick-color-surface-base\), transparent 5%\);[^}]*backdrop-filter: blur\(16px\);/, "small, transparent, and disclosure examples must receive an appearance-aware contrast pedestal over the colored stage");
   assert.doesNotMatch(css, /example-canvas--structure/, "one-off legacy stage exceptions must not survive the shared layout contract");
-  assert.match(previewSource, /case "tree-grid":[^;]*rowCount=\{3\}[^;]*parentValue="src"[^;]*level=\{2\}/, "Tree Grid must render a real child row for its expanded branch");
-  assert.match(previewSource, /case "sidebar":[^;]*collapsedState="offcanvas"[^;]*Northstar workspace[^;]*Workspace navigation[^;]*preview-sidebar-main/, "Sidebar must demonstrate a finished coordinated application shell instead of raw unplaced anatomy");
-  assert.doesNotMatch(previewSource, /case "sidebar":[^;]*collapsedState="rail"/, "Sidebar must not collapse full text navigation into an unadapted clipped rail");
-  assert.match(previewSource, /case "context-menu":[^;]*preview-context-target[^;]*Project canvas[^;]*Shift \+ F10/, "Context Menu must expose a visible purposeful target with pointer and keyboard instructions");
+  assert.match(treeGridPreview, /rowCount=\{3\}[\s\S]*parentValue="src"[\s\S]*level=\{2\}/, "Tree Grid must render a real child row for its expanded branch");
+  assert.match(sidebarPreview, /collapsedState="offcanvas"[\s\S]*Northstar workspace[\s\S]*Workspace navigation[\s\S]*preview-sidebar-main/, "Sidebar must demonstrate a finished coordinated application shell instead of raw unplaced anatomy");
+  assert.doesNotMatch(sidebarPreview, /collapsedState="rail"/, "Sidebar must not collapse full text navigation into an unadapted clipped rail");
+  assert.match(contextMenuPreview, /preview-context-target[\s\S]*Project canvas[\s\S]*Shift \+ F10/, "Context Menu must expose a visible purposeful target with pointer and keyboard instructions");
   assert.match(css, /\.preview-context-target \{[^}]*min-height: 12rem;[^}]*border: 2px dashed var\(--brick-color-border-strong\);[^}]*cursor: context-menu;/, "Context Menu target must read as a visible dashed interaction region");
-  assert.match(previewSource, /case "collapsible":[^;]*className="preview-collapsible"[^;]*Collapsible\.Content/, "Collapsible must expose a bounded specimen that opens below its anchored trigger");
-  assert.match(previewSource, /case "hover-card":[^;]*preview-hover-identity[^;]*preview-hover-action[^;]*Preview profile[^;]*preview-hover-profile[^;]*HoverCard\.Arrow/, "Hover Card must separate profile identity, preview affordance, and structured passive content");
-  assert.match(previewSource, /case "menubar":[^;]*preview-menubar-content[^;]*ItemLabel>New project[^;]*Shortcut>⌘N/, "Menubar must use its full item anatomy for command labels and shortcuts");
+  assert.match(collapsiblePreview, /className="preview-collapsible"[\s\S]*Collapsible\.Content/, "Collapsible must expose a bounded specimen that opens below its anchored trigger");
+  assert.match(hoverCardPreview, /preview-hover-identity[\s\S]*preview-hover-action[\s\S]*Preview profile[\s\S]*preview-hover-profile[\s\S]*HoverCard\.Arrow/, "Hover Card must separate profile identity, preview affordance, and structured passive content");
+  assert.match(menubarPreview, /preview-menubar-content[\s\S]*ItemLabel>New project[\s\S]*Shortcut>⌘N/, "Menubar must use its full item anatomy for command labels and shortcuts");
   assert.match(css, /\.preview-menubar-content \{ min-inline-size: 12rem; \}/, "Menubar preview content must retain a command-appropriate width");
-  assert.match(previewSource, /case "navigation-menu":[^;]*NavigationMenu\.Trigger>Guides[^;]*NavigationMenu\.Content[^;]*NavigationMenu\.Trigger>Components[^;]*NavigationMenu\.Viewport/, "Navigation Menu must demonstrate disclosure triggers, destination panels, and the measured viewport");
-  assert.match(previewSource, /href="#navigation-menu-preview" onClick=\{\(event\) => event\.preventDefault\(\)\}/, "example Navigation Menu destinations must preserve link anatomy without leaving the documentation page");
-  assert.doesNotMatch(previewSource, /case "navigation-menu":[^;]*href="\/docs"/, "Navigation Menu preview must not use live site routes as inert demonstration controls");
+  assert.match(navigationMenuPreview, /NavigationMenu\.Trigger>Guides[\s\S]*NavigationMenu\.Content[\s\S]*NavigationMenu\.Trigger>Components[\s\S]*NavigationMenu\.Viewport/, "Navigation Menu must demonstrate disclosure triggers, destination panels, and the measured viewport");
+  assert.match(navigationMenuPreview, /href="#navigation-menu-preview" onClick=\{\(event\) => event\.preventDefault\(\)\}/, "example Navigation Menu destinations must preserve link anatomy without leaving the documentation page");
+  assert.doesNotMatch(navigationMenuPreview, /href="\/docs"/, "Navigation Menu preview must not use live site routes as inert demonstration controls");
   assert.match(markdownSource, /<Code[^>]*data-code-kind=\{inlineCodeKind/, "inline technical literals must use the published Brick Code component with semantic token styling");
   assert.match(markdownSource, /<Table\.Container[\s\S]*<Table\.Root[\s\S]*<Table\.Header/, "Markdown API matrices must use the published Brick Table anatomy");
   assert.match(css, /\.catalog-outcomes \{[^}]*grid-template-columns: repeat\(3/, "the full-width outcome discovery surface must retain a scannable desktop grid");
@@ -452,7 +458,7 @@ test("documentation syntax highlighting remains a build-time Brick adapter", asy
   const markdownSource = await readFile(new URL("../app/components/MarkdownArticle.tsx", import.meta.url), "utf8");
   const adapterSource = await readFile(new URL("../app/components/HighlightedCodeBlock.tsx", import.meta.url), "utf8");
   const generatorSource = await readFile(new URL("../scripts/generate-syntax-tokens.mjs", import.meta.url), "utf8");
-  const previewSource = await readFile(new URL("../app/components/ComponentPreview.tsx", import.meta.url), "utf8");
+  const previewSource = await readFile(new URL("../components/previews/code-block.tsx", import.meta.url), "utf8");
   const css = await readFile(new URL("../app/globals.css", import.meta.url), "utf8");
   const manifest = JSON.parse(await readFile(new URL("../package.json", import.meta.url), "utf8"));
   const cache = JSON.parse(await readFile(new URL("../content/syntax-tokens.json", import.meta.url), "utf8"));
@@ -478,7 +484,7 @@ test("documentation syntax highlighting remains a build-time Brick adapter", asy
   }
   assert.match(css, /\.brick-code-block-pre span \{ color: CanvasText !important;/, "Forced Colors must collapse decorative token colors to system text");
   assert.match(css, /\.brick-code-block-content:focus-visible \{[^}]*border-end-start-radius: calc\(var\(--brick-code-block-radius\) - var\(--brick-border-focus-width\) - var\(--brick-border-focus-width\)\);[^}]*border-end-end-radius: calc\(var\(--brick-code-block-radius\) - var\(--brick-border-focus-width\) - var\(--brick-border-focus-width\)\);[^}]*outline-offset: calc\(-2 \* var\(--brick-border-focus-width\)\);[^}]*\}/, "the keyboard-scrollable code viewport must curve its inset focus ring clear of both rounded corners in the clipped Code Block root");
-  assert.match(previewSource, /case "code-block"[\s\S]*--brick-syntax-type/, "the dedicated Code Block example must demonstrate the same syntax palette");
+  assert.match(previewSource, /--brick-syntax-type/, "the dedicated Code Block example must demonstrate the same syntax palette");
 });
 
 test("homepage hero retains its height-aware first-viewport contract", async () => {
@@ -554,7 +560,7 @@ test("every indexable route emits complete unique discovery metadata without int
     assert.ok(metadataValue(html, "property", "og:title")?.includes("Brick UI"), `${pathname} needs a page-specific Open Graph title`);
     assert.equal(metadataValue(html, "name", "twitter:card"), "summary_large_image", `${pathname} needs a large Twitter card`);
     assert.ok(metadataValue(html, "name", "twitter:title")?.includes("Brick UI"), `${pathname} needs a page-specific Twitter title`);
-    assert.equal(metadataValue(html, "property", "og:image"), "https://brick-ui.com/brick-social-card.png", `${pathname} needs the canonical social image`);
+    assert.equal(metadataValue(html, "property", "og:image"), "https://brick-ui.com/brick-social-card.jpg", `${pathname} needs the canonical social image`);
     assert.doesNotMatch(html, /(?:href|src)="\/guides\/|(?:href|src)="\/og\.png"/, `${pathname} contains a broken legacy reference`);
 
     for (const tag of htmlTags(html, "a")) {

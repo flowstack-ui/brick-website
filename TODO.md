@@ -2,12 +2,14 @@
 
 ## Next
 
-- Split the monolithic component-preview registry into route- or family-scoped
-  modules and optimize the social image in the performance pass.
 - Add the qualified Swifty organization logo and verified public `sameAs`
   profiles to structured data when those final brand inputs are supplied.
 - Connect the repository to Vercel and qualify an immutable protected preview
   of the exact reviewed commit before attaching the public domain.
+- Use the immutable Vercel candidate to measure real transfer compression,
+  cache headers, Lighthouse performance, request count, and interaction
+  latency before deciding whether the remaining shared documentation shell
+  warrants another client-boundary pass.
 - Review page-level spacing rhythm across the home, catalog, guide, and component layouts.
 - Deepen component examples with additional states and recipes as component work evolves.
 - Complete owner visual review of the refined full-width component discovery, behavior-aware example stage, aligned navigator, usage guidance, API, token, and advanced-reference layouts across representative compact, expanding, overlay, form, interaction, and structural components.
