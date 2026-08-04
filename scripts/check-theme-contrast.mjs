@@ -44,6 +44,10 @@ for (const [appearance, source] of [["light", light], ["dark", dark]]) {
     const ratio = contrast(token(source, foregroundToken), token(source, backgroundToken));
     assert(ratio >= 4.5, `${appearance} ${label} contrast is ${ratio.toFixed(2)}:1; expected at least 4.5:1`);
   }
+  for (const syntaxToken of ["foreground", "comment", "keyword", "string", "constant", "function", "type", "property", "punctuation"]) {
+    const ratio = contrast(token(source, `--brick-syntax-${syntaxToken}`), token(source, "--brick-color-surface-subtle"));
+    assert(ratio >= 4.5, `${appearance} syntax ${syntaxToken} contrast is ${ratio.toFixed(2)}:1; expected at least 4.5:1`);
+  }
 }
 
 const lightSecondary = token(light, "--brick-color-text-secondary");

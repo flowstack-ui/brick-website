@@ -2,12 +2,21 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { isValidElement, type ReactNode } from "react";
 import { headingId } from "@/app/lib/toc";
+import { HighlightedCodeBlock } from "@/app/components/HighlightedCodeBlock";
+import { highlightedLines, languageFromClassName, normalizeCodeSource } from "@/app/lib/syntax";
 
 function nodeText(node: ReactNode): string {
   if (typeof node === "string" || typeof node === "number") return String(node);
   if (Array.isArray(node)) return node.map(nodeText).join("");
   if (isValidElement<{ children?: ReactNode }>(node)) return nodeText(node.props.children);
   return "";
+}
+
+function MarkdownCodeBlock({ children }: { children: ReactNode }) {
+  if (!isValidElement<{ className?: string; children?: ReactNode }>(children)) return null;
+  const language = languageFromClassName(children.props.className);
+  const source = normalizeCodeSource(nodeText(children.props.children));
+  return <HighlightedCodeBlock language={language} lines={highlightedLines(language, source)} source={source} />;
 }
 
 export function MarkdownArticle({ markdown, componentSlug }: { markdown: string; componentSlug?: string }) {
@@ -36,7 +45,7 @@ export function MarkdownArticle({ markdown, componentSlug }: { markdown: string;
             headingOccurrences.set(baseId, occurrence + 1);
             return <h2 id={occurrence === 0 ? baseId : `${baseId}-${occurrence}`}>{children}</h2>;
           },
-          pre: ({ children }) => <div className="code-frame"><pre>{children}</pre></div>,
+          pre: ({ children }) => <MarkdownCodeBlock>{children}</MarkdownCodeBlock>,
           table: ({ children }) => <div className="markdown-table-wrap"><table>{children}</table></div>,
         }}
       >

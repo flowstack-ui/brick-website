@@ -214,6 +214,30 @@ test("icon-led cards use one explicit composition pattern", async () => {
   assert.doesNotMatch(docsSource, /variant="ghost"/, "documentation path actions must not reintroduce padded ghost buttons");
 });
 
+test("documentation syntax highlighting remains a build-time Brick adapter", async () => {
+  const markdownSource = await readFile(new URL("../app/components/MarkdownArticle.tsx", import.meta.url), "utf8");
+  const adapterSource = await readFile(new URL("../app/components/HighlightedCodeBlock.tsx", import.meta.url), "utf8");
+  const generatorSource = await readFile(new URL("../scripts/generate-syntax-tokens.mjs", import.meta.url), "utf8");
+  const previewSource = await readFile(new URL("../app/components/ComponentPreview.tsx", import.meta.url), "utf8");
+  const css = await readFile(new URL("../app/globals.css", import.meta.url), "utf8");
+  const manifest = JSON.parse(await readFile(new URL("../package.json", import.meta.url), "utf8"));
+  const cache = JSON.parse(await readFile(new URL("../content/syntax-tokens.json", import.meta.url), "utf8"));
+  assert.match(markdownSource, /pre: \(\{ children \}\) => <MarkdownCodeBlock>/, "Markdown fences must route through the highlighted Brick adapter");
+  assert.doesNotMatch(markdownSource, /code-frame|<pre>/, "documentation rendering must not recreate a website-owned code surface");
+  assert.match(adapterSource, /<CodeBlock\.Root[\s\S]*<CodeBlock\.Language \/>[\s\S]*<CodeBlock\.CopyTrigger>[\s\S]*<CodeBlock\.Content/, "the adapter must retain Brick anatomy, explicit language, copy behavior, and overflow ownership");
+  assert.match(adapterSource, /value=\{source\}/, "copy must retain the raw source rather than reading presentation tokens");
+  assert.match(generatorSource, /from "shiki\/core"[\s\S]*from "shiki\/engine\/javascript"/, "content generation must use the fine-grained Shiki core and JavaScript engine");
+  assert.doesNotMatch(JSON.stringify(manifest.dependencies), /shiki/, "the deployed website runtime must not depend on Shiki");
+  assert.equal(manifest.devDependencies.shiki, "^4.4.1", "the build-time highlighter must remain explicit and versioned");
+  assert.ok(cache.entries.length > 300, "the committed cache must cover the complete source-backed documentation corpus");
+  assert.deepEqual([...new Set(cache.entries.map((entry) => entry.language))].sort(), ["bash", "css", "html", "text", "ts", "tsx"], "only the documented language set should be generated");
+  for (const token of ["foreground", "comment", "keyword", "string", "constant", "function", "type", "property", "punctuation"]) {
+    assert.match(css, new RegExp(`--brick-syntax-${token}: #[0-9a-f]{6};`, "i"), `the website syntax theme must define ${token}`);
+  }
+  assert.match(css, /\.brick-code-block-pre span \{ color: CanvasText !important;/, "Forced Colors must collapse decorative token colors to system text");
+  assert.match(previewSource, /case "code-block"[\s\S]*--brick-syntax-type/, "the dedicated Code Block example must demonstrate the same syntax palette");
+});
+
 test("homepage hero retains its height-aware first-viewport contract", async () => {
   const css = await readFile(new URL("../app/globals.css", import.meta.url), "utf8");
   assert.match(css, /padding-block: clamp\(2\.75rem, 6dvh, 5rem\)/, "hero vertical rhythm must respond to viewport height");
@@ -264,6 +288,8 @@ for (const [pathname, expected] of routes) {
     if (pathname === "/docs/getting-started") {
       assert.match(html, /href="#install-brick"/, "guide rail must link to the first authored guide heading");
       assert.match(html, /<h2 id="install-brick">Install Brick<\/h2>/, "guide heading must expose the rail's matching anchor target");
+      assert.match(html, /class="brick-code-block"[^>]*data-language="bash"/, "guide fences must render through the published Brick Code Block");
+      assert.match(html, /var\(--brick-syntax-(?:keyword|string|function|punctuation)\)/, "server-rendered guide code must contain build-time syntax tokens");
     }
     if (pathname === "/components/button") {
       assert.match(html, /href="#live-example"/, "component rail must link to the live package example");

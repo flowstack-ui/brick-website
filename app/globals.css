@@ -15,6 +15,15 @@
     --site-font-display: "Instrument Sans", "Avenir Next", "Segoe UI", ui-sans-serif, system-ui, sans-serif;
     --site-font-body: "Instrument Sans", "Avenir Next", "Segoe UI", ui-sans-serif, system-ui, sans-serif;
     --site-font-mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+    --brick-syntax-foreground: #3b3631;
+    --brick-syntax-comment: #6b645d;
+    --brick-syntax-keyword: #5637a6;
+    --brick-syntax-string: #176b50;
+    --brick-syntax-constant: #963f27;
+    --brick-syntax-function: #285a9b;
+    --brick-syntax-type: #7a3f86;
+    --brick-syntax-property: #765000;
+    --brick-syntax-punctuation: #5f5851;
 
     --brick-font-family-body: var(--site-font-body);
     --brick-font-family-heading: var(--site-font-display);
@@ -71,6 +80,15 @@
     --brick-color-border-subtle: #3a342f;
     --brick-color-border-default: #49413a;
     --brick-color-border-strong: #71675d;
+    --brick-syntax-foreground: #eee8e1;
+    --brick-syntax-comment: #aaa097;
+    --brick-syntax-keyword: #c9b7ff;
+    --brick-syntax-string: #8bd3b7;
+    --brick-syntax-constant: #f0a487;
+    --brick-syntax-function: #a9c8ff;
+    --brick-syntax-type: #e6aceb;
+    --brick-syntax-property: #e8c27d;
+    --brick-syntax-punctuation: #c8c0b8;
   }
 
   * { box-sizing: border-box; }
@@ -331,9 +349,8 @@
   .markdown-body h2 { margin: 3.5rem 0 1rem; font-size: 1.75rem; }.markdown-body h3 { margin: 2.5rem 0 .8rem; font-size: 1.3rem; }
   .markdown-body a { color: var(--brick-color-accent-text); text-underline-offset: .2em; }
   .markdown-body code { padding: .14em .34em; border-radius: .3rem; background: var(--brick-color-surface-subtle); color: var(--brick-color-text-primary); font-family: var(--site-font-mono); font-size: .88em; }
-  .code-frame { max-width: 100%; margin-block: 1.2rem; overflow: auto; border: 1px solid var(--brick-color-border-subtle); border-radius: .8rem; background: #17151d; color: #f2edf9; }
-  .code-frame pre { margin: 0; padding: 1.15rem; }
-  .code-frame code { padding: 0; background: transparent; color: inherit; }
+  .markdown-body .brick-code-block { margin-block: 1.2rem; }
+  .markdown-body .brick-code-block .brick-code { padding: 0; background: transparent; color: inherit; font-size: inherit; }
   .markdown-table-wrap { max-width: 100%; overflow: auto; }
   .markdown-body table { width: 100%; border-collapse: collapse; font-size: .88rem; }
   .markdown-body th, .markdown-body td { padding: .7rem .75rem; border-block-end: 1px solid var(--brick-color-border-subtle); text-align: start; vertical-align: top; }
@@ -561,6 +578,7 @@
   @media (forced-colors: active) {
     .site-canvas :focus-visible { outline-color: Highlight; }
     .footer-links a:focus-visible .footer-link-label { outline-color: Highlight; }
+    .brick-code-block-pre span { color: CanvasText !important; font-style: normal !important; font-weight: inherit !important; text-decoration: none !important; }
     .brand-mark span, .catalog-module, .catalog-core, .project-glyph, .pillar-icon, .orbit-center, .orbit-chip, .layer, .layer-symbol, .flowstack-step { border: 1px solid CanvasText; background: Canvas; color: CanvasText; }
     .theme-orbit, .theme-orbit::before, .theme-orbit::after { border-color: CanvasText; background: Canvas; }
     .docs-shell::before { background: Canvas; }
