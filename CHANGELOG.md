@@ -6,6 +6,8 @@
   qualified iOS Safari 16.4 in the production browser target so Next's CSS
   optimizer retains the required `-webkit-text-size-adjust` declaration, and
   added an assertion against the generated CSS chunks rather than source alone.
+  The owner confirmed the corrected long examples on the physical iPhone that
+  exposed the production-only defect.
 - Made component canvases contained horizontal scroll owners on mobile so wide
   specimens remain reachable instead of being clipped, and kept the
   Interactive badge on one stable line while the title column contracts.

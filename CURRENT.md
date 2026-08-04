@@ -103,7 +103,9 @@ Brick UI Website is implemented as a multi-route product and documentation site.
   native `pre` owner so long imports retain the same authored size as short
   commands. The production browser target explicitly includes iOS Safari 16.4,
   and rendered verification confirms Next's optimized CSS retains the required
-  WebKit-prefixed declaration instead of checking authored source alone.
+  WebKit-prefixed declaration instead of checking authored source alone. The
+  owner confirmed the corrected long examples on the physical iPhone that
+  exposed the production-only defect.
 - Component example canvases expose contained horizontal touch scrolling for
   specimens wider than a phone viewport, and their Interactive status badge
   remains one non-shrinking line while the title column contracts.

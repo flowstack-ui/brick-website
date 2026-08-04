@@ -9,6 +9,8 @@
   metadata, crawl, social-image, analytics, and 404 checks are qualified; local
   production Lighthouse and the protected preview matrix remain supporting
   evidence.
+- Adopt the future Brick patch containing the owner-confirmed Code Block mobile
+  text-sizing correction, then remove the website's bounded temporary override.
 - Prototype a bounded critical-CSS or deferred noncritical-shell strategy only
   if the final canonical-host measurement confirms the simulated CSS delay.
   The client-content audit is complete: Home is 97, the guide median is 97, the
