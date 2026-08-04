@@ -6,6 +6,7 @@ import { Grid } from "@flowstack-ui/brick/grid";
 import { Text } from "@flowstack-ui/brick/text";
 import { ArrowRight, BookOpen, Layers3, Palette, ShieldCheck } from "lucide-react";
 import { DocsShell } from "@/app/components/DocsShell";
+import { WebsiteButton } from "@/app/components/WebsiteButton";
 import { source } from "@/app/lib/content";
 
 export const metadata: Metadata = { title: "Documentation", description: "Learn how to install, compose, theme, and ship interfaces with Brick." };
@@ -36,7 +37,7 @@ export default function DocsOverview() {
         <section className="docs-next" id="next">
           <Text as="h2" variant="title-lg">Prefer to explore first?</Text>
           <Text tone="secondary">Browse all 75 component owners and open live examples before installing.</Text>
-          <Link className="pillar-link" href="/components/">Explore components<ArrowRight size={15} aria-hidden="true" /></Link>
+          <WebsiteButton href="/components/" endIcon={<ArrowRight size={15} aria-hidden="true" />}>Explore components</WebsiteButton>
         </section>
       </article>
     </DocsShell>

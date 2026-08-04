@@ -191,6 +191,7 @@ test("icon-led cards use one explicit composition pattern", async () => {
   assert.match(css, /\.icon-card-header \{ grid-template-columns: minmax\(0, 1fr\); gap: \.8rem; \}/, "icon card headers must own a comfortable explicit vertical gap");
   assert.match(docsSource, /Documentation · v\{source\.version\}/, "documentation version badge must use the conventional version prefix");
   assert.match(docsSource, /<Link className="pillar-link" href=\{path\.href\}>Read guide<ArrowRight/, "documentation cards must use the animated editorial link pattern");
+  assert.match(docsSource, /<WebsiteButton href="\/components\/" endIcon=\{<ArrowRight[^>]*\/>\}>Explore components<\/WebsiteButton>/, "documentation closing CTA must retain primary button emphasis through the server-safe website adapter");
   assert.doesNotMatch(docsSource, /variant="ghost"/, "documentation path actions must not reintroduce padded ghost buttons");
 });
 

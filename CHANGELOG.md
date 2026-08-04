@@ -6,7 +6,7 @@
 - Reframed the Themes comparison and token sections as a coordinated semantic system, tightened their transitions, and replaced the grid-transparent secondary action with the homepage's quiet filled treatment.
 - Moved the Themes closing callout to its stacked full-width composition at the 900px content-pressure breakpoint so its copy and complete install command remain readable.
 - Raised both documentation rails from compact metadata sizing to readable rem-based navigation text, increased target height and line height, and preserved their existing zoom-responsive reflow boundaries.
-- Prefixed the Docs overview release with `v`, standardized icon-led Card headers across three routes, and replaced padded ghost actions with the established animated editorial links.
+- Prefixed the Docs overview release with `v`, standardized icon-led Card headers across three routes, replaced padded ghost actions inside cards with animated editorial links, and retained primary-button emphasis for the closing exploration CTA.
 - Added a shared documentation reading plane that visibly retains the subtle branded grid around page introductions and fades to an opaque semantic canvas before long-form content and component examples.
 - Replaced category-level component placeholders with dedicated examples for all 75 component routes.
 - Added a content-contract check that prevents component routes from shipping without an explicit preview.
