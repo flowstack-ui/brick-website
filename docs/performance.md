@@ -130,7 +130,9 @@ build gate requires the asset to remain 1200×630 and at or below 200,000 bytes.
 
 ## Launch verification
 
-The immutable Vercel candidate must still verify actual Brotli/gzip transfer,
-cache headers, request count, Lighthouse performance, layout stability, and
-interaction latency on the representative route matrix. Those deployment and
-field results remain the authority for further optimization.
+The canonical host now verifies public TLS, cache and security headers,
+canonical delivery, and the social asset's bounded cache and transfer size.
+The final public mobile/desktop Lighthouse and interaction matrix remains the
+authority for any further critical-CSS work; local production profiles and the
+older protected-preview transfer baseline remain supporting evidence rather
+than a substitute for canonical-host measurement.

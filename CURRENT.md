@@ -3,11 +3,11 @@
 Brick UI Website is implemented as a multi-route product and documentation site.
 
 - The GitHub repository is connected to the `flowstack-ui/brick-website`
-  Vercel project. Main now deploys automatically to its SSO-protected Vercel
-  production target, while reviewed CLI candidates remain immutable previews.
-  Unauthenticated requests redirect to Vercel authentication with `no-store`
-  and `X-Robots-Tag: noindex`; the canonical `brick-ui.com` domain remains
-  deliberately unattached.
+  Vercel project. Main deploys automatically, reviewed generated previews
+  remain SSO-protected and noindexed, and the public production target is live
+  at `https://brick-ui.com`. Cloudflare remains authoritative DNS;
+  `www.brick-ui.com` permanently redirects to the canonical apex with status
+  308.
 - The qualified Vercel build runs native Next.js on Node 22. Real preview
   responses confirm Brotli/gzip negotiation, immutable hashed assets, bounded
   social-card caching, application security headers, correct 404 behavior, and
@@ -117,6 +117,12 @@ Brick UI Website is implemented as a multi-route product and documentation site.
 - Vercel Web Analytics is integrated through its native Next.js entrypoint and
   is emitted only in Vercel builds. Speed Insights remains intentionally
   disabled because the current free account permits only one enabled project.
+- Canonical-host qualification confirms valid Vercel domain configuration,
+  public TLS delivery, HSTS, application security headers, the permanent `www`
+  redirect, 84 canonical sitemap entries, indexable robots policy, linked AI
+  discovery, page-specific canonical/social metadata, homepage Organization,
+  WebSite, and SoftwareSourceCode JSON-LD, a cache-qualified 110,597-byte social
+  image, Vercel Analytics emission, and a real noindex 404.
 - The site accent theme explicitly pairs purple solid actions with a white foreground in both appearances and verifies every solid interaction state at WCAG AA contrast.
 - The reviewed dependency is `@flowstack-ui/brick@0.1.2` at source commit
   `6daadb4ccc1eb8b91b7c0be2fb0a8355c77cdc6b`.

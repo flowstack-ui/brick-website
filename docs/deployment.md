@@ -7,8 +7,10 @@
 Run `npm run verify` before preview or production deployment. Vercel project
 identifiers remain local to Vercel's ignored configuration; application
 secrets belong in ignored environment files. Preview and generated deployment
-URLs stay protected. The reviewed production deployment is promoted to the
-canonical `brick-ui.com` apex only after its remote qualification gate passes.
+URLs stay protected. The reviewed production deployment is live at the
+canonical `brick-ui.com` apex; `www.brick-ui.com` permanently redirects to it
+with status 308. Cloudflare remains authoritative DNS and uses the unproxied
+Vercel records approved through Domain Connect.
 
 `prebuild` regenerates ignored route and component-preview CSS bundles from the
 exact published Brick dependency. A deployment must fail if the installed npm

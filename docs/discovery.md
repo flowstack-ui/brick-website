@@ -54,6 +54,9 @@ Rendered-route tests cover every public route and require:
 - parseable site, publisher, software, and breadcrumb JSON-LD; and
 - real 404 status, recovery content, and noindex behavior.
 
-Production launch still requires external Rich Results, Search Console, social
-card, redirect, and crawl verification against the immutable Vercel candidate
-and again against `brick-ui.com`.
+Canonical-host verification confirms the public redirect, canonical/social
+metadata, social image, robots, sitemap, AI discovery, structured-data source,
+and noindex 404 contracts. Google Search Console submission and sitemap
+ingestion, Google's Rich Results Test, and third-party social-card debuggers
+remain external post-launch checks because they require service-specific
+accounts or crawler refreshes.

@@ -1,5 +1,11 @@
 # Changelog
 
+- Launched the canonical `brick-ui.com` apex through the existing Vercel
+  project with Cloudflare remaining authoritative DNS. Added and verified the
+  `www` hostname as a permanent 308 redirect, then qualified public TLS,
+  security headers, metadata, structured data, crawl files, AI discovery,
+  analytics emission, social artwork, and real 404 delivery.
+
 - Corrected Field's synchronized quick start to use Label's single automatic
   required marker and documented when a standalone RequiredIndicator is
   appropriate.
@@ -55,8 +61,8 @@
   diagnostic is traced to Next's shared App Router runtime rather than Atom,
   Brick, or website content.
 - Completed Vercel Git-source integration for the private GitHub repository;
-  main now produces a protected production-target deployment while the
-  canonical `brick-ui.com` domain remains intentionally unattached.
+  main produces the production target while generated previews remain
+  protected. The canonical domain was attached after qualification.
 - Upgraded the exact reviewed dependency to published
   `@flowstack-ui/brick@0.1.1` and adopted its public modular CSS entrypoints.
   Added deterministic predev/prebuild generation of consolidated shell,
