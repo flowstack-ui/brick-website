@@ -8,7 +8,7 @@ const guideOrder = ["getting-started", "theming", "composition", "accessibility"
 
 export function DocsShell({ children, componentSlug, current, toc }: { children: React.ReactNode; componentSlug?: string; current?: string; toc: TocItem[] }) {
   return (
-    <main id="main-content" className="docs-shell section-shell">
+    <main id="main-content" className={`docs-shell section-shell${componentSlug ? " docs-shell--component" : ""}`}>
       {componentSlug ? <ComponentDocsNavigation currentSlug={componentSlug} toc={toc} /> : (
         <aside className="docs-sidebar" aria-label="Guide navigation">
           <nav>

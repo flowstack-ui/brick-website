@@ -1,10 +1,11 @@
 "use client";
 
-import { useId, useLayoutEffect, useMemo, useRef, useState, type ReactNode } from "react";
+import { useEffect, useId, useLayoutEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import Link from "next/link";
 import { Accordion } from "@flowstack-ui/brick/accordion";
 import { Button } from "@flowstack-ui/brick/button";
 import { Drawer } from "@flowstack-ui/brick/drawer";
+import { Hide } from "@flowstack-ui/brick/hide";
 import { Input } from "@flowstack-ui/brick/input";
 import { ArrowLeft, ListTree, Menu, Search, X } from "lucide-react";
 import { categories, componentBySlug, components } from "@/app/lib/content";
@@ -100,8 +101,20 @@ function ComponentNavigationList({ closeOnNavigate = false, currentSlug }: { clo
 }
 
 function DocsDrawer({ children, description, title, trigger }: { children: ReactNode; description: string; title: string; trigger: ReactNode }) {
+  const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    const desktop = window.matchMedia("(min-width: 64rem)");
+    const closeAtDesktop = () => {
+      if (desktop.matches) setOpen(false);
+    };
+    closeAtDesktop();
+    desktop.addEventListener("change", closeAtDesktop);
+    return () => desktop.removeEventListener("change", closeAtDesktop);
+  }, []);
+
   return (
-    <Drawer.Root>
+    <Drawer.Root onOpenChange={setOpen} open={open}>
       <Drawer.Trigger asChild>{trigger}</Drawer.Trigger>
       <Drawer.Portal>
         <Drawer.Overlay />
@@ -139,7 +152,7 @@ export function ComponentDocsNavigation({ currentSlug, toc }: { currentSlug: str
       >
         <ComponentNavigationList currentSlug={currentSlug} />
       </aside>
-      <div className="docs-mobile-toolbar" aria-label="Component documentation tools">
+      <Hide as="div" className="docs-mobile-toolbar" from="lg" aria-label="Component documentation tools">
         <DocsDrawer
           description="Search all 75 components or browse by category."
           title="Components"
@@ -157,7 +170,7 @@ export function ComponentDocsNavigation({ currentSlug, toc }: { currentSlug: str
             {toc.map((item) => <Drawer.Close asChild key={item.id}><a href={`#${item.id}`}>{item.label}</a></Drawer.Close>)}
           </nav>
         </DocsDrawer>
-      </div>
+      </Hide>
     </>
   );
 }

@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Closed open component-navigation drawers when their Brick `lg` responsive boundary leaves the layout, aligned the component docs toolbar to that breakpoint, and increased category and component labels to a readable mobile navigation scale.
 - Corrected documentation table overflow so wide API content scrolls horizontally on narrow screens, kept component previous/category/next navigation in one compact mobile row, and stacked the maintainer icon and title on a true center axis above a single row of resource actions.
 - Moved the keyboard-scrollable Code Block content outline farther inward and matched its lower corner radii to the clipped root so its focus indicator remains complete through both rounded corners without changing the Copy action.
 - Moved the component rail's Input and Accordion focus indicators inside their geometry so the independently scrollable navigation no longer clips keyboard focus at either inline edge, including Forced Colors.
