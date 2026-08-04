@@ -468,6 +468,7 @@
   .markdown-token-cluster { line-height: 2.25; }
   .markdown-token-cluster .brick-code { display: inline-flex; margin: .12rem .15rem; white-space: normal; }
   .markdown-body .brick-code-block { margin-block: 1.2rem; }
+  .markdown-body .brick-code-block-pre { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
   .markdown-body .brick-code-block .brick-code { padding: 0; background: transparent; color: inherit; font-size: inherit; }
   .brick-code-block-content:focus-visible {
     border-end-start-radius: calc(var(--brick-code-block-radius) - var(--brick-border-focus-width) - var(--brick-border-focus-width));
@@ -537,11 +538,12 @@
   .component-doc .page-title { font-size: clamp(3.2rem, 6vw, 5.8rem); }
   .live-example { overflow: hidden; margin-block-start: 3rem; scroll-margin-top: calc(var(--site-header-height) + 2rem); border: 1px solid var(--brick-color-border-subtle); border-radius: 1rem; background: var(--brick-color-surface-raised); }
   .example-header { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 1rem 1.15rem; border-block-end: 1px solid var(--brick-color-border-subtle); background: var(--brick-color-surface-base); }
-  .example-header > div { display: grid; gap: .2rem; }.example-header > div > span { color: var(--brick-color-text-muted); font-size: .67rem; text-transform: uppercase; letter-spacing: .09em; }
-  .example-canvas { position: relative; isolation: isolate; display: grid; min-height: 19rem; place-items: center; overflow: hidden; padding: clamp(1.75rem, 5vw, 4rem); background: linear-gradient(135deg, var(--site-example-stage-start), var(--site-example-stage-middle) 48%, var(--site-example-stage-end)); box-shadow: 0 1px 0 color-mix(in srgb, var(--site-example-stage-line), transparent 18%) inset; }
+  .example-header > div { display: grid; min-width: 0; gap: .2rem; }.example-header > div > span { color: var(--brick-color-text-muted); font-size: .67rem; text-transform: uppercase; letter-spacing: .09em; }
+  .example-header > .brick-badge { flex: none; white-space: nowrap; }
+  .example-canvas { position: relative; isolation: isolate; display: grid; min-height: 19rem; place-items: center; overflow: auto hidden; overscroll-behavior-inline: contain; padding: clamp(1.75rem, 5vw, 4rem); background: linear-gradient(135deg, var(--site-example-stage-start), var(--site-example-stage-middle) 48%, var(--site-example-stage-end)); box-shadow: 0 1px 0 color-mix(in srgb, var(--site-example-stage-line), transparent 18%) inset; }
   .example-canvas::before { position: absolute; z-index: -2; inset: 0; background: radial-gradient(circle at 18% 12%, color-mix(in srgb, var(--site-example-stage-glow), transparent 18%), transparent 34%), radial-gradient(circle at 82% 88%, color-mix(in srgb, var(--site-example-stage-end), transparent 8%), transparent 38%), radial-gradient(circle at 52% 44%, color-mix(in srgb, var(--site-example-stage-middle), transparent 42%), transparent 48%); content: ""; }
   .example-canvas::after { position: absolute; z-index: -1; inset: 0; background-image: linear-gradient(var(--site-example-stage-line) 1px, transparent 1px), linear-gradient(90deg, var(--site-example-stage-line) 1px, transparent 1px); background-position: center; background-size: 4rem 4rem; content: ""; opacity: .72; mask-image: radial-gradient(ellipse 72% 72% at center, black 18%, transparent 78%); }
-  .example-specimen { position: relative; z-index: 1; width: min(100%, 34rem); }
+  .example-specimen { position: relative; z-index: 1; width: min(100%, 34rem); min-width: 0; }
   .example-canvas:is([data-layout="compact"], [data-layout="overlay"]) > .example-specimen { width: fit-content; max-width: 100%; }
   .example-canvas:is([data-layout="compact"], [data-layout="form"], [data-layout="overlay"], [data-layout="expanding"]) > .example-specimen { padding: clamp(.9rem, 2.5vw, 1.25rem); border: 1px solid color-mix(in srgb, var(--brick-color-border-default), transparent 12%); border-radius: 1.15rem; background: color-mix(in srgb, var(--brick-color-surface-base), transparent 5%); box-shadow: 0 1rem 3rem color-mix(in srgb, var(--brick-color-shadow), transparent 54%); backdrop-filter: blur(16px); }
   .example-canvas[data-layout="form"] { min-height: 22rem; }
@@ -888,7 +890,8 @@
     .component-maintainer-actions .brick-button { width: 100%; min-width: 0; padding-inline: .4rem; }
     .component-maintainer-actions .brick-button__content { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
     .component-maintainer-actions .brick-button__icon { display: none; }
-    .example-canvas { min-height: 16rem; padding: 1.25rem; }
+    .example-canvas { min-height: 16rem; justify-items: start; padding: 1.25rem; }
+    .example-canvas > .example-specimen { margin-inline: auto; }
     .example-canvas[data-layout="form"], .example-canvas[data-layout="overlay"], .example-canvas[data-layout="interaction"] { min-height: 18rem; }
     .example-canvas[data-layout="expanding"] { min-height: 0; padding-block: 2rem; }
     .example-canvas[data-layout="structural"] { min-height: 0; padding: 1rem; }

@@ -375,6 +375,9 @@ test("component discovery and rendering remain consumer-first Brick compositions
   assert.match(componentSource, /<ComponentExampleCanvas slug=\{component\.slug\} \/>/, "component routes must use the shared behavior-aware example stage");
   assert.match(canvasSource, /className="example-canvas" data-layout=\{mode\}[\s\S]*className="example-specimen"[\s\S]*<ComponentPreview/, "the shared stage must expose its behavior mode while a neutral wrapper owns specimen measure");
   assert.match(css, /\.example-specimen \{[^}]*width: min\(100%, 34rem\);/, "the neutral specimen wrapper must own the generic preview measure");
+  assert.match(css, /\.example-header > \.brick-badge \{[^}]*flex: none;[^}]*white-space: nowrap;/, "the interactive state badge must remain one stable label on narrow screens");
+  assert.match(css, /\.example-canvas \{[^}]*overflow: auto hidden;[^}]*overscroll-behavior-inline: contain;/, "wide mobile specimens must remain reachable through one contained horizontal stage scroller");
+  assert.match(css, /@media \(max-width: 640px\)[\s\S]*\.example-canvas \{[^}]*justify-items: start;/, "mobile stage content must start from a reachable inline edge before optional centering");
   assert.doesNotMatch(css, /\.example-canvas > \* \{ width:/, "the preview canvas must not stretch portaled-component triggers when their Root renders no host");
   assert.match(css, /:root \{[\s\S]*--site-example-stage-start: #eadfff;[\s\S]*--site-example-stage-end: #dcecff;/, "light appearance must use a bright pastel purple-to-blue stage");
   assert.match(css, /:root\[data-brick-appearance="dark"\] \{[\s\S]*--site-example-stage-start: #584394;[\s\S]*--site-example-stage-middle: #315b7c;[\s\S]*--site-example-stage-end: #5d428f;[\s\S]*--site-example-stage-glow: #6d58c5;/, "dark appearance must keep the example stage visibly saturated instead of blending into the page canvas");
@@ -398,6 +401,7 @@ test("component discovery and rendering remain consumer-first Brick compositions
   assert.match(navigationMenuPreview, /href="#navigation-menu-preview" onClick=\{\(event\) => event\.preventDefault\(\)\}/, "example Navigation Menu destinations must preserve link anatomy without leaving the documentation page");
   assert.doesNotMatch(navigationMenuPreview, /href="\/docs"/, "Navigation Menu preview must not use live site routes as inert demonstration controls");
   assert.match(markdownSource, /<Code[^>]*data-code-kind=\{inlineCodeKind/, "inline technical literals must use the published Brick Code component with semantic token styling");
+  assert.match(css, /\.markdown-body \.brick-code-block-pre \{[^}]*-webkit-text-size-adjust: 100%;[^}]*text-size-adjust: 100%;/, "documentation fences must keep long and short mobile examples at one authored text size");
   assert.match(markdownSource, /<Table\.Container[\s\S]*<Table\.Root[\s\S]*<Table\.Header/, "Markdown API matrices must use the published Brick Table anatomy");
   assert.match(css, /\.catalog-outcomes \{[^}]*grid-template-columns: repeat\(3/, "the full-width outcome discovery surface must retain a scannable desktop grid");
   assert.match(css, /@media \(max-width: 640px\)[\s\S]*\.catalog-outcomes, \.component-result-grid \{ grid-template-columns: 1fr; \}/, "catalog discovery and results must stack at the narrow-mobile boundary");

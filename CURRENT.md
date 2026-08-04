@@ -99,6 +99,11 @@ Brick UI Website is implemented as a multi-route product and documentation site.
 - Footer navigation retains full touch targets while its focus indicator wraps only the visible text-and-icon label.
 - Markdown fences are pre-tokenized with a fine-grained build-time Shiki adapter and rendered through the published Brick Code Block with language metadata, a compact stateful copy action, and a WCAG-qualified light/dark syntax palette; the deployed browser does not receive the tokenizer.
 - Code Block overflow landmarks retain keyboard scrolling and receive unique article-scoped names such as `TSX code example 1`, preventing repeated-language examples from sharing one landmark label.
+- Documentation Code Blocks normalize mobile text adjustment on their native
+  `pre` owner so long imports retain the same authored size as short commands.
+- Component example canvases expose contained horizontal touch scrolling for
+  specimens wider than a phone viewport, and their Interactive status badge
+  remains one non-shrinking line while the title column contracts.
 - Component-section Code Block landmarks include their component and section context so separately rendered document sections remain uniquely named.
 - Icon-led Cards use one website-owned header composition with explicit spacing; Docs overview card actions use animated editorial links while the closing exploration CTA remains a primary Brick button.
 - The Docs overview presents Getting Started, Theming, Composition, and Accessibility as one compact outcome-led learning route, with its introduction on one reading axis and cards sized by content.
@@ -123,6 +128,10 @@ Brick UI Website is implemented as a multi-route product and documentation site.
   discovery, page-specific canonical/social metadata, homepage Organization,
   WebSite, and SoftwareSourceCode JSON-LD, a cache-qualified 110,597-byte social
   image, Vercel Analytics emission, and a real noindex 404.
+- Google Search Console indexing was requested and the canonical sitemap was
+  submitted. Rich Results validation recognizes component breadcrumbs;
+  homepage Organization, WebSite, and SoftwareSourceCode data remains valid
+  general schema even though those types are not Google rich-result features.
 - Canonical-host Lighthouse scores 97 mobile and 100 desktop Performance, with
   100 Accessibility, Best Practices, and SEO in both profiles. Mobile records
   1.1 s FCP, 2.2 s LCP, 40 ms total blocking, and zero CLS; desktop records

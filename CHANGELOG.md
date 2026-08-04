@@ -1,5 +1,11 @@
 # Changelog
 
+- Normalized mobile text adjustment on documentation Code Blocks so long
+  scrollable imports retain the same typography as short command examples.
+- Made component canvases contained horizontal scroll owners on mobile so wide
+  specimens remain reachable instead of being clipped, and kept the
+  Interactive badge on one stable line while the title column contracts.
+
 - Launched the canonical `brick-ui.com` apex through the existing Vercel
   project with Cloudflare remaining authoritative DNS. Added and verified the
   `www` hostname as a permanent 308 redirect, then qualified public TLS,

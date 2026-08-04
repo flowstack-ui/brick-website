@@ -20,9 +20,9 @@
 - Deepen component examples with additional states and recipes as component work evolves.
 - Complete owner visual review of the refined full-width component discovery, behavior-aware example stage, aligned navigator, usage guidance, API, token, and advanced-reference layouts across representative compact, expanding, overlay, form, interaction, and structural components.
 - Add automated cross-browser visual and accessibility coverage when the browser runtime is available in CI.
-- Submit `brick-ui.com` to Google Search Console, verify sitemap ingestion, and
-  run Google's Rich Results Test plus external social-card debuggers after
-  crawler caches have refreshed.
+- Observe Search Console sitemap ingestion and indexing after Google's crawler
+  refresh. Submission, indexing requests, Rich Results validation, and social
+  unfurl validation are complete; crawl timing is not a launch blocker.
 
 ## Later
 
