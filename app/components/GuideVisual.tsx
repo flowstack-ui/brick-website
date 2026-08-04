@@ -47,8 +47,8 @@ export function GuideVisual({ slug }: { slug: keyof typeof guideCopy }) {
     <section className={`guide-visual guide-visual--${slug}`} id="guide-map" aria-labelledby="guide-map-title">
       <header className="guide-visual-heading">
         <span>{copy.kicker}</span>
-        <Text as="h2" id="guide-map-title" variant="title-lg" wrap="balance">{copy.title}</Text>
-        <Text variant="body-lg" tone="secondary" wrap="balance">{copy.body}</Text>
+        <Text as="h2" id="guide-map-title" variant="title-lg" align="center" wrap="balance">{copy.title}</Text>
+        <Text as="p" variant="body-lg" tone="secondary" align="center" wrap="balance">{copy.body}</Text>
       </header>
 
       {slug === "getting-started" ? <GettingStartedMap /> : null}

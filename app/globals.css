@@ -365,7 +365,8 @@
   .guide-visual-heading { display: grid; width: min(100%, 42rem); justify-items: center; margin-inline: auto; text-align: center; }
   .guide-visual-heading > span { width: fit-content; }
   .guide-visual-heading h2, .guide-visual-heading p { margin: 0; }
-  .guide-visual-heading p { max-width: 41rem; margin-block-start: .75rem; color: var(--brick-color-text-primary); font-size: 1rem; line-height: 1.65; }
+  .guide-visual-heading h2 { width: 100%; }
+  .guide-visual-heading p { width: 100%; max-width: 41rem; margin-block-start: .75rem; color: var(--brick-color-text-secondary); font-size: 1rem; line-height: 1.65; }
 
   .guide-setup-track { position: relative; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .75rem; margin: 1.75rem 0 0; padding: 0; list-style: none; }
   .guide-setup-track::before { position: absolute; inset: 1.55rem 16% auto; height: 1px; background: var(--brick-color-accent-border); content: ""; }

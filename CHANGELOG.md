@@ -16,6 +16,7 @@
 - Reframed the Docs overview as an outcome-led four-guide learning route and gave Getting Started, Theming, Accessibility, and Composition distinct visual maps plus practical setup, theming, accessibility, and ownership guidance for package consumers.
 - Tightened the overview learning-route cards to their natural content height, moved its supporting description below the title, increased visual-guide summary clarity, and replaced nested filled setup badges with quiet outlined metadata.
 - Centered every guide-map eyebrow, title, and balanced body-large summary as one visual introduction, and restored the outlined setup qualities to their centered position beneath the three-step map.
+- Corrected guide summaries to render as full-width centered paragraphs with secondary text color so they no longer inherit the uppercase eyebrow treatment, and explicitly centered full-width guide titles so longer Theming and Composition headings align when wrapped.
 - Replaced category-level component placeholders with dedicated examples for all 75 component routes.
 - Added a content-contract check that prevents component routes from shipping without an explicit preview.
 - Corrected solid accent-button contrast by defining the paired white foreground token in light and dark appearances.

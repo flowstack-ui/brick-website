@@ -230,7 +230,8 @@ test("reader-facing guides pair visual orientation with practical guidance", asy
   }
   assert.match(visualSource, /No provider required[\s\S]*React 18 and 19[\s\S]*Tree-shakable exports/, "getting started must summarize its setup contract at a glance");
   assert.match(visualSource, /variant="outline"><Check[\s\S]*No provider required/, "setup qualities must use quiet outlined badges rather than dark nested fills");
-  assert.match(visualSource, /variant="body-lg" tone="secondary" wrap="balance">\{copy\.body\}/, "guide summaries must opt into a clearly readable balanced body style");
+  assert.match(visualSource, /as="p" variant="body-lg" tone="secondary" align="center" wrap="balance">\{copy\.body\}/, "guide summaries must render as centered paragraphs rather than inheriting the uppercase eyebrow span style");
+  assert.match(visualSource, /as="h2" id="guide-map-title" variant="title-lg" align="center" wrap="balance">\{copy\.title\}/, "wrapped guide-map titles must explicitly center their lines");
   assert.match(visualSource, /Brand choices[\s\S]*Semantic roles[\s\S]*Stable output/, "theming must visualize the semantic-token pipeline");
   assert.match(visualSource, /Atom[\s\S]*Mechanism[\s\S]*Brick[\s\S]*Visible states[\s\S]*Your app[\s\S]*Meaning/, "accessibility must show its three responsibility owners");
   assert.match(visualSource, /Application[\s\S]*Layout[\s\S]*Brick parts/, "composition must visualize the application-to-component boundary");
@@ -240,7 +241,8 @@ test("reader-facing guides pair visual orientation with practical guidance", asy
   assert.match(guides.theming.body, /data-brick-theme="studio"[\s\S]*resting, hover, pressed, focus, disabled, and invalid/, "theming must show scope and a release checklist");
   assert.match(css, /@media \(max-width: 640px\)[\s\S]*\.guide-setup-track, \.guide-theme-map, \.guide-a11y-map, \.guide-composition-map \{ grid-template-columns: 1fr; \}/, "all four visual guides must stack at the narrow-mobile boundary");
   assert.match(css, /\.guide-visual-heading \{[^}]*justify-items: center;[^}]*text-align: center;/, "each guide eyebrow, title, and summary must share one centered visual axis above its map");
-  assert.match(css, /\.guide-visual-heading p \{[^}]*color: var\(--brick-color-text-primary\);[^}]*font-size: 1rem;[^}]*line-height: 1\.65;/, "guide summaries must retain comfortable size and contrast on the presentation surface");
+  assert.match(css, /\.guide-visual-heading h2 \{ width: 100%; \}/, "guide-map titles must own the full introduction width before centering wrapped lines");
+  assert.match(css, /\.guide-visual-heading p \{[^}]*width: 100%;[^}]*color: var\(--brick-color-text-secondary\);[^}]*font-size: 1rem;[^}]*line-height: 1\.65;/, "guide summaries must retain full-width alignment and readable secondary hierarchy beneath the primary title");
   assert.match(css, /\.guide-proof-row \.brick-badge \{[^}]*background: transparent;/, "setup qualities must not layer a heavy badge fill over the guide surface");
   assert.match(css, /\.guide-proof-row \{[^}]*justify-content: center;/, "setup qualities must remain centered beneath the three-step map");
 });
