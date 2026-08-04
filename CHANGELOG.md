@@ -1,5 +1,9 @@
 # Changelog
 
+- Corrected Field's synchronized quick start to use Label's single automatic
+  required marker and documented when a standalone RequiredIndicator is
+  appropriate.
+
 - Adopted exact Brick `0.1.2` and regenerated route/preview styles from its
   self-sufficient composed-component entrypoints. Checkbox Group and Toggle
   Group now retain their complete visual recipes on direct reload as well as

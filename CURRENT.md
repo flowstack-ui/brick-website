@@ -12,7 +12,8 @@ Brick UI Website is implemented as a multi-route product and documentation site.
   responses confirm Brotli/gzip negotiation, immutable hashed assets, bounded
   social-card caching, application security headers, correct 404 behavior, and
   the representative route matrix.
-- Brick `0.1.1` is published with backward-compatible modular CSS entrypoints,
+- Brick `0.1.2` is published with backward-compatible, self-sufficient modular
+  CSS entrypoints,
   and this website consumes that exact npm release. A deterministic prebuild
   step assembles route-owned and preview-owned CSS from those public files;
   production never reads the sibling Brick checkout or package-private source.
@@ -117,6 +118,7 @@ Brick UI Website is implemented as a multi-route product and documentation site.
   is emitted only in Vercel builds. Speed Insights remains intentionally
   disabled because the current free account permits only one enabled project.
 - The site accent theme explicitly pairs purple solid actions with a white foreground in both appearances and verifies every solid interaction state at WCAG AA contrast.
-- The reviewed dependency is `@flowstack-ui/brick@0.1.1` at source commit `f5f7eae3da4525a4cbc786d6d21a905d228d9072`.
+- The reviewed dependency is `@flowstack-ui/brick@0.1.2` at source commit
+  `a4a581c9bd08df12cb4e1c2de3e5f222d6099f74`.
 
 Local development uses port 3012. The paired automated browser-test port is 4012.

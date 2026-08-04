@@ -58,10 +58,12 @@ raised Performance from 94 to 99 while retaining 100 Accessibility, Best
 Practices, SEO, and Agentic Browsing. The prototype was removed because a
 production website cannot read or copy package-private component CSS.
 
-Brick `0.1.1` implements the adopted backward-compatible path: `styles.css`
+Brick `0.1.2` implements the adopted backward-compatible path: `styles.css`
 remains the complete one-import default, while `styles/core.css` and public
-component-owner entrypoints support selective consumers. The website pins that
-exact npm release and `scripts/generate-brick-style-bundles.mjs` verifies the
+component-owner entrypoints support selective consumers. Composed component
+entrypoints also include the shared visual recipes they render internally, so
+direct loads do not depend on route history. The website pins that exact npm
+release and `scripts/generate-brick-style-bundles.mjs` verifies the
 installed version against both `package.json` and `content/brick-source.json`
 before assembling disposable output under `app/.generated/`.
 
