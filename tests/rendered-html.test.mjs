@@ -177,6 +177,9 @@ test("documentation rails retain readable scalable navigation", async () => {
   const markdownSource = await readFile(new URL("../app/components/MarkdownArticle.tsx", import.meta.url), "utf8");
   const guideSource = await readFile(new URL("../app/docs/[slug]/page.tsx", import.meta.url), "utf8");
   const componentSource = await readFile(new URL("../app/components/[slug]/page.tsx", import.meta.url), "utf8");
+  const componentNavSource = await readFile(new URL("../app/components/ComponentDocsNavigation.tsx", import.meta.url), "utf8");
+  const componentDocSource = await readFile(new URL("../app/components/ComponentDocument.tsx", import.meta.url), "utf8");
+  const componentParserSource = await readFile(new URL("../app/lib/component-docs.ts", import.meta.url), "utf8");
   const catalogSource = await readFile(new URL("../app/components/page.tsx", import.meta.url), "utf8");
   assert.match(css, /\.docs-sidebar a, \.docs-rail a \{[^}]*min-height: 2\.35rem;[^}]*font-size: \.9rem;[^}]*line-height: 1\.35;/, "documentation links must not use compact metadata-sized text or targets");
   assert.match(css, /\.docs-nav-label, \.docs-rail > span \{[^}]*font-size: \.75rem;[^}]*line-height: 1\.4;/, "documentation rail labels must retain a readable supporting scale");
@@ -193,11 +196,41 @@ test("documentation rails retain readable scalable navigation", async () => {
   assert.match(railSource, /getBoundingClientRect\(\)\.top <= anchorOffset/, "the right rail must track actual document sections while scrolling");
   assert.match(markdownSource, /h2: \(\{ children \}\)[\s\S]*headingId\(nodeText\(children\)\)/, "rendered Markdown headings must receive the same stable IDs as the table of contents");
   assert.match(guideSource, /extractMarkdownToc\(guide\.body\)/, "guide rails must be generated from their authored headings");
-  assert.match(componentSource, /Live example[\s\S]*extractMarkdownToc\(markdown\)/, "component rails must combine the live example with source-backed documentation headings");
+  assert.match(componentSource, /componentDocToc\(consumerMarkdown\)[\s\S]*<ComponentDocument/, "component rails and their consumer-first article must share the structured public document");
+  assert.match(componentParserSource, /maintainerStart[\s\S]*Evidence\|Changelog/, "component presentation must remove maintainer evidence and changelogs from the public reading path");
+  assert.match(componentDocSource, /Know when \{componentTitle\} is the right part[\s\S]*Advanced reference[\s\S]*Maintainer resources/, "component pages must progress from adoption guidance to optional advanced and maintainer resources");
+  assert.match(componentNavSource, /aria-current=\{component\.slug === currentSlug \? "page"/, "component navigation must expose the current component route");
+  assert.match(componentNavSource, /<Accordion\.Root[\s\S]*categories\.map/, "component navigation must use collapsible Brick category groups");
+  assert.match(componentNavSource, /docs-mobile-toolbar[\s\S]*title="Components"[\s\S]*title="On this page"/, "component pages must retain both navigation layers on narrow screens");
   assert.match(catalogSource, /toc=\{categories\.map/, "the component catalog rail must list its real category sections");
   assert.match(css, /\.docs-sidebar a:focus-visible, \.docs-rail a:focus-visible \{ outline: 2px solid var\(--brick-color-focus-ring\); outline-offset: -2px; \}/, "scrollable documentation rails must use an inset semantic focus ring that cannot be clipped");
   assert.match(css, /\.site-canvas :focus-visible \{ outline-color: var\(--brick-color-focus-ring\); \}/, "authored focus indicators must inherit the website's semantic purple focus color");
   assert.match(css, /@media \(forced-colors: active\)[\s\S]*\.site-canvas :focus-visible \{ outline-color: Highlight; \}/, "forced-colors users must retain the system focus indicator color");
+});
+
+test("component discovery and rendering remain consumer-first Brick compositions", async () => {
+  const catalogSource = await readFile(new URL("../app/components/ComponentCatalog.tsx", import.meta.url), "utf8");
+  const componentSource = await readFile(new URL("../app/components/[slug]/page.tsx", import.meta.url), "utf8");
+  const markdownSource = await readFile(new URL("../app/components/MarkdownArticle.tsx", import.meta.url), "utf8");
+  const css = await readFile(new URL("../app/globals.css", import.meta.url), "utf8");
+  assert.match(catalogSource, /What are you building\?[\s\S]*Component finder[\s\S]*Search by name, purpose, or category/, "the catalog must support outcome-led browsing and known-item search");
+  assert.match(catalogSource, /aria-pressed=\{category === entry\}/, "category filters must expose their selected state");
+  assert.match(catalogSource, /aria-live="polite"/, "search result changes must be announced without moving focus");
+  assert.match(componentSource, /categoryComponents[\s\S]*component-category-return/, "previous, category, and next navigation must remain category-relative");
+  assert.match(markdownSource, /<Code[^>]*data-code-kind=\{inlineCodeKind/, "inline technical literals must use the published Brick Code component with semantic token styling");
+  assert.match(markdownSource, /<Table\.Container[\s\S]*<Table\.Root[\s\S]*<Table\.Header/, "Markdown API matrices must use the published Brick Table anatomy");
+  assert.match(css, /\.catalog-outcomes \{[^}]*grid-template-columns: repeat\(2/, "outcome discovery must retain a scannable desktop grid");
+  assert.match(css, /@media \(max-width: 640px\)[\s\S]*\.catalog-outcomes, \.component-result-grid, \.component-guidance-grid \{ grid-template-columns: 1fr; \}/, "catalog and component guidance must stack at the narrow-mobile boundary");
+});
+
+test("rendered component documentation omits maintainer prose from the reading path", async () => {
+  const response = await render("/components/button");
+  assert.equal(response.status, 200);
+  const html = await response.text();
+  assert.match(html, /Choose with confidence/, "consumer guidance must be rendered");
+  assert.match(html, /Maintainer resources/, "maintainer destinations must remain discoverable");
+  assert.match(html, /aria-current="page"/, "the current component must be exposed in navigation");
+  assert.doesNotMatch(html, /Button changelog|## Evidence|## Unreleased/, "raw evidence and release history must not be embedded in the component article");
 });
 
 test("icon-led cards and the Docs learning route use explicit composition patterns", async () => {
@@ -260,7 +293,7 @@ test("documentation syntax highlighting remains a build-time Brick adapter", asy
   assert.match(adapterSource, /<CodeBlock\.Root[\s\S]*<CodeBlock\.Language \/>[\s\S]*<CodeBlock\.CopyTrigger[\s\S]*<CodeBlock\.Content/, "the adapter must retain Brick anatomy, explicit language, copy behavior, and overflow ownership");
   assert.match(adapterSource, /value=\{source\}/, "copy must retain the raw source rather than reading presentation tokens");
   assert.match(markdownSource, /let codeExampleIndex = 0;[\s\S]*index=\{\+\+codeExampleIndex\}/, "each article must assign a stable unique ordinal to its Code Block landmarks");
-  assert.match(markdownSource, /`\$\{languageNames\[language\][^`]+\} code example \$\{index\}`/, "Code Block landmark names must combine readable language names with their article ordinal");
+  assert.match(markdownSource, /labelPrefix[\s\S]*languageNames\[language\][\s\S]*code example \$\{index\}/, "Code Block landmark names must combine an optional section prefix, readable language name, and ordinal");
   assert.match(adapterSource, /<CodeBlock\.Content aria-label=\{label\}>/, "the website adapter must pass the unique authored label to Brick's overflow landmark");
   assert.doesNotMatch(adapterSource, /aria-label=\{`\$\{language\} code example`\}/, "the adapter must not repeat one landmark name for every example of the same language");
   assert.match(adapterSource, /idle: \{ label: "Copy", icon: Copy \}[\s\S]*copying: \{ label: "Copying", icon: LoaderCircle \}[\s\S]*copied: \{ label: "Copied", icon: Check \}[\s\S]*error: \{ label: "Retry", icon: RotateCcw \}/, "copy presentation must expose useful progress, success, and recovery states");
@@ -307,7 +340,7 @@ const routes = [
   ["/", /Build interfaces that already feel finished/i],
   ["/docs", /Build with Brick/i],
   ["/components", /75 component owners/i],
-  ["/components/button", /View source documentation/i],
+  ["/components/button", /Maintainer resources/i],
   ["/docs/getting-started", /Getting started/i],
   ["/themes", /Change the voice, not the component/i],
   ["/atom", /Behavior beneath the surface/i],
@@ -335,8 +368,9 @@ for (const [pathname, expected] of routes) {
     if (pathname === "/components/button") {
       assert.match(html, /href="#live-example"/, "component rail must link to the live package example");
       assert.match(html, /id="live-example"/, "the live package example must expose the rail's matching target");
-      assert.match(html, /href="#when-and-where-to-use"/, "component rail must include source-backed documentation headings");
-      assert.match(html, /<h2 id="when-and-where-to-use">When and where to use<\/h2>/, "component documentation heading must expose the matching target");
+      assert.match(html, /href="#choose-this-component"/, "component rail must include the consumer usage decision");
+      assert.match(html, /id="choose-this-component"/, "component guidance must expose the rail's matching target");
+      assert.match(html, /class="brick-table"/, "component API matrices must render through the published Brick Table");
     }
     if (pathname === "/") {
       assert.match(html, /<link rel="icon" href="\/favicon\.svg" type="image\/svg\+xml"\s*\/?>/, "favicon must resolve against the current host");

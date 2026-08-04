@@ -11,3 +11,19 @@ Routes are intentionally separated by audience:
 - `/docs/` and `/docs/[slug]/` teach core workflows.
 - `/themes/` demonstrates the semantic theme contract.
 - `/atom/` explains the Atom/Brick ownership relationship.
+
+Component documentation has two presentation layers over the synchronized
+package source:
+
+- `/components/` is a website-owned discovery surface with local, static
+  search, outcome shortcuts, and category filters.
+- `/components/[slug]/` parses the canonical component guide into consumer,
+  advanced-reference, and maintainer-resource layers. It does not duplicate or
+  rewrite the package authority. Evidence and full release history remain in
+  the public Brick repository and are linked from the route.
+
+The component navigator and advanced disclosures are small client adapters
+because they own interactive search, expansion, and narrow-screen drawers.
+The document parser, section ordering, syntax tokens, and Markdown rendering
+remain build/server work. Published Brick components own the resulting visual
+anatomy; application routing and content selection remain website-owned.

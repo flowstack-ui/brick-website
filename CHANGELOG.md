@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+- Rebuilt the 75-component catalog as an outcome-led discovery hub with scoped search, accessible category filters, compact results, and an explicit empty state.
+- Added a searchable, route-aware component navigator with collapsible Brick category groups, current-page state, category return paths, and responsive Components/On-this-page drawers.
+- Reorganized every component route into a consumer-first reading path while keeping package docs canonical; maintainer evidence and full changelogs now remain linked resources instead of inline article content.
+- Added Brick Breadcrumb and category-relative previous/category/next navigation so component readers retain meaningful context when arriving from search or moving between peers.
+- Rendered Markdown API matrices through Brick Table and inline identifiers through Brick Code with semantic CSS-token, attribute, command, component, and value treatments while retaining the existing highlighted Brick Code Block adapter.
+- Grouped DOM ownership and native composition under optional advanced disclosures and gave accessibility, styling, usage guidance, and maintainer resources distinct Brick-powered presentation surfaces.
 - Scoped `nodejs_compat` to local development so Cloudflare emulation can run while production uses the hosting platform's compatibility default.
 - Reframed the Themes comparison and token sections as a coordinated semantic system, tightened their transitions, and replaced the grid-transparent secondary action with the homepage's quiet filled treatment.
 - Moved the Themes closing callout to its stacked full-width composition at the 900px content-pressure breakpoint so its copy and complete install command remain readable.

@@ -8,9 +8,15 @@ export type GuideSlug = keyof typeof guides;
 
 export { componentDocs, components, guides, source };
 
-export const categories = Array.from(
-  new Set(components.map((component) => component.category)),
-);
+export const categories = [
+  "Actions & selection",
+  "Forms & choices",
+  "Content & status",
+  "Overlays & menus",
+  "Navigation & layout",
+  "Data & collections",
+  "Accessibility",
+] as const;
 
 export function componentBySlug(slug: string) {
   return components.find((component) => component.slug === slug);
@@ -23,4 +29,3 @@ export function componentDoc(slug: string) {
 export function guideBySlug(slug: string) {
   return guides[slug as GuideSlug];
 }
-

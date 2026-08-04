@@ -4,6 +4,11 @@ Brick UI Website is implemented as a multi-route product and documentation site.
 
 - Home page demonstrates a composed, stateful website-project workspace made from the published Brick package, with a conversion-first stacked viewport and a compact mobile presentation.
 - All 75 component owners have routes sourced from reviewed package documentation and a dedicated live example built from that component's public package export.
+- The component catalog is an outcome-led discovery hub with scoped search, category filters, compact source-backed results, and useful empty states instead of one undifferentiated card wall.
+- Component routes use a searchable, route-aware category navigator on desktop and a paired Components/On-this-page toolbar with full-height Brick drawers on narrow screens.
+- Component guides now present source-backed consumer guidance, setup, examples, API, accessibility, responsive behavior, styling, and optional advanced reference before linking to maintainer evidence and changelogs.
+- Breadcrumbs and category-relative previous/category/next navigation preserve a clear return path from every component route.
+- Markdown API matrices render through Brick Table, inline technical literals render through Brick Code with restrained semantic token roles, and fenced examples retain the website's Shiki-to-Brick Code Block adapter.
 - Guides cover installation, theming, accessibility, and composition.
 - Theme and Atom relationship pages explain visual and behavioral ownership boundaries, with Atom and Brick presented as independent layers in the larger Flowstack ecosystem.
 - The global footer preserves Brick identity while identifying Flowstack membership and Swifty ownership through a restrained text endorsement.
@@ -21,6 +26,7 @@ Brick UI Website is implemented as a multi-route product and documentation site.
 - Footer navigation retains full touch targets while its focus indicator wraps only the visible text-and-icon label.
 - Markdown fences are pre-tokenized with a fine-grained build-time Shiki adapter and rendered through the published Brick Code Block with language metadata, a compact stateful copy action, and a WCAG-qualified light/dark syntax palette; the deployed browser does not receive the tokenizer.
 - Code Block overflow landmarks retain keyboard scrolling and receive unique article-scoped names such as `TSX code example 1`, preventing repeated-language examples from sharing one landmark label.
+- Component-section Code Block landmarks include their component and section context so separately rendered document sections remain uniquely named.
 - Icon-led Cards use one website-owned header composition with explicit spacing; Docs overview card actions use animated editorial links while the closing exploration CTA remains a primary Brick button.
 - The Docs overview presents Getting Started, Theming, Composition, and Accessibility as one compact outcome-led learning route, with its introduction on one reading axis and cards sized by content.
 - Each reader-facing guide begins with its own compact visual map whose uppercase eyebrow, primary title, and normal-case secondary body-large paragraph share one centered axis; quiet outlined metadata remains centered beneath the setup map before practical consumer examples or verification checkpoints.

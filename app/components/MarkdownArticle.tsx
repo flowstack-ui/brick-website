@@ -1,6 +1,8 @@
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { isValidElement, type ReactNode } from "react";
+import { Code } from "@flowstack-ui/brick/code";
+import { Table } from "@flowstack-ui/brick/table";
 import { headingId } from "@/app/lib/toc";
 import { HighlightedCodeBlock } from "@/app/components/HighlightedCodeBlock";
 import { highlightedLines, languageFromClassName, normalizeCodeSource } from "@/app/lib/syntax";
@@ -14,16 +16,25 @@ function nodeText(node: ReactNode): string {
 
 const languageNames: Record<string, string> = { bash: "Bash", css: "CSS", html: "HTML", text: "Text", ts: "TypeScript", tsx: "TSX" };
 
-function MarkdownCodeBlock({ children, index }: { children: ReactNode; index: number }) {
+function inlineCodeKind(value: string) {
+  if (value.startsWith("--")) return "css-token";
+  if (/^(aria-|data-)/.test(value)) return "attribute";
+  if (/^(npm|npx|pnpm|yarn)\b/.test(value)) return "command";
+  if (/^[A-Z][A-Za-z0-9]*(?:\.[A-Z][A-Za-z0-9]*)?$/.test(value)) return "component";
+  if (/^(true|false|null|undefined|[a-zA-Z-]+=["']).*/.test(value)) return "value";
+  return "literal";
+}
+
+function MarkdownCodeBlock({ children, index, labelPrefix }: { children: ReactNode; index: number; labelPrefix?: string }) {
   if (!isValidElement<{ className?: string; children?: ReactNode }>(children)) return null;
   const language = languageFromClassName(children.props.className);
   const source = normalizeCodeSource(nodeText(children.props.children));
-  const label = `${languageNames[language] ?? language.toUpperCase()} code example ${index}`;
+  const label = `${labelPrefix ? `${labelPrefix} ` : ""}${languageNames[language] ?? language.toUpperCase()} code example ${index}`;
   return <HighlightedCodeBlock label={label} language={language} lines={highlightedLines(language, source)} source={source} />;
 }
 
-export function MarkdownArticle({ markdown, componentSlug }: { markdown: string; componentSlug?: string }) {
-  const body = markdown.replace(/^# .+\n/, "");
+export function MarkdownArticle({ bodyOnly = false, codeLabelPrefix, markdown, componentSlug }: { bodyOnly?: boolean; codeLabelPrefix?: string; markdown: string; componentSlug?: string }) {
+  const body = bodyOnly ? markdown : markdown.replace(/^# .+\n/, "");
   const headingOccurrences = new Map<string, number>();
   let codeExampleIndex = 0;
   const normalizeHref = (href?: string) => {
@@ -49,8 +60,15 @@ export function MarkdownArticle({ markdown, componentSlug }: { markdown: string;
             headingOccurrences.set(baseId, occurrence + 1);
             return <h2 id={occurrence === 0 ? baseId : `${baseId}-${occurrence}`}>{children}</h2>;
           },
-          pre: ({ children }) => <MarkdownCodeBlock index={++codeExampleIndex}>{children}</MarkdownCodeBlock>,
-          table: ({ children }) => <div className="markdown-table-wrap"><table>{children}</table></div>,
+          code: ({ children, className }) => <Code className={className} data-code-kind={inlineCodeKind(nodeText(children))} variant="subtle">{children}</Code>,
+          pre: ({ children }) => <MarkdownCodeBlock index={++codeExampleIndex} labelPrefix={codeLabelPrefix}>{children}</MarkdownCodeBlock>,
+          table: ({ children }) => <Table.Container className="markdown-table-wrap"><Table.Root density="compact" size="sm" variant="line">{children}</Table.Root></Table.Container>,
+          thead: ({ children }) => <Table.Header>{children}</Table.Header>,
+          tbody: ({ children }) => <Table.Body>{children}</Table.Body>,
+          tfoot: ({ children }) => <Table.Footer>{children}</Table.Footer>,
+          tr: ({ children }) => <Table.Row>{children}</Table.Row>,
+          th: ({ children }) => <Table.Head>{children}</Table.Head>,
+          td: ({ children }) => <Table.Cell>{children}</Table.Cell>,
         }}
       >
         {body}
