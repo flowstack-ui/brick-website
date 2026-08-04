@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Scoped `nodejs_compat` to local development so Cloudflare emulation can run while production uses the hosting platform's compatibility default.
 - Replaced category-level component placeholders with dedicated examples for all 75 component routes.
 - Added a content-contract check that prevents component routes from shipping without an explicit preview.
 - Corrected solid accent-button contrast by defining the paired white foreground token in light and dark appearances.
