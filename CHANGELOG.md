@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+- Migrated the finished product from the temporary vinext/Vite/Sites worker
+  shell to native Next.js App Router, retained static generation for all 88
+  routes, replaced worker-import HTML checks with an owned Next production
+  server on port 4012, removed obsolete Cloudflare/Vite dependencies and
+  hosting artifacts, and restored a zero-vulnerability clean-install CI graph.
 - Closed open component-navigation drawers when their Brick `lg` responsive boundary leaves the layout, aligned the component docs toolbar to that breakpoint, and increased category and component labels to a readable mobile navigation scale.
 - Corrected documentation table overflow so wide API content scrolls horizontally on narrow screens, kept component previous/category/next navigation in one compact mobile row, and stacked the maintainer icon and title on a true center axis above a single row of resource actions.
 - Moved the keyboard-scrollable Code Block content outline farther inward and matched its lower corner radii to the clipped root so its focus indicator remains complete through both rounded corners without changing the Copy action.

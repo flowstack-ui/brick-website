@@ -2,6 +2,15 @@
 
 Brick UI Website is implemented as a multi-route product and documentation site.
 
+- The application now runs on native Next.js 16 App Router. Its production
+  build statically prerenders all 88 routes, including 75 component pages and
+  four guides, while preserving client interaction only where the product
+  needs it.
+- The temporary vinext/Vite/Sites/Cloudflare worker shell and its direct
+  dependencies are removed. The clean Node 22 install reports zero known npm
+  vulnerabilities, and native rendered-route verification owns the reserved
+  `4012` server lifecycle.
+
 - Home page demonstrates a composed, stateful website-project workspace made from the published Brick package, with a conversion-first stacked viewport and a compact mobile presentation.
 - All 75 component owners have routes sourced from reviewed package documentation and a dedicated live example built from that component's public package export.
 - All 75 live examples are presented through one light/dark architectural stage with explicit compact, form, overlay, expanding, structural, or interaction geometry; disclosures remain top-anchored and grow only downward.

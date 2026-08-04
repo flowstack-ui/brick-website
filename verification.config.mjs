@@ -13,7 +13,7 @@ const verification = {
       name: "website",
       developmentPort: 3012,
       testPort: 4012,
-      configurationFiles: ["package.json", "vite.config.ts", "verification.config.mjs"],
+      configurationFiles: ["package.json", "next.config.ts", "verification.config.mjs"],
       strictPort: true,
     },
   ],
@@ -22,7 +22,7 @@ const verification = {
   impact: {
     strategy: "conservative-repository",
     focusedPaths: ["app", "content", "public", "scripts", "tests"],
-    conservativePaths: ["package.json", "package-lock.json", "vite.config.ts", "tsconfig.json"],
+    conservativePaths: ["package.json", "package-lock.json", "next.config.ts", "tsconfig.json"],
   },
   manual: ["physical mobile browsers", "light and dark appearance", "human responsive and accessibility judgment"],
 };

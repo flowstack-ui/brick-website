@@ -4,16 +4,33 @@ import configuration from "../verification.config.mjs";
 
 const root = resolve(import.meta.dirname, "..");
 const manifest = JSON.parse(await readFile(resolve(root, "package.json"), "utf8"));
-const viteConfiguration = await readFile(resolve(root, "vite.config.ts"), "utf8");
 const errors = [];
 const requirePath = async (file) => {
   try { await access(resolve(root, file)); } catch { errors.push(`missing ${file}`); }
 };
 
 if (configuration.schemaVersion !== 1) errors.push("unsupported verification schema");
-if (!viteConfiguration.includes('command === "serve"') ||
-    !viteConfiguration.includes('{ compatibility_flags: ["nodejs_compat"] }')) {
-  errors.push("vite.config.ts does not scope nodejs_compat to local development");
+if (manifest.scripts?.build !== "next build") {
+  errors.push("production build must use native next build");
+}
+if (!manifest.scripts?.dev?.startsWith("next dev ")) {
+  errors.push("development command must use native next dev");
+}
+if (!manifest.scripts?.start?.startsWith("next start ")) {
+  errors.push("production command must use native next start");
+}
+for (const dependency of [
+  "@cloudflare/vite-plugin",
+  "@vitejs/plugin-react",
+  "@vitejs/plugin-rsc",
+  "react-server-dom-webpack",
+  "vinext",
+  "vite",
+  "wrangler",
+]) {
+  if (manifest.dependencies?.[dependency] || manifest.devDependencies?.[dependency]) {
+    errors.push(`obsolete deployment dependency remains: ${dependency}`);
+  }
 }
 for (const [role, script] of Object.entries(configuration.commands)) {
   if (!manifest.scripts?.[script]) errors.push(`${role} requires npm script ${script}`);
@@ -36,7 +53,14 @@ for (const server of configuration.servers) {
   const source = sources.join("\n");
   if (!source.includes(String(server.developmentPort))) errors.push(`${server.name} development port is not configured`);
   if (!source.includes(String(server.testPort))) errors.push(`${server.name} test port is not recorded`);
-  if (server.strictPort && !source.includes("strictPort: true")) errors.push(`${server.name} does not enforce a strict port`);
+  if (server.strictPort) {
+    if (!manifest.scripts?.dev?.includes(`--port ${server.developmentPort}`)) {
+      errors.push(`${server.name} development command does not pin its port`);
+    }
+    if (!manifest.scripts?.["start:test"]?.includes(`--port ${server.testPort}`)) {
+      errors.push(`${server.name} test command does not pin its port`);
+    }
+  }
 }
 
 if (errors.length) {

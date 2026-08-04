@@ -1,6 +1,13 @@
 # Architecture
 
-The website is a vinext/React application deployed as a Cloudflare-compatible worker. It uses committed JSON and Markdown-derived content at build time and the exact published Brick npm package at runtime.
+The website is a native Next.js App Router application deployed through
+Vercel. Public product and documentation routes are generated statically from
+committed JSON and Markdown-derived content; interactive search, appearance,
+navigation, and examples use narrow client boundaries. A route becomes dynamic
+only when a documented request-time requirement exists.
+
+Cloudflare is authoritative DNS for the canonical `brick-ui.com` apex. It is
+not part of the application build or runtime dependency graph.
 
 The sibling `../package` repository is an input to the maintainer-only synchronization script, never to the application build. This keeps a clean clone independently installable while preserving exact provenance.
 

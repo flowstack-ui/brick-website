@@ -1,16 +1,80 @@
 import assert from "node:assert/strict";
+import { spawn } from "node:child_process";
 import { readFile } from "node:fs/promises";
-import test from "node:test";
+import { createServer } from "node:net";
+import { resolve } from "node:path";
+import { fileURLToPath } from "node:url";
+import test, { after } from "node:test";
+
+const root = fileURLToPath(new URL("..", import.meta.url));
+const testOrigin = "http://127.0.0.1:4012";
+let server;
+let serverOutput = "";
+let serverReady;
+
+async function assertTestPortAvailable() {
+  await new Promise((resolveAvailable, rejectAvailable) => {
+    const probe = createServer();
+    probe.once("error", (error) => {
+      rejectAvailable(new Error(`Reserved test port 4012 is unavailable: ${error.message}`));
+    });
+    probe.listen(4012, "127.0.0.1", () => {
+      probe.close((error) => error ? rejectAvailable(error) : resolveAvailable());
+    });
+  });
+}
+
+async function startServer() {
+  if (serverReady) return serverReady;
+
+  serverReady = assertTestPortAvailable().then(() => new Promise((resolveReady, rejectReady) => {
+    server = spawn(
+      process.execPath,
+      [resolve(root, "node_modules/next/dist/bin/next"), "start", "--hostname", "127.0.0.1", "--port", "4012"],
+      { cwd: root, env: { ...process.env, NODE_ENV: "production" }, stdio: ["ignore", "pipe", "pipe"] },
+    );
+
+    const collect = (chunk) => { serverOutput += chunk.toString(); };
+    server.stdout.on("data", collect);
+    server.stderr.on("data", collect);
+    server.once("error", rejectReady);
+    server.once("exit", (code) => {
+      if (code !== null && code !== 0) {
+        rejectReady(new Error(`Next production server exited with ${code}:\n${serverOutput}`));
+      }
+    });
+
+    const deadline = Date.now() + 30_000;
+    const poll = async () => {
+      try {
+        const response = await fetch(testOrigin, { redirect: "manual" });
+        if (response.status > 0) return resolveReady();
+      } catch {}
+      if (Date.now() >= deadline) {
+        return rejectReady(new Error(`Next production server did not start:\n${serverOutput}`));
+      }
+      setTimeout(poll, 100);
+    };
+    poll();
+  }));
+
+  return serverReady;
+}
+
+after(async () => {
+  if (!server || server.exitCode !== null) return;
+  const exited = new Promise((resolveExit) => server.once("exit", resolveExit));
+  server.kill("SIGTERM");
+  await Promise.race([exited, new Promise((resolveWait) => setTimeout(resolveWait, 5_000))]);
+  if (server.exitCode === null) server.kill("SIGKILL");
+});
 
 async function render(pathname) {
-  const workerUrl = new URL("../dist/server/index.js", import.meta.url);
-  workerUrl.searchParams.set("test", `${process.pid}-${Date.now()}`);
-  const { default: worker } = await import(workerUrl.href);
-  return worker.fetch(
-    new Request(`http://localhost${pathname}`, { headers: { accept: "text/html" } }),
-    { ASSETS: { fetch: async () => new Response("Not found", { status: 404 }) } },
-    { waitUntil() {}, passThroughOnException() {} },
-  );
+  await startServer();
+  return fetch(`${testOrigin}${pathname}`, {
+    headers: { accept: "text/html" },
+    redirect: "manual",
+  });
 }
 
 test("mobile drawer retains its branded reference composition", async () => {

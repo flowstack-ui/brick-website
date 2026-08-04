@@ -7,12 +7,13 @@
   },
   "scripts": {
     "predev": "npm run content:check",
-    "dev": "WRANGLER_LOG_PATH=.wrangler/wrangler.log vinext dev --host 127.0.0.1 --port 3012",
-    "dev:network": "WRANGLER_LOG_PATH=.wrangler/wrangler.log vinext dev --host 0.0.0.0 --port 3012",
-    "build": "WRANGLER_LOG_PATH=.wrangler/wrangler.log vinext build",
-    "start": "WRANGLER_LOG_PATH=.wrangler/wrangler.log vinext start",
+    "dev": "next dev --hostname 127.0.0.1 --port 3012",
+    "dev:network": "next dev --hostname 0.0.0.0 --port 3012",
+    "build": "next build",
+    "start": "next start --hostname 127.0.0.1 --port 3012",
+    "start:test": "next start --hostname 127.0.0.1 --port 4012",
     "test": "npm run build && node --test tests/rendered-html.test.mjs",
-    "lint": "eslint . --ignore-pattern dist --ignore-pattern .next",
+    "lint": "eslint . --ignore-pattern .next",
     "typecheck": "tsc --noEmit",
     "content:sync": "node scripts/sync-brick-docs.mjs && npm run syntax:sync",
     "content:check": "node scripts/check-content.mjs && npm run syntax:check",
@@ -36,21 +37,14 @@
     "remark-gfm": "^4.0.1"
   },
   "devDependencies": {
-    "@cloudflare/vite-plugin": "1.50.0",
     "@shikijs/langs": "^4.4.1",
     "@types/node": "22.19.19",
     "@types/react": "19.2.14",
     "@types/react-dom": "19.2.3",
-    "@vitejs/plugin-react": "6.0.2",
-    "@vitejs/plugin-rsc": "0.5.26",
     "eslint": "9.39.4",
     "eslint-config-next": "16.2.6",
-    "react-server-dom-webpack": "19.2.8",
     "shiki": "^4.4.1",
-    "typescript": "5.9.3",
-    "vinext": "0.0.50",
-    "vite": "8.2.0",
-    "wrangler": "4.114.0"
+    "typescript": "5.9.3"
   },
   "overrides": {
     "postcss": "8.5.25",
