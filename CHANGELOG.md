@@ -1,5 +1,14 @@
 # Changelog
 
+- Adopted exact Brick `0.1.2` and regenerated route/preview styles from its
+  self-sufficient composed-component entrypoints. Checkbox Group and Toggle
+  Group now retain their complete visual recipes on direct reload as well as
+  client navigation; rendered contracts guard that parity.
+
+- Added a continuous previous/next reading path from Guides Overview through
+  Accessibility, with semantic relationship links and a compact responsive
+  footer treatment shared by every guide page.
+
 - Aligned the Atom ownership heading and card grid through one route-owned
   layout contract, avoiding a cascade conflict with the generic compact
   section heading width.

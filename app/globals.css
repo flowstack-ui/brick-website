@@ -627,6 +627,13 @@
   .component-pagination a:last-child { justify-content: flex-end; text-align: end; }
   .component-pagination a span { display: grid; }.component-pagination small { color: var(--brick-color-text-muted); }
   .component-pagination .component-category-return { justify-content: center; text-align: center; }
+  .guide-pagination { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; margin-block-start: 3rem; padding-block-start: 1.5rem; border-block-start: 1px solid var(--brick-color-border-subtle); }
+  .guide-pagination a { display: flex; min-width: 0; align-items: center; gap: .65rem; color: var(--brick-color-text-primary); text-decoration: none; }
+  .guide-pagination a:last-child { justify-content: flex-end; text-align: end; }
+  .guide-pagination a span { display: grid; min-width: 0; gap: .08rem; }
+  .guide-pagination small { color: var(--brick-color-text-muted); }
+  .guide-pagination strong { overflow: hidden; font-size: .95rem; text-overflow: ellipsis; white-space: nowrap; }
+  .guide-pagination a:hover strong { color: var(--brick-color-accent-text); }
   .component-category-return > span { min-width: 8.5rem; gap: .08rem; padding: .5rem .8rem; border: 1px solid var(--brick-color-border-subtle); border-radius: .65rem; background: var(--brick-color-surface-base); }
   .component-category-return strong { font-size: .84rem; font-weight: 650; }
   .component-category-return:hover > span { border-color: var(--brick-color-accent-border); background: var(--brick-color-accent-soft); color: var(--brick-color-accent-text); }
@@ -912,6 +919,9 @@
     .component-pagination .component-category-return { justify-content: center; text-align: center; }
     .component-category-return > span { min-width: 0; padding-inline: .45rem; text-align: center; }
     .component-category-return strong { display: none; }
+    .guide-pagination { gap: .5rem; }
+    .guide-pagination a { gap: .35rem; }
+    .guide-pagination strong { font-size: .88rem; }
     .docs-mobile-drawer { --brick-drawer-inline-size-md: 100dvi; inline-size: 100dvi; border-inline: 0; border-radius: 0; }
     .theme-orbit { width: min(100%, 26rem); }.orbit-center { border-radius: 1.8rem; }.orbit-chip { min-width: 6.3rem; padding: .52rem .6rem; }.orbit-chip small { display: none; }
     .token-map-heading { align-items: flex-start; flex-direction: column; gap: .25rem; }.token-map::before { inset-inline-start: 3.38rem; }.token-family { grid-template-columns: 1.4rem 2.6rem minmax(0, 1fr); }.token-values { grid-column: 2 / -1; justify-content: flex-start; padding-inline-start: .05rem; }

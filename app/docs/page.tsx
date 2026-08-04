@@ -6,6 +6,7 @@ import { Grid } from "@flowstack-ui/brick/grid";
 import { Text } from "@flowstack-ui/brick/text";
 import { ArrowRight, BookOpen, Check, Layers3, Palette, ShieldCheck } from "lucide-react";
 import { DocsShell } from "@/app/components/DocsShell";
+import { GuidePagination } from "@/app/components/GuidePagination";
 import { WebsiteButton } from "@/app/components/WebsiteButton";
 import { createPageMetadata } from "@/app/lib/seo";
 import { source } from "@/app/lib/source";
@@ -50,6 +51,7 @@ export default function GuidesOverview() {
           <Text tone="secondary">Browse all 75 component owners and open live examples before installing.</Text>
           <WebsiteButton href="/components" endIcon={<ArrowRight size={15} aria-hidden="true" />}>Explore components</WebsiteButton>
         </section>
+        <GuidePagination current="overview" />
       </article>
     </DocsShell>
   );

@@ -1,9 +1,7 @@
-import { guides } from "@/app/lib/guides";
+import { guideOrder, guides } from "@/app/lib/guides";
 import Link from "next/link";
 import { OnThisPage } from "@/app/components/OnThisPage";
 import type { TocItem } from "@/app/lib/toc";
-
-const guideOrder = ["getting-started", "theming", "composition", "accessibility"] as const;
 
 export function DocsShell({ children, current, toc }: { children: React.ReactNode; current?: string; toc: TocItem[] }) {
   return (

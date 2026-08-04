@@ -6,6 +6,7 @@ import { Text } from "@flowstack-ui/brick/text";
 import { ArrowRight } from "lucide-react";
 import { DocsShell } from "@/app/components/DocsShell";
 import { GuideVisual } from "@/app/components/GuideVisual";
+import { GuidePagination } from "@/app/components/GuidePagination";
 import { MarkdownArticle } from "@/app/components/MarkdownArticle";
 import { StructuredData } from "@/app/components/StructuredData";
 import { guideBySlug, guides } from "@/app/lib/guides";
@@ -46,6 +47,7 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
           <Text tone="secondary">See these principles expressed through real component APIs and examples.</Text>
           <WebsiteButton href="/components" endIcon={<ArrowRight size={15} />}>Browse components</WebsiteButton>
         </section>
+        <GuidePagination current={slug} />
       </article>
     </DocsShell>
     </>

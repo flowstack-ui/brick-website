@@ -1,7 +1,7 @@
 # Brick UI — complete public documentation
 
-Package version: 0.1.1
-Source commit: 4fc8f6671c1e7aa0a4a08acd2ba169156118f3eb
+Package version: 0.1.2
+Source commit: 8250bcc51722e559938b9b24f39da534a52de29d
 
 # Accordion
 

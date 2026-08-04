@@ -290,6 +290,7 @@ test("documentation rails retain readable scalable navigation", async () => {
   const railSource = await readFile(new URL("../app/components/OnThisPage.tsx", import.meta.url), "utf8");
   const markdownSource = await readFile(new URL("../app/components/MarkdownArticle.tsx", import.meta.url), "utf8");
   const guideSource = await readFile(new URL("../app/docs/[slug]/page.tsx", import.meta.url), "utf8");
+  const guidesSource = await readFile(new URL("../app/lib/guides.ts", import.meta.url), "utf8");
   const componentSource = await readFile(new URL("../app/components/[slug]/page.tsx", import.meta.url), "utf8");
   const componentNavSource = await readFile(new URL("../app/components/ComponentDocsNavigation.tsx", import.meta.url), "utf8");
   const componentDocSource = await readFile(new URL("../app/components/ComponentDocument.tsx", import.meta.url), "utf8");
@@ -304,7 +305,8 @@ test("documentation rails retain readable scalable navigation", async () => {
   assert.match(css, /@media \(max-width: 1180px\)[\s\S]*\.docs-rail \{ display: none; \}/, "the right rail must leave the layout before text zoom compresses the article");
   assert.match(css, /@media \(max-width: 900px\)[\s\S]*\.docs-shell \{ display: block; \}/, "the remaining documentation navigation must reflow before narrow layouts");
   assert.match(shellSource, /<OnThisPage items=\{toc\} \/>/, "the documentation shell must render page-owned table-of-contents data");
-  assert.match(shellSource, /\["getting-started", "theming", "composition", "accessibility"\]/, "the documentation navigation must follow the overview's recommended learning route");
+  assert.match(shellSource, /guideOrder\.map/, "the documentation navigation must consume the shared guide order");
+  assert.match(guidesSource, /\["getting-started", "theming", "composition", "accessibility"\]/, "the shared guide order must follow the overview's recommended learning route");
   assert.match(shellSource, /aria-label="Guide navigation"[\s\S]*docs-nav-label">Guides<[\s\S]*href="\/docs">Overview/, "the learning rail must present itself as Guides with a clear overview entry");
   assert.doesNotMatch(shellSource, /docs-nav-label">Components|categories\.map|All components/, "component discovery must not be duplicated inside the Guides rail");
   assert.doesNotMatch(shellSource, /Introduction[\s\S]*Details[\s\S]*Next steps/, "the right rail must not ship a generic placeholder outline");
@@ -416,6 +418,13 @@ test("component introductions do not duplicate installation guidance", async () 
   assert.doesNotMatch(css, /\.component-install\s*\{/, "removed duplicate import treatment must not leave dead authored CSS");
 });
 
+test("composed component previews include their published transitive visual recipes", async () => {
+  const checkboxGroupCss = await readFile(new URL("../app/.generated/previews/checkbox-group.css", import.meta.url), "utf8");
+  const toggleGroupCss = await readFile(new URL("../app/.generated/previews/toggle-group.css", import.meta.url), "utf8");
+  assert.match(checkboxGroupCss, /\.brick-checkbox-control/, "Checkbox Group must include the shared Checkbox artwork on a fresh route load");
+  assert.match(toggleGroupCss, /\.brick-toggle-group-item/, "Toggle Group must include its shared Toggle item recipe on a fresh route load");
+});
+
 test("rendered component documentation omits maintainer prose from the reading path", async () => {
   const response = await render("/components/button");
   assert.equal(response.status, 200);
@@ -448,6 +457,7 @@ test("icon-led cards and the Docs learning route use explicit composition patter
 test("reader-facing guides pair visual orientation with practical guidance", async () => {
   const visualSource = await readFile(new URL("../app/components/GuideVisual.tsx", import.meta.url), "utf8");
   const guideSource = await readFile(new URL("../app/docs/[slug]/page.tsx", import.meta.url), "utf8");
+  const paginationSource = await readFile(new URL("../app/components/GuidePagination.tsx", import.meta.url), "utf8");
   const guides = JSON.parse(await readFile(new URL("../content/guides.json", import.meta.url), "utf8"));
   const css = await readFile(new URL("../app/globals.css", import.meta.url), "utf8");
   assert.match(guideSource, /\{ id: "guide-map", label: "Guide map" \}[\s\S]*<GuideVisual slug=/, "every guide must expose its visual orientation panel to the page outline");
@@ -473,6 +483,29 @@ test("reader-facing guides pair visual orientation with practical guidance", asy
   assert.match(css, /\.guide-visual-heading p \{[^}]*width: 100%;[^}]*color: var\(--brick-color-text-secondary\);[^}]*font-size: 1rem;[^}]*line-height: 1\.65;/, "guide summaries must retain full-width alignment and readable secondary hierarchy beneath the primary title");
   assert.match(css, /\.guide-proof-row \.brick-badge \{[^}]*background: transparent;/, "setup qualities must not layer a heavy badge fill over the guide surface");
   assert.match(css, /\.guide-proof-row \{[^}]*justify-content: center;/, "setup qualities must remain centered beneath the three-step map");
+  assert.match(paginationSource, /aria-label="Guide pages"[\s\S]*rel="prev"[\s\S]*Previous guide[\s\S]*rel="next"[\s\S]*Next guide/, "guides must expose semantic previous and next destinations");
+  assert.match(css, /\.guide-pagination \{[^}]*grid-template-columns: repeat\(2, minmax\(0, 1fr\)\);/, "guide pagination must preserve one compact previous/next row");
+});
+
+test("guide pages form one ordered previous and next reading path", async () => {
+  const expectations = [
+    ["/docs", null, "Getting started"],
+    ["/docs/getting-started", "Overview", "Theming"],
+    ["/docs/theming", "Getting started", "Composition"],
+    ["/docs/composition", "Theming", "Accessibility"],
+    ["/docs/accessibility", "Composition", null],
+  ];
+
+  for (const [path, previous, next] of expectations) {
+    const response = await render(path);
+    assert.equal(response.status, 200);
+    const html = await response.text();
+    assert.match(html, /aria-label="Guide pages"/, `${path} must render guide pagination`);
+    if (previous) assert.match(html, new RegExp(`Previous guide</small><strong>${previous}`));
+    else assert.doesNotMatch(html, /Previous guide/);
+    if (next) assert.match(html, new RegExp(`Next guide</small><strong>${next}`));
+    else assert.doesNotMatch(html, /Next guide/);
+  }
 });
 
 test("documentation syntax highlighting remains a build-time Brick adapter", async () => {

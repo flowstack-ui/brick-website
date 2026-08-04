@@ -101,6 +101,13 @@ Brick UI Website is implemented as a multi-route product and documentation site.
 - Component-section Code Block landmarks include their component and section context so separately rendered document sections remain uniquely named.
 - Icon-led Cards use one website-owned header composition with explicit spacing; Docs overview card actions use animated editorial links while the closing exploration CTA remains a primary Brick button.
 - The Docs overview presents Getting Started, Theming, Composition, and Accessibility as one compact outcome-led learning route, with its introduction on one reading axis and cards sized by content.
+- Every guide ends with one ordered previous/next reading path from Overview
+  through Accessibility, while the first and last pages expose only their
+  available direction.
+- The website consumes exact Brick `0.1.2` provenance and regenerates previews
+  from self-sufficient composed-component CSS entrypoints. Fresh Checkbox
+  Group and Toggle Group routes are explicitly guarded against route-history
+  styling dependencies.
 - Each reader-facing guide begins with its own compact visual map whose uppercase eyebrow, primary title, and normal-case secondary body-large paragraph share one centered axis; quiet outlined metadata remains centered beneath the setup map before practical consumer examples or verification checkpoints.
 - Every Docs-shell route, including guides and component pages, clearly retains the subtle branded grid around the introduction before fading it into an opaque semantic reading plane ahead of sustained content.
 - Local search, light/dark appearance, responsive navigation, sitemap, robots,
