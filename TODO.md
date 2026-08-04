@@ -11,6 +11,16 @@
   authenticated final preview browser, then repeat delivery and crawl checks
   after the canonical domain is promoted. Local production Lighthouse and the
   remote protected route/header matrix are already qualified.
+- Add backward-compatible modular CSS entrypoints to the published Brick
+  package, qualify and release that package change, then replace the website's
+  all-component root stylesheet with route-owned imports. A source-only proof
+  reduced the homepage mobile LCP from 3.1 s to 2.1 s and raised Lighthouse
+  Performance from 94 to 99; the website must not depend on sibling source or
+  an unpublished package to retain that result.
+- Split website-authored global CSS into shell and route-owned layers after the
+  Brick modular entrypoints land, then remeasure the mobile score. Desktop is
+  already 100; the remaining target is a repeatable mobile 100 without hiding
+  content or relaxing functionality.
 - Review page-level spacing rhythm across the home, catalog, guide, and component layouts.
 - Deepen component examples with additional states and recipes as component work evolves.
 - Complete owner visual review of the refined full-width component discovery, behavior-aware example stage, aligned navigator, usage guidance, API, token, and advanced-reference layouts across representative compact, expanding, overlay, form, interaction, and structural components.

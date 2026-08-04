@@ -21,3 +21,11 @@ HSTS, compression, immutable fingerprinted-asset caching, and preview-level
 `noindex` protection. A blocking Content Security Policy remains deferred until
 a tested Next nonce strategy can preserve static-first rendering and hydration;
 do not substitute a broad `unsafe-inline` script policy merely to claim CSP.
+
+Vercel Web Analytics is the approved production measurement dependency. The
+root layout uses `@vercel/analytics/next` only when `VERCEL=1`, so local and
+non-Vercel builds do not request a nonexistent `/_vercel/insights/` endpoint.
+Vercel Analytics is cookieless and does not collect or store visitors' IP
+addresses. Speed Insights is not enabled because the current free account
+allows only one enabled project; it is useful field telemetry, not a launch or
+Lighthouse prerequisite.

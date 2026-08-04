@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "@flowstack-ui/brick/reset.css";
 import "@flowstack-ui/brick/styles.css";
 import "./globals.css";
+import { Analytics } from "@vercel/analytics/next";
 import { SiteFooter } from "./components/SiteFooter";
 import { SiteHeader } from "./components/SiteHeader";
 import { rootMetadata } from "./lib/seo";
@@ -35,6 +36,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           {children}
           <SiteFooter />
         </div>
+        {process.env.VERCEL === "1" ? <Analytics /> : null}
       </body>
     </html>
   );

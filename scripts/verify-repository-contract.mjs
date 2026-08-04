@@ -4,6 +4,7 @@ import configuration from "../verification.config.mjs";
 
 const root = resolve(import.meta.dirname, "..");
 const manifest = JSON.parse(await readFile(resolve(root, "package.json"), "utf8"));
+const rootLayout = await readFile(resolve(root, "app/layout.tsx"), "utf8");
 const errors = [];
 const requirePath = async (file) => {
   try { await access(resolve(root, file)); } catch { errors.push(`missing ${file}`); }
@@ -31,6 +32,15 @@ for (const dependency of [
   if (manifest.dependencies?.[dependency] || manifest.devDependencies?.[dependency]) {
     errors.push(`obsolete deployment dependency remains: ${dependency}`);
   }
+}
+if (!manifest.dependencies?.["@vercel/analytics"]) {
+  errors.push("Vercel Web Analytics integration dependency is missing");
+}
+if (!rootLayout.includes('from "@vercel/analytics/next"')) {
+  errors.push("root layout must use the Next.js Vercel Analytics entrypoint");
+}
+if (!rootLayout.includes('process.env.VERCEL === "1" ? <Analytics /> : null')) {
+  errors.push("Vercel Analytics must remain production-host conditional");
 }
 for (const [role, script] of Object.entries(configuration.commands)) {
   if (!manifest.scripts?.[script]) errors.push(`${role} requires npm script ${script}`);

@@ -10,9 +10,14 @@ Brick UI Website is implemented as a multi-route product and documentation site.
   responses confirm Brotli/gzip negotiation, immutable hashed assets, bounded
   social-card caching, application security headers, correct 404 behavior, and
   the representative route matrix.
-- Local production Lighthouse qualification scores 94 Performance and 100 for
-  Accessibility, Best Practices, SEO, and Agentic Browsing, with 0 CLS and
-  10 ms total blocking time. The `llms.txt` generator now emits descriptive
+- Local production Lighthouse qualification scores 94 Performance on its
+  simulated mobile profile and 100 Performance on desktop, with 100 for
+  Accessibility, Best Practices, SEO, and Agentic Browsing, 0 CLS, and at most
+  10 ms total blocking time. The mobile LCP is text and is constrained by the
+  complete Brick and website CSS entrypoints rather than JavaScript work. A
+  source-only modular-CSS experiment raised the same mobile route to 99, which
+  identifies a public Brick CSS-distribution improvement instead of a safe
+  website-only shortcut. The `llms.txt` generator now emits descriptive
   Markdown links, and header brand links derive their accessible names from
   their visible identity.
 - The application now runs on native Next.js 16 App Router. Its production
@@ -79,6 +84,9 @@ Brick UI Website is implemented as a multi-route product and documentation site.
 - Local search, light/dark appearance, responsive navigation, sitemap, robots,
   complete page metadata, structured data, social card, favicon, and
   AI-readable documentation are present.
+- Vercel Web Analytics is integrated through its native Next.js entrypoint and
+  is emitted only in Vercel builds. Speed Insights remains intentionally
+  disabled because the current free account permits only one enabled project.
 - The site accent theme explicitly pairs purple solid actions with a white foreground in both appearances and verifies every solid interaction state at WCAG AA contrast.
 - The reviewed dependency is `@flowstack-ui/brick@0.1.0` at source commit `3351412342c6e0cd6af9f7403e2e7535bdfe72a0`.
 

@@ -16,6 +16,15 @@
 
 ## Unreleased
 
+- Integrated the owner-enabled Vercel Web Analytics product through its native
+  Next.js adapter, restricted emission to Vercel builds so local development
+  remains free of failed insights requests, and added a repository-contract
+  guard for the integration.
+- Qualified Lighthouse separately on mobile and desktop: desktop Performance
+  is 100, while mobile is 94 with a text LCP and negligible blocking/layout
+  work. Rejected whole-site CSS inlining after it worsened transfer and FCP;
+  recorded a disposable modular Brick CSS proof that raised mobile to 99 and
+  the package-first route required to retain it safely.
 - Added verified baseline browser security headers across every route and a
   bounded social-card cache policy, while explicitly preserving CSP as a
   nonce-strategy decision instead of shipping a misleading broad inline allow.
