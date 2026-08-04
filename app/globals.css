@@ -302,10 +302,10 @@
 
   .docs-shell { display: grid; min-height: calc(100dvh - var(--site-header-height)); grid-template-columns: 15rem minmax(0, 50rem) 12rem; justify-content: space-between; gap: clamp(2rem, 4vw, 5rem); padding-block: 3rem 7rem; }
   .docs-sidebar, .docs-rail { position: sticky; inset-block-start: calc(var(--site-header-height) + 2rem); align-self: start; max-height: calc(100dvh - var(--site-header-height) - 4rem); overflow: auto; }
-  .docs-sidebar nav { display: grid; gap: .12rem; }
-  .docs-sidebar a, .docs-rail a { padding: .4rem .55rem; border-radius: .4rem; color: var(--brick-color-text-secondary); font-size: .82rem; text-decoration: none; }
+  .docs-sidebar nav { display: grid; gap: .15rem; }
+  .docs-sidebar a, .docs-rail a { display: flex; min-height: 2.35rem; align-items: center; padding: .5rem .65rem; border-radius: .45rem; color: var(--brick-color-text-secondary); font-size: .9rem; line-height: 1.35; text-decoration: none; }
   .docs-sidebar a:hover, .docs-sidebar a.is-current { background: var(--brick-color-accent-soft); color: var(--brick-color-accent-text); }
-  .docs-nav-label, .docs-rail > span { display: block; margin: 1.1rem .55rem .35rem; color: var(--brick-color-text-muted); font-size: .67rem; font-weight: 650; text-transform: uppercase; letter-spacing: .09em; }
+  .docs-nav-label, .docs-rail > span { display: block; margin: 1.15rem .65rem .4rem; color: var(--brick-color-text-muted); font-size: .75rem; font-weight: 650; line-height: 1.4; text-transform: uppercase; letter-spacing: .08em; }
   .docs-rail { display: grid; gap: .2rem; }
   .docs-rail a:hover { color: var(--brick-color-accent-text); }
   .docs-content { min-width: 0; }

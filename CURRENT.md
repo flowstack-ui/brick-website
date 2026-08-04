@@ -15,6 +15,7 @@ Brick UI Website is implemented as a multi-route product and documentation site.
 - The Themes hero uses a true circular semantic instrument with precise axes, spectrum arcs, a meaning-first core, and four role nodes; its eyebrow and actions own explicit spacing.
 - The Themes story presents two visual expressions as one unchanged Brick component contract and maps Color, Shape, Typography, and Motion as four connected semantic systems with restrained section rhythm.
 - The Themes closing callout stacks at 900px and gives its copy and install command the full available width before either becomes compressed.
+- Documentation sidebar and page-rail navigation use a readable scalable type size and target height, with the right rail removed at 1180px and the remaining navigation reflowed at 900px.
 - Local search, light/dark appearance, responsive navigation, sitemap, robots, social card, favicon, and AI-readable documentation are present.
 - The site accent theme explicitly pairs purple solid actions with a white foreground in both appearances and verifies every solid interaction state at WCAG AA contrast.
 - The reviewed dependency is `@flowstack-ui/brick@0.1.0` at source commit `3351412342c6e0cd6af9f7403e2e7535bdfe72a0`.

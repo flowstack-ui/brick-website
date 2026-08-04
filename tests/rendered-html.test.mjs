@@ -168,6 +168,14 @@ test("Themes hero retains its semantic instrument composition", async () => {
   assert.doesNotMatch(css, /\.theme-orbit \{[^}]*min-height:/, "theme instrument must not recreate an ellipse through an unrelated minimum height");
 });
 
+test("documentation rails retain readable scalable navigation", async () => {
+  const css = await readFile(new URL("../app/globals.css", import.meta.url), "utf8");
+  assert.match(css, /\.docs-sidebar a, \.docs-rail a \{[^}]*min-height: 2\.35rem;[^}]*font-size: \.9rem;[^}]*line-height: 1\.35;/, "documentation links must not use compact metadata-sized text or targets");
+  assert.match(css, /\.docs-nav-label, \.docs-rail > span \{[^}]*font-size: \.75rem;[^}]*line-height: 1\.4;/, "documentation rail labels must retain a readable supporting scale");
+  assert.match(css, /@media \(max-width: 1180px\)[\s\S]*\.docs-rail \{ display: none; \}/, "the right rail must leave the layout before text zoom compresses the article");
+  assert.match(css, /@media \(max-width: 900px\)[\s\S]*\.docs-shell \{ display: block; \}/, "the remaining documentation navigation must reflow before narrow layouts");
+});
+
 test("homepage hero retains its height-aware first-viewport contract", async () => {
   const css = await readFile(new URL("../app/globals.css", import.meta.url), "utf8");
   assert.match(css, /padding-block: clamp\(2\.75rem, 6dvh, 5rem\)/, "hero vertical rhythm must respond to viewport height");
