@@ -16,6 +16,9 @@
 
 ## Unreleased
 
+- Completed Vercel Git-source integration for the private GitHub repository;
+  main now produces a protected production-target deployment while the
+  canonical `brick-ui.com` domain remains intentionally unattached.
 - Upgraded the exact reviewed dependency to published
   `@flowstack-ui/brick@0.1.1` and adopted its public modular CSS entrypoints.
   Added deterministic predev/prebuild generation of consolidated shell,

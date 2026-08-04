@@ -4,9 +4,6 @@
 
 - Add the qualified Swifty organization logo and verified public `sameAs`
   profiles to structured data when those final brand inputs are supplied.
-- Grant the Vercel GitHub App access to the private repository and complete the
-  project Git-source connection. The Vercel project, CLI deployment path, and
-  protected immutable preview are already qualified.
 - Repeat mobile and desktop Lighthouse plus visual interaction review in the
   authenticated final preview browser, then repeat delivery and crawl checks
   after the canonical domain is promoted. Local production Lighthouse and the

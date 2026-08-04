@@ -2,10 +2,12 @@
 
 Brick UI Website is implemented as a multi-route product and documentation site.
 
-- The website is linked to the `flowstack-ui/brick-website` Vercel project and
-  has an immutable SSO-protected preview. Unauthenticated requests redirect to
-  Vercel authentication with `no-store` and `X-Robots-Tag: noindex`; the
-  canonical `brick-ui.com` domain remains deliberately unattached.
+- The GitHub repository is connected to the `flowstack-ui/brick-website`
+  Vercel project. Main now deploys automatically to its SSO-protected Vercel
+  production target, while reviewed CLI candidates remain immutable previews.
+  Unauthenticated requests redirect to Vercel authentication with `no-store`
+  and `X-Robots-Tag: noindex`; the canonical `brick-ui.com` domain remains
+  deliberately unattached.
 - The qualified Vercel build runs native Next.js on Node 22. Real preview
   responses confirm Brotli/gzip negotiation, immutable hashed assets, bounded
   social-card caching, application security headers, correct 404 behavior, and
@@ -21,10 +23,11 @@ Brick UI Website is implemented as a multi-route product and documentation site.
   3.1 s to 2.8 s LCP. Localhost does not receive an SEO category score, so SEO
   remains covered by rendered metadata tests and must be repeated against the
   public canonical deployment.
-- The qualified protected Vercel preview is deployment
-  `dpl_5haPqhh1Tmm5osYetaveA3S4MPJE`. Its homepage transfers 15,934 gzip bytes
-  and its two render-blocking CSS assets transfer 26,774 bytes total over
-  HTTP/2 with the expected protected-preview and application headers.
+- Protected candidate deployment `dpl_5haPqhh1Tmm5osYetaveA3S4MPJE` established
+  the measured delivery baseline: its homepage transfers 15,934 gzip bytes and
+  its two render-blocking CSS assets transfer 26,774 bytes total over HTTP/2.
+  The Git-linked production target is also Ready and preserves the same SSO,
+  noindex, HSTS, and frame-denial boundary before canonical launch.
 - The application now runs on native Next.js 16 App Router. Its production
   build statically prerenders all 88 routes, including 75 component pages and
   four guides, while preserving client interaction only where the product
