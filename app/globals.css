@@ -826,7 +826,8 @@
     .component-guidance-item { grid-template-columns: 1fr; gap: 1rem; }
     .component-doc-section { margin-block-start: 3rem; }
     .component-accessibility, .component-styling { padding: 1rem; }
-    .component-maintainer .brick-card-header > div { grid-template-columns: auto auto; justify-content: center; }
+    .component-maintainer .brick-card-header { grid-template-columns: 1fr; justify-items: center; }
+    .component-maintainer .brick-card-header > div { width: 100%; grid-template-columns: 1fr; justify-items: center; text-align: center; }
     .component-maintainer .brick-card-content { text-align: center; }
     .component-maintainer-actions { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); align-items: center; gap: .25rem; }
     .component-maintainer-actions .brick-button { width: 100%; min-width: 0; padding-inline: .4rem; }

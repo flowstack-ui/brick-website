@@ -2,7 +2,7 @@
 
 ## Unreleased
 
-- Corrected documentation table overflow so wide API content scrolls horizontally on narrow screens, kept component previous/category/next navigation in one compact mobile row, and centered the maintainer identity above a single row of resource actions.
+- Corrected documentation table overflow so wide API content scrolls horizontally on narrow screens, kept component previous/category/next navigation in one compact mobile row, and stacked the maintainer icon and title on a true center axis above a single row of resource actions.
 - Moved the keyboard-scrollable Code Block content outline farther inward and matched its lower corner radii to the clipped root so its focus indicator remains complete through both rounded corners without changing the Copy action.
 - Moved the component rail's Input and Accordion focus indicators inside their geometry so the independently scrollable navigation no longer clips keyboard focus at either inline edge, including Forced Colors.
 - Migrated component-rail destinations to client navigation and preserved the desktop rail's independent scroll position across component routes, while allowing each newly opened component article to begin at its introduction.
