@@ -7,7 +7,7 @@
 - Moved the Themes closing callout to its stacked full-width composition at the 900px content-pressure breakpoint so its copy and complete install command remain readable.
 - Raised both documentation rails from compact metadata sizing to readable rem-based navigation text, increased target height and line height, and preserved their existing zoom-responsive reflow boundaries.
 - Prefixed the Docs overview release with `v`, standardized icon-led Card headers across three routes, and replaced padded ghost actions with the established animated editorial links.
-- Added a shared documentation reading plane that retains a faint branded grid around page introductions and fades to an opaque semantic canvas before long-form content and component examples.
+- Added a shared documentation reading plane that visibly retains the subtle branded grid around page introductions and fades to an opaque semantic canvas before long-form content and component examples.
 - Replaced category-level component placeholders with dedicated examples for all 75 component routes.
 - Added a content-contract check that prevents component routes from shipping without an explicit preview.
 - Corrected solid accent-button contrast by defining the paired white foreground token in light and dark appearances.

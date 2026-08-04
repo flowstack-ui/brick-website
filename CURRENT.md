@@ -17,7 +17,7 @@ Brick UI Website is implemented as a multi-route product and documentation site.
 - The Themes closing callout stacks at 900px and gives its copy and install command the full available width before either becomes compressed.
 - Documentation sidebar and page-rail navigation use a readable scalable type size and target height, with the right rail removed at 1180px and the remaining navigation reflowed at 900px.
 - Icon-led Cards use one website-owned header composition with explicit spacing, and Docs overview actions use the same animated editorial-link treatment as the homepage.
-- Every Docs-shell route, including guides and component pages, fades the branded introduction grid into an opaque semantic reading plane before sustained content.
+- Every Docs-shell route, including guides and component pages, clearly retains the subtle branded grid around the introduction before fading it into an opaque semantic reading plane ahead of sustained content.
 - Local search, light/dark appearance, responsive navigation, sitemap, robots, social card, favicon, and AI-readable documentation are present.
 - The site accent theme explicitly pairs purple solid actions with a white foreground in both appearances and verifies every solid interaction state at WCAG AA contrast.
 - The reviewed dependency is `@flowstack-ui/brick@0.1.0` at source commit `3351412342c6e0cd6af9f7403e2e7535bdfe72a0`.
