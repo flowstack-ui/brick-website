@@ -241,8 +241,11 @@ test("Atom ownership section retains one aligned editorial lane", async () => {
   const css = await readFile(new URL("../app/globals.css", import.meta.url), "utf8");
   assert.match(atomSource, /id="ownership-title"/, "ownership section must expose a named heading");
   assert.match(atomSource, /Atom owns the behavioral contract\. Brick owns the finished visual system\./, "ownership heading must explain the division rather than relying on a title alone");
+  assert.match(atomSource, /className="ownership-heading"/, "ownership heading must use its route-owned layout contract");
+  assert.doesNotMatch(atomSource, /className="section-heading compact-heading ownership-heading"/, "ownership heading must not inherit the narrower generic editorial lane");
   assert.match(atomSource, /className="ownership-card"/, "ownership cards must opt into their authored alignment contract");
-  assert.match(css, /\.ownership-section \.ownership-heading, \.ownership-grid \{ width: min\(100%, 65rem\); max-width: 65rem; margin-inline: auto; \}/, "ownership heading and cards must share one centered lane");
+  assert.match(css, /\.ownership-heading, \.ownership-grid \{ width: min\(100%, 65rem\); max-width: 65rem; margin-inline: auto; \}/, "ownership heading and cards must share one centered lane");
+  assert.match(css, /\.ownership-heading \{ display: grid; justify-items: start; gap: 1rem; margin-block: 0 2\.75rem; text-align: start; \}/, "ownership heading must own its desktop alignment and rhythm");
   assert.match(atomSource, /<Card\.Header className="icon-card-header">/, "ownership card icons must use the shared explicit title-spacing pattern");
   assert.match(css, /\.flowstack-context \{ padding-block-end: clamp\(2rem, 3vw, 3rem\); \}/, "preceding story must not contribute an oversized lower transition");
   assert.match(css, /\.ownership-section \{ padding-block-start: clamp\(2rem, 3vw, 3rem\); \}/, "ownership section must begin without an oversized upper transition");

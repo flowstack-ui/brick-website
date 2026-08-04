@@ -739,8 +739,11 @@
   .atom-layer .layer-symbol { border-color: color-mix(in srgb, var(--brick-color-surface-canvas), transparent 70%); background: color-mix(in srgb, var(--brick-color-surface-canvas), transparent 88%); color: var(--brick-color-surface-canvas); }
   .atom-layer .layer-copy small, .atom-layer .layer-copy strong, .atom-layer .layer-copy > span { color: var(--brick-color-surface-canvas); }
   .ownership-section { padding-block-start: clamp(2rem, 3vw, 3rem); }
-  .ownership-section .ownership-heading, .ownership-grid { width: min(100%, 65rem); max-width: 65rem; margin-inline: auto; }
-  .ownership-heading { justify-items: start; text-align: start; }
+  .ownership-heading, .ownership-grid { width: min(100%, 65rem); max-width: 65rem; margin-inline: auto; }
+  .ownership-heading { display: grid; justify-items: start; gap: 1rem; margin-block: 0 2.75rem; text-align: start; }
+  .ownership-heading > * { margin: 0; }
+  .ownership-heading :is(h2, p) { width: 100%; }
+  .ownership-heading p { max-width: 44rem; }
 
   /* brick-bundle:relationships:end */
   .not-found { display: grid; min-height: calc(100dvh - var(--site-header-height)); align-items: center; padding-block: clamp(3rem, 8vw, 7rem); }

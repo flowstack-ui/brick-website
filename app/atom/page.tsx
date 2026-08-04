@@ -73,7 +73,7 @@ export default function AtomPage() {
         </ol>
       </section>
       <section className="ownership-section section-shell" aria-labelledby="ownership-title">
-        <div className="section-heading compact-heading ownership-heading">
+        <div className="ownership-heading">
           <Badge variant="outline" tone="neutral">Clear ownership</Badge>
           <Text as="h2" id="ownership-title" variant="display">Each layer has one job.</Text>
           <Text as="p" variant="body-lg" tone="secondary" align="start" wrap="pretty">Atom owns the behavioral contract. Brick owns the finished visual system. Applications combine both without asking either layer to own product decisions.</Text>

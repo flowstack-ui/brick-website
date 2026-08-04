@@ -1,5 +1,9 @@
 # Changelog
 
+- Aligned the Atom ownership heading and card grid through one route-owned
+  layout contract, avoiding a cascade conflict with the generic compact
+  section heading width.
+
 ## 2026-08-04 — llms.txt discovery contract
 
 - Replaced unlabeled URL entries with descriptive Markdown links that follow the
