@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Anchored the desktop search dialog to a stable safe viewport offset so changing result counts only move its bottom edge, while preserving the full-screen narrow-mobile composition.
 - Connected the Command/Control-K search dialog to Brick Dialog's explicit `initialFocus` contract so its search input is immediately ready for typing without racing native autofocus.
 - Renamed the public Docs destination to Guides across desktop, mobile, metadata, and overview identity, and removed the duplicated component catalog and category links from the Guides rail while retaining the established `/docs/` URLs.
 - Replaced the ambiguous grid icon between component pagination links with a clearly labeled, quiet category-return control.

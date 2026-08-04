@@ -129,7 +129,8 @@
   .icon-action { inline-size: 2.25rem; min-inline-size: 2.25rem; padding-inline: 0; }
   .mobile-menu-trigger { display: none; inline-size: 2.25rem; min-inline-size: 2.25rem; padding-inline: 0; }
 
-  .search-dialog { --brick-dialog-max-inline-size: 43rem; --brick-dialog-max-block-size: min(46rem, calc(100dvb - 2rem)); }
+  .search-dialog { --search-dialog-top: clamp(calc(1rem + env(safe-area-inset-top)), 10dvb, 6rem); --brick-dialog-max-inline-size: 43rem; --brick-dialog-max-block-size: min(46rem, calc(100dvb - var(--search-dialog-top) - 1rem - env(safe-area-inset-bottom))); inset-block-start: var(--search-dialog-top); transform: translateX(-50%) scale(1); transform-origin: 50% 0; }
+  .search-dialog[data-state="closed"] { transform: translateX(-50%) translateY(-.5rem) scale(.985); }
   .search-dialog-header { gap: 1rem; padding-block-end: 1rem; border-block-end: 1px solid var(--brick-color-border-subtle); background: var(--brick-color-surface-base); }
   .search-dialog-heading { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: .75rem; }
   .search-dialog-heading > div { display: grid; min-width: 0; gap: .15rem; }

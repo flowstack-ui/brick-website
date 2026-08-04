@@ -378,10 +378,14 @@ test("homepage hero retains its height-aware first-viewport contract", async () 
 
 test("site search opens with an explicit initial focus target", async () => {
   const headerSource = await readFile(new URL("../app/components/SiteHeader.tsx", import.meta.url), "utf8");
+  const css = await readFile(new URL("../app/globals.css", import.meta.url), "utf8");
   assert.match(headerSource, /const searchInputRef = useRef<HTMLInputElement>\(null\)/, "site search must retain a native input focus target");
   assert.match(headerSource, /<Dialog\.Content[^>]*initialFocus=\{searchInputRef\}/, "Dialog must own initial search focus through its published focus contract");
   assert.match(headerSource, /<Input[\s\S]*ref=\{searchInputRef\}/, "the search field must receive the Dialog initial-focus ref");
   assert.doesNotMatch(headerSource, /<Input[\s\S]*autoFocus/, "native autofocus must not race the Dialog focus lifecycle");
+  assert.match(css, /\.search-dialog \{[^}]*--search-dialog-top: clamp\([^;]+;[^}]*inset-block-start: var\(--search-dialog-top\);[^}]*transform: translateX\(-50%\) scale\(1\);/, "desktop search must retain a stable top edge while its result-driven height changes");
+  assert.match(css, /--brick-dialog-max-block-size: min\(46rem, calc\(100dvb - var\(--search-dialog-top\) - 1rem - env\(safe-area-inset-bottom\)\)\)/, "top-anchored search must preserve a safe viewport bottom boundary");
+  assert.match(css, /@media \(max-width: 640px\)[\s\S]*\.search-dialog, \.search-dialog\[data-state="closed"\] \{[^}]*inset: 0;[^}]*transform: none;/, "full-screen mobile search must remain exempt from desktop anchoring");
 });
 
 const routes = [
