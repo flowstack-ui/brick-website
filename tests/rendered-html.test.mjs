@@ -367,6 +367,7 @@ test("documentation syntax highlighting remains a build-time Brick adapter", asy
     assert.match(css, new RegExp(`--brick-syntax-${token}: #[0-9a-f]{6};`, "i"), `the website syntax theme must define ${token}`);
   }
   assert.match(css, /\.brick-code-block-pre span \{ color: CanvasText !important;/, "Forced Colors must collapse decorative token colors to system text");
+  assert.match(css, /\.brick-code-block-content:focus-visible \{ outline-offset: calc\(-2 \* var\(--brick-border-focus-width\)\); \}/, "the keyboard-scrollable code viewport must draw its focus ring fully inside the clipped Code Block root");
   assert.match(previewSource, /case "code-block"[\s\S]*--brick-syntax-type/, "the dedicated Code Block example must demonstrate the same syntax palette");
 });
 

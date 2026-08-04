@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Moved the keyboard-scrollable Code Block content outline farther inward so its focus indicator remains complete inside the component's intentionally clipped root without changing the Copy action.
 - Moved the component rail's Input and Accordion focus indicators inside their geometry so the independently scrollable navigation no longer clips keyboard focus at either inline edge, including Forced Colors.
 - Migrated component-rail destinations to client navigation and preserved the desktop rail's independent scroll position across component routes, while allowing each newly opened component article to begin at its introduction.
 - Corrected compact and overlay example centering by shrink-wrapping their neutral specimen owner, and added a restrained appearance-aware contrast pedestal for compact, form, overlay, and expanding previews so transparent controls remain legible over the colorful stage.
