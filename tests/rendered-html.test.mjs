@@ -608,6 +608,13 @@ test("sitemap, robots, and AI documentation expose one canonical crawl policy", 
     assert.equal(response.status, 200);
     assert.equal(response.headers.get("x-robots-tag"), "noindex");
   }
+
+  const llms = await (await render("/llms.txt")).text();
+  assert.match(llms, /^# Brick UI\n\n> /);
+  assert.match(llms, /\[Getting started\]\(https:\/\/brick-ui\.com\/docs\/getting-started\)/);
+  assert.match(llms, /\[Button\]\(https:\/\/brick-ui\.com\/components\/button\)/);
+  assert.match(llms, /## Optional\n/);
+  assert.doesNotMatch(llms, /^- https?:\/\//m);
 });
 
 test("production responses retain baseline browser and social-asset delivery policy", async () => {

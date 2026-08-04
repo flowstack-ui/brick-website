@@ -50,6 +50,13 @@ if (provenance.version !== brickManifest.version) errors.push(`content reviewed 
 if (siteManifest.dependencies["@flowstack-ui/brick"] !== brickManifest.version) errors.push("Brick must be installed as the exact reviewed version");
 if (!/^[0-9a-f]{40}$/.test(provenance.commit)) errors.push("provenance has no exact source commit");
 if (!llmsFull.includes(`Source commit: ${provenance.commit}`)) errors.push("llms-full.txt has stale provenance");
+if (!llms.startsWith("# Brick UI\n\n> ")) errors.push("llms.txt must begin with an H1 and blockquote summary");
+if (!llms.includes("## Documentation") || !llms.includes("## Components") || !llms.includes("## Optional")) {
+  errors.push("llms.txt is missing its documented link sections");
+}
+const llmsLinks = [...llms.matchAll(/^- \[[^\]]+\]\(https:\/\/[^)]+\)(?:: .+)?$/gm)];
+if (llmsLinks.length < components.length + 10) errors.push("llms.txt must expose descriptive Markdown links");
+if (/^- https?:\/\//m.test(llms)) errors.push("llms.txt must not expose unlabeled bare-URL list items");
 
 if (errors.length) {
   console.error(`Content contract failed:\n- ${errors.join("\n- ")}`);

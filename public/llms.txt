@@ -1,90 +1,97 @@
 # Brick UI
 
-Finished, accessible React components built on Flowstack Atom.
+> Finished, accessible React components built on Flowstack Atom.
 
 ## Documentation
 
-- https://brick-ui.com/docs
-- https://brick-ui.com/docs/getting-started
-- https://brick-ui.com/docs/theming
-- https://brick-ui.com/components
-- https://brick-ui.com/themes
-- https://atom-ui.com/
+- [Brick UI overview](https://brick-ui.com/docs): Understand the package, its layers, and where to begin.
+- [Getting started](https://brick-ui.com/docs/getting-started): Install Brick and compose a finished interface.
+- [Theming](https://brick-ui.com/docs/theming): Customize Brick through its semantic CSS contract.
+- [Accessibility](https://brick-ui.com/docs/accessibility): Learn the responsibilities shared by Atom, Brick, and applications.
+- [Composition](https://brick-ui.com/docs/composition): Build interfaces from stable public parts.
+- [Component catalog](https://brick-ui.com/components): Browse all finished React components.
+- [Themes](https://brick-ui.com/themes): Explore Brick's first theme and theming direction.
 
 ## Components
 
-- Accordion: https://brick-ui.com/components/accordion
-- Alert Dialog: https://brick-ui.com/components/alert-dialog
-- App Bar: https://brick-ui.com/components/app-bar
-- Aspect Ratio: https://brick-ui.com/components/aspect-ratio
-- Avatar: https://brick-ui.com/components/avatar
-- Badge: https://brick-ui.com/components/badge
-- Bottom Navigation: https://brick-ui.com/components/bottom-navigation
-- Breadcrumb: https://brick-ui.com/components/breadcrumb
-- Button: https://brick-ui.com/components/button
-- Card: https://brick-ui.com/components/card
-- Checkbox: https://brick-ui.com/components/checkbox
-- Checkbox Group: https://brick-ui.com/components/checkbox-group
-- Chip: https://brick-ui.com/components/chip
-- Code: https://brick-ui.com/components/code
-- Code Block: https://brick-ui.com/components/code-block
-- Collapsible: https://brick-ui.com/components/collapsible
-- Combobox: https://brick-ui.com/components/combobox
-- Container: https://brick-ui.com/components/container
-- Context Menu: https://brick-ui.com/components/context-menu
-- Data Grid: https://brick-ui.com/components/data-grid
-- Dialog: https://brick-ui.com/components/dialog
-- Divider: https://brick-ui.com/components/divider
-- Drawer: https://brick-ui.com/components/drawer
-- Dropdown Menu: https://brick-ui.com/components/dropdown-menu
-- Feed: https://brick-ui.com/components/feed
-- Field: https://brick-ui.com/components/field
-- Fieldset: https://brick-ui.com/components/fieldset
-- File Upload: https://brick-ui.com/components/file-upload
-- Form: https://brick-ui.com/components/form
-- Grid: https://brick-ui.com/components/grid
-- Hide: https://brick-ui.com/components/hide
-- Hover Card: https://brick-ui.com/components/hover-card
-- Icon: https://brick-ui.com/components/icon
-- Icon Button: https://brick-ui.com/components/icon-button
-- Image: https://brick-ui.com/components/image
-- Input: https://brick-ui.com/components/input
-- Link: https://brick-ui.com/components/link
-- List: https://brick-ui.com/components/list
-- Menubar: https://brick-ui.com/components/menubar
-- Multi Select: https://brick-ui.com/components/multi-select
-- Nav List: https://brick-ui.com/components/nav-list
-- Navigation Menu: https://brick-ui.com/components/navigation-menu
-- Notification Badge: https://brick-ui.com/components/notification-badge
-- Number Input: https://brick-ui.com/components/number-input
-- OTP Field: https://brick-ui.com/components/otp-field
-- Pagination: https://brick-ui.com/components/pagination
-- Password Toggle Field: https://brick-ui.com/components/password-toggle-field
-- Popover: https://brick-ui.com/components/popover
-- Progress: https://brick-ui.com/components/progress
-- Progress Circle: https://brick-ui.com/components/progress-circle
-- Radio Group: https://brick-ui.com/components/radio-group
-- Rating: https://brick-ui.com/components/rating
-- Scroll Area: https://brick-ui.com/components/scroll-area
-- Select: https://brick-ui.com/components/select
-- Show: https://brick-ui.com/components/show
-- Sidebar: https://brick-ui.com/components/sidebar
-- Skeleton: https://brick-ui.com/components/skeleton
-- Skip Link: https://brick-ui.com/components/skip-link
-- Slider: https://brick-ui.com/components/slider
-- Stack: https://brick-ui.com/components/stack
-- Surface: https://brick-ui.com/components/surface
-- Swipeable Item: https://brick-ui.com/components/swipeable-item
-- Switch: https://brick-ui.com/components/switch
-- Table: https://brick-ui.com/components/table
-- Tabs: https://brick-ui.com/components/tabs
-- Text: https://brick-ui.com/components/text
-- Textarea: https://brick-ui.com/components/textarea
-- Toast: https://brick-ui.com/components/toast
-- Toggle: https://brick-ui.com/components/toggle
-- Toggle Group: https://brick-ui.com/components/toggle-group
-- Toolbar: https://brick-ui.com/components/toolbar
-- Tooltip: https://brick-ui.com/components/tooltip
-- Tree: https://brick-ui.com/components/tree
-- Tree Grid: https://brick-ui.com/components/tree-grid
-- Visually Hidden: https://brick-ui.com/components/visually-hidden
+- [Accordion](https://brick-ui.com/components/accordion): Accordion coordinates named, in-flow disclosure sections with single or multiple selection, accessible keyboard navigation, and finished surfaces.
+- [Alert Dialog](https://brick-ui.com/components/alert-dialog): AlertDialog interrupts the current workflow for a brief, important decision that requires an explicit response. Atom owns alert-dialog semantics, modal state, focus, portals, isolation, stacking, presence, and scroll containment; Brick supplies the finished visual anatomy.
+- [App Bar](https://brick-ui.com/components/app-bar): AppBar is a top surface and one-row alignment structure built on Atom AppBar.
+- [Aspect Ratio](https://brick-ui.com/components/aspect-ratio): Aspect Ratio reserves stable width-to-height geometry for authored media, embeds, placeholders, and layout content. It controls the box and optional frame only; children retain their own semantics, sizing, and behavior.
+- [Avatar](https://brick-ui.com/components/avatar): Avatar presents an image or fallback identity in a finished Brick frame.
+- [Badge](https://brick-ui.com/components/badge): Badge is a compact passive label for categories, status, or short metadata.
+- [Bottom Navigation](https://brick-ui.com/components/bottom-navigation): Bottom Navigation presents three to five stable, equal-priority top-level destinations in a compact navigation surface.
+- [Breadcrumb](https://brick-ui.com/components/breadcrumb): Breadcrumb is Brick's finished hierarchy trail. It styles Atom's named navigation landmark, ordered list, native ancestor links, current page, decorative separators, and composable Ellipsis without owning route data.
+- [Button](https://brick-ui.com/components/button): Button presents a finished action or emphasized native link. Brick owns its visual recipes and styling; the public Atom Button owns semantics, interaction, form behavior, unavailable/loading behavior, and composition.
+- [Card](https://brick-ui.com/components/card): Card is a static compound surface for grouping information and related actions about one subject.
+- [Checkbox](https://brick-ui.com/components/checkbox): Checkbox is a styled binary or mixed-state form choice built on Atom Checkbox.
+- [Checkbox Group](https://brick-ui.com/components/checkbox-group): CheckboxGroup coordinates related Checkbox-style items, optional item text, and an aggregate parent control.
+- [Chip](https://brick-ui.com/components/chip): Chip presents one compact authored or selected value with an optional, explicitly named remove action. It does not replace Badge, Button, Toggle, Link, or a future token-entry collection.
+- [Code](https://brick-ui.com/components/code): Code renders short inline technical text with native `code` semantics and finished Brick recipes.
+- [Code Block](https://brick-ui.com/components/code-block): Code Block presents structured multi-line source with native scrolling, explicit language metadata, and truthful Atom-backed copy behavior.
+- [Collapsible](https://brick-ui.com/components/collapsible): Collapsible reveals one independent in-flow content region from a linked button trigger.
+- [Combobox](https://brick-ui.com/components/combobox): Combobox is Brick's finished searchable single-value choice control. Atom owns filtering, keyboard focus, selection, open state, collision-aware positioning, dismissal, ARIA, and optional free text; Brick owns its visual system.
+- [Container](https://brick-ui.com/components/container): Container creates a centered, fluid content boundary with a closed maximum measure and logical inline gutters. It renders one native element and adds no paint, vertical spacing, child layout, role, or behavior.
+- [Context Menu](https://brick-ui.com/components/context-menu): Context Menu provides commands for a pointer or touch context region through Atom-owned semantics and behavior.
+- [Data Grid](https://brick-ui.com/components/data-grid): Data Grid presents tabular data with Atom-owned cell navigation, row selection, active-cell semantics, and sortable-header activation. Brick supplies the finished visual recipes; applications own data transforms and surrounding controls.
+- [Dialog](https://brick-ui.com/components/dialog): Dialog presents a focused modal task or information surface above the current page. Atom owns modal state, focus, dismissal, portals, background isolation, scroll containment, and presence; Brick supplies the finished visual anatomy.
+- [Divider](https://brick-ui.com/components/divider): Divider draws a low-emphasis structural line between adjacent content groups. It uses Atom for decorative or semantic separator behavior and adds finished line, inset, label, and appearance recipes.
+- [Drawer](https://brick-ui.com/components/drawer): Drawer is a modal task surface that enters from a logical or physical edge.
+- [Dropdown Menu](https://brick-ui.com/components/dropdown-menu): Dropdown Menu provides button-triggered commands, persistent choices, and nested actions through Atom-owned semantics and behavior.
+- [Feed](https://brick-ui.com/components/feed): Feed presents a styled dynamic stream of rich, focusable articles. Atom owns Feed semantics, positions, busy state, focus, and keyboard movement; Brick owns article separation, density, surfaces, focus paint, and customization hooks.
+- [Field](https://brick-ui.com/components/field): Field coordinates one control’s label, description, error, and required state.
+- [Fieldset](https://brick-ui.com/components/fieldset): Fieldset coordinates a related control group with a legend, description, and group error.
+- [File Upload](https://brick-ui.com/components/file-upload): File Upload is Brick's styled file picker, drop target, and removable selected-file list, backed directly by Atom. It works alone or as the sole control in one `Field`; file transfer, upload progress, persistence, and server policy remain application concerns.
+- [Form](https://brick-ui.com/components/form): Form is Brick’s styled form boundary over Atom’s native form behavior.
+- [Grid](https://brick-ui.com/components/grid): Grid is Brick's two-dimensional layout primitive. `Grid.Root` creates exact equal columns or intrinsic responsive columns. Optional `Grid.Item` adds deliberate spans, line placement, and self-alignment; ordinary children remain valid grid items without wrappers.
+- [Hide](https://brick-ui.com/components/hide): Hide keeps content mounted while removing it from visual layout from one fixed viewport breakpoint. It is CSS layout, not conditional React rendering.
+- [Hover Card](https://brick-ui.com/components/hover-card): HoverCard shows nonessential preview information from a link-like trigger.
+- [Icon](https://brick-ui.com/components/icon): Icon gives one consumer-supplied SVG a consistent Brick size, semantic color, alignment, direction, and accessibility mode. Brick supplies no icon catalog or string registry.
+- [Icon Button](https://brick-ui.com/components/icon-button): IconButton presents one named icon-only action or a button-styled native link with finished Brick geometry and recipes over public Atom Button behavior.
+- [Image](https://brick-ui.com/components/image): Image presents ordinary raster or vector media with authored alternative text, deterministic loading/fallback anatomy, fit and focal-position recipes, stable aspect ratio, and finished framing. Atom owns source lifecycle; Brick owns paint.
+- [Input](https://brick-ui.com/components/input): Input is a finished single-line text-entry control built on Atom Input. Atom owns native input behavior, value state, validation, reset, Field relationships, Clear behavior, and the input ref; Brick owns the visual wrapper, recipes, geometry, adornment layout, and static CSS.
+- [Link](https://brick-ui.com/components/link): Link is Brick's finished typographic navigation component. It styles the server-safe Atom Link primitive while preserving one real native anchor, browser navigation behavior, native attributes, and router composition.
+- [List](https://brick-ui.com/components/list): List presents related static content through native unordered or ordered list semantics, finished markers and boundaries, and optional structured row anatomy. Atom owns list semantics; Brick owns visual presentation.
+- [Menubar](https://brick-ui.com/components/menubar): Menubar provides persistent desktop-style command categories through Atom-owned semantics and behavior.
+- [Multi Select](https://brick-ui.com/components/multi-select): MultiSelect is Brick's styled multiple-value choice control. It is built directly on Atom MultiSelect 0.10.1: Atom owns the value array, open state, option registration, keyboard/typeahead, focus, dismissal, positioning, ARIA, native form participation, validation, and reset. Brick owns the complete visual system and default decorative artwork.
+- [Nav List](https://brick-ui.com/components/nav-list): Nav List renders finished native navigation lists, current destinations, and optional grouped disclosure sections on Atom NavList behavior.
+- [Navigation Menu](https://brick-ui.com/components/navigation-menu): Navigation Menu provides site destinations with optional rich link panels through Atom-owned semantics and behavior.
+- [Notification Badge](https://brick-ui.com/components/notification-badge): NotificationBadge overlays a visual count or dot on exactly one child.
+- [Number Input](https://brick-ui.com/components/number-input): Number Input is a finished numeric entry control backed by Atom Number Input. Atom owns numeric value, parsing, formatting, bounds, stepping, validation, and form behavior; Brick owns the visual recipes and fixed step artwork.
+- [OTP Field](https://brick-ui.com/components/otp-field): OTP Field is segmented one-time-code entry backed by Atom OTP Field. Atom owns accepted characters, focus movement, paste, masking, completion, validation, reset, and one-value form participation; Brick owns cell recipes and the static Group layout part.
+- [Pagination](https://brick-ui.com/components/pagination): Pagination navigates a finite, known set of numbered pages with native buttons.
+- [Password Toggle Field](https://brick-ui.com/components/password-toggle-field): Password Toggle Field is native password entry with an explicitly named visibility action, backed by Atom Password Toggle Field. Atom owns visibility state, Field and Form relationships, reset, submission safety, and native input behavior; Brick owns recipes and default eye artwork.
+- [Popover](https://brick-ui.com/components/popover): Popover presents click-open contextual content anchored to a trigger or anchor.
+- [Progress](https://brick-ui.com/components/progress): Progress is Brick's linear, read-only task-progress component for known, unknown, and buffered work.
+- [Progress Circle](https://brick-ui.com/components/progress-circle): Progress Circle is Brick's compact circular task-progress component for known and unknown work.
+- [Radio Group](https://brick-ui.com/components/radio-group): Radio Group is Brick's finished single-selection control for short visible choice sets. Atom owns selection, keyboard, focus, form, validation, direction, and read-only behavior; Brick owns the circular visual, sizes, layout, states, and stable customization hooks.
+- [Rating](https://brick-ui.com/components/rating): Rating is Brick's styled small-scale score input, backed by Atom 0.19.6. It exposes one accessible slider with decorative repeated artwork and works alone or as the sole control in `Field`; it does not require `Fieldset`.
+- [Scroll Area](https://brick-ui.com/components/scroll-area): Scroll Area constrains native browser scrolling to explicit axes while keeping content, input, momentum, and platform scrollbar behavior native. It adopts Atom's Root/Viewport behavior and adds finished gutter, visibility, focus, and semantic-color styling.
+- [Select](https://brick-ui.com/components/select): Select is Brick's finished single-value, select-only choice control. It is built directly on Atom Select: Atom owns values, open state, option registration, keyboard/typeahead, focus, dismissal, positioning, ARIA, native form participation, validation, and reset. Brick owns the complete visual system and default decorative artwork.
+- [Show](https://brick-ui.com/components/show): Show keeps content mounted and adds it to visual layout from one fixed viewport breakpoint. It is CSS responsive visibility, not conditional React rendering.
+- [Sidebar](https://brick-ui.com/components/sidebar): Sidebar coordinates a finished persistent complementary panel with main content on Atom Sidebar state and accessibility behavior.
+- [Skeleton](https://brick-ui.com/components/skeleton): Skeleton preserves expected content geometry while an application-owned loading operation is incomplete.
+- [Skip Link](https://brick-ui.com/components/skip-link): Skip Link provides a finished, visible-on-focus bypass link and its matching primary-content destination. Atom owns native anchor behavior, focus transfer, scrolling, target focusability, composition, and refs; Brick owns the overlay presentation and stable customization hooks.
+- [Slider](https://brick-ui.com/components/slider): Slider is Brick's styled numeric single-value and range input, backed by Atom 0.19.6. It works alone or as the sole control in `Field`; it is not a grouped choice collection and does not require `Fieldset`.
+- [Stack](https://brick-ui.com/components/stack): Stack is Brick's one-dimensional layout primitive. Use Stack or VStack for vertical flows and HStack for horizontal rows. All three share one rendered contract and tokenized spacing scale.
+- [Surface](https://brick-ui.com/components/surface): Surface paints a semantic region with a controlled background level, optional border, elevation, radius, and inset. It renders one native element and adds no layout, clipping, interaction, role, or runtime color context.
+- [Swipeable Item](https://brick-ui.com/components/swipeable-item): Swipeable Item is a styled three-part boundary that reveals quick actions from logical start or end. Atom owns gesture and keyboard behavior; Brick owns the recipes, surfaces, containment, focus paint, and stable customization hooks.
+- [Switch](https://brick-ui.com/components/switch): Switch is Brick's finished binary setting control. Atom owns semantics, state, keyboard, validation, forms, and composition; Brick owns track/thumb visuals, sizes, state paint, motion, and customization hooks.
+- [Table](https://brick-ui.com/components/table): Table presents static row-and-column relationships with native HTML semantics, finished visual recipes, logical alignment, and explicit responsive containment. Atom owns the semantic table primitives and sort metadata; Brick owns presentation.
+- [Tabs](https://brick-ui.com/components/tabs): Tabs switches between related peer panels while preserving complete keyboard, selection, and panel relationships through Atom.
+- [Text](https://brick-ui.com/components/text): Text is Brick's finished component for authored headings, paragraphs, inline copy, captions, supporting descriptions, and status copy. The selected HTML element supplies semantics; the visual recipe supplies typography.
+- [Textarea](https://brick-ui.com/components/textarea): Textarea is Brick's finished native multi-line plain-text control. It composes released Atom value, form, Field, validation, auto-resize, and character-count behavior with Brick's visual recipes and customization hooks.
+- [Toast](https://brick-ui.com/components/toast): Toast reports a temporary, non-blocking application outcome or process update. Brick owns its finished viewport, card, glyph, spacing, and responsive recipes; Atom owns the store, queue, timers, announcements, focus, keyboard, portal, swipe, and lifecycle.
+- [Toggle](https://brick-ui.com/components/toggle): Toggle is a persistent pressed/unpressed command built on Atom Toggle with Brick visual recipes.
+- [Toggle Group](https://brick-ui.com/components/toggle-group): ToggleGroup coordinates related single- or multiple-selection pressed commands using Atom state and keyboard behavior plus Brick recipes.
+- [Toolbar](https://brick-ui.com/components/toolbar): Toolbar presents related commands as one named, keyboard-navigable control group.
+- [Tooltip](https://brick-ui.com/components/tooltip): Tooltip supplies a short supplementary label or description for a trigger.
+- [Tree](https://brick-ui.com/components/tree): Tree presents a one-dimensional hierarchy with Atom-owned focus, keyboard, selection, expansion, typeahead, direction, form, and accessibility behavior. Brick supplies a finished content row, decorative indicator, recipes, depth, guides, states, motion, and customization hooks.
+- [Tree Grid](https://brick-ui.com/components/tree-grid): Tree Grid presents hierarchical rows with Atom-owned cell navigation, expansion, selection, active-cell semantics, and sortable-header activation. Brick supplies finished table paint, hierarchy artwork, recipes, and overflow; applications own records, coordinates, and data transforms.
+- [Visually Hidden](https://brick-ui.com/components/visually-hidden): Visually Hidden keeps authored text available to assistive technology while removing its visual layout footprint.
+
+## Optional
+
+- [Complete Brick UI reference](https://brick-ui.com/llms-full.txt): Full synchronized component documentation for larger context windows.
+- [Flowstack Atom](https://atom-ui.com/): The headless behavior and accessibility foundation beneath Brick.
+- [Brick UI source](https://github.com/flowstack-ui/brick): Public package source, changelog, and maintainer documentation.

@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026-08-04 — llms.txt discovery contract
+
+- Replaced unlabeled URL entries with descriptive Markdown links that follow the
+  emerging `llms.txt` proposal and satisfy Lighthouse's agentic-discovery audit.
+- Added primary guide links, component descriptions, and an optional section for
+  the complete reference, Atom foundation, and public Brick source.
+- Added content and rendered-response assertions that prevent bare-link regressions.
+
 ## Unreleased
 
 - Added verified baseline browser security headers across every route and a
