@@ -376,6 +376,14 @@ test("homepage hero retains its height-aware first-viewport contract", async () 
   assert.doesNotMatch(workspaceSource, /<Dialog\.Body><Badge/, "dialog bodies must not stretch a status badge as their primary layout");
 });
 
+test("site search opens with an explicit initial focus target", async () => {
+  const headerSource = await readFile(new URL("../app/components/SiteHeader.tsx", import.meta.url), "utf8");
+  assert.match(headerSource, /const searchInputRef = useRef<HTMLInputElement>\(null\)/, "site search must retain a native input focus target");
+  assert.match(headerSource, /<Dialog\.Content[^>]*initialFocus=\{searchInputRef\}/, "Dialog must own initial search focus through its published focus contract");
+  assert.match(headerSource, /<Input[\s\S]*ref=\{searchInputRef\}/, "the search field must receive the Dialog initial-focus ref");
+  assert.doesNotMatch(headerSource, /<Input[\s\S]*autoFocus/, "native autofocus must not race the Dialog focus lifecycle");
+});
+
 const routes = [
   ["/", /Build interfaces that already feel finished/i],
   ["/docs", /Build with Brick/i],

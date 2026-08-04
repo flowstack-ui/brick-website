@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Connected the Command/Control-K search dialog to Brick Dialog's explicit `initialFocus` contract so its search input is immediately ready for typing without racing native autofocus.
 - Renamed the public Docs destination to Guides across desktop, mobile, metadata, and overview identity, and removed the duplicated component catalog and category links from the Guides rail while retaining the established `/docs/` URLs.
 - Replaced the ambiguous grid icon between component pagination links with a clearly labeled, quiet category-return control.
 - Normalized Source docs, Changelog, and Playground as one equally weighted set of external maintainer links.

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Badge } from "@flowstack-ui/brick/badge";
@@ -56,6 +56,7 @@ export function SiteHeader() {
   const [appearance, setAppearance] = useState<Appearance>("light");
   const [query, setQuery] = useState("");
   const [searchOpen, setSearchOpen] = useState(false);
+  const searchInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     const saved = localStorage.getItem("brick-website-appearance") as Appearance | null;
@@ -128,7 +129,7 @@ export function SiteHeader() {
           </Dialog.Trigger>
           <Dialog.Portal>
             <Dialog.Overlay />
-            <Dialog.Content size="lg" className="search-dialog">
+            <Dialog.Content size="lg" className="search-dialog" initialFocus={searchInputRef}>
               <Dialog.Header className="search-dialog-header">
                 <div className="search-dialog-heading">
                   <span className="search-dialog-icon"><Search size={18} aria-hidden="true" /></span>
@@ -141,10 +142,10 @@ export function SiteHeader() {
                   </Dialog.Close>
                 </div>
                 <Input
-                  autoFocus
                   autoComplete="off"
                   id="brick-site-search"
                   name="brick-site-search"
+                  ref={searchInputRef}
                   value={query}
                   onChange={(event) => setQuery(event.currentTarget.value)}
                   placeholder="Search 75 components…"
