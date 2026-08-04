@@ -21,6 +21,13 @@ near-black panel. Both preserve foreground contrast, remove decoration in
 Forced Colors, and prevent the page grid from competing with the demonstrated
 component.
 
+Compact and overlay stages shrink-wrap their specimens so the actual component,
+not an invisible generic measure, sits on the center axis. Compact, form,
+overlay, and expanding examples also receive a restrained appearance-aware
+neutral pedestal. The pedestal protects transparent controls and inherited text
+without covering the colorful stage; structural and interaction examples keep
+their own complete surfaces.
+
 Each public component owner is assigned exactly one behavior mode:
 
 - `compact` centers small actions, indicators, and inline content;

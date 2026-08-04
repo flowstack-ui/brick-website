@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Corrected compact and overlay example centering by shrink-wrapping their neutral specimen owner, and added a restrained appearance-aware contrast pedestal for compact, form, overlay, and expanding previews so transparent controls remain legible over the colorful stage.
 - Increased the component stage's visual separation with a bright pastel light gradient and a saturated purple-blue dark gradient so examples remain clearly legible instead of sinking into the surrounding dark canvas.
 - Replaced the generic dotted component canvas and one-off layout exceptions with one light/dark architectural example stage, explicitly classified all 75 component owners across six behavior modes, kept disclosures top-anchored while the stage grows downward, and preserved natural trigger sizing, full-width structures, responsive geometry, and Forced Colors.
 - Anchored the desktop search dialog to a stable safe viewport offset so changing result counts only move its bottom edge, while preserving the full-screen narrow-mobile composition.
