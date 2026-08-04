@@ -231,6 +231,8 @@ test("component discovery and rendering remain consumer-first Brick compositions
   assert.doesNotMatch(componentDocSource, /variant="soft"[^>]*>Source docs/, "source docs must not receive unexplained emphasis over peer GitHub destinations");
   assert.match(previewSource, /case "field":[^;]*required><Field\.Label>Email<\/Field\.Label>/, "the Field preview must rely on Label's required-state indicator contract");
   assert.doesNotMatch(previewSource, /case "field":[^;]*Field\.RequiredIndicator/, "the Field preview must not add a second required indicator to Label's automatic one");
+  assert.match(previewSource, /case "swipeable-item":[^;]*preview-swipeable-content[^;]*size="sm" tone="danger" variant="ghost"/, "the Swipeable Item preview must use the complete padded content composition and bounded action recipe");
+  assert.match(css, /\.preview-swipeable-content \{[^}]*grid-template-columns: minmax\(0, 1fr\) auto;[^}]*padding: var\(--brick-space-4\);/, "Swipeable Item preview content must remain fully visible inside its component boundary");
   assert.match(markdownSource, /<Code[^>]*data-code-kind=\{inlineCodeKind/, "inline technical literals must use the published Brick Code component with semantic token styling");
   assert.match(markdownSource, /<Table\.Container[\s\S]*<Table\.Root[\s\S]*<Table\.Header/, "Markdown API matrices must use the published Brick Table anatomy");
   assert.match(css, /\.catalog-outcomes \{[^}]*grid-template-columns: repeat\(3/, "the full-width outcome discovery surface must retain a scannable desktop grid");

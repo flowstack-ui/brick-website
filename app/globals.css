@@ -521,6 +521,7 @@
   .preview-art { display: grid; width: 100%; height: 100%; place-items: center; background: radial-gradient(circle at 68% 28%, var(--brick-color-accent-soft), transparent 28%), linear-gradient(135deg, var(--brick-color-surface-subtle), var(--brick-color-surface-raised)); color: var(--brick-color-accent-text); font-family: var(--site-font-mono); font-size: 1.4rem; }
   .preview-context-target { display: grid; min-height: 9rem; place-items: center; border: 1px dashed var(--brick-color-accent-border); border-radius: var(--brick-radius-surface); background: var(--brick-color-accent-soft); color: var(--brick-color-accent-on-soft); user-select: none; }
   .preview-scroll-area { height: 12rem; }
+  .preview-swipeable-content { display: grid; min-width: 0; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: var(--brick-space-3); padding: var(--brick-space-4); }
   .preview-sidebar { min-height: 17rem; overflow: hidden; border: 1px solid var(--brick-color-border-subtle); border-radius: var(--brick-radius-surface); }
   .preview-skip { display: grid; gap: 1rem; }
   .component-document { margin-block-start: 4rem; }
@@ -788,6 +789,7 @@
     .token-map-heading { align-items: flex-start; flex-direction: column; gap: .25rem; }.token-map::before { inset-inline-start: 3.38rem; }.token-family { grid-template-columns: 1.4rem 2.6rem minmax(0, 1fr); }.token-values { grid-column: 2 / -1; justify-content: flex-start; padding-inline-start: .05rem; }
     .theme-cta, .atom-choice { align-items: flex-start; flex-direction: column; margin-inline: 1rem; }.flowstack-path { padding: .4rem; }.flowstack-path li { align-items: start; padding: 1rem .8rem; }.layer-diagram { min-height: auto; padding: 4.6rem .75rem .75rem; border-radius: 1.25rem; }.layer-diagram::before { inset-block: 5rem 1.5rem; }.layer-diagram-heading { inset: 1.2rem 1rem auto; }.layer-diagram-heading small { display: none; }.layer { width: 100%; justify-self: stretch; margin-inline: 0; padding: .9rem; }.brick-layer { width: 100%; }.layer-copy > span { white-space: normal; }
     .example-canvas { min-height: 15rem; padding: 1.25rem; }.example-header { align-items: flex-start; }
+    .preview-swipeable-content { grid-template-columns: minmax(0, 1fr); }
   }
 
   @media (prefers-reduced-motion: reduce) {

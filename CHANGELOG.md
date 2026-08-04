@@ -9,6 +9,7 @@
 - Corrected the component-discovery explanation to normal-case secondary body typography instead of inheriting the purple uppercase eyebrow treatment.
 - Removed the redundant divider above the first API subsection while retaining separation between later API parts.
 - Routed playground-only source Examples sections, including Visually Hidden, to the shared Maintainer resources footer while preserving substantive example sections.
+- Corrected the Swipeable Item preview with padded responsive content and bounded small ghost actions so its interactive state remains fully legible.
 - Removed the redundant Docs rails from the component catalog, rebuilt its no-results treatment as query-aware guidance, and let discovery results use the full reading width.
 - Simplified and aligned the component navigator, replaced the dense two-column usage comparison with a single readable decision lane, and moved advanced-reference framing back to normal-case prose.
 - Gave API content a proper public-contract introduction, roomier tables, and named subsections for compound APIs; grouped dense stable-class and token runs into scannable technical clusters.
