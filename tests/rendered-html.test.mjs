@@ -217,6 +217,8 @@ test("component discovery and rendering remain consumer-first Brick compositions
   const markdownSource = await readFile(new URL("../app/components/MarkdownArticle.tsx", import.meta.url), "utf8");
   const css = await readFile(new URL("../app/globals.css", import.meta.url), "utf8");
   assert.match(catalogSource, /What are you building\?[\s\S]*Component finder[\s\S]*Search by name, purpose, or category/, "the catalog must support outcome-led browsing and known-item search");
+  assert.match(catalogSource, /as="p" className="catalog-discovery-description" tone="secondary">Browse by purpose/, "catalog guidance must render as body copy instead of an eyebrow span");
+  assert.match(css, /\.catalog-discovery-copy > \.catalog-discovery-description \{[^}]*color: var\(--brick-color-text-secondary\);[^}]*font-size: 1rem;[^}]*text-transform: none;/, "catalog guidance must preserve normal-case secondary body typography");
   assert.match(catalogSource, /aria-pressed=\{category === entry\}/, "category filters must expose their selected state");
   assert.match(catalogSource, /catalog-outcome-title[^>]*><strong>\{label\}<\/strong><ArrowRight/, "outcome arrows must remain attached to their action labels");
   assert.match(css, /\.catalog-outcome-title \{[^}]*width: fit-content;[^}]*gap: \.3rem;/, "outcome arrows must not be pushed to the far edge of their cards");

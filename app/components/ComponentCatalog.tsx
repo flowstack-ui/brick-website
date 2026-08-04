@@ -61,7 +61,7 @@ export function ComponentCatalog() {
         <div className="catalog-discovery-copy">
           <span>Start with the outcome</span>
           <Text as="h2" id="catalog-discovery-title" variant="title-lg">What are you building?</Text>
-          <Text tone="secondary">Browse by purpose when you know the job but not yet the component name.</Text>
+          <Text as="p" className="catalog-discovery-description" tone="secondary">Browse by purpose when you know the job but not yet the component name.</Text>
         </div>
         <div className="catalog-outcomes">
           {outcomes.map(({ category: outcomeCategory, icon: Icon, label, examples }) => (

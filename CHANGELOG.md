@@ -6,6 +6,7 @@
 - Normalized Source docs, Changelog, and Playground as one equally weighted set of external maintainer links.
 - Corrected the Field live example to rely on Label's automatic required-state indicator instead of composing a duplicate RequiredIndicator.
 - Kept catalog outcome arrows attached to their action labels so they no longer read as detached edge decoration.
+- Corrected the component-discovery explanation to normal-case secondary body typography instead of inheriting the purple uppercase eyebrow treatment.
 - Removed the redundant Docs rails from the component catalog, rebuilt its no-results treatment as query-aware guidance, and let discovery results use the full reading width.
 - Simplified and aligned the component navigator, replaced the dense two-column usage comparison with a single readable decision lane, and moved advanced-reference framing back to normal-case prose.
 - Gave API content a proper public-contract introduction, roomier tables, and named subsections for compound APIs; grouped dense stable-class and token runs into scannable technical clusters.
