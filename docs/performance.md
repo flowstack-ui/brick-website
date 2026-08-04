@@ -70,11 +70,12 @@ render-blocking homepage CSS requests and regressed the simulated mobile score
 to 92. The website therefore consolidates public Brick CSS into six
 application-route bundles and one exact bundle for each preview module. It also
 partitions the canonical website stylesheet at explicit `brick-bundle:*`
-markers. A later audit found that homepage-only authored styles still lived in
-the shared shell; the generator now extracts that section into the Home route
-bundle while keeping responsive shell rules in the parent layer so they retain
-their cascade priority. Generated files are ignored and recreated during
-development and production builds.
+markers. A later attempt to extract a broad apparent Home section was rejected:
+that source range also owned cross-route typography, actions, section rhythm,
+and responsive contracts. The shared rules remain in the shell, and the
+performance gate now asserts nine representative cross-route selectors so an
+unsafe range split cannot silently remove them again. Generated files are
+ignored and recreated during development and production builds.
 
 The final local production route matrix uses Lighthouse 12.8.2's simulated
 mobile profile. All six routes score 100 Accessibility, Best Practices, and
@@ -83,13 +84,13 @@ SEO with 0 CLS and at most 15 ms total blocking time:
 | Route | Performance | FCP | LCP | Transfer |
 | --- | ---: | ---: | ---: | ---: |
 | Home | 97 | 1.1 s | 2.6 s | 240 KiB |
-| Component catalog | 98 median | 0.9 s | 2.5 s | 266 KiB |
-| Getting Started guide | 98 median | 0.9 s | 2.5 s | 282 KiB |
-| Button | 96 median | 1.2 s | 2.8 s | 294 KiB |
+| Component catalog | 95 | 1.4 s | 2.9 s | 265 KiB |
+| Getting Started guide | 97 median | 0.9 s | 2.6 s | 281 KiB |
+| Button | 95 | 1.2 s | 2.9 s | 293 KiB |
 | Menubar | 94 median | 1.2 s | 3.1 s | 313 KiB |
-| Data Grid | 96 | 1.2 s | 2.8 s | 292 KiB |
+| Data Grid | 95 | 1.2 s | 2.9 s | 291 KiB |
 
-The catalog, guide, Button, and Menubar values are medians of three final runs.
+The Home, guide, and Menubar values are medians of three qualified runs.
 Desktop remains qualified at 100 Performance. A rounded 100 is not the optimization boundary:
 the checked payload contracts and diagnostics below remain relevant even when
 the score is already green.
@@ -103,7 +104,7 @@ component route.
 
 | Diagnostic | Finding and ownership | Decision |
 | --- | --- | --- |
-| Render-blocking requests | Two intentional CSS files on product/guide routes and one additional exact preview stylesheet on component routes. The measured local dependency chain is only about 47 ms, although mobile simulation estimates a larger delay. | Keep the package/application separation. Whole-site inlining and 19 direct modular requests both regressed. Homepage-only authored rules are now removed from every non-home shell; further critical-CSS work needs a bounded prototype and visual qualification. |
+| Render-blocking requests | Two intentional CSS files on product/guide routes and one additional exact preview stylesheet on component routes. The measured local dependency chain is only about 47 ms, although mobile simulation estimates a larger delay. | Keep the package/application separation. Whole-site inlining, 19 direct modular requests, and broad source-range extraction all regressed. Further critical-CSS work requires selector-level ownership, a bounded prototype, and visual qualification. |
 | Reduce unused JavaScript | About 25–27 KiB is attributed exclusively to Next's shared App Router runtime chunk, not Brick, Atom, or website feature code. The actual website content leak was removed and is now regression-tested. | Track framework releases; do not fork generated runtime code or misclassify this as a library defect. |
 | Legacy JavaScript | Lighthouse attributes 13,677 bytes of compatibility signals to Next's framework-owned polyfill module (`Array.at`, `flat`, `flatMap`, `Object.fromEntries`, `Object.hasOwn`, and `trimStart`/`trimEnd`). | Keep the supported-browser contract and reassess on Next upgrades. Do not delete framework polyfills from generated output. |
 | Minify JavaScript / duplicate modules / cache / font display / third parties | All pass with no estimated savings. | Preserve as verification evidence. |

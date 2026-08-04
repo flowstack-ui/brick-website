@@ -54,6 +54,22 @@ if (searchIndex.length > searchIndexBudget.raw || searchIndexGzip > searchIndexB
   errors.push(`search index is ${searchIndex.length} raw / ${searchIndexGzip} gzip; budget is ${searchIndexBudget.raw} / ${searchIndexBudget.gzip}`);
 }
 
+const shellCss = await readFile(path.join(root, "app/.generated/brick-shell.css"), "utf8");
+const sharedStyleContracts = [
+  ".page-title",
+  ".page-lede",
+  ".install-command",
+  ".section-heading",
+  ".compact-heading",
+  ".token-section",
+  ".theme-comparison",
+  ".flowstack-context",
+  ".ownership-section",
+];
+for (const selector of sharedStyleContracts) {
+  if (!shellCss.includes(selector)) errors.push(`shared shell CSS is missing ${selector}`);
+}
+
 const socialCardPath = path.join(root, "public/brick-social-card.jpg");
 const socialCard = await readFile(socialCardPath);
 const socialCardSize = (await stat(socialCardPath)).size;
@@ -85,4 +101,5 @@ if (errors.length) {
 
 console.log(`Verified 75 component routes; largest initial JavaScript is ${largest.slug} at ${largest.raw} raw / ${largest.gzip} gzip.`);
 console.log(`Verified representative route budgets and deferred search at ${searchIndex.length} raw / ${searchIndexGzip} gzip.`);
+console.log(`Verified ${sharedStyleContracts.length} cross-route style contracts in the shared shell.`);
 console.log(`Verified 1200x630 social card at ${socialCardSize} bytes.`);

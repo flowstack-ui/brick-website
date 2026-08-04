@@ -10,10 +10,11 @@
   remote protected route/header matrix are already qualified.
 - Prototype a bounded critical-CSS or deferred noncritical-shell strategy only
   if the final canonical-host measurement confirms the simulated CSS delay.
-  The client-content and route-CSS audit is complete: Home is 97, the guide
-  median is 98, the Menubar median is 94, CLS is zero, and blocking work is
+  The client-content audit is complete: Home is 97, the guide median is 97, the
+  Menubar median is 94, CLS is zero, and blocking work is
   negligible. Preserve the exact published-package boundary and do not pursue
-  a rounded 100 by hiding content or patching Next's generated runtime.
+  a rounded 100 by hiding content, broad CSS range extraction, or patching
+  Next's generated runtime.
 - Review page-level spacing rhythm across the home, catalog, guide, and component layouts.
 - Deepen component examples with additional states and recipes as component work evolves.
 - Complete owner visual review of the refined full-width component discovery, behavior-aware example stage, aligned navigator, usage guidance, API, token, and advanced-reference layouts across representative compact, expanding, overlay, form, interaction, and structural components.

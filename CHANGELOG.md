@@ -22,12 +22,14 @@
   on-demand index. The six-route transfer matrix drops by 12–170 KiB, the
   largest component route falls to 872,204 raw / 261,595 gzip initial
   JavaScript, and new route/content budgets prevent regression.
-- Removed homepage-only authored rules from every non-home shell while
-  preserving responsive cascade ownership through the route sublayer. The
-  final simulated-mobile matrix scores 94–98 Performance with 100
-  Accessibility, Best Practices, and SEO, zero CLS, and negligible blocking;
-  the remaining legacy/unused JavaScript diagnostic is traced to Next's shared
-  App Router runtime rather than Atom, Brick, or website content.
+- Rejected a broad Home CSS range extraction after it exposed mixed selector
+  ownership and removed shared typography, action, spacing, and responsive
+  contracts from other routes. Restored those rules to the shared shell and
+  added a nine-selector build guard. The qualified simulated-mobile matrix
+  remains 94–97 Performance with 100 Accessibility, Best Practices, and SEO,
+  zero CLS, and negligible blocking; the remaining legacy/unused JavaScript
+  diagnostic is traced to Next's shared App Router runtime rather than Atom,
+  Brick, or website content.
 - Completed Vercel Git-source integration for the private GitHub repository;
   main now produces a protected production-target deployment while the
   canonical `brick-ui.com` domain remains intentionally unattached.

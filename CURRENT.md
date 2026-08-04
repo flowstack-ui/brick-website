@@ -16,10 +16,10 @@ Brick UI Website is implemented as a multi-route product and documentation site.
   and this website consumes that exact npm release. A deterministic prebuild
   step assembles route-owned and preview-owned CSS from those public files;
   production never reads the sibling Brick checkout or package-private source.
-- The final six-route local production matrix scores 94–98 Performance on
+- The final six-route local production matrix scores 94–97 Performance on
   Lighthouse's simulated mobile profile and 100 Accessibility, Best Practices,
   and SEO, with 0 CLS and no more than 18 ms total blocking time. Home scores
-  97, the guide median is 98, and the heaviest Menubar median is 94. Desktop
+  97, the guide median is 97, and the heaviest Menubar median is 94. Desktop
   remains qualified at 100 Performance. Canonical-host and field measurements
   remain separate launch evidence.
 - Protected candidate deployment `dpl_5haPqhh1Tmm5osYetaveA3S4MPJE` established
@@ -59,10 +59,12 @@ Brick UI Website is implemented as a multi-route product and documentation site.
   bundles. The largest component route is now 872,204 raw / 261,595 gzip
   JavaScript, down 39% raw and 36% gzip from the earlier route-scoped-preview
   result, and tighter route budgets enforce the new boundary.
-- Homepage-only authored CSS is now generated into the Home route bundle rather
-  than every page's global shell. Lighthouse's remaining unused/legacy
-  JavaScript finding belongs to the Next App Router runtime; CSS remains the
-  only meaningful website-owned critical-path candidate.
+- A broad Home CSS extraction was rejected after it removed shared page-title,
+  description, action, spacing, and responsive contracts from other routes.
+  Those rules remain in the shared shell and nine cross-route selectors are now
+  build-gated. Lighthouse's remaining unused/legacy JavaScript finding belongs
+  to the Next App Router runtime; CSS remains a selector-ownership problem
+  before it can become another safe optimization candidate.
 
 - Home page demonstrates a composed, stateful website-project workspace made from the published Brick package, with a conversion-first stacked viewport and a compact mobile presentation.
 - All 75 component owners have routes sourced from reviewed package documentation and a dedicated live example built from that component's public package export.
