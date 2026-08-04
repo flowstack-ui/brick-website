@@ -4,12 +4,16 @@ import configuration from "../verification.config.mjs";
 
 const root = resolve(import.meta.dirname, "..");
 const manifest = JSON.parse(await readFile(resolve(root, "package.json"), "utf8"));
+const viteConfiguration = await readFile(resolve(root, "vite.config.ts"), "utf8");
 const errors = [];
 const requirePath = async (file) => {
   try { await access(resolve(root, file)); } catch { errors.push(`missing ${file}`); }
 };
 
 if (configuration.schemaVersion !== 1) errors.push("unsupported verification schema");
+if (/compatibility_flags\s*:\s*\[[^\]]*nodejs_compat/u.test(viteConfiguration)) {
+  errors.push("vite.config.ts explicitly enables the now-default nodejs_compat flag");
+}
 for (const [role, script] of Object.entries(configuration.commands)) {
   if (!manifest.scripts?.[script]) errors.push(`${role} requires npm script ${script}`);
 }
