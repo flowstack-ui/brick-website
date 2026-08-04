@@ -210,6 +210,8 @@ test("icon-led cards and the Docs learning route use explicit composition patter
   assert.match(css, /\.icon-card-header \{ grid-template-columns: minmax\(0, 1fr\); gap: \.8rem; \}/, "icon card headers must own a comfortable explicit vertical gap");
   assert.match(docsSource, /Documentation · v\{source\.version\}/, "documentation version badge must use the conventional version prefix");
   assert.match(docsSource, /Recommended learning route[\s\S]*Build confidence in four moves/, "documentation overview must explain the intended onboarding sequence");
+  assert.match(css, /\.docs-path-heading \{ display: grid; gap: \.65rem;/, "the overview route description must sit below the learning-route title on the same reading axis");
+  assert.match(css, /\.docs-path-card \{[^}]*min-height: 0;/, "overview guide cards must derive height from their content rather than an oversized presentation minimum");
   assert.match(docsSource, /<Card\.Header className="docs-path-card-header">[\s\S]*\{path\.step\} · \{path\.time\}/, "guide cards must expose their sequence and learning intent");
   assert.match(docsSource, /docs-path-outcome[\s\S]*\{path\.outcome\}/, "each guide path must identify its concrete reader outcome");
   assert.match(docsSource, /<Link className="pillar-link" href=\{path\.href\}>Read guide<ArrowRight/, "documentation cards must use the animated editorial link pattern");
@@ -227,6 +229,7 @@ test("reader-facing guides pair visual orientation with practical guidance", asy
     assert.match(visualSource, new RegExp(`function ${component}\\(`), `${component} must remain a distinct reader-facing composition`);
   }
   assert.match(visualSource, /No provider required[\s\S]*React 18 and 19[\s\S]*Tree-shakable exports/, "getting started must summarize its setup contract at a glance");
+  assert.match(visualSource, /variant="outline"><Check[\s\S]*No provider required/, "setup qualities must use quiet outlined badges rather than dark nested fills");
   assert.match(visualSource, /Brand choices[\s\S]*Semantic roles[\s\S]*Stable output/, "theming must visualize the semantic-token pipeline");
   assert.match(visualSource, /Atom[\s\S]*Mechanism[\s\S]*Brick[\s\S]*Visible states[\s\S]*Your app[\s\S]*Meaning/, "accessibility must show its three responsibility owners");
   assert.match(visualSource, /Application[\s\S]*Layout[\s\S]*Brick parts/, "composition must visualize the application-to-component boundary");
@@ -235,6 +238,8 @@ test("reader-facing guides pair visual orientation with practical guidance", asy
   assert.match(guides["getting-started"].body, /Confirm your setup[\s\S]*keyboard focus is visible/, "getting started must include a concrete setup checkpoint");
   assert.match(guides.theming.body, /data-brick-theme="studio"[\s\S]*resting, hover, pressed, focus, disabled, and invalid/, "theming must show scope and a release checklist");
   assert.match(css, /@media \(max-width: 640px\)[\s\S]*\.guide-setup-track, \.guide-theme-map, \.guide-a11y-map, \.guide-composition-map \{ grid-template-columns: 1fr; \}/, "all four visual guides must stack at the narrow-mobile boundary");
+  assert.match(css, /\.guide-visual-heading p \{[^}]*color: var\(--brick-color-text-primary\);[^}]*font-size: \.98rem;[^}]*line-height: 1\.65;/, "guide summaries must retain comfortable size and contrast on the presentation surface");
+  assert.match(css, /\.guide-proof-row \.brick-badge \{[^}]*background: transparent;/, "setup qualities must not layer a heavy badge fill over the guide surface");
 });
 
 test("documentation syntax highlighting remains a build-time Brick adapter", async () => {

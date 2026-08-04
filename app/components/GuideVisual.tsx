@@ -78,9 +78,9 @@ function GettingStartedMap() {
         ))}
       </ol>
       <div className="guide-proof-row" role="group" aria-label="Brick setup qualities">
-        <Badge tone="neutral" variant="soft"><Check size={13} aria-hidden="true" />No provider required</Badge>
-        <Badge tone="neutral" variant="soft"><Check size={13} aria-hidden="true" />React 18 and 19</Badge>
-        <Badge tone="neutral" variant="soft"><Check size={13} aria-hidden="true" />Tree-shakable exports</Badge>
+        <Badge tone="neutral" variant="outline"><Check size={13} aria-hidden="true" />No provider required</Badge>
+        <Badge tone="neutral" variant="outline"><Check size={13} aria-hidden="true" />React 18 and 19</Badge>
+        <Badge tone="neutral" variant="outline"><Check size={13} aria-hidden="true" />Tree-shakable exports</Badge>
       </div>
     </>
   );
