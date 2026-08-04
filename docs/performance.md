@@ -11,15 +11,31 @@ Each of the 75 live examples owns a client module under `components/previews/`.
 component route loads its own preview rather than the implementation and Brick
 subpaths for the entire catalog.
 
-The August 4, 2026 native Next production build changed the representative
-Button route from 1,802,367 raw / 501,885 gzip JavaScript bytes to 1,341,827
-raw / 380,052 gzip bytes. That is a 25.5% raw and 24.3% gzip reduction without
-removing any example behavior. The largest current component route is Menubar
-at 1,421,862 raw / 406,246 gzip bytes.
+The August 4, 2026 native Next production build first changed the
+representative Button route from 1,802,367 raw / 501,885 gzip JavaScript bytes
+to 1,341,827 raw / 380,052 gzip by splitting previews. The later client-content
+boundary pass reduced the largest current component route, Menubar, to 872,204
+raw / 261,595 gzip without removing example behavior or reader content.
 
-The build gate limits every component route to 1,500,000 raw and 425,000 gzip
-JavaScript bytes. Rebase those limits only from an explained dependency or
-architecture decision; never raise them merely to make CI pass.
+The build gate now limits every component route to 950,000 raw and 285,000
+gzip JavaScript bytes. It also owns tighter homepage, catalog, and guide
+budgets. Rebase those limits only from an explained dependency or architecture
+decision; never raise them merely to make CI pass.
+
+## Client content boundaries
+
+Synchronized component Markdown is server-only. Catalog metadata, guide
+content, package provenance, and component documents have separate modules so
+a client import cannot silently promote the complete content graph into every
+route bundle. Guide routes also use a shell that does not statically reference
+the client-only component navigator.
+
+Global search is split into two deferred layers. Its interface module loads
+only after focus, pointer intent, Command/Control-K, or an explicit open. Its
+20,289-byte raw / 5,732-byte gzip generated index is fetched only after the
+dialog mounts. The content gate proves that the index is synchronized; the
+performance gate proves that representative initial bundles contain neither
+the dialog nor the full catalog or component-document payload.
 
 ## Lighthouse baseline and modular CSS adoption
 
@@ -54,22 +70,52 @@ render-blocking homepage CSS requests and regressed the simulated mobile score
 to 92. The website therefore consolidates public Brick CSS into six
 application-route bundles and one exact bundle for each preview module. It also
 partitions the canonical website stylesheet at explicit `brick-bundle:*`
-markers. The homepage now loads two CSS files totaling 179,196 raw / 25,992
-gzip / 21,540 Brotli bytes; generated files are ignored and recreated during
+markers. A later audit found that homepage-only authored styles still lived in
+the shared shell; the generator now extracts that section into the Home route
+bundle while keeping responsive shell rules in the parent layer so they retain
+their cascade priority. Generated files are ignored and recreated during
 development and production builds.
 
-The final local production measurement scores 96 on simulated mobile with
-1.1 s FCP, 2.8 s LCP, 10 ms TBT, and 0 CLS. Desktop scores 100 with 0.3 s FCP,
-0.6 s LCP, 0 TBT, and 0 CLS. Accessibility, Best Practices, and Agentic
-Browsing score 100 on both profiles. Lighthouse does not emit an SEO category
-for localhost; rendered metadata tests cover the local contract and the SEO
-category must be measured after the canonical public deployment.
+The final local production route matrix uses Lighthouse 12.8.2's simulated
+mobile profile. All six routes score 100 Accessibility, Best Practices, and
+SEO with 0 CLS and at most 15 ms total blocking time:
 
-The protected Vercel preview confirms two HTTP/2 CSS transfers totaling 26,774
+| Route | Performance | FCP | LCP | Transfer |
+| --- | ---: | ---: | ---: | ---: |
+| Home | 97 | 1.1 s | 2.6 s | 240 KiB |
+| Component catalog | 98 median | 0.9 s | 2.5 s | 266 KiB |
+| Getting Started guide | 98 median | 0.9 s | 2.5 s | 282 KiB |
+| Button | 96 median | 1.2 s | 2.8 s | 294 KiB |
+| Menubar | 94 median | 1.2 s | 3.1 s | 313 KiB |
+| Data Grid | 96 | 1.2 s | 2.8 s | 292 KiB |
+
+The catalog, guide, Button, and Menubar values are medians of three final runs.
+Desktop remains qualified at 100 Performance. A rounded 100 is not the optimization boundary:
+the checked payload contracts and diagnostics below remain relevant even when
+the score is already green.
+
+The initial baseline for the same six routes transferred 252, 407, 451, 437,
+455, and 435 KiB respectively. The final pass therefore removes roughly 12
+KiB from Home and between 142 and 170 KiB from each catalog, guide, and
+component route.
+
+### Remaining Lighthouse diagnostics
+
+| Diagnostic | Finding and ownership | Decision |
+| --- | --- | --- |
+| Render-blocking requests | Two intentional CSS files on product/guide routes and one additional exact preview stylesheet on component routes. The measured local dependency chain is only about 47 ms, although mobile simulation estimates a larger delay. | Keep the package/application separation. Whole-site inlining and 19 direct modular requests both regressed. Homepage-only authored rules are now removed from every non-home shell; further critical-CSS work needs a bounded prototype and visual qualification. |
+| Reduce unused JavaScript | About 25–27 KiB is attributed exclusively to Next's shared App Router runtime chunk, not Brick, Atom, or website feature code. The actual website content leak was removed and is now regression-tested. | Track framework releases; do not fork generated runtime code or misclassify this as a library defect. |
+| Legacy JavaScript | Lighthouse attributes 13,677 bytes of compatibility signals to Next's framework-owned polyfill module (`Array.at`, `flat`, `flatMap`, `Object.fromEntries`, `Object.hasOwn`, and `trimStart`/`trimEnd`). | Keep the supported-browser contract and reassess on Next upgrades. Do not delete framework polyfills from generated output. |
+| Minify JavaScript / duplicate modules / cache / font display / third parties | All pass with no estimated savings. | Preserve as verification evidence. |
+| Network dependency tree | The document points directly to local CSS; Lighthouse identifies no preconnect candidates. | Do not add speculative preconnects. |
+| Forced reflow | Final Menubar runs contain no reportable forced-reflow item; total blocking remains 11–15 ms. | No Atom or Brick change is justified. Reopen only with a repeatable interaction trace. |
+
+The previously protected Vercel preview confirms two HTTP/2 CSS transfers totaling 26,774
 bytes and a 15,934-byte gzip homepage response. Its authentication boundary
 prevents an unauthenticated remote Lighthouse run, so the local production
 profiles and remote delivery/header checks are distinct pieces of evidence.
-Performance is accepted only from repeated production-profile measurements;
+That preview predates the final content-boundary pass. Performance is accepted
+only from repeated production-profile measurements;
 a one-off rounded score is not a reason to hide content or weaken the product.
 
 ## Social image

@@ -16,13 +16,12 @@ Brick UI Website is implemented as a multi-route product and documentation site.
   and this website consumes that exact npm release. A deterministic prebuild
   step assembles route-owned and preview-owned CSS from those public files;
   production never reads the sibling Brick checkout or package-private source.
-- Local production Lighthouse qualification now scores 96 Performance on its
-  simulated mobile profile and 100 Performance on desktop, with 100 for
-  Accessibility, Best Practices, and Agentic Browsing, 0 CLS, and at most
-  10 ms total blocking time. Mobile improved from 1.5 s to 1.1 s FCP and from
-  3.1 s to 2.8 s LCP. Localhost does not receive an SEO category score, so SEO
-  remains covered by rendered metadata tests and must be repeated against the
-  public canonical deployment.
+- The final six-route local production matrix scores 94–98 Performance on
+  Lighthouse's simulated mobile profile and 100 Accessibility, Best Practices,
+  and SEO, with 0 CLS and no more than 18 ms total blocking time. Home scores
+  97, the guide median is 98, and the heaviest Menubar median is 94. Desktop
+  remains qualified at 100 Performance. Canonical-host and field measurements
+  remain separate launch evidence.
 - Protected candidate deployment `dpl_5haPqhh1Tmm5osYetaveA3S4MPJE` established
   the measured delivery baseline: its homepage transfers 15,934 gzip bytes and
   its two render-blocking CSS assets transfer 26,774 bytes total over HTTP/2.
@@ -54,6 +53,16 @@ Brick UI Website is implemented as a multi-route product and documentation site.
 - The canonical 1200×630 social card preserves the approved artwork as a
   110,597-byte JPEG, an 89.5% reduction from the previous PNG, and its size and
   dimensions are enforced during verification.
+- Server-only component documents, separate catalog/guide/provenance modules,
+  a guide-only shell, and an on-demand 20,289-byte search index prevent the
+  synchronized content graph and search dialog from entering unrelated initial
+  bundles. The largest component route is now 872,204 raw / 261,595 gzip
+  JavaScript, down 39% raw and 36% gzip from the earlier route-scoped-preview
+  result, and tighter route budgets enforce the new boundary.
+- Homepage-only authored CSS is now generated into the Home route bundle rather
+  than every page's global shell. Lighthouse's remaining unused/legacy
+  JavaScript finding belongs to the Next App Router runtime; CSS remains the
+  only meaningful website-owned critical-path candidate.
 
 - Home page demonstrates a composed, stateful website-project workspace made from the published Brick package, with a conversion-first stacked viewport and a compact mobile presentation.
 - All 75 component owners have routes sourced from reviewed package documentation and a dedicated live example built from that component's public package export.

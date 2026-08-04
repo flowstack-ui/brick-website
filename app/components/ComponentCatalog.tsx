@@ -17,7 +17,7 @@ import {
   MousePointerClick,
   Search,
 } from "lucide-react";
-import { categories, components } from "@/app/lib/content";
+import { categories, components } from "@/app/lib/catalog";
 
 const outcomes = [
   { category: "Forms & choices", icon: CheckSquare, label: "Collect input", examples: "Field, Input, Select" },

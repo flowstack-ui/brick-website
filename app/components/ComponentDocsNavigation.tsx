@@ -8,7 +8,7 @@ import { Drawer } from "@flowstack-ui/brick/drawer";
 import { Hide } from "@flowstack-ui/brick/hide";
 import { Input } from "@flowstack-ui/brick/input";
 import { ArrowLeft, ListTree, Menu, Search, X } from "lucide-react";
-import { categories, componentBySlug, components } from "@/app/lib/content";
+import { categories, componentBySlug, components } from "@/app/lib/catalog";
 import type { TocItem } from "@/app/lib/toc";
 
 const componentRailScrollKey = "brick-component-navigation-scroll";

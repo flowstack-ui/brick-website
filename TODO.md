@@ -8,11 +8,12 @@
   authenticated final preview browser, then repeat delivery and crawl checks
   after the canonical domain is promoted. Local production Lighthouse and the
   remote protected route/header matrix are already qualified.
-- Profile the remaining simulated-mobile text LCP after the shipped Brick
-  `0.1.1` modular-CSS adoption. The repeatable local result is now 96 with
-  1.1 s FCP, 2.8 s LCP, 10 ms TBT, and 0 CLS; evaluate a smaller client shell
-  and bounded critical-CSS strategy before pursuing 100, without hiding hero
-  content, weakening the design, or coupling the website to package source.
+- Prototype a bounded critical-CSS or deferred noncritical-shell strategy only
+  if the final canonical-host measurement confirms the simulated CSS delay.
+  The client-content and route-CSS audit is complete: Home is 97, the guide
+  median is 98, the Menubar median is 94, CLS is zero, and blocking work is
+  negligible. Preserve the exact published-package boundary and do not pursue
+  a rounded 100 by hiding content or patching Next's generated runtime.
 - Review page-level spacing rhythm across the home, catalog, guide, and component layouts.
 - Deepen component examples with additional states and recipes as component work evolves.
 - Complete owner visual review of the refined full-width component discovery, behavior-aware example stage, aligned navigator, usage guidance, API, token, and advanced-reference layouts across representative compact, expanding, overlay, form, interaction, and structural components.

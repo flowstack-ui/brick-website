@@ -8,7 +8,7 @@ import { ArrowRight, BookOpen, Check, Layers3, Palette, ShieldCheck } from "luci
 import { DocsShell } from "@/app/components/DocsShell";
 import { WebsiteButton } from "@/app/components/WebsiteButton";
 import { createPageMetadata } from "@/app/lib/seo";
-import { source } from "@/app/lib/content";
+import { source } from "@/app/lib/source";
 
 export const metadata: Metadata = createPageMetadata({
   title: "Brick UI guides",

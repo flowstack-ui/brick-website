@@ -10,31 +10,42 @@ const brickManifest = JSON.parse(await readFile(resolve(brickRoot, "package.json
 const source = JSON.parse(await readFile(resolve(root, "content/brick-source.json"), "utf8"));
 const websiteStyles = await readFile(resolve(root, "app/globals.css"), "utf8");
 
+const homeStartMarker = "/* brick-bundle:home:start */";
+const homeEndMarker = "/* brick-bundle:home:end */";
 const docsStartMarker = "/* brick-bundle:docs:start */";
 const docsEndMarker = "/* brick-bundle:docs:end */";
 const relationshipsStartMarker = "/* brick-bundle:relationships:start */";
 const relationshipsEndMarker = "/* brick-bundle:relationships:end */";
-for (const marker of [docsStartMarker, docsEndMarker, relationshipsStartMarker, relationshipsEndMarker]) {
+for (const marker of [homeStartMarker, homeEndMarker, docsStartMarker, docsEndMarker, relationshipsStartMarker, relationshipsEndMarker]) {
   if (!websiteStyles.includes(marker)) throw new Error(`Missing website style boundary: ${marker}`);
 }
 
+const homeStart = websiteStyles.indexOf(homeStartMarker);
+const homeEnd = websiteStyles.indexOf(homeEndMarker);
 const docsStart = websiteStyles.indexOf(docsStartMarker);
 const docsEnd = websiteStyles.indexOf(docsEndMarker);
 const relationshipsStart = websiteStyles.indexOf(relationshipsStartMarker);
 const relationshipsEnd = websiteStyles.indexOf(relationshipsEndMarker);
-if (!(docsStart < docsEnd && docsEnd < relationshipsStart && relationshipsStart < relationshipsEnd)) {
+if (!(homeStart < homeEnd && homeEnd < docsStart && docsStart < docsEnd && docsEnd < relationshipsStart && relationshipsStart < relationshipsEnd)) {
   throw new Error("Website style bundle boundaries are out of order");
 }
 
-const shellWebsiteStyles = `${websiteStyles.slice(0, docsStart)}${websiteStyles.slice(relationshipsEnd + relationshipsEndMarker.length)}`;
+const shellWebsiteStyles = [
+  websiteStyles.slice(0, homeStart),
+  websiteStyles.slice(homeEnd + homeEndMarker.length, docsStart),
+  websiteStyles.slice(docsEnd + docsEndMarker.length, relationshipsStart),
+  websiteStyles.slice(relationshipsEnd + relationshipsEndMarker.length),
+].join("");
+const homeWebsiteStyles = websiteStyles.slice(homeStart + homeStartMarker.length, homeEnd).trim();
 const docsWebsiteStyles = websiteStyles.slice(docsStart + docsStartMarker.length, docsEnd).trim();
 const relationshipsWebsiteStyles = websiteStyles.slice(relationshipsStart + relationshipsStartMarker.length, relationshipsEnd).trim();
 const routeWebsiteStyles = {
   "brick-shell.css": shellWebsiteStyles.trim(),
-  "brick-docs.css": `@layer site {\n${docsWebsiteStyles}\n}`,
-  "brick-components.css": `@layer site {\n${docsWebsiteStyles}\n}`,
-  "brick-themes.css": `@layer site {\n${relationshipsWebsiteStyles}\n}`,
-  "brick-atom.css": `@layer site {\n${relationshipsWebsiteStyles}\n}`,
+  "brick-home.css": `@layer site.route {\n${homeWebsiteStyles}\n}`,
+  "brick-docs.css": `@layer site.route {\n${docsWebsiteStyles}\n}`,
+  "brick-components.css": `@layer site.route {\n${docsWebsiteStyles}\n}`,
+  "brick-themes.css": `@layer site.route {\n${relationshipsWebsiteStyles}\n}`,
+  "brick-atom.css": `@layer site.route {\n${relationshipsWebsiteStyles}\n}`,
 };
 
 if (websiteManifest.dependencies["@flowstack-ui/brick"] !== brickManifest.version) {

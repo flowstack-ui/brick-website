@@ -6,20 +6,52 @@ const root = path.resolve(import.meta.dirname, "..");
 const buildRoot = path.join(root, ".next");
 const components = JSON.parse(await readFile(path.join(root, "content/components.json"), "utf8"));
 const errors = [];
-const routeBudget = { raw: 1_500_000, gzip: 425_000 };
+const componentRouteBudget = { raw: 950_000, gzip: 285_000 };
+const representativeRouteBudgets = [
+  { name: "home", file: "server/app/index.html", raw: 825_000, gzip: 245_000 },
+  { name: "catalog", file: "server/app/components.html", raw: 810_000, gzip: 242_000 },
+  { name: "guide", file: "server/app/docs/getting-started.html", raw: 790_000, gzip: 235_000 },
+];
 const socialCardBudget = 200_000;
+const searchIndexBudget = { raw: 25_000, gzip: 7_000 };
 let largest = { slug: "", raw: 0, gzip: 0 };
 
-for (const { slug } of components) {
-  const html = await readFile(path.join(buildRoot, `server/app/components/${slug}.html`), "utf8");
+async function initialJavaScript(file) {
+  const html = await readFile(path.join(buildRoot, file), "utf8");
   const assets = [...new Set([...html.matchAll(/\/_next\/static\/chunks\/[^" ]+\.js/g)].map((match) => match[0]))];
   const payloads = await Promise.all(assets.map((asset) => readFile(path.join(buildRoot, asset.replace("/_next/", "")))));
-  const raw = payloads.reduce((total, payload) => total + payload.length, 0);
-  const gzip = payloads.reduce((total, payload) => total + gzipSync(payload).length, 0);
+  return {
+    raw: payloads.reduce((total, payload) => total + payload.length, 0),
+    gzip: payloads.reduce((total, payload) => total + gzipSync(payload).length, 0),
+    source: Buffer.concat(payloads).toString("utf8"),
+  };
+}
+
+for (const { slug } of components) {
+  const { raw, gzip, source } = await initialJavaScript(`server/app/components/${slug}.html`);
   if (raw > largest.raw) largest = { slug, raw, gzip };
-  if (raw > routeBudget.raw || gzip > routeBudget.gzip) {
-    errors.push(`${slug} initial JavaScript is ${raw} raw / ${gzip} gzip; budget is ${routeBudget.raw} / ${routeBudget.gzip}`);
+  if (raw > componentRouteBudget.raw || gzip > componentRouteBudget.gzip) {
+    errors.push(`${slug} initial JavaScript is ${raw} raw / ${gzip} gzip; budget is ${componentRouteBudget.raw} / ${componentRouteBudget.gzip}`);
   }
+  if (source.includes("Use Accordion for settings, FAQs, filters")) errors.push(`${slug} initial JavaScript contains synchronized component-document content`);
+  if (source.includes("Loading search index…")) errors.push(`${slug} initial JavaScript eagerly contains the search dialog`);
+}
+
+for (const route of representativeRouteBudgets) {
+  const { raw, gzip, source } = await initialJavaScript(route.file);
+  if (raw > route.raw || gzip > route.gzip) {
+    errors.push(`${route.name} initial JavaScript is ${raw} raw / ${gzip} gzip; budget is ${route.raw} / ${route.gzip}`);
+  }
+  if (route.name !== "catalog" && source.includes('"slug":"accordion","title":"Accordion","category":"Content & status"')) {
+    errors.push(`${route.name} initial JavaScript contains the component catalog`);
+  }
+  if (source.includes("Loading search index…")) errors.push(`${route.name} initial JavaScript eagerly contains the search dialog`);
+}
+
+const searchIndex = await readFile(path.join(root, "public/search-index.json"));
+const searchIndexGzip = gzipSync(searchIndex).length;
+if (searchIndex.length > searchIndexBudget.raw || searchIndexGzip > searchIndexBudget.gzip) {
+  errors.push(`search index is ${searchIndex.length} raw / ${searchIndexGzip} gzip; budget is ${searchIndexBudget.raw} / ${searchIndexBudget.gzip}`);
 }
 
 const socialCardPath = path.join(root, "public/brick-social-card.jpg");
@@ -52,4 +84,5 @@ if (errors.length) {
 }
 
 console.log(`Verified 75 component routes; largest initial JavaScript is ${largest.slug} at ${largest.raw} raw / ${largest.gzip} gzip.`);
+console.log(`Verified representative route budgets and deferred search at ${searchIndex.length} raw / ${searchIndexGzip} gzip.`);
 console.log(`Verified 1200x630 social card at ${socialCardSize} bytes.`);

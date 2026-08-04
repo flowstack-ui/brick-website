@@ -20,7 +20,8 @@ import {
 import { InstallCommand } from "./components/InstallCommand";
 import { ProductWorkspace } from "./components/ProductWorkspace";
 import { StructuredData } from "./components/StructuredData";
-import { components, source } from "./lib/content";
+import { components } from "./lib/catalog";
+import { source } from "./lib/source";
 import { siteStructuredData } from "./lib/seo";
 
 const pillars = [

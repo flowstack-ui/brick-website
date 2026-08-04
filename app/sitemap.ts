@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
-import { components, guides } from "./lib/content";
+import { components } from "./lib/catalog";
+import { guides } from "./lib/guides";
 import { absoluteUrl } from "./lib/seo";
 
 export default function sitemap(): MetadataRoute.Sitemap {

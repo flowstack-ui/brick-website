@@ -134,12 +134,14 @@ test("appearance and homepage selection paint are stable on first render", async
 
 test("search dialog retains its structured responsive composition", async () => {
   const headerSource = await readFile(new URL("../app/components/SiteHeader.tsx", import.meta.url), "utf8");
+  const searchSource = await readFile(new URL("../app/components/SiteSearchContent.tsx", import.meta.url), "utf8");
   const css = await readFile(new URL("../app/globals.css", import.meta.url), "utf8");
-  assert.match(headerSource, /aria-label="Close search"/, "search must provide a top-right close control");
-  assert.match(headerSource, /searchResults\.componentResults/, "search must distinguish component results");
-  assert.match(headerSource, /searchResults\.guideResults/, "search must distinguish guide results");
-  assert.match(headerSource, /search-dialog-footer/, "search must retain a distinct utility footer");
-  assert.doesNotMatch(headerSource, />Close<\/Button>/, "search must not rely on a visually ambiguous footer close button");
+  assert.match(headerSource, /import\("\.\/SiteSearchContent"\)/, "search content must remain behind an explicit client boundary");
+  assert.match(searchSource, /aria-label="Close search"/, "search must provide a top-right close control");
+  assert.match(searchSource, /searchResults\.componentResults/, "search must distinguish component results");
+  assert.match(searchSource, /searchResults\.guideResults/, "search must distinguish guide results");
+  assert.match(searchSource, /search-dialog-footer/, "search must retain a distinct utility footer");
+  assert.doesNotMatch(searchSource, />Close<\/Button>/, "search must not rely on a visually ambiguous footer close button");
   assert.match(css, /\.search-dialog, \.search-dialog\[data-state="closed"\].*block-size: 100dvb/, "narrow-mobile search must use the available screen");
 });
 
@@ -514,12 +516,12 @@ test("homepage hero retains its height-aware first-viewport contract", async () 
 });
 
 test("site search opens with an explicit initial focus target", async () => {
-  const headerSource = await readFile(new URL("../app/components/SiteHeader.tsx", import.meta.url), "utf8");
+  const searchSource = await readFile(new URL("../app/components/SiteSearchContent.tsx", import.meta.url), "utf8");
   const css = await readFile(new URL("../app/globals.css", import.meta.url), "utf8");
-  assert.match(headerSource, /const searchInputRef = useRef<HTMLInputElement>\(null\)/, "site search must retain a native input focus target");
-  assert.match(headerSource, /<Dialog\.Content[^>]*initialFocus=\{searchInputRef\}/, "Dialog must own initial search focus through its published focus contract");
-  assert.match(headerSource, /<Input[\s\S]*ref=\{searchInputRef\}/, "the search field must receive the Dialog initial-focus ref");
-  assert.doesNotMatch(headerSource, /<Input[\s\S]*autoFocus/, "native autofocus must not race the Dialog focus lifecycle");
+  assert.match(searchSource, /const searchInputRef = useRef<HTMLInputElement>\(null\)/, "site search must retain a native input focus target");
+  assert.match(searchSource, /<Dialog\.Content[^>]*initialFocus=\{searchInputRef\}/, "Dialog must own initial search focus through its published focus contract");
+  assert.match(searchSource, /<Input[\s\S]*ref=\{searchInputRef\}/, "the search field must receive the Dialog initial-focus ref");
+  assert.doesNotMatch(searchSource, /<Input[\s\S]*autoFocus/, "native autofocus must not race the Dialog focus lifecycle");
   assert.match(css, /\.search-dialog \{[^}]*--search-dialog-top: clamp\([^;]+;[^}]*inset-block-start: var\(--search-dialog-top\);[^}]*transform: translateX\(-50%\) scale\(1\);/, "desktop search must retain a stable top edge while its result-driven height changes");
   assert.match(css, /--brick-dialog-max-block-size: min\(46rem, calc\(100dvb - var\(--search-dialog-top\) - 1rem - env\(safe-area-inset-bottom\)\)\)/, "top-anchored search must preserve a safe viewport bottom boundary");
   assert.match(css, /@media \(max-width: 640px\)[\s\S]*\.search-dialog, \.search-dialog\[data-state="closed"\] \{[^}]*inset: 0;[^}]*transform: none;/, "full-screen mobile search must remain exempt from desktop anchoring");

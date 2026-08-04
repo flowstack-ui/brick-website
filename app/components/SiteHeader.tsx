@@ -1,13 +1,11 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useState, type ComponentType } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Badge } from "@flowstack-ui/brick/badge";
 import { Button } from "@flowstack-ui/brick/button";
 import { Dialog } from "@flowstack-ui/brick/dialog";
 import { Drawer } from "@flowstack-ui/brick/drawer";
-import { Input } from "@flowstack-ui/brick/input";
 import { NavList } from "@flowstack-ui/brick/nav-list";
 import { MarkGithubIcon } from "@primer/octicons-react";
 import {
@@ -26,7 +24,7 @@ import {
   X,
 } from "lucide-react";
 import { BrandMark } from "./BrandMark";
-import { components, guides, source } from "@/app/lib/content";
+import { source } from "@/app/lib/source";
 
 const nav = [
   { href: "/docs", label: "Guides" },
@@ -53,35 +51,27 @@ function applyAppearance(value: Appearance) {
 
 export function SiteHeader() {
   const pathname = usePathname();
-  const [query, setQuery] = useState("");
   const [searchOpen, setSearchOpen] = useState(false);
-  const searchInputRef = useRef<HTMLInputElement>(null);
+  const [SearchContent, setSearchContent] = useState<ComponentType | null>(null);
+
+  const loadSearchContent = useCallback(() => {
+    void import("./SiteSearchContent").then((module) => {
+      setSearchContent(() => module.SiteSearchContent);
+    });
+  }, []);
 
   useEffect(() => {
     const openSearch = (event: KeyboardEvent) => {
       if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === "k") {
         event.preventDefault();
+        loadSearchContent();
         setSearchOpen(true);
       }
     };
 
     window.addEventListener("keydown", openSearch);
     return () => window.removeEventListener("keydown", openSearch);
-  }, []);
-
-  const searchResults = useMemo(() => {
-    const normalized = query.trim().toLowerCase();
-    const componentResults = (normalized
-      ? components.filter((component) => `${component.title} ${component.description} ${component.category}`.toLowerCase().includes(normalized))
-      : components
-    ).slice(0, 6);
-    const guideResults = Object.entries(guides)
-      .filter(([, guide]) => !normalized || `${guide.title} ${guide.eyebrow} ${guide.description}`.toLowerCase().includes(normalized))
-      .slice(0, 4);
-    return { componentResults, guideResults };
-  }, [query]);
-
-  const resultCount = searchResults.componentResults.length + searchResults.guideResults.length;
+  }, [loadSearchContent]);
 
   const toggleAppearance = () => {
     const current: Appearance = document.documentElement.dataset.brickAppearance === "dark" ? "dark" : "light";
@@ -103,7 +93,13 @@ export function SiteHeader() {
       </nav>
 
       <div className="header-actions">
-        <Dialog.Root open={searchOpen} onOpenChange={setSearchOpen}>
+        <Dialog.Root
+          open={searchOpen}
+          onOpenChange={(open) => {
+            if (open) loadSearchContent();
+            setSearchOpen(open);
+          }}
+        >
           <Dialog.Trigger asChild>
             <Button
               aria-label="Search Brick documentation"
@@ -112,84 +108,14 @@ export function SiteHeader() {
               tone="neutral"
               variant="soft"
               size="sm"
+              onFocus={loadSearchContent}
+              onPointerEnter={loadSearchContent}
               startIcon={<Search size={15} aria-hidden="true" />}
             >
               Search <kbd className="shortcut">⌘K</kbd>
             </Button>
           </Dialog.Trigger>
-          <Dialog.Portal>
-            <Dialog.Overlay />
-            <Dialog.Content size="lg" className="search-dialog" initialFocus={searchInputRef}>
-              <Dialog.Header className="search-dialog-header">
-                <div className="search-dialog-heading">
-                  <span className="search-dialog-icon"><Search size={18} aria-hidden="true" /></span>
-                  <div>
-                    <Dialog.Title>Search Brick</Dialog.Title>
-                    <Dialog.Description>Find components, guides, and concepts.</Dialog.Description>
-                  </div>
-                  <Dialog.Close asChild>
-                    <Button aria-label="Close search" className="search-dialog-close" tone="neutral" variant="ghost" size="sm"><X size={18} aria-hidden="true" /></Button>
-                  </Dialog.Close>
-                </div>
-                <Input
-                  autoComplete="off"
-                  id="brick-site-search"
-                  name="brick-site-search"
-                  ref={searchInputRef}
-                  value={query}
-                  onChange={(event) => setQuery(event.currentTarget.value)}
-                  placeholder="Search 75 components…"
-                  startAdornment={<Search size={16} aria-hidden="true" />}
-                  type="search"
-                  clearable
-                  onClear={() => setQuery("")}
-                />
-              </Dialog.Header>
-              <Dialog.Body className="search-dialog-body">
-                <div className="search-result-groups" aria-live="polite">
-                  {searchResults.componentResults.length > 0 && (
-                    <section className="search-result-group" aria-labelledby="search-components-label">
-                      <div className="search-group-heading"><span id="search-components-label">Components</span><small>{searchResults.componentResults.length}</small></div>
-                      <div className="search-result-list">
-                        {searchResults.componentResults.map((component) => (
-                          <Dialog.Close asChild key={component.slug}>
-                            <a href={`/components/${component.slug}`} className="search-result">
-                              <span className="search-result-icon"><Package size={16} aria-hidden="true" /></span>
-                              <span className="search-result-copy"><strong>{component.title}</strong><small>{component.description}</small></span>
-                              <span className="search-result-meta"><Badge tone="neutral" variant="soft" size="sm">{component.category}</Badge><ArrowRight size={15} aria-hidden="true" /></span>
-                            </a>
-                          </Dialog.Close>
-                        ))}
-                      </div>
-                    </section>
-                  )}
-                  {searchResults.guideResults.length > 0 && (
-                    <section className="search-result-group" aria-labelledby="search-guides-label">
-                      <div className="search-group-heading"><span id="search-guides-label">Guides</span><small>{searchResults.guideResults.length}</small></div>
-                      <div className="search-result-list">
-                        {searchResults.guideResults.map(([slug, guide]) => (
-                          <Dialog.Close asChild key={slug}>
-                            <a href={`/docs/${slug}`} className="search-result">
-                              <span className="search-result-icon"><BookOpen size={16} aria-hidden="true" /></span>
-                              <span className="search-result-copy"><strong>{guide.title}</strong><small>{guide.description}</small></span>
-                              <span className="search-result-meta"><Badge tone="accent" variant="soft" size="sm">Guide</Badge><ArrowRight size={15} aria-hidden="true" /></span>
-                            </a>
-                          </Dialog.Close>
-                        ))}
-                      </div>
-                    </section>
-                  )}
-                  {resultCount === 0 && (
-                    <div className="search-empty"><span><Search size={18} aria-hidden="true" /></span><strong>No results for “{query}”</strong><small>Try a component, guide, or category such as forms.</small></div>
-                  )}
-                </div>
-              </Dialog.Body>
-              <Dialog.Footer className="search-dialog-footer">
-                <span>{resultCount} {resultCount === 1 ? "result" : "results"}</span>
-                <span className="search-footer-shortcut"><kbd>Esc</kbd> to close</span>
-              </Dialog.Footer>
-            </Dialog.Content>
-          </Dialog.Portal>
+          {searchOpen && SearchContent ? <SearchContent /> : null}
         </Dialog.Root>
 
         <div className="header-icon-actions">

@@ -8,7 +8,7 @@ import { DocsShell } from "@/app/components/DocsShell";
 import { GuideVisual } from "@/app/components/GuideVisual";
 import { MarkdownArticle } from "@/app/components/MarkdownArticle";
 import { StructuredData } from "@/app/components/StructuredData";
-import { guideBySlug, guides } from "@/app/lib/content";
+import { guideBySlug, guides } from "@/app/lib/guides";
 import { breadcrumbStructuredData, createGuideMetadata } from "@/app/lib/seo";
 import { extractMarkdownToc } from "@/app/lib/toc";
 

@@ -7,9 +7,11 @@ import { ArrowLeft, ArrowRight } from "lucide-react";
 import { ComponentBreadcrumb } from "@/app/components/ComponentBreadcrumb";
 import { ComponentDocument } from "@/app/components/ComponentDocument";
 import { ComponentExampleCanvas } from "@/app/components/ComponentExampleCanvas";
-import { DocsShell } from "@/app/components/DocsShell";
+import { ComponentDocsShell } from "@/app/components/ComponentDocsShell";
 import { StructuredData } from "@/app/components/StructuredData";
-import { componentBySlug, componentDoc, components, source } from "@/app/lib/content";
+import { componentDoc } from "@/app/lib/component-content";
+import { componentBySlug, components } from "@/app/lib/catalog";
+import { source } from "@/app/lib/source";
 import { componentDocToc, consumerComponentMarkdown } from "@/app/lib/component-docs";
 import { breadcrumbStructuredData, createComponentMetadata } from "@/app/lib/seo";
 
@@ -46,7 +48,7 @@ export default async function ComponentPage({ params }: { params: Promise<{ slug
         { name: component.category, path: `/components#${categoryId(component.category)}` },
         { name: component.title, path: `/components/${component.slug}` },
       ])} />
-    <DocsShell componentSlug={slug} current="components" toc={componentDocToc(consumerMarkdown)}>
+    <ComponentDocsShell componentSlug={slug} toc={componentDocToc(consumerMarkdown)}>
       <article className="docs-article component-doc">
         <ComponentBreadcrumb category={component.category} categoryHref={`/components#${categoryId(component.category)}`} title={component.title} />
         <div className="component-kicker"><Badge tone="accent" variant="soft">{component.category}</Badge><span>Brick {source.version}</span></div>
@@ -64,7 +66,7 @@ export default async function ComponentPage({ params }: { params: Promise<{ slug
           {next ? <a href={`/components/${next.slug}`}><span><small>Next</small>{next.title}</span><ArrowRight size={15} /></a> : <span />}
         </nav>
       </article>
-    </DocsShell>
+    </ComponentDocsShell>
     </>
   );
 }

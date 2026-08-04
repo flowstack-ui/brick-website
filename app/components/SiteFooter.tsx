@@ -1,7 +1,7 @@
 import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 import { BrandMark } from "./BrandMark";
-import { source } from "@/app/lib/content";
+import { source } from "@/app/lib/source";
 
 export function SiteFooter() {
   return (
