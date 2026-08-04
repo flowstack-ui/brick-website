@@ -224,6 +224,7 @@ test("component discovery and rendering remain consumer-first Brick compositions
   assert.match(css, /@media \(max-width: 640px\)[\s\S]*\.catalog-outcomes, \.component-result-grid \{ grid-template-columns: 1fr; \}/, "catalog discovery and results must stack at the narrow-mobile boundary");
   assert.match(css, /@media \(max-width: 640px\)[\s\S]*\.component-guidance-item \{ grid-template-columns: 1fr; gap: 1rem; \}/, "usage guidance must stack its label and content at the narrow-mobile boundary");
   assert.match(css, /\.component-api \.brick-table \{ --brick-table-min-inline-size: 40rem; font-size: \.92rem; \}/, "component API tables must use a comfortable readable reference scale");
+  assert.match(css, /\.component-api > \.component-section-heading \.component-section-description \{[^}]*color: var\(--brick-color-text-secondary\);[^}]*font-size: 1rem;[^}]*text-transform: none;/, "the API explanation must remain normal secondary body copy rather than inheriting eyebrow typography");
   assert.match(css, /\.component-styling \.markdown-token-cluster \{[^}]*background: var\(--brick-color-surface-base\);/, "dense classes and tokens must receive a distinct scannable cluster surface");
 });
 

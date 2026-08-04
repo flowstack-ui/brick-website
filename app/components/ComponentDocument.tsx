@@ -61,7 +61,7 @@ export function ComponentDocument({ componentSlug, componentTitle, markdown }: {
           <div className="component-section-heading">
             <span>Public contract</span>
             <Text as="h2" variant="title-lg">API</Text>
-            <Text tone="secondary">Start with the public parts and root options below. Components with multiple parts separate each area into its own named subsection.</Text>
+            <Text as="p" className="component-section-description" tone="secondary">Start with the public parts and root options below. Components with multiple parts separate each area into its own named subsection.</Text>
           </div>
           <SectionBody comfortableTable componentSlug={componentSlug} section={sections.get("API")!} />
         </section>
