@@ -48,7 +48,7 @@ export function GuideVisual({ slug }: { slug: keyof typeof guideCopy }) {
       <header className="guide-visual-heading">
         <span>{copy.kicker}</span>
         <Text as="h2" id="guide-map-title" variant="title-lg" wrap="balance">{copy.title}</Text>
-        <Text tone="secondary">{copy.body}</Text>
+        <Text variant="body-lg" tone="secondary" wrap="balance">{copy.body}</Text>
       </header>
 
       {slug === "getting-started" ? <GettingStartedMap /> : null}
