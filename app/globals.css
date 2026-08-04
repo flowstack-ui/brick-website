@@ -562,6 +562,9 @@
   .component-pagination a:last-child { justify-content: flex-end; text-align: end; }
   .component-pagination a span { display: grid; }.component-pagination small { color: var(--brick-color-text-muted); }
   .component-pagination .component-category-return { justify-content: center; text-align: center; }
+  .component-category-return > span { min-width: 8.5rem; gap: .08rem; padding: .5rem .8rem; border: 1px solid var(--brick-color-border-subtle); border-radius: .65rem; background: var(--brick-color-surface-base); }
+  .component-category-return strong { font-size: .84rem; font-weight: 650; }
+  .component-category-return:hover > span { border-color: var(--brick-color-accent-border); background: var(--brick-color-accent-soft); color: var(--brick-color-accent-text); }
 
   .themes-hero, .atom-hero { display: grid; min-height: 42rem; grid-template-columns: 1fr 1fr; align-items: center; gap: clamp(3rem, 8vw, 9rem); padding-block: 6rem; }
   .themes-hero .page-title, .atom-hero .page-title { font-size: clamp(3.5rem, 7vw, 7rem); }
@@ -774,7 +777,7 @@
     .catalog-art { min-height: 22rem; }.catalog-art::before { inset-inline: 0; }.catalog-module { min-width: 8.5rem; padding: .55rem .6rem; }.module-layout { display: none; }.catalog-core { inset-inline-start: 55%; width: 7rem; height: 7rem; }.catalog-core strong { font-size: 2.35rem; }
     .closing-cta { margin-inline: 1rem; padding: 1.5rem; }.closing-actions, .closing-actions .install-command { width: 100%; }
     .site-footer { grid-template-columns: 1fr; justify-items: center; gap: 1.75rem; padding-block: 3rem 1.5rem; text-align: center; }.footer-brand { display: grid; justify-items: center; }.footer-brand-heading { justify-content: center; }.footer-brand .brand-word { display: inline; }.footer-brand .version-pill { display: inline-flex; }.footer-brand p { margin-block-start: .7rem; }.footer-links { display: grid; width: min(100%, 24rem); grid-template-columns: repeat(2, minmax(0, 1fr)); justify-content: stretch; gap: .25rem .75rem; }.footer-links a { min-height: 2.75rem; justify-content: center; padding-inline: .4rem; }.footer-meta { grid-column: auto; width: 100%; flex-direction: column; justify-content: center; gap: .65rem; text-align: center; }.footer-endorsement { justify-content: center; }.footer-legal { text-align: center; }
-    .component-pagination { grid-template-columns: 1fr; }.component-pagination > span:empty { display: none; }.component-pagination a:last-child, .component-pagination .component-category-return { justify-content: flex-start; text-align: start; }
+    .component-pagination { grid-template-columns: 1fr; }.component-pagination > span:empty { display: none; }.component-pagination a:last-child, .component-pagination .component-category-return { justify-content: flex-start; text-align: start; }.component-category-return > span { width: 100%; text-align: start; }
     .docs-mobile-drawer { --brick-drawer-inline-size-md: 100dvi; inline-size: 100dvi; border-inline: 0; border-radius: 0; }
     .theme-orbit { width: min(100%, 26rem); }.orbit-center { border-radius: 1.8rem; }.orbit-chip { min-width: 6.3rem; padding: .52rem .6rem; }.orbit-chip small { display: none; }
     .token-map-heading { align-items: flex-start; flex-direction: column; gap: .25rem; }.token-map::before { inset-inline-start: 3.38rem; }.token-family { grid-template-columns: 1.4rem 2.6rem minmax(0, 1fr); }.token-values { grid-column: 2 / -1; justify-content: flex-start; padding-inline-start: .05rem; }

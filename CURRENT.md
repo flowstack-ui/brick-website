@@ -7,7 +7,7 @@ Brick UI Website is implemented as a multi-route product and documentation site.
 - The component catalog is a full-width, outcome-led discovery hub without documentation rails; scoped search, category filters, source-backed results, and a query-aware empty state replace one undifferentiated card wall.
 - Component routes use a searchable, route-aware category navigator with aligned category groups on desktop and a paired Components/On-this-page toolbar with full-height Brick drawers on narrow screens.
 - Component guides present source-backed consumer guidance, setup, examples, a single-lane usage decision, roomier multi-part API sections, accessibility, responsive behavior, grouped styling references, and optional advanced reference before linking to maintainer evidence and changelogs.
-- Breadcrumbs and category-relative previous/category/next navigation preserve a clear return path from every component route.
+- Breadcrumbs and category-relative previous/category/next navigation preserve a clear return path from every component route; the center category destination is a labeled quiet control rather than an ambiguous icon action.
 - Markdown API matrices render through Brick Table, inline technical literals render through Brick Code with restrained semantic token roles, and fenced examples retain the website's Shiki-to-Brick Code Block adapter.
 - Guides cover installation, theming, accessibility, and composition.
 - Theme and Atom relationship pages explain visual and behavioral ownership boundaries, with Atom and Brick presented as independent layers in the larger Flowstack ecosystem.

@@ -218,6 +218,8 @@ test("component discovery and rendering remain consumer-first Brick compositions
   assert.match(catalogSource, /aria-pressed=\{category === entry\}/, "category filters must expose their selected state");
   assert.match(catalogSource, /aria-live="polite"/, "search result changes must be announced without moving focus");
   assert.match(componentSource, /categoryComponents[\s\S]*component-category-return/, "previous, category, and next navigation must remain category-relative");
+  assert.match(componentSource, /Back to category[\s\S]*<strong>\{component\.category\}<\/strong>/, "the category return must read as a labeled destination instead of an unrelated icon action");
+  assert.doesNotMatch(componentSource, /LayoutGrid/, "the category return must not introduce an ambiguous grid icon between directional links");
   assert.match(markdownSource, /<Code[^>]*data-code-kind=\{inlineCodeKind/, "inline technical literals must use the published Brick Code component with semantic token styling");
   assert.match(markdownSource, /<Table\.Container[\s\S]*<Table\.Root[\s\S]*<Table\.Header/, "Markdown API matrices must use the published Brick Table anatomy");
   assert.match(css, /\.catalog-outcomes \{[^}]*grid-template-columns: repeat\(3/, "the full-width outcome discovery surface must retain a scannable desktop grid");

@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import { Badge } from "@flowstack-ui/brick/badge";
 import { Code } from "@flowstack-ui/brick/code";
 import { Text } from "@flowstack-ui/brick/text";
-import { ArrowLeft, ArrowRight, LayoutGrid } from "lucide-react";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 import { ComponentBreadcrumb } from "@/app/components/ComponentBreadcrumb";
 import { ComponentDocument } from "@/app/components/ComponentDocument";
 import { ComponentPreview } from "@/app/components/ComponentPreview";
@@ -51,7 +51,7 @@ export default async function ComponentPage({ params }: { params: Promise<{ slug
         <ComponentDocument componentSlug={slug} componentTitle={component.title} markdown={consumerMarkdown} />
         <nav className="component-pagination" aria-label={`${component.category} component pages`}>
           {previous ? <a href={`/components/${previous.slug}/`}><ArrowLeft size={15} /><span><small>Previous</small>{previous.title}</span></a> : <span />}
-          <a className="component-category-return" href={`/components/#${categoryId(component.category)}`}><LayoutGrid size={15} aria-hidden="true" /><span><small>View category</small>{component.category}</span></a>
+          <a className="component-category-return" href={`/components/#${categoryId(component.category)}`}><span><small>Back to category</small><strong>{component.category}</strong></span></a>
           {next ? <a href={`/components/${next.slug}/`}><span><small>Next</small>{next.title}</span><ArrowRight size={15} /></a> : <span />}
         </nav>
       </article>
