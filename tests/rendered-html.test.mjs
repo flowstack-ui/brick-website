@@ -765,10 +765,10 @@ for (const [pathname, expected] of routes) {
     }
     if (pathname === "/") {
       assert.match(html, /<link rel="icon" href="\/favicon\.svg" type="image\/svg\+xml"\s*\/?>/, "favicon must resolve against the current host");
-      assert.doesNotMatch(html, /https:\/\/brick-ui\.com\/favicon\.svg/, "favicon must not depend on the future custom domain");
+      assert.doesNotMatch(html, /https:\/\/brick-ui\.com\/favicon\.svg/, "favicon must use a route-local asset instead of a redundant absolute-domain request");
       assert.match(html, /aria-keyshortcuts="Meta\+K Control\+K"/, "search trigger must expose its implemented keyboard shortcuts");
-      assert.match(html, /aria-label="Search Brick documentation"/, "search trigger must retain a name when its visible label is hidden");
-      assert.match(html, /<kbd class="shortcut">⌘K<\/kbd>/, "search shortcut must be presented as a key command");
+      assert.match(html, /aria-label="Search ⌘K"/, "search trigger must retain its complete visible label when responsive styling hides the content");
+      assert.match(html, /<kbd class="shortcut" aria-hidden="true">⌘K<\/kbd>/, "the visual search shortcut must remain a key command without entering the button's accessible label");
       assert.match(html, /octicon-mark-github/, "GitHub action must use the recognizable GitHub mark");
       const inputs = [...html.matchAll(/<input\b[^>]*>/g)].map((match) => match[0]);
       assert.ok(inputs.length > 0, "homepage must render its workspace filter");

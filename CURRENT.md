@@ -123,6 +123,13 @@ Brick UI Website is implemented as a multi-route product and documentation site.
   discovery, page-specific canonical/social metadata, homepage Organization,
   WebSite, and SoftwareSourceCode JSON-LD, a cache-qualified 110,597-byte social
   image, Vercel Analytics emission, and a real noindex 404.
+- Canonical-host Lighthouse scores 97 mobile and 100 desktop Performance, with
+  100 Accessibility, Best Practices, and SEO in both profiles. Mobile records
+  1.1 s FCP, 2.2 s LCP, 40 ms total blocking, and zero CLS; desktop records
+  0.3 s FCP, 0.5 s LCP, zero blocking, and zero CLS. The remaining 24–26 KiB
+  unused and 14 KiB legacy opportunities are the already classified shared
+  Next runtime; the two intentional CSS requests estimate 70 ms mobile savings
+  and do not justify weakening package/application ownership.
 - The site accent theme explicitly pairs purple solid actions with a white foreground in both appearances and verifies every solid interaction state at WCAG AA contrast.
 - The reviewed dependency is `@flowstack-ui/brick@0.1.2` at source commit
   `6daadb4ccc1eb8b91b7c0be2fb0a8355c77cdc6b`.

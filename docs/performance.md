@@ -132,7 +132,13 @@ build gate requires the asset to remain 1200×630 and at or below 200,000 bytes.
 
 The canonical host now verifies public TLS, cache and security headers,
 canonical delivery, and the social asset's bounded cache and transfer size.
-The final public mobile/desktop Lighthouse and interaction matrix remains the
-authority for any further critical-CSS work; local production profiles and the
-older protected-preview transfer baseline remain supporting evidence rather
-than a substitute for canonical-host measurement.
+Public homepage Lighthouse scores 97 mobile and 100 desktop Performance, with
+100 Accessibility, Best Practices, and SEO in both profiles. Mobile records
+1.1 s FCP, 2.2 s LCP, 40 ms total blocking, and zero CLS; desktop records
+0.3 s FCP, 0.5 s LCP, zero blocking, and zero CLS. The public report repeats
+the classified 24–26 KiB unused and 14 KiB legacy Next-runtime findings. Its
+two intentional CSS requests estimate only 70 ms mobile savings, while the
+1.6 KiB Vercel Analytics script's 31-day cache produces about 148 bytes of
+modeled waste. None justifies changing Atom, Brick, or the current delivery
+boundary. Final owner interaction review and future field Core Web Vitals
+remain distinct evidence.

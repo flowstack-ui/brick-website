@@ -102,7 +102,7 @@ export function SiteHeader() {
         >
           <Dialog.Trigger asChild>
             <Button
-              aria-label="Search Brick documentation"
+              aria-label="Search ⌘K"
               aria-keyshortcuts="Meta+K Control+K"
               className="search-trigger"
               tone="neutral"
@@ -112,7 +112,7 @@ export function SiteHeader() {
               onPointerEnter={loadSearchContent}
               startIcon={<Search size={15} aria-hidden="true" />}
             >
-              Search <kbd className="shortcut">⌘K</kbd>
+              Search <kbd className="shortcut" aria-hidden="true">⌘K</kbd>
             </Button>
           </Dialog.Trigger>
           {searchOpen && SearchContent ? <SearchContent /> : null}

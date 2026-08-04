@@ -4,9 +4,9 @@
 
 - Add the qualified Swifty organization logo and verified public `sameAs`
   profiles to structured data when those final brand inputs are supplied.
-- Run the final mobile and desktop Lighthouse and visual interaction review on
-  the public canonical host. Canonical delivery, redirect, metadata, crawl,
-  social-image, analytics, and 404 checks are already qualified; local
+- Complete the final owner visual and interaction review on the public
+  canonical host. Canonical mobile/desktop Lighthouse, delivery, redirect,
+  metadata, crawl, social-image, analytics, and 404 checks are qualified; local
   production Lighthouse and the protected preview matrix remain supporting
   evidence.
 - Prototype a bounded critical-CSS or deferred noncritical-shell strategy only

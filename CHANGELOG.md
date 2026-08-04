@@ -5,6 +5,11 @@
   `www` hostname as a permanent 308 redirect, then qualified public TLS,
   security headers, metadata, structured data, crawl files, AI discovery,
   analytics emission, social artwork, and real 404 delivery.
+- Qualified the public canonical homepage at 97 mobile and 100 desktop
+  Performance with 100 Accessibility, Best Practices, and SEO in both profiles,
+  zero CLS, and 0–40 ms blocking time. Kept the visible Command-K hint in the
+  responsive search button's explicit accessible name so label-in-name remains
+  exact even when narrow styling hides the visible content.
 
 - Corrected Field's synchronized quick start to use Label's single automatic
   required marker and documented when a standalone RequiredIndicator is
