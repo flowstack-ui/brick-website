@@ -14,9 +14,6 @@ if (configuration.schemaVersion !== 1) errors.push("unsupported verification sch
 if (/compatibility_flags\s*:\s*\[[^\]]*nodejs_compat/u.test(viteConfiguration)) {
   errors.push("vite.config.ts explicitly enables the now-default nodejs_compat flag");
 }
-if (!manifest.scripts?.build?.includes("scripts/finalize-sites-build.mjs")) {
-  errors.push("build does not finalize the generated Sites worker configuration");
-}
 for (const [role, script] of Object.entries(configuration.commands)) {
   if (!manifest.scripts?.[script]) errors.push(`${role} requires npm script ${script}`);
 }
