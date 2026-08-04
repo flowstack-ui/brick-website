@@ -476,7 +476,7 @@
   .syntax-copy-trigger svg { flex: none; }
   .syntax-copy-spinner { animation: syntax-copy-spin .8s linear infinite; }
   @keyframes syntax-copy-spin { to { transform: rotate(1turn); } }
-  .markdown-table-wrap { max-width: 100%; margin-block: 1.25rem; }
+  .markdown-table-wrap { min-width: 0; max-width: 100%; margin-block: 1.25rem; overflow: auto hidden; overscroll-behavior-inline: contain; scrollbar-width: thin; }
   .markdown-body .brick-table { --brick-table-min-inline-size: 34rem; font-size: .86rem; }
   .markdown-body .brick-table__head { color: var(--brick-color-text-primary); }
   .markdown-body blockquote { margin-inline: 0; padding-inline-start: 1rem; border-inline-start: 3px solid var(--brick-color-accent-border); }
@@ -599,7 +599,7 @@
   .component-api .markdown-body h3 { margin: 2.5rem 0 .35rem; padding-block-start: .9rem; border-block-start: 1px solid var(--brick-color-border-subtle); font-size: 1.18rem; }
   .component-api .markdown-body > h3:first-child { margin-block-start: 1.5rem; padding-block-start: 0; border-block-start: 0; }
   .component-api .markdown-body h3 + p { margin-block-start: 0; }
-  .component-api .markdown-table-wrap { overflow: hidden auto; border: 1px solid var(--brick-color-border-subtle); border-radius: .8rem; background: var(--brick-color-surface-raised); }
+  .component-api .markdown-table-wrap { overflow: auto hidden; border: 1px solid var(--brick-color-border-subtle); border-radius: .8rem; background: var(--brick-color-surface-raised); }
   .component-api .brick-table { --brick-table-min-inline-size: 40rem; font-size: .92rem; }
   .component-accessibility { padding: clamp(1.25rem, 3vw, 2rem); border: 1px solid var(--brick-color-accent-border); border-radius: 1rem; background: linear-gradient(135deg, var(--brick-color-accent-soft), transparent 72%), var(--brick-color-surface-raised); }
   .component-accessibility-heading { display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: center; gap: .75rem; margin-block-end: 1rem; }
@@ -826,8 +826,12 @@
     .component-guidance-item { grid-template-columns: 1fr; gap: 1rem; }
     .component-doc-section { margin-block-start: 3rem; }
     .component-accessibility, .component-styling { padding: 1rem; }
-    .component-maintainer-actions { align-items: stretch; flex-direction: column; }
-    .component-maintainer-actions .brick-button { width: 100%; }
+    .component-maintainer .brick-card-header > div { grid-template-columns: auto auto; justify-content: center; }
+    .component-maintainer .brick-card-content { text-align: center; }
+    .component-maintainer-actions { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); align-items: center; gap: .25rem; }
+    .component-maintainer-actions .brick-button { width: 100%; min-width: 0; padding-inline: .4rem; }
+    .component-maintainer-actions .brick-button__content { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .component-maintainer-actions .brick-button__icon { display: none; }
     .example-canvas { min-height: 16rem; padding: 1.25rem; }
     .example-canvas[data-layout="form"], .example-canvas[data-layout="overlay"], .example-canvas[data-layout="interaction"] { min-height: 18rem; }
     .example-canvas[data-layout="expanding"] { min-height: 0; padding-block: 2rem; }
@@ -842,7 +846,14 @@
     .catalog-art { min-height: 22rem; }.catalog-art::before { inset-inline: 0; }.catalog-module { min-width: 8.5rem; padding: .55rem .6rem; }.module-layout { display: none; }.catalog-core { inset-inline-start: 55%; width: 7rem; height: 7rem; }.catalog-core strong { font-size: 2.35rem; }
     .closing-cta { margin-inline: 1rem; padding: 1.5rem; }.closing-actions, .closing-actions .install-command { width: 100%; }
     .site-footer { grid-template-columns: 1fr; justify-items: center; gap: 1.75rem; padding-block: 3rem 1.5rem; text-align: center; }.footer-brand { display: grid; justify-items: center; }.footer-brand-heading { justify-content: center; }.footer-brand .brand-word { display: inline; }.footer-brand .version-pill { display: inline-flex; }.footer-brand p { margin-block-start: .7rem; }.footer-links { display: grid; width: min(100%, 24rem); grid-template-columns: repeat(2, minmax(0, 1fr)); justify-content: stretch; gap: .25rem .75rem; }.footer-links a { min-height: 2.75rem; justify-content: center; padding-inline: .4rem; }.footer-meta { grid-column: auto; width: 100%; flex-direction: column; justify-content: center; gap: .65rem; text-align: center; }.footer-endorsement { justify-content: center; }.footer-legal { text-align: center; }
-    .component-pagination { grid-template-columns: 1fr; }.component-pagination > span:empty { display: none; }.component-pagination a:last-child, .component-pagination .component-category-return { justify-content: flex-start; text-align: start; }.component-category-return > span { width: 100%; text-align: start; }
+    .component-pagination { grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); gap: .35rem; }
+    .component-pagination > span:empty { display: block; }
+    .component-pagination a { min-width: 0; gap: .35rem; }
+    .component-pagination a span { min-width: 0; }
+    .component-pagination a:not(.component-category-return) span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .component-pagination .component-category-return { justify-content: center; text-align: center; }
+    .component-category-return > span { min-width: 0; padding-inline: .45rem; text-align: center; }
+    .component-category-return strong { display: none; }
     .docs-mobile-drawer { --brick-drawer-inline-size-md: 100dvi; inline-size: 100dvi; border-inline: 0; border-radius: 0; }
     .theme-orbit { width: min(100%, 26rem); }.orbit-center { border-radius: 1.8rem; }.orbit-chip { min-width: 6.3rem; padding: .52rem .6rem; }.orbit-chip small { display: none; }
     .token-map-heading { align-items: flex-start; flex-direction: column; gap: .25rem; }.token-map::before { inset-inline-start: 3.38rem; }.token-family { grid-template-columns: 1.4rem 2.6rem minmax(0, 1fr); }.token-values { grid-column: 2 / -1; justify-content: flex-start; padding-inline-start: .05rem; }

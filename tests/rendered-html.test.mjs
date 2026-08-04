@@ -234,11 +234,14 @@ test("component discovery and rendering remain consumer-first Brick compositions
   assert.match(catalogSource, /catalog-outcome-title[^>]*><strong>\{label\}<\/strong><ArrowRight/, "outcome arrows must remain attached to their action labels");
   assert.match(css, /\.catalog-outcome-title \{[^}]*width: fit-content;[^}]*gap: \.3rem;/, "outcome arrows must not be pushed to the far edge of their cards");
   assert.match(catalogSource, /aria-live="polite"/, "search result changes must be announced without moving focus");
+  assert.match(css, /\.markdown-table-wrap \{[^}]*min-width: 0;[^}]*overflow: auto hidden;[^}]*overscroll-behavior-inline: contain;/, "documentation tables must preserve their column width and expose horizontal touch scrolling");
+  assert.match(css, /\.component-api \.markdown-table-wrap \{ overflow: auto hidden;/, "API tables must scroll on the inline axis instead of clipping it");
   assert.match(componentSource, /categoryComponents[\s\S]*component-category-return/, "previous, category, and next navigation must remain category-relative");
   assert.match(componentSource, /Back to category[\s\S]*<strong>\{component\.category\}<\/strong>/, "the category return must read as a labeled destination instead of an unrelated icon action");
   assert.doesNotMatch(componentSource, /LayoutGrid/, "the category return must not introduce an ambiguous grid icon between directional links");
   assert.match(componentDocSource, /Source docs<\/WebsiteButton>[\s\S]*Changelog<\/WebsiteButton>[\s\S]*Playground<\/WebsiteButton>/, "maintainer destinations must remain one equally weighted external-link group");
   assert.doesNotMatch(componentDocSource, /variant="soft"[^>]*>Source docs/, "source docs must not receive unexplained emphasis over peer GitHub destinations");
+  assert.match(css, /@media \(max-width: 640px\)[\s\S]*\.component-maintainer-actions \{ display: grid; grid-template-columns: repeat\(3, minmax\(0, 1fr\)\);[\s\S]*\.component-pagination \{ grid-template-columns: minmax\(0, 1fr\) auto minmax\(0, 1fr\);/, "mobile component footers must preserve compact three-action rows");
   assert.match(previewSource, /case "field":[^;]*required><Field\.Label>Email<\/Field\.Label>/, "the Field preview must rely on Label's required-state indicator contract");
   assert.doesNotMatch(previewSource, /case "field":[^;]*Field\.RequiredIndicator/, "the Field preview must not add a second required indicator to Label's automatic one");
   assert.match(previewSource, /case "swipeable-item":[^;]*preview-swipeable-content[^;]*size="sm" tone="danger" variant="ghost"/, "the Swipeable Item preview must use the complete padded content composition and bounded action recipe");

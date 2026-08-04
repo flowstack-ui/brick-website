@@ -10,7 +10,9 @@ Brick UI Website is implemented as a multi-route product and documentation site.
 - Component guides present source-backed consumer guidance, setup, examples, a single-lane usage decision, roomier multi-part API sections, accessibility, responsive behavior, grouped styling references, and optional advanced reference before linking to maintainer evidence and changelogs.
 - Source sections that only redirect to a playground are routed to the shared Maintainer resources footer; real Examples sections with code or additional consumer guidance remain in the reading path.
 - Breadcrumbs and category-relative previous/category/next navigation preserve a clear return path from every component route; the center category destination is a labeled quiet control rather than an ambiguous icon action.
+- On narrow screens, component previous/category/next navigation remains one compact row, and the centered maintainer card keeps its three equally weighted GitHub destinations together.
 - Markdown API matrices render through Brick Table, inline technical literals render through Brick Code with restrained semantic token roles, and fenced examples retain the website's Shiki-to-Brick Code Block adapter.
+- Documentation tables preserve their authored column measure and expose contained horizontal touch scrolling instead of clipping narrow-screen content.
 - Guides cover installation, theming, accessibility, and composition.
 - Theme and Atom relationship pages explain visual and behavioral ownership boundaries, with Atom and Brick presented as independent layers in the larger Flowstack ecosystem.
 - The global footer preserves Brick identity while identifying Flowstack membership and Swifty ownership through a restrained text endorsement.
