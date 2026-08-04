@@ -42,7 +42,7 @@
 - Rebuilt the Clear Ownership introduction with explanatory copy, a shared centered card lane, tighter section transition, and comfortable icon-to-title spacing.
 - Kept the final `Start with Brick` action on one line by assigning intermediate-width compression to the wrapping copy column.
 - Replaced the Themes hero's distorted playful orbit with a true circular semantic instrument and repaired eyebrow-icon and description-to-action spacing.
-- Removed the obsolete explicit `nodejs_compat` flag after the hosting platform made that compatibility mode the default.
+- Removed the obsolete explicit `nodejs_compat` flag and its generated empty artifact field after the hosting platform made that compatibility mode the default.
 
 ## 0.1.0 — 2026-08-02
 
