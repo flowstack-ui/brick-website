@@ -9,6 +9,8 @@
 - Added content and rendered-response assertions that prevent bare-link regressions.
 - Pinned the deployment runtime to the Node 22 release line so Vercel cannot
   silently advance the website to an unqualified future major.
+- Aligned GitHub Actions with the same Node 22 release line used locally and on
+  Vercel.
 - Removed the header and drawer brand links' conflicting forced accessible name;
   their visible Brick name and version now provide the label directly.
 
