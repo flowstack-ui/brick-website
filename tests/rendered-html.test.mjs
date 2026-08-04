@@ -111,6 +111,7 @@ test("mobile drawer retains its branded reference composition", async () => {
   assert.match(headerSource, /<NavList\.Root/, "drawer navigation must use the published Brick navigation primitive");
   assert.match(headerSource, /Build interfaces from pieces that belong together\./, "drawer must retain its product-specific title");
   assert.match(headerSource, /pathname\.startsWith\(href\)/, "drawer must identify the current product section");
+  assert.doesNotMatch(headerSource, /className="(?:brand-link|drawer-brand)"[^>]*aria-label=/, "brand links must derive their accessible names from their visible identity");
   assert.doesNotMatch(css, /\.version-pill \{ display: none; \}/, "header version must remain visible at every supported width");
   assert.doesNotMatch(css, /\.brand-word \{ display: none; \}/, "header wordmark must remain visible at every supported width");
   assert.match(css, /\.site-header \{ gap: \.5rem; padding-inline: \.75rem; \}\.brand-link, \.brand \{ gap: \.4rem; \}/, "narrow header must compact spacing instead of hiding identity");

@@ -91,7 +91,7 @@ export function SiteHeader() {
 
   return (
     <header className="site-header">
-      <Link className="brand-link" href="/" aria-label="Brick UI home">
+      <Link className="brand-link" href="/">
         <BrandMark />
         <span className="version-pill">v{source.version}</span>
       </Link>
@@ -230,7 +230,7 @@ export function SiteHeader() {
                 <Drawer.Header className="mobile-drawer-header">
                   <div className="drawer-brand-row">
                     <Drawer.Close asChild>
-                      <Link className="drawer-brand" href="/" aria-label="Brick UI home">
+                      <Link className="drawer-brand" href="/">
                         <BrandMark />
                         <span className="drawer-version">v{source.version}</span>
                       </Link>
