@@ -463,7 +463,11 @@
   .markdown-token-cluster .brick-code { display: inline-flex; margin: .12rem .15rem; white-space: normal; }
   .markdown-body .brick-code-block { margin-block: 1.2rem; }
   .markdown-body .brick-code-block .brick-code { padding: 0; background: transparent; color: inherit; font-size: inherit; }
-  .brick-code-block-content:focus-visible { outline-offset: calc(-2 * var(--brick-border-focus-width)); }
+  .brick-code-block-content:focus-visible {
+    border-end-start-radius: calc(var(--brick-code-block-radius) - var(--brick-border-focus-width) - var(--brick-border-focus-width));
+    border-end-end-radius: calc(var(--brick-code-block-radius) - var(--brick-border-focus-width) - var(--brick-border-focus-width));
+    outline-offset: calc(-2 * var(--brick-border-focus-width));
+  }
   .syntax-copy-trigger { min-inline-size: 5.8rem; justify-content: center; gap: .42rem; border: 1px solid transparent; font-family: var(--site-font-mono); font-size: .72rem; letter-spacing: .01em; transition: color 160ms ease, background-color 160ms ease, border-color 160ms ease, transform 160ms ease; }
   .syntax-copy-trigger:hover { border-color: var(--brick-color-border-default); }
   .syntax-copy-trigger:active { transform: translateY(1px); }
