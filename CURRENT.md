@@ -119,6 +119,6 @@ Brick UI Website is implemented as a multi-route product and documentation site.
   disabled because the current free account permits only one enabled project.
 - The site accent theme explicitly pairs purple solid actions with a white foreground in both appearances and verifies every solid interaction state at WCAG AA contrast.
 - The reviewed dependency is `@flowstack-ui/brick@0.1.2` at source commit
-  `a4a581c9bd08df12cb4e1c2de3e5f222d6099f74`.
+  `6daadb4ccc1eb8b91b7c0be2fb0a8355c77cdc6b`.
 
 Local development uses port 3012. The paired automated browser-test port is 4012.
