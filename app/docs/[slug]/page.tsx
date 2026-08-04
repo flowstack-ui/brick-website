@@ -5,6 +5,7 @@ import { WebsiteButton } from "@/app/components/WebsiteButton";
 import { Text } from "@flowstack-ui/brick/text";
 import { ArrowRight } from "lucide-react";
 import { DocsShell } from "@/app/components/DocsShell";
+import { GuideVisual } from "@/app/components/GuideVisual";
 import { MarkdownArticle } from "@/app/components/MarkdownArticle";
 import { guideBySlug, guides } from "@/app/lib/content";
 import { extractMarkdownToc } from "@/app/lib/toc";
@@ -25,11 +26,12 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
   const guide = guideBySlug(slug);
   if (!guide) notFound();
   return (
-    <DocsShell current={slug} toc={[...extractMarkdownToc(guide.body), { id: "continue-with-catalog", label: "Continue with the catalog" }]}>
+    <DocsShell current={slug} toc={[{ id: "guide-map", label: "Guide map" }, ...extractMarkdownToc(guide.body), { id: "continue-with-catalog", label: "Continue with the catalog" }]}>
       <article className="docs-article">
         <Badge tone="accent" variant="soft">{guide.eyebrow}</Badge>
         <Text as="h1" className="page-title" wrap="balance">{guide.title}</Text>
         <Text as="p" variant="body-lg" tone="secondary" className="page-lede">{guide.description}</Text>
+        <GuideVisual slug={slug as "getting-started" | "theming" | "accessibility" | "composition"} />
         <div><MarkdownArticle markdown={guide.body} /></div>
         <section className="docs-next" id="continue-with-catalog">
           <Text as="h2" variant="title-md">Continue with the catalog</Text>

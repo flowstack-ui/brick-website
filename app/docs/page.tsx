@@ -4,7 +4,7 @@ import { Badge } from "@flowstack-ui/brick/badge";
 import { Card } from "@flowstack-ui/brick/card";
 import { Grid } from "@flowstack-ui/brick/grid";
 import { Text } from "@flowstack-ui/brick/text";
-import { ArrowRight, BookOpen, Layers3, Palette, ShieldCheck } from "lucide-react";
+import { ArrowRight, BookOpen, Check, Layers3, Palette, ShieldCheck } from "lucide-react";
 import { DocsShell } from "@/app/components/DocsShell";
 import { WebsiteButton } from "@/app/components/WebsiteButton";
 import { source } from "@/app/lib/content";
@@ -12,10 +12,10 @@ import { source } from "@/app/lib/content";
 export const metadata: Metadata = { title: "Documentation", description: "Learn how to install, compose, theme, and ship interfaces with Brick." };
 
 const paths = [
-  { id: "getting-started-path", icon: BookOpen, title: "Getting started", body: "Install Brick and build your first finished surface.", href: "/docs/getting-started/" },
-  { id: "composition-path", icon: Layers3, title: "Composition", body: "Understand parts, layout, and application boundaries.", href: "/docs/composition/" },
-  { id: "theming-path", icon: Palette, title: "Theming", body: "Brand the complete catalog through semantic tokens.", href: "/docs/theming/" },
-  { id: "accessibility-path", icon: ShieldCheck, title: "Accessibility", body: "See how Atom and Brick divide responsibility.", href: "/docs/accessibility/" },
+  { id: "getting-started-path", step: "01", time: "Start here", icon: BookOpen, title: "Getting started", body: "Install Brick and build your first finished surface.", outcome: "A working component", href: "/docs/getting-started/" },
+  { id: "theming-path", step: "02", time: "Then brand it", icon: Palette, title: "Theming", body: "Map your identity onto the complete catalog through semantic tokens.", outcome: "A coherent theme", href: "/docs/theming/" },
+  { id: "composition-path", step: "03", time: "Build outward", icon: Layers3, title: "Composition", body: "Arrange public parts while keeping application boundaries clear.", outcome: "Maintainable screens", href: "/docs/composition/" },
+  { id: "accessibility-path", step: "04", time: "Verify together", icon: ShieldCheck, title: "Accessibility", body: "Understand what Atom, Brick, and your application each own.", outcome: "A complete experience", href: "/docs/accessibility/" },
 ];
 
 export default function DocsOverview() {
@@ -25,14 +25,17 @@ export default function DocsOverview() {
         <Badge tone="accent" variant="soft">Documentation · v{source.version}</Badge>
         <Text as="h1" className="page-title" wrap="balance">Build with Brick</Text>
         <Text as="p" variant="body-lg" tone="secondary" className="page-lede">Start with a coherent visual system, then customize through explicit public contracts instead of rebuilding every control.</Text>
+        <div className="docs-overview-proof" aria-label="Brick documentation scope">
+          <span><strong>1</strong> package</span><span><strong>75</strong> component owners</span><span><strong>0</strong> required providers</span>
+        </div>
         <section className="docs-paths" id="guide-paths" aria-labelledby="guide-paths-title">
-          <Text as="h2" id="guide-paths-title" variant="title-lg">Choose a path</Text>
+          <div className="docs-path-heading"><div><span>Recommended learning route</span><Text as="h2" id="guide-paths-title" variant="title-lg">Build confidence in four moves</Text></div><Text tone="secondary">Follow the sequence or jump directly to the guide you need.</Text></div>
           <Grid.Root columns={2} gap="4" className="docs-path-grid">
             {paths.map(({ icon: Icon, ...path }) => (
               <Card.Root key={path.href} variant="outline" className="docs-path-card">
-                <Card.Header className="icon-card-header"><span className="pillar-icon"><Icon size={18} aria-hidden="true" /></span><Card.Title as="h3">{path.title}</Card.Title></Card.Header>
+                <Card.Header className="docs-path-card-header"><span className="pillar-icon"><Icon size={18} aria-hidden="true" /></span><div><span>{path.step} · {path.time}</span><Card.Title as="h3">{path.title}</Card.Title></div></Card.Header>
                 <Card.Content><Text tone="secondary">{path.body}</Text></Card.Content>
-                <Card.Footer><Link className="pillar-link" href={path.href}>Read guide<ArrowRight size={14} aria-hidden="true" /></Link></Card.Footer>
+                <Card.Footer><span className="docs-path-outcome"><Check size={13} aria-hidden="true" />{path.outcome}</span><Link className="pillar-link" href={path.href}>Read guide<ArrowRight size={14} aria-hidden="true" /></Link></Card.Footer>
               </Card.Root>
             ))}
           </Grid.Root>

@@ -13,6 +13,7 @@
 - Kept footer destinations touch-friendly while moving their visible focus ring onto the compact text-and-icon label instead of the expanded mobile link row.
 - Added a build-time Shiki adapter for the website's six documented language families, migrated Markdown fences onto the published Brick Code Block, and introduced a restrained WCAG-qualified light/dark syntax palette without shipping the tokenizer to browsers or Brick core.
 - Upgraded documentation Code Blocks from a generic text copy control to a stable-width icon-and-label action with copying, copied, and retry states driven by Atom's existing clipboard status contract.
+- Reframed the Docs overview as an outcome-led four-guide learning route and gave Getting Started, Theming, Accessibility, and Composition distinct visual maps plus practical setup, theming, accessibility, and ownership guidance for package consumers.
 - Replaced category-level component placeholders with dedicated examples for all 75 component routes.
 - Added a content-contract check that prevents component routes from shipping without an explicit preview.
 - Corrected solid accent-button contrast by defining the paired white foreground token in light and dark appearances.

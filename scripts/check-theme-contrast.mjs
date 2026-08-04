@@ -61,6 +61,9 @@ assert.match(css, /a:not\(\.brick-button\)\s*\{\s*color:\s*inherit/, "global lin
 for (const selector of ["\\.shortcut", "\\.workspace-project small", "\\.footer-meta"]) {
   assert.match(css, new RegExp(`${selector}\\s*\\{[^}]*color:\\s*var\\(--brick-color-text-secondary\\)`), `${selector} must use secondary text on its tinted light surface`);
 }
+for (const selector of ["\\.guide-step-number", "\\.guide-setup-track small", "\\.guide-map-label", "\\.guide-a11y-map article small"]) {
+  assert.match(css, new RegExp(`${selector}\\s*\\{[^}]*color:\\s*var\\(--brick-color-text-secondary\\)`), `${selector} must use qualified secondary text on its compact guide surface`);
+}
 assert.match(css, /\.brick-layer \.layer-copy small\s*\{\s*color:\s*var\(--brick-color-accent-text\)/, "Brick layer caption must use its paired accent foreground");
 assert.match(css, /\.atom-layer \.layer-copy small,[^}]*color:\s*var\(--brick-color-surface-canvas\)/, "Atom layer copy must use its inverse surface foreground");
 assert.match(css, /\.footer-version\s*\{\s*color:\s*var\(--brick-color-text-secondary\)/, "footer version must use qualified secondary text rather than muted compact text");

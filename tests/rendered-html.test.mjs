@@ -187,6 +187,7 @@ test("documentation rails retain readable scalable navigation", async () => {
   assert.match(css, /@media \(max-width: 1180px\)[\s\S]*\.docs-rail \{ display: none; \}/, "the right rail must leave the layout before text zoom compresses the article");
   assert.match(css, /@media \(max-width: 900px\)[\s\S]*\.docs-shell \{ display: block; \}/, "the remaining documentation navigation must reflow before narrow layouts");
   assert.match(shellSource, /<OnThisPage items=\{toc\} \/>/, "the documentation shell must render page-owned table-of-contents data");
+  assert.match(shellSource, /\["getting-started", "theming", "composition", "accessibility"\]/, "the documentation navigation must follow the overview's recommended learning route");
   assert.doesNotMatch(shellSource, /Introduction[\s\S]*Details[\s\S]*Next steps/, "the right rail must not ship a generic placeholder outline");
   assert.match(railSource, /aria-current=\{activeId === item\.id \? "location"/, "the visible page section must be exposed to assistive technology");
   assert.match(railSource, /getBoundingClientRect\(\)\.top <= anchorOffset/, "the right rail must track actual document sections while scrolling");
@@ -199,19 +200,41 @@ test("documentation rails retain readable scalable navigation", async () => {
   assert.match(css, /@media \(forced-colors: active\)[\s\S]*\.site-canvas :focus-visible \{ outline-color: Highlight; \}/, "forced-colors users must retain the system focus indicator color");
 });
 
-test("icon-led cards use one explicit composition pattern", async () => {
+test("icon-led cards and the Docs learning route use explicit composition patterns", async () => {
   const homepageSource = await readFile(new URL("../app/page.tsx", import.meta.url), "utf8");
   const atomSource = await readFile(new URL("../app/atom/page.tsx", import.meta.url), "utf8");
   const docsSource = await readFile(new URL("../app/docs/page.tsx", import.meta.url), "utf8");
   const css = await readFile(new URL("../app/globals.css", import.meta.url), "utf8");
   assert.match(homepageSource, /<Card\.Header className="icon-card-header">/, "homepage feature cards must opt into the shared icon composition");
   assert.match(atomSource, /<Card\.Header className="icon-card-header">/, "Atom ownership cards must opt into the shared icon composition");
-  assert.match(docsSource, /<Card\.Header className="icon-card-header">/, "documentation path cards must opt into the shared icon composition");
   assert.match(css, /\.icon-card-header \{ grid-template-columns: minmax\(0, 1fr\); gap: \.8rem; \}/, "icon card headers must own a comfortable explicit vertical gap");
   assert.match(docsSource, /Documentation · v\{source\.version\}/, "documentation version badge must use the conventional version prefix");
+  assert.match(docsSource, /Recommended learning route[\s\S]*Build confidence in four moves/, "documentation overview must explain the intended onboarding sequence");
+  assert.match(docsSource, /<Card\.Header className="docs-path-card-header">[\s\S]*\{path\.step\} · \{path\.time\}/, "guide cards must expose their sequence and learning intent");
+  assert.match(docsSource, /docs-path-outcome[\s\S]*\{path\.outcome\}/, "each guide path must identify its concrete reader outcome");
   assert.match(docsSource, /<Link className="pillar-link" href=\{path\.href\}>Read guide<ArrowRight/, "documentation cards must use the animated editorial link pattern");
   assert.match(docsSource, /<WebsiteButton href="\/components\/" endIcon=\{<ArrowRight[^>]*\/>\}>Explore components<\/WebsiteButton>/, "documentation closing CTA must retain primary button emphasis through the server-safe website adapter");
   assert.doesNotMatch(docsSource, /variant="ghost"/, "documentation path actions must not reintroduce padded ghost buttons");
+});
+
+test("reader-facing guides pair visual orientation with practical guidance", async () => {
+  const visualSource = await readFile(new URL("../app/components/GuideVisual.tsx", import.meta.url), "utf8");
+  const guideSource = await readFile(new URL("../app/docs/[slug]/page.tsx", import.meta.url), "utf8");
+  const guides = JSON.parse(await readFile(new URL("../content/guides.json", import.meta.url), "utf8"));
+  const css = await readFile(new URL("../app/globals.css", import.meta.url), "utf8");
+  assert.match(guideSource, /\{ id: "guide-map", label: "Guide map" \}[\s\S]*<GuideVisual slug=/, "every guide must expose its visual orientation panel to the page outline");
+  for (const component of ["GettingStartedMap", "ThemeMap", "AccessibilityMap", "CompositionMap"]) {
+    assert.match(visualSource, new RegExp(`function ${component}\\(`), `${component} must remain a distinct reader-facing composition`);
+  }
+  assert.match(visualSource, /No provider required[\s\S]*React 18 and 19[\s\S]*Tree-shakable exports/, "getting started must summarize its setup contract at a glance");
+  assert.match(visualSource, /Brand choices[\s\S]*Semantic roles[\s\S]*Stable output/, "theming must visualize the semantic-token pipeline");
+  assert.match(visualSource, /Atom[\s\S]*Mechanism[\s\S]*Brick[\s\S]*Visible states[\s\S]*Your app[\s\S]*Meaning/, "accessibility must show its three responsibility owners");
+  assert.match(visualSource, /Application[\s\S]*Layout[\s\S]*Brick parts/, "composition must visualize the application-to-component boundary");
+  assert.match(guides.accessibility.body, /Field\.Description[\s\S]*Field\.Error[\s\S]*complete the task with only a keyboard/, "accessibility must include a consumer example and an actionable test path");
+  assert.match(guides.composition.body, /Grid\.Root[\s\S]*The Grid owns page arrangement[\s\S]*lightest owner/, "composition must connect public code to ownership guidance");
+  assert.match(guides["getting-started"].body, /Confirm your setup[\s\S]*keyboard focus is visible/, "getting started must include a concrete setup checkpoint");
+  assert.match(guides.theming.body, /data-brick-theme="studio"[\s\S]*resting, hover, pressed, focus, disabled, and invalid/, "theming must show scope and a release checklist");
+  assert.match(css, /@media \(max-width: 640px\)[\s\S]*\.guide-setup-track, \.guide-theme-map, \.guide-a11y-map, \.guide-composition-map \{ grid-template-columns: 1fr; \}/, "all four visual guides must stack at the narrow-mobile boundary");
 });
 
 test("documentation syntax highlighting remains a build-time Brick adapter", async () => {

@@ -21,6 +21,8 @@ Brick UI Website is implemented as a multi-route product and documentation site.
 - Footer navigation retains full touch targets while its focus indicator wraps only the visible text-and-icon label.
 - Markdown fences are pre-tokenized with a fine-grained build-time Shiki adapter and rendered through the published Brick Code Block with language metadata, a compact stateful copy action, and a WCAG-qualified light/dark syntax palette; the deployed browser does not receive the tokenizer.
 - Icon-led Cards use one website-owned header composition with explicit spacing; Docs overview card actions use animated editorial links while the closing exploration CTA remains a primary Brick button.
+- The Docs overview presents Getting Started, Theming, Composition, and Accessibility as one outcome-led learning route instead of four undifferentiated destinations.
+- Each reader-facing guide begins with its own compact visual map and follows with practical consumer examples or verification checkpoints; maintenance evidence remains outside this guide layer.
 - Every Docs-shell route, including guides and component pages, clearly retains the subtle branded grid around the introduction before fading it into an opaque semantic reading plane ahead of sustained content.
 - Local search, light/dark appearance, responsive navigation, sitemap, robots, social card, favicon, and AI-readable documentation are present.
 - The site accent theme explicitly pairs purple solid actions with a white foreground in both appearances and verifies every solid interaction state at WCAG AA contrast.
