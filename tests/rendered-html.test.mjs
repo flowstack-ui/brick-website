@@ -46,7 +46,7 @@ test("homepage promise section retains its editorial feature-grid contract", asy
   assert.match(css, /\.section-heading \{ display: grid;[^}]*justify-items: center;/, "section heading must share one centered layout axis");
   assert.match(css, /\.section-heading :is\(h2, p\) \{ width: 100%; max-width: 44rem; \}/, "feature-grid heading copy must share one measure");
   assert.match(css, /\.promise-heading \{ max-width: 52rem; justify-items: start; margin-inline: 0; text-align: start; \}/, "promise heading must align with the feature-card grid instead of forming a centered pyramid");
-  assert.match(css, /\.pillar-card \.pillar-icon, \.pillar-card \.brick-card-title \{ grid-column: 1 \/ -1; \}/, "feature icon and title must occupy authored full-width rows");
+  assert.match(homepageSource, /<Card\.Header className="icon-card-header">/, "feature icon and title must use the shared authored card-header pattern");
   assert.match(css, /\.pillar-card \{ min-height: 16\.5rem; \}/, "feature cards must avoid the previous dead-space floor");
   assert.match(css, /@media \(max-width: 900px\)[\s\S]*\.pillar-grid \{ grid-template-columns: 1fr !important; \}\.pillar-card \{ min-height: 0; \}/, "feature cards must stack before their content measure becomes cramped");
 });
@@ -132,7 +132,7 @@ test("Atom ownership section retains one aligned editorial lane", async () => {
   assert.match(atomSource, /Atom owns the behavioral contract\. Brick owns the finished visual system\./, "ownership heading must explain the division rather than relying on a title alone");
   assert.match(atomSource, /className="ownership-card"/, "ownership cards must opt into their authored alignment contract");
   assert.match(css, /\.ownership-section \.ownership-heading, \.ownership-grid \{ width: min\(100%, 65rem\); max-width: 65rem; margin-inline: auto; \}/, "ownership heading and cards must share one centered lane");
-  assert.match(css, /\.ownership-card \.brick-card-header \{ align-items: center; gap: 1rem; \}/, "ownership card icons must retain comfortable title spacing");
+  assert.match(atomSource, /<Card\.Header className="icon-card-header">/, "ownership card icons must use the shared explicit title-spacing pattern");
   assert.match(css, /\.flowstack-context \{ padding-block-end: clamp\(2rem, 3vw, 3rem\); \}/, "preceding story must not contribute an oversized lower transition");
   assert.match(css, /\.ownership-section \{ padding-block-start: clamp\(2rem, 3vw, 3rem\); \}/, "ownership section must begin without an oversized upper transition");
 });
@@ -174,6 +174,20 @@ test("documentation rails retain readable scalable navigation", async () => {
   assert.match(css, /\.docs-nav-label, \.docs-rail > span \{[^}]*font-size: \.75rem;[^}]*line-height: 1\.4;/, "documentation rail labels must retain a readable supporting scale");
   assert.match(css, /@media \(max-width: 1180px\)[\s\S]*\.docs-rail \{ display: none; \}/, "the right rail must leave the layout before text zoom compresses the article");
   assert.match(css, /@media \(max-width: 900px\)[\s\S]*\.docs-shell \{ display: block; \}/, "the remaining documentation navigation must reflow before narrow layouts");
+});
+
+test("icon-led cards use one explicit composition pattern", async () => {
+  const homepageSource = await readFile(new URL("../app/page.tsx", import.meta.url), "utf8");
+  const atomSource = await readFile(new URL("../app/atom/page.tsx", import.meta.url), "utf8");
+  const docsSource = await readFile(new URL("../app/docs/page.tsx", import.meta.url), "utf8");
+  const css = await readFile(new URL("../app/globals.css", import.meta.url), "utf8");
+  assert.match(homepageSource, /<Card\.Header className="icon-card-header">/, "homepage feature cards must opt into the shared icon composition");
+  assert.match(atomSource, /<Card\.Header className="icon-card-header">/, "Atom ownership cards must opt into the shared icon composition");
+  assert.match(docsSource, /<Card\.Header className="icon-card-header">/, "documentation path cards must opt into the shared icon composition");
+  assert.match(css, /\.icon-card-header \{ grid-template-columns: minmax\(0, 1fr\); gap: \.8rem; \}/, "icon card headers must own a comfortable explicit vertical gap");
+  assert.match(docsSource, /Documentation · v\{source\.version\}/, "documentation version badge must use the conventional version prefix");
+  assert.match(docsSource, /<Link className="pillar-link" href=\{path\.href\}>Read guide<ArrowRight/, "documentation cards must use the animated editorial link pattern");
+  assert.doesNotMatch(docsSource, /variant="ghost"/, "documentation path actions must not reintroduce padded ghost buttons");
 });
 
 test("homepage hero retains its height-aware first-viewport contract", async () => {

@@ -90,7 +90,7 @@ export default function Home() {
           <Grid.Root columns={3} gap="4" className="pillar-grid">
             {pillars.map(({ icon: Icon, ...pillar }, index) => (
               <Card.Root key={pillar.title} variant={index === 1 ? "elevated" : "outline"} className="pillar-card">
-                <Card.Header>
+                <Card.Header className="icon-card-header">
                   <span className="pillar-icon"><Icon size={19} aria-hidden="true" /></span>
                   <Card.Title as="h3">{pillar.title}</Card.Title>
                 </Card.Header>

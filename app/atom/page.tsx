@@ -73,7 +73,7 @@ export default function AtomPage() {
           <Text as="p" variant="body-lg" tone="secondary" align="start" wrap="pretty">Atom owns the behavioral contract. Brick owns the finished visual system. Applications combine both without asking either layer to own product decisions.</Text>
         </div>
         <Grid.Root columns={2} gap="4" className="ownership-grid">
-          {ownership.map(({ icon: Icon, ...item }) => <Card.Root key={item.title} className="ownership-card"><Card.Header><span className="pillar-icon"><Icon size={18} aria-hidden="true" /></span><Card.Title as="h3">{item.title}</Card.Title></Card.Header><Card.Content><Text tone="secondary">{item.body}</Text></Card.Content></Card.Root>)}
+          {ownership.map(({ icon: Icon, ...item }) => <Card.Root key={item.title} className="ownership-card"><Card.Header className="icon-card-header"><span className="pillar-icon"><Icon size={18} aria-hidden="true" /></span><Card.Title as="h3">{item.title}</Card.Title></Card.Header><Card.Content><Text tone="secondary">{item.body}</Text></Card.Content></Card.Root>)}
         </Grid.Root>
       </section>
       <section className="atom-choice section-shell"><div><Text as="h2" variant="title-lg">Choose Atom when you want total visual control.</Text><Text tone="secondary">Choose Brick when you want the same behavioral foundation with a complete styled system already attached.</Text></div><WebsiteButton href="/docs/getting-started/" tone="neutral" variant="outline" endIcon={<ArrowRight size={15} />}>Start with Brick</WebsiteButton></section>

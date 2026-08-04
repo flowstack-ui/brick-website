@@ -238,9 +238,8 @@
   .compact-heading { justify-items: start; margin-inline: 0; text-align: start; }
   .pillar-grid { align-items: stretch; }
   .pillar-card { min-height: 16.5rem; }
-  .pillar-card .brick-card-header { gap: .55rem; }
-  .pillar-card .pillar-icon, .pillar-card .brick-card-title { grid-column: 1 / -1; }
-  .pillar-card .pillar-icon { margin-block-end: .35rem; }
+  .icon-card-header { grid-template-columns: minmax(0, 1fr); gap: .8rem; }
+  .icon-card-header .pillar-icon, .icon-card-header .brick-card-title { grid-column: 1; }
   .pillar-card .brick-card-content { padding-block-end: .5rem; }
   .pillar-card .brick-card-footer { margin-block-start: auto; padding-block-start: .65rem; }
   .pillar-icon { display: grid; width: 2.5rem; height: 2.5rem; place-items: center; border: 1px solid var(--brick-color-accent-border); border-radius: .7rem; background: var(--brick-color-accent-soft); color: var(--brick-color-accent-text); }
@@ -466,7 +465,6 @@
   .ownership-section { padding-block-start: clamp(2rem, 3vw, 3rem); }
   .ownership-section .ownership-heading, .ownership-grid { width: min(100%, 65rem); max-width: 65rem; margin-inline: auto; }
   .ownership-heading { justify-items: start; text-align: start; }
-  .ownership-card .brick-card-header { align-items: center; gap: 1rem; }
 
   .not-found { display: grid; min-height: 70dvh; place-items: center; align-content: center; gap: 1rem; text-align: center; }.not-found > * { margin: 0; }.not-found-code { color: var(--brick-color-accent-text); font-family: var(--site-font-mono); font-size: 1rem; letter-spacing: .2em; }
 
