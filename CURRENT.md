@@ -16,6 +16,9 @@ Brick UI Website is implemented as a multi-route product and documentation site.
 - The Themes story presents two visual expressions as one unchanged Brick component contract and maps Color, Shape, Typography, and Motion as four connected semantic systems with restrained section rhythm.
 - The Themes closing callout stacks at 900px and gives its copy and install command the full available width before either becomes compressed.
 - Documentation sidebar and page-rail navigation use a readable scalable type size and target height, with the right rail removed at 1180px and the remaining navigation reflowed at 900px.
+- The right documentation rail mirrors each page's real sections, generates guide and component entries from source-backed Markdown headings, and identifies the active section while scrolling.
+- Website-authored focus indicators use the semantic purple focus token; documentation-rail links use inset outlines to prevent clipping, while Forced Colors preserves the system highlight.
+- Footer navigation retains full touch targets while its focus indicator wraps only the visible text-and-icon label.
 - Icon-led Cards use one website-owned header composition with explicit spacing; Docs overview card actions use animated editorial links while the closing exploration CTA remains a primary Brick button.
 - Every Docs-shell route, including guides and component pages, clearly retains the subtle branded grid around the introduction before fading it into an opaque semantic reading plane ahead of sustained content.
 - Local search, light/dark appearance, responsive navigation, sitemap, robots, social card, favicon, and AI-readable documentation are present.

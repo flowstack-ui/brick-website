@@ -8,6 +8,9 @@
 - Raised both documentation rails from compact metadata sizing to readable rem-based navigation text, increased target height and line height, and preserved their existing zoom-responsive reflow boundaries.
 - Prefixed the Docs overview release with `v`, standardized icon-led Card headers across three routes, replaced padded ghost actions inside cards with animated editorial links, and retained primary-button emphasis for the closing exploration CTA.
 - Added a shared documentation reading plane that visibly retains the subtle branded grid around page introductions and fades to an opaque semantic canvas before long-form content and component examples.
+- Replaced the generic Docs right rail with page-aware section navigation generated from overview cards, guide Markdown headings, catalog categories, and component documentation; the rail now tracks the active section and exposes it with `aria-current`.
+- Unified authored focus indicators through the semantic purple focus token and moved documentation-rail outlines inward so scroll containers cannot clip their left or right edges; Forced Colors continues to use the system highlight.
+- Kept footer destinations touch-friendly while moving their visible focus ring onto the compact text-and-icon label instead of the expanded mobile link row.
 - Replaced category-level component placeholders with dedicated examples for all 75 component routes.
 - Added a content-contract check that prevents component routes from shipping without an explicit preview.
 - Corrected solid accent-button contrast by defining the paired white foreground token in light and dark appearances.

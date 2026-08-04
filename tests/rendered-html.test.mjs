@@ -87,6 +87,8 @@ test("mobile footer retains its centered touch-friendly composition", async () =
   assert.match(css, /\.footer-brand \.brand-word \{ display: inline; \}\.footer-brand \.version-pill \{ display: inline-flex; \}/, "footer brand and version must remain visible at every mobile size");
   assert.match(css, /\.footer-links \{ display: grid;[^}]*grid-template-columns: repeat\(2, minmax\(0, 1fr\)\);/, "mobile footer destinations must use a stable two-column grid");
   assert.match(css, /\.footer-links a \{ min-height: 2\.75rem; justify-content: center;/, "mobile footer destinations must preserve touch height and centered labels");
+  assert.match(footerSource, /className="footer-link-label"/g, "footer destinations must separate their visible label from their touch target");
+  assert.match(css, /\.footer-links a:focus-visible \.footer-link-label \{ outline: 2px solid var\(--brick-color-focus-ring\); outline-offset: \.2rem; \}/, "footer focus rings must wrap visible labels instead of the expanded touch rows");
   assert.match(footerSource, /Part of <a href="https:\/\/github\.com\/flowstack-ui">Flowstack<\/a>/, "footer must identify Brick's Flowstack membership");
   assert.match(footerSource, /A <a href="https:\/\/swifty\.us\/">Swifty<\/a> product/, "footer must identify Swifty ownership without replacing Brick identity");
   assert.match(css, /\.footer-meta \{ grid-column: auto; width: 100%; flex-direction: column;[^}]*text-align: center; \}/, "mobile footer metadata must share the footer axis");
@@ -170,6 +172,12 @@ test("Themes hero retains its semantic instrument composition", async () => {
 
 test("documentation rails retain readable scalable navigation", async () => {
   const css = await readFile(new URL("../app/globals.css", import.meta.url), "utf8");
+  const shellSource = await readFile(new URL("../app/components/DocsShell.tsx", import.meta.url), "utf8");
+  const railSource = await readFile(new URL("../app/components/OnThisPage.tsx", import.meta.url), "utf8");
+  const markdownSource = await readFile(new URL("../app/components/MarkdownArticle.tsx", import.meta.url), "utf8");
+  const guideSource = await readFile(new URL("../app/docs/[slug]/page.tsx", import.meta.url), "utf8");
+  const componentSource = await readFile(new URL("../app/components/[slug]/page.tsx", import.meta.url), "utf8");
+  const catalogSource = await readFile(new URL("../app/components/page.tsx", import.meta.url), "utf8");
   assert.match(css, /\.docs-sidebar a, \.docs-rail a \{[^}]*min-height: 2\.35rem;[^}]*font-size: \.9rem;[^}]*line-height: 1\.35;/, "documentation links must not use compact metadata-sized text or targets");
   assert.match(css, /\.docs-nav-label, \.docs-rail > span \{[^}]*font-size: \.75rem;[^}]*line-height: 1\.4;/, "documentation rail labels must retain a readable supporting scale");
   assert.match(css, /\.docs-shell \{ position: relative; isolation: isolate;/, "documentation routes must establish their own reading-plane stacking context");
@@ -178,6 +186,17 @@ test("documentation rails retain readable scalable navigation", async () => {
   assert.match(css, /\.docs-shell::before \{ background: Canvas; \}/, "forced-colors mode must receive a fully opaque reading plane");
   assert.match(css, /@media \(max-width: 1180px\)[\s\S]*\.docs-rail \{ display: none; \}/, "the right rail must leave the layout before text zoom compresses the article");
   assert.match(css, /@media \(max-width: 900px\)[\s\S]*\.docs-shell \{ display: block; \}/, "the remaining documentation navigation must reflow before narrow layouts");
+  assert.match(shellSource, /<OnThisPage items=\{toc\} \/>/, "the documentation shell must render page-owned table-of-contents data");
+  assert.doesNotMatch(shellSource, /Introduction[\s\S]*Details[\s\S]*Next steps/, "the right rail must not ship a generic placeholder outline");
+  assert.match(railSource, /aria-current=\{activeId === item\.id \? "location"/, "the visible page section must be exposed to assistive technology");
+  assert.match(railSource, /getBoundingClientRect\(\)\.top <= anchorOffset/, "the right rail must track actual document sections while scrolling");
+  assert.match(markdownSource, /h2: \(\{ children \}\)[\s\S]*headingId\(nodeText\(children\)\)/, "rendered Markdown headings must receive the same stable IDs as the table of contents");
+  assert.match(guideSource, /extractMarkdownToc\(guide\.body\)/, "guide rails must be generated from their authored headings");
+  assert.match(componentSource, /Live example[\s\S]*extractMarkdownToc\(markdown\)/, "component rails must combine the live example with source-backed documentation headings");
+  assert.match(catalogSource, /toc=\{categories\.map/, "the component catalog rail must list its real category sections");
+  assert.match(css, /\.docs-sidebar a:focus-visible, \.docs-rail a:focus-visible \{ outline: 2px solid var\(--brick-color-focus-ring\); outline-offset: -2px; \}/, "scrollable documentation rails must use an inset semantic focus ring that cannot be clipped");
+  assert.match(css, /\.site-canvas :focus-visible \{ outline-color: var\(--brick-color-focus-ring\); \}/, "authored focus indicators must inherit the website's semantic purple focus color");
+  assert.match(css, /@media \(forced-colors: active\)[\s\S]*\.site-canvas :focus-visible \{ outline-color: Highlight; \}/, "forced-colors users must retain the system focus indicator color");
 });
 
 test("icon-led cards use one explicit composition pattern", async () => {
@@ -221,6 +240,7 @@ test("homepage hero retains its height-aware first-viewport contract", async () 
 
 const routes = [
   ["/", /Build interfaces that already feel finished/i],
+  ["/docs", /Build with Brick/i],
   ["/components", /75 component owners/i],
   ["/components/button", /View source documentation/i],
   ["/docs/getting-started", /Getting started/i],
@@ -237,6 +257,20 @@ for (const [pathname, expected] of routes) {
     assert.match(html, expected);
     assert.match(html, /Brick UI/);
     assert.doesNotMatch(html, /vinext-starter|Your site is taking shape/);
+    if (pathname === "/docs") {
+      assert.match(html, /href="#guide-paths"/, "Docs overview rail must link to its guide-path section");
+      assert.match(html, /id="guide-paths"/, "Docs overview section must expose the rail's matching anchor target");
+    }
+    if (pathname === "/docs/getting-started") {
+      assert.match(html, /href="#install-brick"/, "guide rail must link to the first authored guide heading");
+      assert.match(html, /<h2 id="install-brick">Install Brick<\/h2>/, "guide heading must expose the rail's matching anchor target");
+    }
+    if (pathname === "/components/button") {
+      assert.match(html, /href="#live-example"/, "component rail must link to the live package example");
+      assert.match(html, /id="live-example"/, "the live package example must expose the rail's matching target");
+      assert.match(html, /href="#when-and-where-to-use"/, "component rail must include source-backed documentation headings");
+      assert.match(html, /<h2 id="when-and-where-to-use">When and where to use<\/h2>/, "component documentation heading must expose the matching target");
+    }
     if (pathname === "/") {
       assert.match(html, /<link rel="icon" href="\/favicon\.svg" type="image\/svg\+xml"\s*\/?>/, "favicon must resolve against the current host");
       assert.doesNotMatch(html, /https:\/\/brick-ui\.com\/favicon\.svg/, "favicon must not depend on the future custom domain");

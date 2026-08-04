@@ -78,6 +78,7 @@
   body { margin: 0; background: var(--brick-color-surface-canvas); color: var(--brick-color-text-primary); font-family: var(--site-font-body); }
   a:not(.brick-button) { color: inherit; }
   button, input { font: inherit; }
+  .site-canvas :focus-visible { outline-color: var(--brick-color-focus-ring); }
   ::selection { background: var(--brick-color-accent-soft-pressed); color: var(--brick-color-text-primary); }
 
   .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
@@ -289,8 +290,11 @@
   .footer-brand-heading { display: flex; align-items: center; gap: .75rem; }
   .footer-brand p { max-width: 26rem; margin-block: .8rem 0; color: var(--brick-color-text-secondary); }
   .footer-links { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: .55rem 1.2rem; }
-  .footer-links a { display: inline-flex; align-items: center; gap: .2rem; color: var(--brick-color-text-secondary); font-size: .85rem; text-decoration: none; }
+  .footer-links a { display: inline-flex; align-items: center; color: var(--brick-color-text-secondary); font-size: .85rem; text-decoration: none; }
+  .footer-link-label { display: inline-flex; align-items: center; gap: .2rem; border-radius: .2rem; }
   .footer-links a:hover { color: var(--brick-color-accent-text); }
+  .footer-links a:focus-visible { outline: none; }
+  .footer-links a:focus-visible .footer-link-label { outline: 2px solid var(--brick-color-focus-ring); outline-offset: .2rem; }
   .footer-meta { display: flex; grid-column: 1 / -1; align-items: center; justify-content: space-between; gap: 1rem 2rem; padding-block-start: 1.5rem; border-block-start: 1px solid var(--brick-color-border-subtle); color: var(--brick-color-text-secondary); font-size: .75rem; }
   .footer-meta p { margin: 0; }
   .footer-endorsement { display: flex; flex-wrap: wrap; align-items: center; gap: .35rem; font-weight: 560; }
@@ -305,15 +309,21 @@
   .docs-sidebar nav { display: grid; gap: .15rem; }
   .docs-sidebar a, .docs-rail a { display: flex; min-height: 2.35rem; align-items: center; padding: .5rem .65rem; border-radius: .45rem; color: var(--brick-color-text-secondary); font-size: .9rem; line-height: 1.35; text-decoration: none; }
   .docs-sidebar a:hover, .docs-sidebar a.is-current { background: var(--brick-color-accent-soft); color: var(--brick-color-accent-text); }
+  .docs-sidebar a:focus-visible, .docs-rail a:focus-visible { outline: 2px solid var(--brick-color-focus-ring); outline-offset: -2px; }
   .docs-nav-label, .docs-rail > span { display: block; margin: 1.15rem .65rem .4rem; color: var(--brick-color-text-muted); font-size: .75rem; font-weight: 650; line-height: 1.4; text-transform: uppercase; letter-spacing: .08em; }
   .docs-rail { display: grid; gap: .2rem; }
+  .docs-rail nav { display: grid; gap: .1rem; }
+  .docs-rail a { position: relative; }
   .docs-rail a:hover { color: var(--brick-color-accent-text); }
+  .docs-rail a.is-current { background: color-mix(in srgb, var(--brick-color-accent-soft), transparent 34%); color: var(--brick-color-accent-text); font-weight: 600; box-shadow: inset 2px 0 var(--brick-color-accent-solid); }
   .docs-content { min-width: 0; }
   .docs-article, .catalog-page { min-width: 0; }
   .docs-article > .page-title, .catalog-page > .page-title { margin-block: 1.1rem; font-size: clamp(3rem, 5.5vw, 5.3rem); }
-  .docs-path-grid { margin-block-start: 3rem; }
-  .docs-path-card { min-height: 15rem; }
-  .docs-next { display: grid; justify-items: start; gap: 1rem; margin-block-start: 4rem; padding: 2rem; border-radius: 1rem; background: var(--brick-color-surface-subtle); }
+  .docs-paths { margin-block-start: 3rem; scroll-margin-top: calc(var(--site-header-height) + 2rem); }
+  .docs-paths > h2 { margin: 0 0 1.25rem; }
+  .docs-path-grid { margin-block-start: 0; }
+  .docs-path-card { min-height: 15rem; scroll-margin-top: calc(var(--site-header-height) + 2rem); }
+  .docs-next { display: grid; justify-items: start; gap: 1rem; margin-block-start: 4rem; padding: 2rem; scroll-margin-top: calc(var(--site-header-height) + 2rem); border-radius: 1rem; background: var(--brick-color-surface-subtle); }
   .docs-next > * { margin: 0; }
 
   .markdown-body { margin-block-start: 3rem; color: var(--brick-color-text-secondary); line-height: 1.72; }
@@ -342,7 +352,7 @@
   .component-kicker { display: flex; align-items: center; justify-content: space-between; gap: 1rem; color: var(--brick-color-text-muted); font-family: var(--site-font-mono); font-size: .72rem; }
   .component-doc .page-title { font-size: clamp(3.2rem, 6vw, 5.8rem); }
   .component-install { display: inline-flex; margin-block-start: 1.5rem; }
-  .live-example { overflow: hidden; margin-block-start: 3rem; border: 1px solid var(--brick-color-border-subtle); border-radius: 1rem; background: var(--brick-color-surface-raised); }
+  .live-example { overflow: hidden; margin-block-start: 3rem; scroll-margin-top: calc(var(--site-header-height) + 2rem); border: 1px solid var(--brick-color-border-subtle); border-radius: 1rem; background: var(--brick-color-surface-raised); }
   .example-header { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 1rem 1.15rem; border-block-end: 1px solid var(--brick-color-border-subtle); background: var(--brick-color-surface-base); }
   .example-header > div { display: grid; gap: .2rem; }.example-header > div > span { color: var(--brick-color-text-muted); font-size: .67rem; text-transform: uppercase; letter-spacing: .09em; }
   .example-canvas { display: grid; min-height: 18rem; place-items: center; padding: clamp(1.5rem, 5vw, 4rem); background-image: radial-gradient(circle at 1px 1px, var(--brick-color-border-subtle) 1px, transparent 0); background-size: 1.4rem 1.4rem; }
@@ -549,6 +559,8 @@
   }
 
   @media (forced-colors: active) {
+    .site-canvas :focus-visible { outline-color: Highlight; }
+    .footer-links a:focus-visible .footer-link-label { outline-color: Highlight; }
     .brand-mark span, .catalog-module, .catalog-core, .project-glyph, .pillar-icon, .orbit-center, .orbit-chip, .layer, .layer-symbol, .flowstack-step { border: 1px solid CanvasText; background: Canvas; color: CanvasText; }
     .theme-orbit, .theme-orbit::before, .theme-orbit::after { border-color: CanvasText; background: Canvas; }
     .docs-shell::before { background: Canvas; }

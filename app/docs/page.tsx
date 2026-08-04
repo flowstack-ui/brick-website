@@ -12,29 +12,32 @@ import { source } from "@/app/lib/content";
 export const metadata: Metadata = { title: "Documentation", description: "Learn how to install, compose, theme, and ship interfaces with Brick." };
 
 const paths = [
-  { icon: BookOpen, title: "Getting started", body: "Install Brick and build your first finished surface.", href: "/docs/getting-started/" },
-  { icon: Layers3, title: "Composition", body: "Understand parts, layout, and application boundaries.", href: "/docs/composition/" },
-  { icon: Palette, title: "Theming", body: "Brand the complete catalog through semantic tokens.", href: "/docs/theming/" },
-  { icon: ShieldCheck, title: "Accessibility", body: "See how Atom and Brick divide responsibility.", href: "/docs/accessibility/" },
+  { id: "getting-started-path", icon: BookOpen, title: "Getting started", body: "Install Brick and build your first finished surface.", href: "/docs/getting-started/" },
+  { id: "composition-path", icon: Layers3, title: "Composition", body: "Understand parts, layout, and application boundaries.", href: "/docs/composition/" },
+  { id: "theming-path", icon: Palette, title: "Theming", body: "Brand the complete catalog through semantic tokens.", href: "/docs/theming/" },
+  { id: "accessibility-path", icon: ShieldCheck, title: "Accessibility", body: "See how Atom and Brick divide responsibility.", href: "/docs/accessibility/" },
 ];
 
 export default function DocsOverview() {
   return (
-    <DocsShell current="docs">
+    <DocsShell current="docs" toc={[{ id: "guide-paths", label: "Choose a path" }, { id: "explore-components", label: "Explore components" }]}>
       <article className="docs-article">
         <Badge tone="accent" variant="soft">Documentation · v{source.version}</Badge>
         <Text as="h1" className="page-title" wrap="balance">Build with Brick</Text>
         <Text as="p" variant="body-lg" tone="secondary" className="page-lede">Start with a coherent visual system, then customize through explicit public contracts instead of rebuilding every control.</Text>
-        <Grid.Root columns={2} gap="4" className="docs-path-grid" id="details">
-          {paths.map(({ icon: Icon, ...path }) => (
-            <Card.Root key={path.href} variant="outline" className="docs-path-card">
-              <Card.Header className="icon-card-header"><span className="pillar-icon"><Icon size={18} aria-hidden="true" /></span><Card.Title as="h2">{path.title}</Card.Title></Card.Header>
-              <Card.Content><Text tone="secondary">{path.body}</Text></Card.Content>
-              <Card.Footer><Link className="pillar-link" href={path.href}>Read guide<ArrowRight size={14} aria-hidden="true" /></Link></Card.Footer>
-            </Card.Root>
-          ))}
-        </Grid.Root>
-        <section className="docs-next" id="next">
+        <section className="docs-paths" id="guide-paths" aria-labelledby="guide-paths-title">
+          <Text as="h2" id="guide-paths-title" variant="title-lg">Choose a path</Text>
+          <Grid.Root columns={2} gap="4" className="docs-path-grid">
+            {paths.map(({ icon: Icon, ...path }) => (
+              <Card.Root key={path.href} variant="outline" className="docs-path-card">
+                <Card.Header className="icon-card-header"><span className="pillar-icon"><Icon size={18} aria-hidden="true" /></span><Card.Title as="h3">{path.title}</Card.Title></Card.Header>
+                <Card.Content><Text tone="secondary">{path.body}</Text></Card.Content>
+                <Card.Footer><Link className="pillar-link" href={path.href}>Read guide<ArrowRight size={14} aria-hidden="true" /></Link></Card.Footer>
+              </Card.Root>
+            ))}
+          </Grid.Root>
+        </section>
+        <section className="docs-next" id="explore-components">
           <Text as="h2" variant="title-lg">Prefer to explore first?</Text>
           <Text tone="secondary">Browse all 75 component owners and open live examples before installing.</Text>
           <WebsiteButton href="/components/" endIcon={<ArrowRight size={15} aria-hidden="true" />}>Explore components</WebsiteButton>

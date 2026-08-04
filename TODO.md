@@ -9,6 +9,7 @@
 
 ## Later
 
+- Test the page-aware documentation rail in a second reference product before extracting a reusable documentation-shell Block.
 - Introduce installable Brick themes when their package boundary is approved.
 - Add Blocks as a first-class catalog only after the block contract exists.
 - Link to future Flowstack packs without moving their ownership into this repository.

@@ -15,7 +15,7 @@ function categoryId(category: string) {
 
 export default function ComponentsPage() {
   return (
-    <DocsShell current="components">
+    <DocsShell current="components" toc={categories.map((category) => ({ id: categoryId(category), label: category }))}>
       <div className="catalog-page">
         <Badge tone="accent" variant="soft">75 component owners</Badge>
         <Text as="h1" className="page-title" wrap="balance">The complete Brick catalog</Text>
@@ -42,7 +42,6 @@ export default function ComponentsPage() {
             </section>
           ))}
         </div>
-        <div id="next" />
       </div>
     </DocsShell>
   );

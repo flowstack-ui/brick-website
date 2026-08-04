@@ -1,7 +1,9 @@
 import { guides, categories } from "@/app/lib/content";
 import Link from "next/link";
+import { OnThisPage } from "@/app/components/OnThisPage";
+import type { TocItem } from "@/app/lib/toc";
 
-export function DocsShell({ children, current }: { children: React.ReactNode; current?: string }) {
+export function DocsShell({ children, current, toc }: { children: React.ReactNode; current?: string; toc: TocItem[] }) {
   return (
     <main id="main-content" className="docs-shell section-shell">
       <aside className="docs-sidebar" aria-label="Documentation navigation">
@@ -19,9 +21,7 @@ export function DocsShell({ children, current }: { children: React.ReactNode; cu
       <div className="docs-content">{children}</div>
       <aside className="docs-rail" aria-label="On this page">
         <span>On this page</span>
-        <a href="#main-content">Introduction</a>
-        <a href="#details">Details</a>
-        <a href="#next">Next steps</a>
+        <OnThisPage items={toc} />
       </aside>
     </main>
   );

@@ -14,12 +14,12 @@ export function SiteFooter() {
         <p>Finished React components, built on accessible foundations.</p>
       </div>
       <div className="footer-links">
-        <Link href="/docs/getting-started/">Get started</Link>
-        <Link href="/components/">Components</Link>
-        <Link href="/themes/">Themes</Link>
-        <a href="https://atom-ui.com/">Atom <ArrowUpRight size={13} aria-hidden="true" /></a>
-        <a href="https://www.npmjs.com/package/@flowstack-ui/brick">npm <ArrowUpRight size={13} aria-hidden="true" /></a>
-        <a href="https://github.com/flowstack-ui/brick">GitHub <ArrowUpRight size={13} aria-hidden="true" /></a>
+        <Link href="/docs/getting-started/"><span className="footer-link-label">Get started</span></Link>
+        <Link href="/components/"><span className="footer-link-label">Components</span></Link>
+        <Link href="/themes/"><span className="footer-link-label">Themes</span></Link>
+        <a href="https://atom-ui.com/"><span className="footer-link-label">Atom <ArrowUpRight size={13} aria-hidden="true" /></span></a>
+        <a href="https://www.npmjs.com/package/@flowstack-ui/brick"><span className="footer-link-label">npm <ArrowUpRight size={13} aria-hidden="true" /></span></a>
+        <a href="https://github.com/flowstack-ui/brick"><span className="footer-link-label">GitHub <ArrowUpRight size={13} aria-hidden="true" /></span></a>
       </div>
       <div className="footer-meta">
         <p className="footer-endorsement">
