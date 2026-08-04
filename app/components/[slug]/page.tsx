@@ -46,7 +46,7 @@ export default async function ComponentPage({ params }: { params: Promise<{ slug
         <div className="component-install"><Code variant="subtle">import {'{'} {component.title.replaceAll(" ", "")} {'}'} from &quot;@flowstack-ui/brick&quot;;</Code></div>
         <section className="live-example" id="live-example" aria-labelledby="live-example-title">
           <div className="example-header"><div><span>Live example</span><Text as="h2" id="live-example-title" variant="title-sm">Built from the published package</Text></div><Badge tone="success" variant="outline">Interactive</Badge></div>
-          <div className="example-canvas"><ComponentPreview slug={component.slug} /></div>
+          <div className={`example-canvas${["data-grid", "sidebar", "tree", "tree-grid"].includes(component.slug) ? " example-canvas--structure" : ""}`}><div className="example-specimen"><ComponentPreview slug={component.slug} /></div></div>
         </section>
         <ComponentDocument componentSlug={slug} componentTitle={component.title} markdown={consumerMarkdown} />
         <nav className="component-pagination" aria-label={`${component.category} component pages`}>
