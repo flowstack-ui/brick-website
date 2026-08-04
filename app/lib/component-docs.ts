@@ -47,8 +47,11 @@ export function structureComponentDoc(markdown: string): StructuredComponentDoc 
     if (title === "Evidence" || title === "Changelog") continue;
     const bodyStart = (match.index ?? 0) + match[0].length;
     const bodyEnd = matches[index + 1]?.index ?? source.length;
+    const body = source.slice(bodyStart, bodyEnd).trim();
+    const maintainerOnlyExamples = title === "Examples" && /playground/i.test(body) && !/```/.test(body) && !/^###\s+/m.test(body);
+    if (maintainerOnlyExamples) continue;
     sections.set(title, {
-      body: source.slice(bodyStart, bodyEnd).trim(),
+      body,
       id: headingId(title),
       title,
     });

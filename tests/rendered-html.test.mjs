@@ -198,6 +198,7 @@ test("documentation rails retain readable scalable navigation", async () => {
   assert.match(guideSource, /extractMarkdownToc\(guide\.body\)/, "guide rails must be generated from their authored headings");
   assert.match(componentSource, /componentDocToc\(consumerMarkdown\)[\s\S]*<ComponentDocument/, "component rails and their consumer-first article must share the structured public document");
   assert.match(componentParserSource, /maintainerStart[\s\S]*Evidence\|Changelog/, "component presentation must remove maintainer evidence and changelogs from the public reading path");
+  assert.match(componentParserSource, /maintainerOnlyExamples[^;]*title === "Examples"[^;]*playground[^;]*!\/```\//, "playground-only source sections must route to maintainer resources instead of masquerading as consumer examples");
   assert.match(componentDocSource, /Know when \{componentTitle\} is the right part[\s\S]*Advanced reference[\s\S]*Maintainer resources/, "component pages must progress from adoption guidance to optional advanced and maintainer resources");
   assert.match(componentNavSource, /aria-current=\{component\.slug === currentSlug \? "page"/, "component navigation must expose the current component route");
   assert.match(componentNavSource, /<Accordion\.Root[\s\S]*categories\.map/, "component navigation must use collapsible Brick category groups");
@@ -359,6 +360,7 @@ const routes = [
   ["/docs", /Build with Brick/i],
   ["/components", /75 component owners/i],
   ["/components/button", /Maintainer resources/i],
+  ["/components/visually-hidden", /Maintainer resources/i],
   ["/docs/getting-started", /Getting started/i],
   ["/themes", /Change the voice, not the component/i],
   ["/atom", /Behavior beneath the surface/i],
@@ -389,6 +391,10 @@ for (const [pathname, expected] of routes) {
       assert.match(html, /href="#choose-this-component"/, "component rail must include the consumer usage decision");
       assert.match(html, /id="choose-this-component"/, "component guidance must expose the rail's matching target");
       assert.match(html, /class="brick-table"/, "component API matrices must render through the published Brick Table");
+    }
+    if (pathname === "/components/visually-hidden") {
+      assert.doesNotMatch(html, /<h2[^>]*>Examples<\/h2>/, "a playground redirect must not appear as a consumer Examples section");
+      assert.match(html, />Playground<\/span>/, "the playground destination must remain available in Maintainer resources");
     }
     if (pathname === "/") {
       assert.match(html, /<link rel="icon" href="\/favicon\.svg" type="image\/svg\+xml"\s*\/?>/, "favicon must resolve against the current host");
