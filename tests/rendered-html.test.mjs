@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { spawn } from "node:child_process";
-import { readFile } from "node:fs/promises";
+import { readFile, readdir } from "node:fs/promises";
 import { createServer } from "node:net";
 import { resolve } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -410,6 +410,22 @@ test("component discovery and rendering remain consumer-first Brick compositions
   assert.match(css, /\.component-api \.markdown-body > h3:first-child \{[^}]*padding-block-start: 0;[^}]*border-block-start: 0;/, "the first API subsection must not duplicate the API introduction divider");
   assert.match(css, /\.component-api > \.component-section-heading \.component-section-description \{[^}]*color: var\(--brick-color-text-secondary\);[^}]*font-size: 1rem;[^}]*text-transform: none;/, "the API explanation must remain normal secondary body copy rather than inheriting eyebrow typography");
   assert.match(css, /\.component-styling \.markdown-token-cluster \{[^}]*background: var\(--brick-color-surface-base\);/, "dense classes and tokens must receive a distinct scannable cluster surface");
+});
+
+test("the production CSS preserves the iOS Code Block text-size contract", async () => {
+  const packageManifest = JSON.parse(await readFile(new URL("../package.json", import.meta.url), "utf8"));
+  const chunkDirectory = resolve(root, ".next/static/chunks");
+  const cssChunks = (await readdir(chunkDirectory)).filter((file) => file.endsWith(".css"));
+  const productionCss = (await Promise.all(
+    cssChunks.map((file) => readFile(resolve(chunkDirectory, file), "utf8")),
+  )).join("\n");
+
+  assert.ok(packageManifest.browserslist.includes("ios_saf 16.4"), "the qualified iOS Safari floor must remain an explicit production target");
+  assert.match(
+    productionCss,
+    /\.markdown-body \.brick-code-block-pre\{[^}]*-webkit-text-size-adjust:none;[^}]*text-size-adjust:none/,
+    "Next's optimized CSS must retain the WebKit-prefixed declaration required by physical iPhones",
+  );
 });
 
 test("component introductions do not duplicate installation guidance", async () => {

@@ -2,7 +2,10 @@
 
 - Disabled automatic mobile text inflation on documentation Code Blocks after
   physical-phone review showed that normalization alone did not keep long
-  scrollable imports at the same size as short command examples.
+  scrollable imports at the same size as short command examples. Explicitly
+  qualified iOS Safari 16.4 in the production browser target so Next's CSS
+  optimizer retains the required `-webkit-text-size-adjust` declaration, and
+  added an assertion against the generated CSS chunks rather than source alone.
 - Made component canvases contained horizontal scroll owners on mobile so wide
   specimens remain reachable instead of being clipped, and kept the
   Interactive badge on one stable line while the title column contracts.

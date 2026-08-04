@@ -101,7 +101,9 @@ Brick UI Website is implemented as a multi-route product and documentation site.
 - Code Block overflow landmarks retain keyboard scrolling and receive unique article-scoped names such as `TSX code example 1`, preventing repeated-language examples from sharing one landmark label.
 - Documentation Code Blocks disable automatic mobile text inflation on their
   native `pre` owner so long imports retain the same authored size as short
-  commands.
+  commands. The production browser target explicitly includes iOS Safari 16.4,
+  and rendered verification confirms Next's optimized CSS retains the required
+  WebKit-prefixed declaration instead of checking authored source alone.
 - Component example canvases expose contained horizontal touch scrolling for
   specimens wider than a phone viewport, and their Interactive status badge
   remains one non-shrinking line while the title column contracts.

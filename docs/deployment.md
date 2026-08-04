@@ -21,6 +21,12 @@ never bypass that provenance check by importing from the sibling package.
 relinked project cannot fall back to generic static-output defaults. It does
 not contain account, project, domain, or credential identifiers.
 
+`package.json` declares the qualified desktop and iOS browser floor used by
+Next's CSS optimizer. Keep iOS Safari explicit: WebKit still requires the
+prefixed `-webkit-text-size-adjust` form for the Code Block mobile-sizing
+contract. Rendered verification inspects the generated `.next` CSS chunks so a
+source declaration that is removed during optimization cannot pass release.
+
 The application emits `nosniff`, strict-origin referrer policy, frame denial,
 and a least-privilege browser feature policy on every route. The social card
 uses a bounded one-day browser cache with stale revalidation. Vercel owns TLS,
