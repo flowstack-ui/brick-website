@@ -12,6 +12,11 @@
     --site-amber: #eaa64a;
     --site-grid: color-mix(in srgb, var(--brick-color-border-subtle), transparent 42%);
     --site-glow: color-mix(in srgb, var(--site-purple-bright), transparent 72%);
+    --site-example-stage-start: #eadfff;
+    --site-example-stage-middle: #f7f3ff;
+    --site-example-stage-end: #dcecff;
+    --site-example-stage-glow: #baa5ff;
+    --site-example-stage-line: color-mix(in srgb, #5b5bd6, transparent 82%);
     --site-font-display: "Instrument Sans", "Avenir Next", "Segoe UI", ui-sans-serif, system-ui, sans-serif;
     --site-font-body: "Instrument Sans", "Avenir Next", "Segoe UI", ui-sans-serif, system-ui, sans-serif;
     --site-font-mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
@@ -58,6 +63,11 @@
   :root[data-brick-appearance="dark"] {
     --site-grid: color-mix(in srgb, var(--brick-color-border-subtle), transparent 56%);
     --site-glow: color-mix(in srgb, #8c6cff, transparent 72%);
+    --site-example-stage-start: #584394;
+    --site-example-stage-middle: #315b7c;
+    --site-example-stage-end: #5d428f;
+    --site-example-stage-glow: #6d58c5;
+    --site-example-stage-line: color-mix(in srgb, #d8d0ff, transparent 84%);
     --brick-color-accent-solid: #684bd6;
     --brick-color-accent-solid-hover: #7050dc;
     --brick-color-accent-solid-pressed: #5d3fc4;
@@ -516,9 +526,9 @@
   .live-example { overflow: hidden; margin-block-start: 3rem; scroll-margin-top: calc(var(--site-header-height) + 2rem); border: 1px solid var(--brick-color-border-subtle); border-radius: 1rem; background: var(--brick-color-surface-raised); }
   .example-header { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 1rem 1.15rem; border-block-end: 1px solid var(--brick-color-border-subtle); background: var(--brick-color-surface-base); }
   .example-header > div { display: grid; gap: .2rem; }.example-header > div > span { color: var(--brick-color-text-muted); font-size: .67rem; text-transform: uppercase; letter-spacing: .09em; }
-  .example-canvas { position: relative; isolation: isolate; display: grid; min-height: 19rem; place-items: center; overflow: hidden; padding: clamp(1.75rem, 5vw, 4rem); background: linear-gradient(145deg, color-mix(in srgb, var(--brick-color-surface-base), var(--brick-color-accent-soft) 10%), var(--brick-color-surface-base) 46%, color-mix(in srgb, var(--brick-color-surface-base), var(--brick-color-info-soft) 12%)); box-shadow: 0 1px 0 color-mix(in srgb, var(--brick-color-border-subtle), transparent 20%) inset; }
-  .example-canvas::before { position: absolute; z-index: -2; inset: 0; background: radial-gradient(circle at 24% 18%, color-mix(in srgb, var(--brick-color-accent-soft), transparent 8%), transparent 34%), radial-gradient(circle at 78% 82%, color-mix(in srgb, var(--brick-color-info-soft), transparent 22%), transparent 32%), radial-gradient(circle at 52% 46%, color-mix(in srgb, var(--brick-color-surface-raised), transparent 18%), transparent 42%); content: ""; }
-  .example-canvas::after { position: absolute; z-index: -1; inset: 0; background-image: linear-gradient(color-mix(in srgb, var(--brick-color-border-subtle), transparent 46%) 1px, transparent 1px), linear-gradient(90deg, color-mix(in srgb, var(--brick-color-border-subtle), transparent 46%) 1px, transparent 1px); background-position: center; background-size: 4rem 4rem; content: ""; opacity: .62; mask-image: radial-gradient(ellipse 72% 72% at center, black 18%, transparent 78%); }
+  .example-canvas { position: relative; isolation: isolate; display: grid; min-height: 19rem; place-items: center; overflow: hidden; padding: clamp(1.75rem, 5vw, 4rem); background: linear-gradient(135deg, var(--site-example-stage-start), var(--site-example-stage-middle) 48%, var(--site-example-stage-end)); box-shadow: 0 1px 0 color-mix(in srgb, var(--site-example-stage-line), transparent 18%) inset; }
+  .example-canvas::before { position: absolute; z-index: -2; inset: 0; background: radial-gradient(circle at 18% 12%, color-mix(in srgb, var(--site-example-stage-glow), transparent 18%), transparent 34%), radial-gradient(circle at 82% 88%, color-mix(in srgb, var(--site-example-stage-end), transparent 8%), transparent 38%), radial-gradient(circle at 52% 44%, color-mix(in srgb, var(--site-example-stage-middle), transparent 42%), transparent 48%); content: ""; }
+  .example-canvas::after { position: absolute; z-index: -1; inset: 0; background-image: linear-gradient(var(--site-example-stage-line) 1px, transparent 1px), linear-gradient(90deg, var(--site-example-stage-line) 1px, transparent 1px); background-position: center; background-size: 4rem 4rem; content: ""; opacity: .72; mask-image: radial-gradient(ellipse 72% 72% at center, black 18%, transparent 78%); }
   .example-specimen { position: relative; z-index: 1; width: min(100%, 34rem); }
   .example-canvas[data-layout="form"] { min-height: 22rem; }
   .example-canvas[data-layout="form"] > .example-specimen { width: min(100%, 28rem); }

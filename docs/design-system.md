@@ -14,10 +14,12 @@ The design supports reduced motion, forced colors, keyboard navigation, narrow m
 ## Component example stage
 
 Every component route uses one shared architectural stage rather than a
-generic centered box. The stage is an opaque semantic surface with restrained
-accent and information glows plus a faint blueprint mesh. It adapts naturally
-to both Brick appearances, removes decoration in Forced Colors, and never lets
-the page grid compete with the demonstrated component.
+generic centered box. The stage is an opaque, luminous purple-to-blue surface
+with a faint blueprint mesh. Light appearance uses a bright pastel spectrum;
+dark appearance uses a clearly saturated mid-tone spectrum rather than another
+near-black panel. Both preserve foreground contrast, remove decoration in
+Forced Colors, and prevent the page grid from competing with the demonstrated
+component.
 
 Each public component owner is assigned exactly one behavior mode:
 
