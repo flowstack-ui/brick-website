@@ -5,6 +5,8 @@
   section heading width.
 - Centered the Themes comparison title and description explicitly so Brick
   Text's start-aligned default cannot diverge from the centered badge.
+- Removed the orphaned root-import line from component introductions because
+  the complete installation and imports section already owns that guidance.
 
 ## 2026-08-04 — llms.txt discovery contract
 

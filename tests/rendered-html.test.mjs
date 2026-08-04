@@ -406,6 +406,16 @@ test("component discovery and rendering remain consumer-first Brick compositions
   assert.match(css, /\.component-styling \.markdown-token-cluster \{[^}]*background: var\(--brick-color-surface-base\);/, "dense classes and tokens must receive a distinct scannable cluster surface");
 });
 
+test("component introductions do not duplicate installation guidance", async () => {
+  const componentPage = await readFile(new URL("../app/components/[slug]/page.tsx", import.meta.url), "utf8");
+  const componentDocument = await readFile(new URL("../app/components/ComponentDocument.tsx", import.meta.url), "utf8");
+  const css = await readFile(new URL("../app/globals.css", import.meta.url), "utf8");
+  assert.doesNotMatch(componentPage, /className="component-install"/, "component introduction must not strand a duplicate import between its description and showcase");
+  assert.doesNotMatch(componentPage, /import \{'\{'\}/, "component introduction must not synthesize an incomplete root import");
+  assert.match(componentDocument, /sections\.get\("Installation and imports"\)/, "complete installation and import guidance must remain in the reading path");
+  assert.doesNotMatch(css, /\.component-install\s*\{/, "removed duplicate import treatment must not leave dead authored CSS");
+});
+
 test("rendered component documentation omits maintainer prose from the reading path", async () => {
   const response = await render("/components/button");
   assert.equal(response.status, 200);

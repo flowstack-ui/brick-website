@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Badge } from "@flowstack-ui/brick/badge";
-import { Code } from "@flowstack-ui/brick/code";
 import { Text } from "@flowstack-ui/brick/text";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { ComponentBreadcrumb } from "@/app/components/ComponentBreadcrumb";
@@ -54,7 +53,6 @@ export default async function ComponentPage({ params }: { params: Promise<{ slug
         <div className="component-kicker"><Badge tone="accent" variant="soft">{component.category}</Badge><span>Brick {source.version}</span></div>
         <Text as="h1" className="page-title">{component.title}</Text>
         <Text as="p" variant="body-lg" tone="secondary" className="page-lede">{component.description}</Text>
-        <div className="component-install"><Code variant="subtle">import {'{'} {component.title.replaceAll(" ", "")} {'}'} from &quot;@flowstack-ui/brick&quot;;</Code></div>
         <section className="live-example" id="live-example" aria-labelledby="live-example-title">
           <div className="example-header"><div><span>Live example</span><Text as="h2" id="live-example-title" variant="title-sm">Built from the published package</Text></div><Badge tone="success" variant="outline">Interactive</Badge></div>
           <ComponentExampleCanvas slug={component.slug} />
