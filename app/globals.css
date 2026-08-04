@@ -299,7 +299,8 @@
   .footer-meta a:focus-visible { outline: 2px solid var(--brick-color-focus-ring); outline-offset: .2rem; }
   .footer-legal { text-align: end; }
 
-  .docs-shell { display: grid; min-height: calc(100dvh - var(--site-header-height)); grid-template-columns: 15rem minmax(0, 50rem) 12rem; justify-content: space-between; gap: clamp(2rem, 4vw, 5rem); padding-block: 3rem 7rem; }
+  .docs-shell { position: relative; isolation: isolate; display: grid; min-height: calc(100dvh - var(--site-header-height)); grid-template-columns: 15rem minmax(0, 50rem) 12rem; justify-content: space-between; gap: clamp(2rem, 4vw, 5rem); padding-block: 3rem 7rem; }
+  .docs-shell::before { position: absolute; inset-block: 0; inset-inline-start: 50%; z-index: -1; width: 100vw; background: linear-gradient(180deg, color-mix(in srgb, var(--brick-color-surface-canvas), transparent 18%) 0, color-mix(in srgb, var(--brick-color-surface-canvas), transparent 4%) 10rem, var(--brick-color-surface-canvas) 22rem); content: ""; pointer-events: none; transform: translateX(-50%); }
   .docs-sidebar, .docs-rail { position: sticky; inset-block-start: calc(var(--site-header-height) + 2rem); align-self: start; max-height: calc(100dvh - var(--site-header-height) - 4rem); overflow: auto; }
   .docs-sidebar nav { display: grid; gap: .15rem; }
   .docs-sidebar a, .docs-rail a { display: flex; min-height: 2.35rem; align-items: center; padding: .5rem .65rem; border-radius: .45rem; color: var(--brick-color-text-secondary); font-size: .9rem; line-height: 1.35; text-decoration: none; }
@@ -550,6 +551,7 @@
   @media (forced-colors: active) {
     .brand-mark span, .catalog-module, .catalog-core, .project-glyph, .pillar-icon, .orbit-center, .orbit-chip, .layer, .layer-symbol, .flowstack-step { border: 1px solid CanvasText; background: Canvas; color: CanvasText; }
     .theme-orbit, .theme-orbit::before, .theme-orbit::after { border-color: CanvasText; background: Canvas; }
+    .docs-shell::before { background: Canvas; }
     .hero-title span { color: CanvasText; background: none; }
   }
 }

@@ -172,6 +172,9 @@ test("documentation rails retain readable scalable navigation", async () => {
   const css = await readFile(new URL("../app/globals.css", import.meta.url), "utf8");
   assert.match(css, /\.docs-sidebar a, \.docs-rail a \{[^}]*min-height: 2\.35rem;[^}]*font-size: \.9rem;[^}]*line-height: 1\.35;/, "documentation links must not use compact metadata-sized text or targets");
   assert.match(css, /\.docs-nav-label, \.docs-rail > span \{[^}]*font-size: \.75rem;[^}]*line-height: 1\.4;/, "documentation rail labels must retain a readable supporting scale");
+  assert.match(css, /\.docs-shell \{ position: relative; isolation: isolate;/, "documentation routes must establish their own reading-plane stacking context");
+  assert.match(css, /\.docs-shell::before \{[^}]*width: 100vw;[^}]*background: linear-gradient\(180deg,[^}]*var\(--brick-color-surface-canvas\) 22rem\);/, "documentation grid must fade into an opaque semantic reading canvas");
+  assert.match(css, /\.docs-shell::before \{ background: Canvas; \}/, "forced-colors mode must receive a fully opaque reading plane");
   assert.match(css, /@media \(max-width: 1180px\)[\s\S]*\.docs-rail \{ display: none; \}/, "the right rail must leave the layout before text zoom compresses the article");
   assert.match(css, /@media \(max-width: 900px\)[\s\S]*\.docs-shell \{ display: block; \}/, "the remaining documentation navigation must reflow before narrow layouts");
 });
