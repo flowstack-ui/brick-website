@@ -1,6 +1,6 @@
 import { Card } from "@flowstack-ui/brick/card";
 import { Text } from "@flowstack-ui/brick/text";
-import { ArrowUpRight, CheckCircle2, Code2, GitBranch, Route, ShieldCheck } from "lucide-react";
+import { ArrowUpRight, CheckCircle2, GitBranch, Route, ShieldCheck } from "lucide-react";
 import { ComponentAdvancedDisclosure } from "@/app/components/ComponentAdvancedDisclosure";
 import { MarkdownArticle } from "@/app/components/MarkdownArticle";
 import { WebsiteButton } from "@/app/components/WebsiteButton";
@@ -106,7 +106,7 @@ export function ComponentDocument({ componentSlug, componentTitle, markdown }: {
           <Card.Header><div><span className="component-maintainer-icon"><GitBranch size={18} aria-hidden="true" /></span><Card.Title as="h2">Maintainer resources</Card.Title></div></Card.Header>
           <Card.Content><Text tone="secondary">Tests, playground evidence, source notes, and release history remain available without crowding the plug-and-play guide.</Text></Card.Content>
           <Card.Footer className="component-maintainer-actions">
-            <WebsiteButton href={`https://github.com/flowstack-ui/brick/tree/main/docs/components/${componentSlug}`} target="_blank" rel="noreferrer" tone="neutral" variant="soft" startIcon={<Code2 size={15} aria-hidden="true" />}>Source docs</WebsiteButton>
+            <WebsiteButton href={`https://github.com/flowstack-ui/brick/tree/main/docs/components/${componentSlug}`} target="_blank" rel="noreferrer" tone="neutral" variant="ghost" endIcon={<ArrowUpRight size={15} aria-hidden="true" />}>Source docs</WebsiteButton>
             <WebsiteButton href={`https://github.com/flowstack-ui/brick/blob/main/docs/components/${componentSlug}/CHANGELOG.md`} target="_blank" rel="noreferrer" tone="neutral" variant="ghost" endIcon={<ArrowUpRight size={15} aria-hidden="true" />}>Changelog</WebsiteButton>
             <WebsiteButton href={`https://github.com/flowstack-ui/brick/tree/main/playground/src/components/${componentSlug}`} target="_blank" rel="noreferrer" tone="neutral" variant="ghost" endIcon={<ArrowUpRight size={15} aria-hidden="true" />}>Playground</WebsiteButton>
           </Card.Footer>

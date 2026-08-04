@@ -3,6 +3,7 @@
 ## Unreleased
 
 - Replaced the ambiguous grid icon between component pagination links with a clearly labeled, quiet category-return control.
+- Normalized Source docs, Changelog, and Playground as one equally weighted set of external maintainer links.
 - Removed the redundant Docs rails from the component catalog, rebuilt its no-results treatment as query-aware guidance, and let discovery results use the full reading width.
 - Simplified and aligned the component navigator, replaced the dense two-column usage comparison with a single readable decision lane, and moved advanced-reference framing back to normal-case prose.
 - Gave API content a proper public-contract introduction, roomier tables, and named subsections for compound APIs; grouped dense stable-class and token runs into scannable technical clusters.
