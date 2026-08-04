@@ -211,18 +211,23 @@ test("documentation rails retain readable scalable navigation", async () => {
 
 test("component discovery and rendering remain consumer-first Brick compositions", async () => {
   const catalogSource = await readFile(new URL("../app/components/ComponentCatalog.tsx", import.meta.url), "utf8");
+  const previewSource = await readFile(new URL("../app/components/ComponentPreview.tsx", import.meta.url), "utf8");
   const componentSource = await readFile(new URL("../app/components/[slug]/page.tsx", import.meta.url), "utf8");
   const componentDocSource = await readFile(new URL("../app/components/ComponentDocument.tsx", import.meta.url), "utf8");
   const markdownSource = await readFile(new URL("../app/components/MarkdownArticle.tsx", import.meta.url), "utf8");
   const css = await readFile(new URL("../app/globals.css", import.meta.url), "utf8");
   assert.match(catalogSource, /What are you building\?[\s\S]*Component finder[\s\S]*Search by name, purpose, or category/, "the catalog must support outcome-led browsing and known-item search");
   assert.match(catalogSource, /aria-pressed=\{category === entry\}/, "category filters must expose their selected state");
+  assert.match(catalogSource, /catalog-outcome-title[^>]*><strong>\{label\}<\/strong><ArrowRight/, "outcome arrows must remain attached to their action labels");
+  assert.match(css, /\.catalog-outcome-title \{[^}]*width: fit-content;[^}]*gap: \.3rem;/, "outcome arrows must not be pushed to the far edge of their cards");
   assert.match(catalogSource, /aria-live="polite"/, "search result changes must be announced without moving focus");
   assert.match(componentSource, /categoryComponents[\s\S]*component-category-return/, "previous, category, and next navigation must remain category-relative");
   assert.match(componentSource, /Back to category[\s\S]*<strong>\{component\.category\}<\/strong>/, "the category return must read as a labeled destination instead of an unrelated icon action");
   assert.doesNotMatch(componentSource, /LayoutGrid/, "the category return must not introduce an ambiguous grid icon between directional links");
   assert.match(componentDocSource, /Source docs<\/WebsiteButton>[\s\S]*Changelog<\/WebsiteButton>[\s\S]*Playground<\/WebsiteButton>/, "maintainer destinations must remain one equally weighted external-link group");
   assert.doesNotMatch(componentDocSource, /variant="soft"[^>]*>Source docs/, "source docs must not receive unexplained emphasis over peer GitHub destinations");
+  assert.match(previewSource, /case "field":[^;]*required><Field\.Label>Email<\/Field\.Label>/, "the Field preview must rely on Label's required-state indicator contract");
+  assert.doesNotMatch(previewSource, /case "field":[^;]*Field\.RequiredIndicator/, "the Field preview must not add a second required indicator to Label's automatic one");
   assert.match(markdownSource, /<Code[^>]*data-code-kind=\{inlineCodeKind/, "inline technical literals must use the published Brick Code component with semantic token styling");
   assert.match(markdownSource, /<Table\.Container[\s\S]*<Table\.Root[\s\S]*<Table\.Header/, "Markdown API matrices must use the published Brick Table anatomy");
   assert.match(css, /\.catalog-outcomes \{[^}]*grid-template-columns: repeat\(3/, "the full-width outcome discovery surface must retain a scannable desktop grid");

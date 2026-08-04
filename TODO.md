@@ -5,6 +5,7 @@
 - Review page-level spacing rhythm across the home, catalog, guide, and component layouts.
 - Deepen component examples with additional states and recipes as component work evolves.
 - Complete owner visual review of the refined full-width component discovery, aligned navigator, usage guidance, API, token, and advanced-reference layouts across representative simple, compound, overlay, form, and data components.
+- Correct the canonical Field quick-start documentation, which currently combines Label's automatic required marker with an explicit RequiredIndicator; then refresh the synchronized website content through the normal package-doc workflow.
 - Add automated cross-browser visual and accessibility coverage when the browser runtime is available in CI.
 - Connect the final `brick-ui.com` custom domain after the first hosted version is approved.
 

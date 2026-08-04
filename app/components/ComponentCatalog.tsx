@@ -74,8 +74,7 @@ export function ComponentCatalog() {
               variant={category === outcomeCategory ? "soft" : "ghost"}
             >
               <span className="catalog-outcome-icon"><Icon size={18} aria-hidden="true" /></span>
-              <span><strong>{label}</strong><small>{examples}</small></span>
-              <ArrowRight size={15} aria-hidden="true" />
+              <span className="catalog-outcome-copy"><span className="catalog-outcome-title"><strong>{label}</strong><ArrowRight size={14} aria-hidden="true" /></span><small>{examples}</small></span>
             </Button>
           ))}
         </div>
