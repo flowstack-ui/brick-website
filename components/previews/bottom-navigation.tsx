@@ -1,5 +1,7 @@
 "use client";
 
+import "../../app/.generated/previews/bottom-navigation.css";
+
 import { BottomNavigation } from "@flowstack-ui/brick/bottom-navigation";
 import { Icon } from "@flowstack-ui/brick/icon";
 import { Home, Inbox, Settings } from "lucide-react";

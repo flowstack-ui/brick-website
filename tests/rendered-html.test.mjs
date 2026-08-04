@@ -8,6 +8,7 @@ import test, { after } from "node:test";
 
 const root = fileURLToPath(new URL("..", import.meta.url));
 const testOrigin = "http://127.0.0.1:4012";
+const brickSource = JSON.parse(await readFile(resolve(root, "content/brick-source.json"), "utf8"));
 let server;
 let serverOutput = "";
 let serverReady;
@@ -639,7 +640,7 @@ test("structured data identifies the site, Swifty publisher, software, and conte
   assert.equal(graph.find((entry) => entry["@type"] === "Organization")?.legalName, "Swifty LLC");
   const software = graph.find((entry) => entry["@type"] === "SoftwareSourceCode");
   assert.equal(software?.alternateName, "@flowstack-ui/brick");
-  assert.equal(software?.version, "0.1.0");
+  assert.equal(software?.version, brickSource.version);
   assert.equal(software?.codeRepository, "https://github.com/flowstack-ui/brick");
 
   for (const [pathname, finalName, expectedLength] of [

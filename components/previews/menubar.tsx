@@ -1,5 +1,7 @@
 "use client";
 
+import "../../app/.generated/previews/menubar.css";
+
 import { Menubar } from "@flowstack-ui/brick/menubar";
 
 export default function MenubarPreview() {

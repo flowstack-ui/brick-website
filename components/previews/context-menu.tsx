@@ -1,5 +1,7 @@
 "use client";
 
+import "../../app/.generated/previews/context-menu.css";
+
 import { ContextMenu } from "@flowstack-ui/brick/context-menu";
 import { Text } from "@flowstack-ui/brick/text";
 import { MousePointer2 } from "lucide-react";

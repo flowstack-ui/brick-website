@@ -1,5 +1,7 @@
 "use client";
 
+import "../../app/.generated/previews/data-grid.css";
+
 import { DataGrid } from "@flowstack-ui/brick/data-grid";
 
 export default function DataGridPreview() {

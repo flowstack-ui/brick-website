@@ -1,5 +1,7 @@
 "use client";
 
+import "../../app/.generated/previews/progress-circle.css";
+
 import { ProgressCircle } from "@flowstack-ui/brick/progress-circle";
 
 export default function ProgressCirclePreview() {

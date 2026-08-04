@@ -1,5 +1,7 @@
 "use client";
 
+import "../../app/.generated/previews/show.css";
+
 import { Badge } from "@flowstack-ui/brick/badge";
 import { Show } from "@flowstack-ui/brick/show";
 import { VStack } from "@flowstack-ui/brick/stack";

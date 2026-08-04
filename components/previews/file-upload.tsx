@@ -1,5 +1,7 @@
 "use client";
 
+import "../../app/.generated/previews/file-upload.css";
+
 import { Field } from "@flowstack-ui/brick/field";
 import { FileUpload } from "@flowstack-ui/brick/file-upload";
 import { Text } from "@flowstack-ui/brick/text";

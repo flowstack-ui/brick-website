@@ -1,5 +1,7 @@
 "use client";
 
+import "../../app/.generated/previews/aspect-ratio.css";
+
 import { AspectRatio } from "@flowstack-ui/brick/aspect-ratio";
 
 export default function AspectRatioPreview() {

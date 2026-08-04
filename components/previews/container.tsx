@@ -1,5 +1,7 @@
 "use client";
 
+import "../../app/.generated/previews/container.css";
+
 import { Container } from "@flowstack-ui/brick/container";
 import { Surface } from "@flowstack-ui/brick/surface";
 import { Text } from "@flowstack-ui/brick/text";

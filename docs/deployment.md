@@ -10,6 +10,11 @@ secrets belong in ignored environment files. Preview and generated deployment
 URLs stay protected. The reviewed production deployment is promoted to the
 canonical `brick-ui.com` apex only after its remote qualification gate passes.
 
+`prebuild` regenerates ignored route and component-preview CSS bundles from the
+exact published Brick dependency. A deployment must fail if the installed npm
+version, the declared dependency, and `content/brick-source.json` disagree;
+never bypass that provenance check by importing from the sibling package.
+
 `vercel.json` pins the native Next.js framework preset so a newly created or
 relinked project cannot fall back to generic static-output defaults. It does
 not contain account, project, domain, or credential identifiers.

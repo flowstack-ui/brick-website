@@ -1,5 +1,7 @@
 "use client";
 
+import "../../app/.generated/previews/icon-button.css";
+
 import { IconButton } from "@flowstack-ui/brick/icon-button";
 import { HStack } from "@flowstack-ui/brick/stack";
 import { Bell, Menu, Search } from "lucide-react";

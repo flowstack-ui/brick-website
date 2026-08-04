@@ -1,5 +1,7 @@
 "use client";
 
+import "../../app/.generated/previews/code-block.css";
+
 import { CodeBlock } from "@flowstack-ui/brick/code-block";
 
 export default function CodeBlockPreview() {

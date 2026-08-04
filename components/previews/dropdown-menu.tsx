@@ -1,5 +1,7 @@
 "use client";
 
+import "../../app/.generated/previews/dropdown-menu.css";
+
 import { Button } from "@flowstack-ui/brick/button";
 import { DropdownMenu } from "@flowstack-ui/brick/dropdown-menu";
 

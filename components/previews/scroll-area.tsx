@@ -1,5 +1,7 @@
 "use client";
 
+import "../../app/.generated/previews/scroll-area.css";
+
 import { ScrollArea } from "@flowstack-ui/brick/scroll-area";
 import { VStack } from "@flowstack-ui/brick/stack";
 import { Surface } from "@flowstack-ui/brick/surface";

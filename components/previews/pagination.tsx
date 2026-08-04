@@ -1,5 +1,7 @@
 "use client";
 
+import "../../app/.generated/previews/pagination.css";
+
 import { Pagination } from "@flowstack-ui/brick/pagination";
 
 export default function PaginationPreview() {

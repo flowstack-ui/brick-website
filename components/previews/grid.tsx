@@ -1,5 +1,7 @@
 "use client";
 
+import "../../app/.generated/previews/grid.css";
+
 import { Grid } from "@flowstack-ui/brick/grid";
 import { Surface } from "@flowstack-ui/brick/surface";
 

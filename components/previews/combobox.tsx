@@ -1,5 +1,7 @@
 "use client";
 
+import "../../app/.generated/previews/combobox.css";
+
 import { Combobox } from "@flowstack-ui/brick/combobox";
 import { Field } from "@flowstack-ui/brick/field";
 

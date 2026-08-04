@@ -1,5 +1,7 @@
 "use client";
 
+import "../../app/.generated/previews/select.css";
+
 import { Field } from "@flowstack-ui/brick/field";
 
 import { Select } from "@flowstack-ui/brick/select";

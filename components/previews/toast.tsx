@@ -1,5 +1,7 @@
 "use client";
 
+import "../../app/.generated/previews/toast.css";
+
 import { Button } from "@flowstack-ui/brick/button";
 
 import { Toaster, toast } from "@flowstack-ui/brick/toast";

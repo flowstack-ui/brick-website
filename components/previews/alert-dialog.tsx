@@ -1,5 +1,7 @@
 "use client";
 
+import "../../app/.generated/previews/alert-dialog.css";
+
 import { AlertDialog } from "@flowstack-ui/brick/alert-dialog";
 import { Button } from "@flowstack-ui/brick/button";
 

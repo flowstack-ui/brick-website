@@ -1,5 +1,7 @@
 "use client";
 
+import "../../app/.generated/previews/rating.css";
+
 import { Field } from "@flowstack-ui/brick/field";
 import { Rating } from "@flowstack-ui/brick/rating";
 

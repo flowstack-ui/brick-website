@@ -1,5 +1,7 @@
 "use client";
 
+import "../../app/.generated/previews/navigation-menu.css";
+
 import { NavigationMenu } from "@flowstack-ui/brick/navigation-menu";
 import { Text } from "@flowstack-ui/brick/text";
 

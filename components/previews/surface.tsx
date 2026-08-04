@@ -1,5 +1,7 @@
 "use client";
 
+import "../../app/.generated/previews/surface.css";
+
 import { HStack } from "@flowstack-ui/brick/stack";
 import { Surface } from "@flowstack-ui/brick/surface";
 

@@ -1,5 +1,7 @@
 "use client";
 
+import "../../app/.generated/previews/swipeable-item.css";
+
 import { Badge } from "@flowstack-ui/brick/badge";
 import { Button } from "@flowstack-ui/brick/button";
 import { SwipeableItem } from "@flowstack-ui/brick/swipeable-item";

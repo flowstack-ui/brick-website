@@ -1,5 +1,7 @@
 "use client";
 
+import "../../app/.generated/previews/popover.css";
+
 import { Button } from "@flowstack-ui/brick/button";
 import { Popover } from "@flowstack-ui/brick/popover";
 

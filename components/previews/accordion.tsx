@@ -1,5 +1,7 @@
 "use client";
 
+import "../../app/.generated/previews/accordion.css";
+
 import { Accordion } from "@flowstack-ui/brick/accordion";
 
 export default function AccordionPreview() {

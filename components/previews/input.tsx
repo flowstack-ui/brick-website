@@ -1,5 +1,7 @@
 "use client";
 
+import "../../app/.generated/previews/input.css";
+
 import { Field } from "@flowstack-ui/brick/field";
 import { Input } from "@flowstack-ui/brick/input";
 

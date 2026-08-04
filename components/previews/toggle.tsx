@@ -1,5 +1,7 @@
 "use client";
 
+import "../../app/.generated/previews/toggle.css";
+
 import { HStack } from "@flowstack-ui/brick/stack";
 import { Toggle } from "@flowstack-ui/brick/toggle";
 import { Bell, Star } from "lucide-react";

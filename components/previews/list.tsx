@@ -1,5 +1,7 @@
 "use client";
 
+import "../../app/.generated/previews/list.css";
+
 import { List } from "@flowstack-ui/brick/list";
 
 export default function ListPreview() {

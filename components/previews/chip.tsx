@@ -1,5 +1,7 @@
 "use client";
 
+import "../../app/.generated/previews/chip.css";
+
 import { Chip } from "@flowstack-ui/brick/chip";
 import { HStack } from "@flowstack-ui/brick/stack";
 

@@ -1,5 +1,7 @@
 "use client";
 
+import "../../app/.generated/previews/breadcrumb.css";
+
 import { Breadcrumb } from "@flowstack-ui/brick/breadcrumb";
 
 export default function BreadcrumbPreview() {

@@ -1,5 +1,7 @@
 "use client";
 
+import "../../app/.generated/previews/table.css";
+
 import { Table } from "@flowstack-ui/brick/table";
 
 export default function TablePreview() {

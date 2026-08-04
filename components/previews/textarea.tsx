@@ -1,5 +1,7 @@
 "use client";
 
+import "../../app/.generated/previews/textarea.css";
+
 import { Field } from "@flowstack-ui/brick/field";
 import { Textarea } from "@flowstack-ui/brick/textarea";
 

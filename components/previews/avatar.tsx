@@ -1,5 +1,7 @@
 "use client";
 
+import "../../app/.generated/previews/avatar.css";
+
 import { Avatar } from "@flowstack-ui/brick/avatar";
 import { HStack } from "@flowstack-ui/brick/stack";
 

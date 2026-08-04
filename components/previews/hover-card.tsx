@@ -1,5 +1,7 @@
 "use client";
 
+import "../../app/.generated/previews/hover-card.css";
+
 import { Avatar } from "@flowstack-ui/brick/avatar";
 import { Badge } from "@flowstack-ui/brick/badge";
 import { HoverCard } from "@flowstack-ui/brick/hover-card";

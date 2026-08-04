@@ -1,5 +1,7 @@
 "use client";
 
+import "../../app/.generated/previews/switch.css";
+
 import { HStack } from "@flowstack-ui/brick/stack";
 import { Switch } from "@flowstack-ui/brick/switch";
 import { Text } from "@flowstack-ui/brick/text";

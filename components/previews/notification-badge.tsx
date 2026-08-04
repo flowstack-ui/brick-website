@@ -1,5 +1,7 @@
 "use client";
 
+import "../../app/.generated/previews/notification-badge.css";
+
 import { NotificationBadge } from "@flowstack-ui/brick/badge";
 import { Button } from "@flowstack-ui/brick/button";
 import { Inbox } from "lucide-react";

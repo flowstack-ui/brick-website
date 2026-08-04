@@ -1,7 +1,5 @@
 import type { Metadata } from "next";
-import "@flowstack-ui/brick/reset.css";
-import "@flowstack-ui/brick/styles.css";
-import "./globals.css";
+import "./.generated/brick-shell.css";
 import { Analytics } from "@vercel/analytics/next";
 import { SiteFooter } from "./components/SiteFooter";
 import { SiteHeader } from "./components/SiteHeader";

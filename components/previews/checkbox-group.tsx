@@ -1,5 +1,7 @@
 "use client";
 
+import "../../app/.generated/previews/checkbox-group.css";
+
 import { CheckboxGroup } from "@flowstack-ui/brick/checkbox-group";
 
 export default function CheckboxGroupPreview() {

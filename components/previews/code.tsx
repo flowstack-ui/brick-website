@@ -1,5 +1,7 @@
 "use client";
 
+import "../../app/.generated/previews/code.css";
+
 import { Code } from "@flowstack-ui/brick/code";
 import { Text } from "@flowstack-ui/brick/text";
 

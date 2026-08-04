@@ -6,9 +6,11 @@
     "node": "22.x"
   },
   "scripts": {
-    "predev": "npm run content:check",
+    "predev": "npm run content:check && npm run styles:sync",
+    "predev:network": "npm run content:check && npm run styles:sync",
     "dev": "next dev --hostname 127.0.0.1 --port 3012",
     "dev:network": "next dev --hostname 0.0.0.0 --port 3012",
+    "prebuild": "npm run styles:sync",
     "build": "next build",
     "start": "next start --hostname 127.0.0.1 --port 3012",
     "start:test": "next start --hostname 127.0.0.1 --port 4012",
@@ -19,6 +21,7 @@
     "content:check": "node scripts/check-content.mjs && npm run syntax:check",
     "syntax:sync": "node scripts/generate-syntax-tokens.mjs",
     "syntax:check": "node scripts/generate-syntax-tokens.mjs --check",
+    "styles:sync": "node scripts/generate-brick-style-bundles.mjs",
     "theme:check": "node scripts/check-theme-contrast.mjs",
     "performance:check": "node scripts/check-performance.mjs",
     "verify:repository-contract": "node scripts/verify-repository-contract.mjs",
@@ -28,7 +31,7 @@
     "test:all": "npm run check:repository"
   },
   "dependencies": {
-    "@flowstack-ui/brick": "0.1.0",
+    "@flowstack-ui/brick": "0.1.1",
     "@primer/octicons-react": "^19.32.0",
     "@vercel/analytics": "^2.0.1",
     "lucide-react": "^1.24.0",

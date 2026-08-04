@@ -1,5 +1,7 @@
 "use client";
 
+import "../../app/.generated/previews/otp-field.css";
+
 import { Field } from "@flowstack-ui/brick/field";
 
 import { OTPField } from "@flowstack-ui/brick/otp-field";

@@ -1,5 +1,7 @@
 "use client";
 
+import "../../app/.generated/previews/visually-hidden.css";
+
 import { IconButton } from "@flowstack-ui/brick/icon-button";
 import { HStack } from "@flowstack-ui/brick/stack";
 import { Text } from "@flowstack-ui/brick/text";

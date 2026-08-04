@@ -1,5 +1,7 @@
 "use client";
 
+import "../../app/.generated/previews/radio-group.css";
+
 import { RadioGroup } from "@flowstack-ui/brick/radio-group";
 
 export default function RadioGroupPreview() {

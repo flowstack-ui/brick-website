@@ -1,3 +1,4 @@
+import "./.generated/brick-home.css";
 import { Badge } from "@flowstack-ui/brick/badge";
 import { WebsiteButton } from "@/app/components/WebsiteButton";
 import { Card } from "@flowstack-ui/brick/card";

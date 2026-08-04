@@ -1,5 +1,7 @@
 "use client";
 
+import "../../app/.generated/previews/toggle-group.css";
+
 import { ToggleGroup } from "@flowstack-ui/brick/toggle-group";
 
 export default function ToggleGroupPreview() {

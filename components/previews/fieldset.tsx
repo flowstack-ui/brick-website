@@ -1,5 +1,7 @@
 "use client";
 
+import "../../app/.generated/previews/fieldset.css";
+
 import { Checkbox } from "@flowstack-ui/brick/checkbox";
 import { Fieldset } from "@flowstack-ui/brick/fieldset";
 

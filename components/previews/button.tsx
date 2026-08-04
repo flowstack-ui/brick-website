@@ -1,5 +1,7 @@
 "use client";
 
+import "../../app/.generated/previews/button.css";
+
 import { Button } from "@flowstack-ui/brick/button";
 import { HStack } from "@flowstack-ui/brick/stack";
 

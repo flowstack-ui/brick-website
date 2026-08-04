@@ -1,5 +1,7 @@
 "use client";
 
+import "../../app/.generated/previews/password-toggle-field.css";
+
 import { Field } from "@flowstack-ui/brick/field";
 
 import { PasswordToggleField } from "@flowstack-ui/brick/password-toggle-field";

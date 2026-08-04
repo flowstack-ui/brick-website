@@ -1,5 +1,7 @@
 "use client";
 
+import "../../app/.generated/previews/tree.css";
+
 import { Tree } from "@flowstack-ui/brick/tree";
 
 export default function TreePreview() {

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import "../.generated/brick-themes.css";
 import { Badge } from "@flowstack-ui/brick/badge";
 import { WebsiteButton } from "@/app/components/WebsiteButton";
 import { createPageMetadata } from "@/app/lib/seo";

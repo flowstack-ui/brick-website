@@ -1,5 +1,7 @@
 "use client";
 
+import "../../app/.generated/previews/toolbar.css";
+
 import { Toolbar } from "@flowstack-ui/brick/toolbar";
 import { Star } from "lucide-react";
 

@@ -1,5 +1,7 @@
 "use client";
 
+import "../../app/.generated/previews/tabs.css";
+
 import { Surface } from "@flowstack-ui/brick/surface";
 import { Tabs } from "@flowstack-ui/brick/tabs";
 

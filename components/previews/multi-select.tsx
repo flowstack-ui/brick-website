@@ -1,5 +1,7 @@
 "use client";
 
+import "../../app/.generated/previews/multi-select.css";
+
 import { Field } from "@flowstack-ui/brick/field";
 
 import { MultiSelect } from "@flowstack-ui/brick/multi-select";

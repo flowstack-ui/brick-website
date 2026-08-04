@@ -1,5 +1,7 @@
 "use client";
 
+import "../../app/.generated/previews/hide.css";
+
 import { Badge } from "@flowstack-ui/brick/badge";
 import { Hide } from "@flowstack-ui/brick/hide";
 import { VStack } from "@flowstack-ui/brick/stack";

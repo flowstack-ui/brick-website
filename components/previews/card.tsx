@@ -1,5 +1,7 @@
 "use client";
 
+import "../../app/.generated/previews/card.css";
+
 import { Button } from "@flowstack-ui/brick/button";
 import { Card } from "@flowstack-ui/brick/card";
 

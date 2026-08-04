@@ -10,16 +10,21 @@ Brick UI Website is implemented as a multi-route product and documentation site.
   responses confirm Brotli/gzip negotiation, immutable hashed assets, bounded
   social-card caching, application security headers, correct 404 behavior, and
   the representative route matrix.
-- Local production Lighthouse qualification scores 94 Performance on its
+- Brick `0.1.1` is published with backward-compatible modular CSS entrypoints,
+  and this website consumes that exact npm release. A deterministic prebuild
+  step assembles route-owned and preview-owned CSS from those public files;
+  production never reads the sibling Brick checkout or package-private source.
+- Local production Lighthouse qualification now scores 96 Performance on its
   simulated mobile profile and 100 Performance on desktop, with 100 for
-  Accessibility, Best Practices, SEO, and Agentic Browsing, 0 CLS, and at most
-  10 ms total blocking time. The mobile LCP is text and is constrained by the
-  complete Brick and website CSS entrypoints rather than JavaScript work. A
-  source-only modular-CSS experiment raised the same mobile route to 99, which
-  identifies a public Brick CSS-distribution improvement instead of a safe
-  website-only shortcut. The `llms.txt` generator now emits descriptive
-  Markdown links, and header brand links derive their accessible names from
-  their visible identity.
+  Accessibility, Best Practices, and Agentic Browsing, 0 CLS, and at most
+  10 ms total blocking time. Mobile improved from 1.5 s to 1.1 s FCP and from
+  3.1 s to 2.8 s LCP. Localhost does not receive an SEO category score, so SEO
+  remains covered by rendered metadata tests and must be repeated against the
+  public canonical deployment.
+- The qualified protected Vercel preview is deployment
+  `dpl_5haPqhh1Tmm5osYetaveA3S4MPJE`. Its homepage transfers 15,934 gzip bytes
+  and its two render-blocking CSS assets transfer 26,774 bytes total over
+  HTTP/2 with the expected protected-preview and application headers.
 - The application now runs on native Next.js 16 App Router. Its production
   build statically prerenders all 88 routes, including 75 component pages and
   four guides, while preserving client interaction only where the product
@@ -88,6 +93,6 @@ Brick UI Website is implemented as a multi-route product and documentation site.
   is emitted only in Vercel builds. Speed Insights remains intentionally
   disabled because the current free account permits only one enabled project.
 - The site accent theme explicitly pairs purple solid actions with a white foreground in both appearances and verifies every solid interaction state at WCAG AA contrast.
-- The reviewed dependency is `@flowstack-ui/brick@0.1.0` at source commit `3351412342c6e0cd6af9f7403e2e7535bdfe72a0`.
+- The reviewed dependency is `@flowstack-ui/brick@0.1.1` at source commit `f5f7eae3da4525a4cbc786d6d21a905d228d9072`.
 
 Local development uses port 3012. The paired automated browser-test port is 4012.

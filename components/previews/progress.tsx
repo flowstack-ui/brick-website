@@ -1,5 +1,7 @@
 "use client";
 
+import "../../app/.generated/previews/progress.css";
+
 import { Progress } from "@flowstack-ui/brick/progress";
 
 export default function ProgressPreview() {

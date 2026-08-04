@@ -1,5 +1,7 @@
 "use client";
 
+import "../../app/.generated/previews/sidebar.css";
+
 import { Badge } from "@flowstack-ui/brick/badge";
 
 import { NavList } from "@flowstack-ui/brick/nav-list";

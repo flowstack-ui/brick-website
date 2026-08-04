@@ -1,5 +1,7 @@
 "use client";
 
+import "../../app/.generated/previews/tree-grid.css";
+
 import { TreeGrid } from "@flowstack-ui/brick/tree-grid";
 
 export default function TreeGridPreview() {

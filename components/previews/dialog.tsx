@@ -1,5 +1,7 @@
 "use client";
 
+import "../../app/.generated/previews/dialog.css";
+
 import { Button } from "@flowstack-ui/brick/button";
 import { Dialog } from "@flowstack-ui/brick/dialog";
 import { Input } from "@flowstack-ui/brick/input";

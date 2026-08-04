@@ -1,5 +1,7 @@
 "use client";
 
+import "../../app/.generated/previews/skip-link.css";
+
 import { SkipLink } from "@flowstack-ui/brick/skip-link";
 import { Text } from "@flowstack-ui/brick/text";
 

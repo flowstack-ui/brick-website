@@ -1,5 +1,7 @@
 "use client";
 
+import "../../app/.generated/previews/feed.css";
+
 import { Feed } from "@flowstack-ui/brick/feed";
 import { Text } from "@flowstack-ui/brick/text";
 

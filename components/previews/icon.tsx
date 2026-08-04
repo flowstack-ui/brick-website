@@ -1,5 +1,7 @@
 "use client";
 
+import "../../app/.generated/previews/icon.css";
+
 import { Icon } from "@flowstack-ui/brick/icon";
 import { HStack } from "@flowstack-ui/brick/stack";
 import { Bell, Check, Star } from "lucide-react";

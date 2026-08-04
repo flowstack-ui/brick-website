@@ -1,5 +1,7 @@
 "use client";
 
+import "../../app/.generated/previews/app-bar.css";
+
 import { AppBar } from "@flowstack-ui/brick/app-bar";
 import { IconButton } from "@flowstack-ui/brick/icon-button";
 

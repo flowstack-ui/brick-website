@@ -1,5 +1,7 @@
 "use client";
 
+import "../../app/.generated/previews/skeleton.css";
+
 import { Skeleton } from "@flowstack-ui/brick/skeleton";
 import { VStack } from "@flowstack-ui/brick/stack";
 

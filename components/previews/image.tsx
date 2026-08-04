@@ -1,5 +1,7 @@
 "use client";
 
+import "../../app/.generated/previews/image.css";
+
 import { Image } from "@flowstack-ui/brick/image";
 
 export default function ImagePreview() {

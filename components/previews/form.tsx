@@ -1,5 +1,7 @@
 "use client";
 
+import "../../app/.generated/previews/form.css";
+
 import { Button } from "@flowstack-ui/brick/button";
 import { Field } from "@flowstack-ui/brick/field";
 import { Form } from "@flowstack-ui/brick/form";

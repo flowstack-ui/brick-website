@@ -1,10 +1,11 @@
-import { access, readFile } from "node:fs/promises";
+import { access, readFile, readdir } from "node:fs/promises";
 import { resolve } from "node:path";
 import configuration from "../verification.config.mjs";
 
 const root = resolve(import.meta.dirname, "..");
 const manifest = JSON.parse(await readFile(resolve(root, "package.json"), "utf8"));
 const rootLayout = await readFile(resolve(root, "app/layout.tsx"), "utf8");
+const styleGenerator = await readFile(resolve(root, "scripts/generate-brick-style-bundles.mjs"), "utf8");
 const errors = [];
 const requirePath = async (file) => {
   try { await access(resolve(root, file)); } catch { errors.push(`missing ${file}`); }
@@ -41,6 +42,30 @@ if (!rootLayout.includes('from "@vercel/analytics/next"')) {
 }
 if (!rootLayout.includes('process.env.VERCEL === "1" ? <Analytics /> : null')) {
   errors.push("Vercel Analytics must remain production-host conditional");
+}
+if (!rootLayout.includes('./.generated/brick-shell.css')) {
+  errors.push("root layout must load the generated Brick shell bundle");
+}
+if (styleGenerator.includes('"styles.css"')) {
+  errors.push("Brick style bundles must not load the complete stylesheet");
+}
+for (const stylesheet of ["reset.css", "styles/core.css"]) {
+  if (!styleGenerator.includes(`"${stylesheet}"`)) {
+    errors.push(`Brick style generator is missing ${stylesheet}`);
+  }
+}
+
+const previewsDirectory = resolve(root, "components/previews");
+for (const file of await readdir(previewsDirectory)) {
+  if (!file.endsWith(".tsx")) continue;
+  const source = await readFile(resolve(previewsDirectory, file), "utf8");
+  const owner = file.slice(0, -4);
+  if (!source.includes(`"../../app/.generated/previews/${owner}.css"`)) {
+    errors.push(`${file} does not load its generated preview style bundle`);
+  }
+  if (source.includes('"@flowstack-ui/brick/styles/')) {
+    errors.push(`${file} bypasses the generated preview style bundle`);
+  }
 }
 for (const [role, script] of Object.entries(configuration.commands)) {
   if (!manifest.scripts?.[script]) errors.push(`${role} requires npm script ${script}`);

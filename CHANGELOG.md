@@ -16,6 +16,17 @@
 
 ## Unreleased
 
+- Upgraded the exact reviewed dependency to published
+  `@flowstack-ui/brick@0.1.1` and adopted its public modular CSS entrypoints.
+  Added deterministic predev/prebuild generation of consolidated shell,
+  route, and per-preview bundles from the installed package, with provenance
+  validation and repository-contract guards against full or sibling-source
+  imports.
+- Partitioned website-authored CSS without duplicating its canonical source,
+  reduced the homepage to two render-blocking CSS requests, and improved the
+  repeatable local simulated-mobile result from 94 to 96 (FCP 1.5 s to 1.1 s,
+  LCP 3.1 s to 2.8 s) while retaining desktop Performance 100, zero CLS, and
+  full Accessibility and Best Practices scores.
 - Integrated the owner-enabled Vercel Web Analytics product through its native
   Next.js adapter, restricted emission to Vercel builds so local development
   remains free of failed insights requests, and added a repository-contract

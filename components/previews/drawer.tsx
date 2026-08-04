@@ -1,5 +1,7 @@
 "use client";
 
+import "../../app/.generated/previews/drawer.css";
+
 import { Button } from "@flowstack-ui/brick/button";
 import { Drawer } from "@flowstack-ui/brick/drawer";
 

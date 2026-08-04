@@ -1,5 +1,7 @@
 "use client";
 
+import "../../app/.generated/previews/slider.css";
+
 import { Field } from "@flowstack-ui/brick/field";
 import { Slider } from "@flowstack-ui/brick/slider";
 
