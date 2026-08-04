@@ -255,10 +255,14 @@ test("documentation syntax highlighting remains a build-time Brick adapter", asy
   const css = await readFile(new URL("../app/globals.css", import.meta.url), "utf8");
   const manifest = JSON.parse(await readFile(new URL("../package.json", import.meta.url), "utf8"));
   const cache = JSON.parse(await readFile(new URL("../content/syntax-tokens.json", import.meta.url), "utf8"));
-  assert.match(markdownSource, /pre: \(\{ children \}\) => <MarkdownCodeBlock>/, "Markdown fences must route through the highlighted Brick adapter");
+  assert.match(markdownSource, /pre: \(\{ children \}\) => <MarkdownCodeBlock[^>]*>/, "Markdown fences must route through the highlighted Brick adapter");
   assert.doesNotMatch(markdownSource, /code-frame|<pre>/, "documentation rendering must not recreate a website-owned code surface");
   assert.match(adapterSource, /<CodeBlock\.Root[\s\S]*<CodeBlock\.Language \/>[\s\S]*<CodeBlock\.CopyTrigger[\s\S]*<CodeBlock\.Content/, "the adapter must retain Brick anatomy, explicit language, copy behavior, and overflow ownership");
   assert.match(adapterSource, /value=\{source\}/, "copy must retain the raw source rather than reading presentation tokens");
+  assert.match(markdownSource, /let codeExampleIndex = 0;[\s\S]*index=\{\+\+codeExampleIndex\}/, "each article must assign a stable unique ordinal to its Code Block landmarks");
+  assert.match(markdownSource, /`\$\{languageNames\[language\][^`]+\} code example \$\{index\}`/, "Code Block landmark names must combine readable language names with their article ordinal");
+  assert.match(adapterSource, /<CodeBlock\.Content aria-label=\{label\}>/, "the website adapter must pass the unique authored label to Brick's overflow landmark");
+  assert.doesNotMatch(adapterSource, /aria-label=\{`\$\{language\} code example`\}/, "the adapter must not repeat one landmark name for every example of the same language");
   assert.match(adapterSource, /idle: \{ label: "Copy", icon: Copy \}[\s\S]*copying: \{ label: "Copying", icon: LoaderCircle \}[\s\S]*copied: \{ label: "Copied", icon: Check \}[\s\S]*error: \{ label: "Retry", icon: RotateCcw \}/, "copy presentation must expose useful progress, success, and recovery states");
   assert.match(adapterSource, /onStatusChange=\{\(\{ status \}\) => setCopyStatus\(status\)\}/, "the visual copy state must be driven by Atom's clipboard status contract");
   assert.match(css, /\.syntax-copy-trigger \{ min-inline-size: 5\.8rem;/, "the stateful copy action must not shift width as its label changes");

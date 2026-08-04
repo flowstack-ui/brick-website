@@ -12,16 +12,20 @@ function nodeText(node: ReactNode): string {
   return "";
 }
 
-function MarkdownCodeBlock({ children }: { children: ReactNode }) {
+const languageNames: Record<string, string> = { bash: "Bash", css: "CSS", html: "HTML", text: "Text", ts: "TypeScript", tsx: "TSX" };
+
+function MarkdownCodeBlock({ children, index }: { children: ReactNode; index: number }) {
   if (!isValidElement<{ className?: string; children?: ReactNode }>(children)) return null;
   const language = languageFromClassName(children.props.className);
   const source = normalizeCodeSource(nodeText(children.props.children));
-  return <HighlightedCodeBlock language={language} lines={highlightedLines(language, source)} source={source} />;
+  const label = `${languageNames[language] ?? language.toUpperCase()} code example ${index}`;
+  return <HighlightedCodeBlock label={label} language={language} lines={highlightedLines(language, source)} source={source} />;
 }
 
 export function MarkdownArticle({ markdown, componentSlug }: { markdown: string; componentSlug?: string }) {
   const body = markdown.replace(/^# .+\n/, "");
   const headingOccurrences = new Map<string, number>();
+  let codeExampleIndex = 0;
   const normalizeHref = (href?: string) => {
     if (!href) return "#";
     if (/^(https?:|mailto:|#)/.test(href)) return href;
@@ -45,7 +49,7 @@ export function MarkdownArticle({ markdown, componentSlug }: { markdown: string;
             headingOccurrences.set(baseId, occurrence + 1);
             return <h2 id={occurrence === 0 ? baseId : `${baseId}-${occurrence}`}>{children}</h2>;
           },
-          pre: ({ children }) => <MarkdownCodeBlock>{children}</MarkdownCodeBlock>,
+          pre: ({ children }) => <MarkdownCodeBlock index={++codeExampleIndex}>{children}</MarkdownCodeBlock>,
           table: ({ children }) => <div className="markdown-table-wrap"><table>{children}</table></div>,
         }}
       >

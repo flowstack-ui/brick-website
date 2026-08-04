@@ -24,7 +24,7 @@ function tokenStyle(token: SyntaxToken): CSSProperties {
   };
 }
 
-export function HighlightedCodeBlock({ language, lines, source }: { language: string; lines: SyntaxLines; source: string }) {
+export function HighlightedCodeBlock({ label, language, lines, source }: { label: string; language: string; lines: SyntaxLines; source: string }) {
   const [copyStatus, setCopyStatus] = useState<CopyStatus>("idle");
   const { icon: CopyIcon, label: copyLabel } = copyPresentation[copyStatus];
 
@@ -42,7 +42,7 @@ export function HighlightedCodeBlock({ language, lines, source }: { language: st
           </CodeBlock.CopyTrigger>
         </CodeBlock.Actions>
       </CodeBlock.Header>
-      <CodeBlock.Content aria-label={`${language} code example`}>
+      <CodeBlock.Content aria-label={label}>
         {lines.map((line, lineIndex) => (
           <Fragment key={lineIndex}>
             {line.map((token, tokenIndex) => <span key={tokenIndex} style={tokenStyle(token)}>{token.content}</span>)}
