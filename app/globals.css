@@ -351,6 +351,14 @@
   .markdown-body code { padding: .14em .34em; border-radius: .3rem; background: var(--brick-color-surface-subtle); color: var(--brick-color-text-primary); font-family: var(--site-font-mono); font-size: .88em; }
   .markdown-body .brick-code-block { margin-block: 1.2rem; }
   .markdown-body .brick-code-block .brick-code { padding: 0; background: transparent; color: inherit; font-size: inherit; }
+  .syntax-copy-trigger { min-inline-size: 5.8rem; justify-content: center; gap: .42rem; border: 1px solid transparent; font-family: var(--site-font-mono); font-size: .72rem; letter-spacing: .01em; transition: color 160ms ease, background-color 160ms ease, border-color 160ms ease, transform 160ms ease; }
+  .syntax-copy-trigger:hover { border-color: var(--brick-color-border-default); }
+  .syntax-copy-trigger:active { transform: translateY(1px); }
+  .syntax-copy-trigger[data-state="copied"] { border-color: color-mix(in srgb, var(--brick-color-success-solid), transparent 62%); background: var(--brick-color-success-soft); color: var(--brick-color-success-text); }
+  .syntax-copy-trigger[data-state="error"] { border-color: var(--brick-color-accent-border); color: var(--brick-color-accent-text); }
+  .syntax-copy-trigger svg { flex: none; }
+  .syntax-copy-spinner { animation: syntax-copy-spin .8s linear infinite; }
+  @keyframes syntax-copy-spin { to { transform: rotate(1turn); } }
   .markdown-table-wrap { max-width: 100%; overflow: auto; }
   .markdown-body table { width: 100%; border-collapse: collapse; font-size: .88rem; }
   .markdown-body th, .markdown-body td { padding: .7rem .75rem; border-block-end: 1px solid var(--brick-color-border-subtle); text-align: start; vertical-align: top; }

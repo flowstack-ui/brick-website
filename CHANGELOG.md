@@ -12,6 +12,7 @@
 - Unified authored focus indicators through the semantic purple focus token and moved documentation-rail outlines inward so scroll containers cannot clip their left or right edges; Forced Colors continues to use the system highlight.
 - Kept footer destinations touch-friendly while moving their visible focus ring onto the compact text-and-icon label instead of the expanded mobile link row.
 - Added a build-time Shiki adapter for the website's six documented language families, migrated Markdown fences onto the published Brick Code Block, and introduced a restrained WCAG-qualified light/dark syntax palette without shipping the tokenizer to browsers or Brick core.
+- Upgraded documentation Code Blocks from a generic text copy control to a stable-width icon-and-label action with copying, copied, and retry states driven by Atom's existing clipboard status contract.
 - Replaced category-level component placeholders with dedicated examples for all 75 component routes.
 - Added a content-contract check that prevents component routes from shipping without an explicit preview.
 - Corrected solid accent-button contrast by defining the paired white foreground token in light and dark appearances.

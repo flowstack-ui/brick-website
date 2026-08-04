@@ -224,8 +224,12 @@ test("documentation syntax highlighting remains a build-time Brick adapter", asy
   const cache = JSON.parse(await readFile(new URL("../content/syntax-tokens.json", import.meta.url), "utf8"));
   assert.match(markdownSource, /pre: \(\{ children \}\) => <MarkdownCodeBlock>/, "Markdown fences must route through the highlighted Brick adapter");
   assert.doesNotMatch(markdownSource, /code-frame|<pre>/, "documentation rendering must not recreate a website-owned code surface");
-  assert.match(adapterSource, /<CodeBlock\.Root[\s\S]*<CodeBlock\.Language \/>[\s\S]*<CodeBlock\.CopyTrigger>[\s\S]*<CodeBlock\.Content/, "the adapter must retain Brick anatomy, explicit language, copy behavior, and overflow ownership");
+  assert.match(adapterSource, /<CodeBlock\.Root[\s\S]*<CodeBlock\.Language \/>[\s\S]*<CodeBlock\.CopyTrigger[\s\S]*<CodeBlock\.Content/, "the adapter must retain Brick anatomy, explicit language, copy behavior, and overflow ownership");
   assert.match(adapterSource, /value=\{source\}/, "copy must retain the raw source rather than reading presentation tokens");
+  assert.match(adapterSource, /idle: \{ label: "Copy", icon: Copy \}[\s\S]*copying: \{ label: "Copying", icon: LoaderCircle \}[\s\S]*copied: \{ label: "Copied", icon: Check \}[\s\S]*error: \{ label: "Retry", icon: RotateCcw \}/, "copy presentation must expose useful progress, success, and recovery states");
+  assert.match(adapterSource, /onStatusChange=\{\(\{ status \}\) => setCopyStatus\(status\)\}/, "the visual copy state must be driven by Atom's clipboard status contract");
+  assert.match(css, /\.syntax-copy-trigger \{ min-inline-size: 5\.8rem;/, "the stateful copy action must not shift width as its label changes");
+  assert.match(css, /\.syntax-copy-trigger\[data-state="copied"\][\s\S]*--brick-color-success-soft/, "successful copy feedback must receive a distinct semantic treatment");
   assert.match(generatorSource, /from "shiki\/core"[\s\S]*from "shiki\/engine\/javascript"/, "content generation must use the fine-grained Shiki core and JavaScript engine");
   assert.doesNotMatch(JSON.stringify(manifest.dependencies), /shiki/, "the deployed website runtime must not depend on Shiki");
   assert.equal(manifest.devDependencies.shiki, "^4.4.1", "the build-time highlighter must remain explicit and versioned");

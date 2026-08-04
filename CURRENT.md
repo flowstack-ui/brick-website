@@ -19,7 +19,7 @@ Brick UI Website is implemented as a multi-route product and documentation site.
 - The right documentation rail mirrors each page's real sections, generates guide and component entries from source-backed Markdown headings, and identifies the active section while scrolling.
 - Website-authored focus indicators use the semantic purple focus token; documentation-rail links use inset outlines to prevent clipping, while Forced Colors preserves the system highlight.
 - Footer navigation retains full touch targets while its focus indicator wraps only the visible text-and-icon label.
-- Markdown fences are pre-tokenized with a fine-grained build-time Shiki adapter and rendered through the published Brick Code Block with language metadata, copy feedback, and a WCAG-qualified light/dark syntax palette; the deployed browser does not receive the tokenizer.
+- Markdown fences are pre-tokenized with a fine-grained build-time Shiki adapter and rendered through the published Brick Code Block with language metadata, a compact stateful copy action, and a WCAG-qualified light/dark syntax palette; the deployed browser does not receive the tokenizer.
 - Icon-led Cards use one website-owned header composition with explicit spacing; Docs overview card actions use animated editorial links while the closing exploration CTA remains a primary Brick button.
 - Every Docs-shell route, including guides and component pages, clearly retains the subtle branded grid around the introduction before fading it into an opaque semantic reading plane ahead of sustained content.
 - Local search, light/dark appearance, responsive navigation, sitemap, robots, social card, favicon, and AI-readable documentation are present.

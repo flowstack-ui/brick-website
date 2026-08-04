@@ -1,8 +1,18 @@
 "use client";
 
-import { Fragment, type CSSProperties } from "react";
-import { CodeBlock } from "@flowstack-ui/brick/code-block";
+import { Fragment, useState, type CSSProperties } from "react";
+import { CodeBlock, type CodeBlockRootProps } from "@flowstack-ui/brick/code-block";
+import { Check, Copy, LoaderCircle, RotateCcw } from "lucide-react";
 import type { SyntaxLines, SyntaxToken } from "@/app/lib/syntax";
+
+type CopyStatus = Parameters<NonNullable<CodeBlockRootProps["onStatusChange"]>>[0]["status"];
+
+const copyPresentation = {
+  idle: { label: "Copy", icon: Copy },
+  copying: { label: "Copying", icon: LoaderCircle },
+  copied: { label: "Copied", icon: Check },
+  error: { label: "Retry", icon: RotateCcw },
+} satisfies Record<CopyStatus, { label: string; icon: typeof Copy }>;
 
 function tokenStyle(token: SyntaxToken): CSSProperties {
   const decorations = [token.fontStyle && (token.fontStyle & 4) ? "underline" : "", token.fontStyle && (token.fontStyle & 8) ? "line-through" : ""].filter(Boolean).join(" ");
@@ -15,11 +25,22 @@ function tokenStyle(token: SyntaxToken): CSSProperties {
 }
 
 export function HighlightedCodeBlock({ language, lines, source }: { language: string; lines: SyntaxLines; source: string }) {
+  const [copyStatus, setCopyStatus] = useState<CopyStatus>("idle");
+  const { icon: CopyIcon, label: copyLabel } = copyPresentation[copyStatus];
+
   return (
-    <CodeBlock.Root language={language} value={source}>
+    <CodeBlock.Root language={language} value={source} onStatusChange={({ status }) => setCopyStatus(status)}>
       <CodeBlock.Header>
         <CodeBlock.Language />
-        <CodeBlock.Actions><CodeBlock.CopyTrigger>Copy</CodeBlock.CopyTrigger></CodeBlock.Actions>
+        <CodeBlock.Actions>
+          <CodeBlock.CopyTrigger
+            className="syntax-copy-trigger"
+            variant="soft"
+            startIcon={<CopyIcon className={copyStatus === "copying" ? "syntax-copy-spinner" : undefined} size={15} aria-hidden="true" />}
+          >
+            {copyLabel}
+          </CodeBlock.CopyTrigger>
+        </CodeBlock.Actions>
       </CodeBlock.Header>
       <CodeBlock.Content aria-label={`${language} code example`}>
         {lines.map((line, lineIndex) => (
