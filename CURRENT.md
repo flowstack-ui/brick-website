@@ -2,6 +2,19 @@
 
 Brick UI Website is implemented as a multi-route product and documentation site.
 
+- The website is linked to the `flowstack-ui/brick-website` Vercel project and
+  has an immutable SSO-protected preview. Unauthenticated requests redirect to
+  Vercel authentication with `no-store` and `X-Robots-Tag: noindex`; the
+  canonical `brick-ui.com` domain remains deliberately unattached.
+- The qualified Vercel build runs native Next.js on Node 22. Real preview
+  responses confirm Brotli/gzip negotiation, immutable hashed assets, bounded
+  social-card caching, application security headers, correct 404 behavior, and
+  the representative route matrix.
+- Local production Lighthouse qualification scores 94 Performance and 100 for
+  Accessibility, Best Practices, SEO, and Agentic Browsing, with 0 CLS and
+  10 ms total blocking time. The `llms.txt` generator now emits descriptive
+  Markdown links, and header brand links derive their accessible names from
+  their visible identity.
 - The application now runs on native Next.js 16 App Router. Its production
   build statically prerenders all 88 routes, including 75 component pages and
   four guides, while preserving client interaction only where the product
