@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Pinned the Vercel framework preset to native Next.js so new and relinked
+  deployments cannot inherit generic static-project defaults.
 - Split all 75 component examples into route-scoped dynamic client modules,
   reducing representative component-route JavaScript by 25.5% raw and 24.3%
   gzip; replaced the 1.05 MB social PNG with a visually qualified 111 KB JPEG;
