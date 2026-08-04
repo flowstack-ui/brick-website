@@ -144,6 +144,21 @@ test("Atom closing choice preserves one-line action priority", async () => {
   assert.match(css, /\.theme-cta, \.atom-choice \{ align-items: flex-start; flex-direction: column;/, "closing choice must still stack when the narrow layout genuinely requires it");
 });
 
+test("Themes hero retains its semantic instrument composition", async () => {
+  const themesSource = await readFile(new URL("../app/themes/page.tsx", import.meta.url), "utf8");
+  const css = await readFile(new URL("../app/globals.css", import.meta.url), "utf8");
+  assert.match(themesSource, /className="theme-copy"/, "theme hero copy must own explicit vertical rhythm");
+  assert.match(themesSource, /<Sparkles size=\{13\} aria-hidden="true" \/>/, "theme eyebrow icon must remain decorative");
+  assert.match(themesSource, /className="theme-actions"/, "theme actions must opt into authored description spacing");
+  assert.match(themesSource, /role="img" aria-label="Brick semantic theme instrument/, "theme visual must expose one grouped accessible summary");
+  assert.match(themesSource, /Semantic core[\s\S]*Accent[\s\S]*Surface[\s\S]*Type[\s\S]*Motion/, "theme instrument must retain its meaning-first semantic roles");
+  assert.match(css, /\.theme-copy > \.brick-badge \{ gap: \.4rem; \}/, "theme eyebrow must separate its icon from its label");
+  assert.match(css, /\.theme-actions \{ margin-block-start: \.5rem; \}/, "theme actions must remain separated from the description");
+  assert.match(css, /\.theme-orbit \{[^}]*aspect-ratio: 1;[^}]*border-radius: 50%;/, "theme instrument outer geometry must remain a true circle");
+  assert.match(css, /\.theme-orbit \{[^}]*conic-gradient/, "theme instrument must retain its restrained semantic spectrum");
+  assert.doesNotMatch(css, /\.theme-orbit \{[^}]*min-height:/, "theme instrument must not recreate an ellipse through an unrelated minimum height");
+});
+
 test("homepage hero retains its height-aware first-viewport contract", async () => {
   const css = await readFile(new URL("../app/globals.css", import.meta.url), "utf8");
   assert.match(css, /padding-block: clamp\(2\.75rem, 6dvh, 5rem\)/, "hero vertical rhythm must respond to viewport height");

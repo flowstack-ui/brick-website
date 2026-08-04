@@ -21,15 +21,27 @@ export default function ThemesPage() {
   return (
     <main id="main-content">
       <section className="themes-hero section-shell">
-        <div>
-          <Badge tone="accent" variant="soft" shape="pill"><Sparkles size={13} /> Theme foundations</Badge>
+        <div className="theme-copy">
+          <Badge tone="accent" variant="soft" shape="pill"><Sparkles size={13} aria-hidden="true" /> Theme foundations</Badge>
           <Text as="h1" className="page-title" wrap="balance">Change the voice, not the component.</Text>
           <Text as="p" variant="body-lg" tone="secondary" className="page-lede">Brick themes assign meaningful visual roles. The same Button, Card, Input, and Dialog keep their anatomy, behavior, and tested recipes under every brand.</Text>
-          <HStack gap="3" wrap><WebsiteButton href="/docs/theming/" endIcon={<ArrowRight size={15} />}>Read the theme guide</WebsiteButton><WebsiteButton href="/components/" tone="neutral" variant="outline">See the catalog</WebsiteButton></HStack>
+          <HStack gap="3" wrap className="theme-actions"><WebsiteButton href="/docs/theming/" endIcon={<ArrowRight size={15} />}>Read the theme guide</WebsiteButton><WebsiteButton href="/components/" tone="neutral" variant="outline">See the catalog</WebsiteButton></HStack>
         </div>
-        <div className="theme-orbit" aria-label="Brick semantic theme layers">
-          <div className="orbit-center"><Palette size={28} /><strong>Meaning</strong><span>before color</span></div>
-          <span className="orbit-chip chip-one">Accent</span><span className="orbit-chip chip-two">Surface</span><span className="orbit-chip chip-three">Type</span><span className="orbit-chip chip-four">Motion</span>
+        <div className="theme-orbit" role="img" aria-label="Brick semantic theme instrument with Accent, Surface, Type, and Motion roles surrounding a meaning-first core">
+          <span className="orbit-aura" aria-hidden="true" />
+          <span className="orbit-axis orbit-axis-x" aria-hidden="true" />
+          <span className="orbit-axis orbit-axis-y" aria-hidden="true" />
+          <div className="orbit-center">
+            <span className="orbit-center-icon"><Palette size={22} aria-hidden="true" /></span>
+            <small>Semantic core</small>
+            <strong>Meaning</strong>
+            <span>before color</span>
+            <span className="orbit-spectrum" aria-hidden="true"><i /><i /><i /><i /></span>
+          </div>
+          <span className="orbit-chip chip-one"><i aria-hidden="true" /><span><strong>Accent</strong><small>emphasis</small></span></span>
+          <span className="orbit-chip chip-two"><i aria-hidden="true" /><span><strong>Surface</strong><small>elevation</small></span></span>
+          <span className="orbit-chip chip-three"><i aria-hidden="true" /><span><strong>Type</strong><small>hierarchy</small></span></span>
+          <span className="orbit-chip chip-four"><i aria-hidden="true" /><span><strong>Motion</strong><small>feedback</small></span></span>
         </div>
       </section>
 
