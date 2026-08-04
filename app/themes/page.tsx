@@ -52,7 +52,7 @@ export default function ThemesPage() {
       </section>
 
       <section className="theme-comparison section-shell" aria-labelledby="comparison-title">
-        <div className="section-heading theme-comparison-heading"><Badge variant="outline" tone="neutral">One public contract</Badge><Text as="h2" id="comparison-title" variant="display">Two complete expressions.</Text><Text as="p" variant="body-lg" tone="secondary" wrap="balance">A theme is not a coat of paint. It is one coordinated decision system applied to the same accessible component anatomy.</Text></div>
+        <div className="section-heading theme-comparison-heading"><Badge variant="outline" tone="neutral">One public contract</Badge><Text as="h2" id="comparison-title" variant="display" align="center">Two complete expressions.</Text><Text as="p" variant="body-lg" tone="secondary" align="center" wrap="balance">A theme is not a coat of paint. It is one coordinated decision system applied to the same accessible component anatomy.</Text></div>
         <Grid.Root columns={2} gap="4" className="comparison-grid">
           <div className="comparison-panel theme-default-scope" data-brick-appearance="light" role="group" aria-label="Brick default theme expression">
             <div className="comparison-signature"><span><small>Expression 01</small><strong>Brick default</strong></span><span className="comparison-swatches" aria-hidden="true"><i /><i /><i /><i /></span></div>

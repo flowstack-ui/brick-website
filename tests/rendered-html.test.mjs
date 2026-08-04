@@ -268,6 +268,8 @@ test("Themes hero retains its semantic instrument composition", async () => {
   assert.match(themesSource, /role="img" aria-label="Brick semantic theme instrument/, "theme visual must expose one grouped accessible summary");
   assert.match(themesSource, /Semantic core[\s\S]*Accent[\s\S]*Surface[\s\S]*Type[\s\S]*Motion/, "theme instrument must retain its meaning-first semantic roles");
   assert.match(themesSource, /A theme is not a coat of paint\./, "comparison story must explain the semantic contract before presenting visual expressions");
+  assert.match(themesSource, /id="comparison-title" variant="display" align="center"/, "comparison title must align with its centered badge");
+  assert.match(themesSource, /variant="body-lg" tone="secondary" align="center" wrap="balance">A theme is not a coat of paint\./, "comparison description must align with its centered title and badge");
   assert.match(themesSource, /Same Brick component tree/g, "both expressions must identify their unchanged component contract");
   assert.match(themesSource, /Semantic map[\s\S]*04 connected systems/, "token families must read as one connected semantic system");
   assert.match(css, /\.theme-copy > \.brick-badge \{ gap: \.4rem; \}/, "theme eyebrow must separate its icon from its label");
