@@ -610,6 +610,18 @@ test("sitemap, robots, and AI documentation expose one canonical crawl policy", 
   }
 });
 
+test("production responses retain baseline browser and social-asset delivery policy", async () => {
+  const homepage = await render("/");
+  assert.equal(homepage.headers.get("x-content-type-options"), "nosniff");
+  assert.equal(homepage.headers.get("referrer-policy"), "strict-origin-when-cross-origin");
+  assert.equal(homepage.headers.get("x-frame-options"), "DENY");
+  assert.equal(homepage.headers.get("permissions-policy"), "camera=(), geolocation=(), microphone=(), payment=(), usb=()");
+
+  const socialCard = await render("/brick-social-card.jpg");
+  assert.match(socialCard.headers.get("cache-control") ?? "", /max-age=86400/);
+  assert.match(socialCard.headers.get("content-type") ?? "", /^image\/jpeg\b/i);
+});
+
 test("structured data identifies the site, Swifty publisher, software, and content hierarchy", async () => {
   const home = await (await render("/")).text();
   const homeValues = jsonLdValues(home);

@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- Added verified baseline browser security headers across every route and a
+  bounded social-card cache policy, while explicitly preserving CSP as a
+  nonce-strategy decision instead of shipping a misleading broad inline allow.
 - Pinned the Vercel framework preset to native Next.js so new and relinked
   deployments cannot inherit generic static-project defaults.
 - Split all 75 component examples into route-scoped dynamic client modules,

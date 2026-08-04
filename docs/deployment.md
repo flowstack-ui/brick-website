@@ -13,3 +13,11 @@ canonical `brick-ui.com` apex only after its remote qualification gate passes.
 `vercel.json` pins the native Next.js framework preset so a newly created or
 relinked project cannot fall back to generic static-output defaults. It does
 not contain account, project, domain, or credential identifiers.
+
+The application emits `nosniff`, strict-origin referrer policy, frame denial,
+and a least-privilege browser feature policy on every route. The social card
+uses a bounded one-day browser cache with stale revalidation. Vercel owns TLS,
+HSTS, compression, immutable fingerprinted-asset caching, and preview-level
+`noindex` protection. A blocking Content Security Policy remains deferred until
+a tested Next nonce strategy can preserve static-first rendering and hydration;
+do not substitute a broad `unsafe-inline` script policy merely to claim CSP.
