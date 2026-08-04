@@ -4,28 +4,9 @@ import "@flowstack-ui/brick/styles.css";
 import "./globals.css";
 import { SiteFooter } from "./components/SiteFooter";
 import { SiteHeader } from "./components/SiteHeader";
+import { rootMetadata } from "./lib/seo";
 
-export const metadata: Metadata = {
-  metadataBase: new URL("https://brick-ui.com"),
-  title: {
-    default: "Brick UI — Finished React components",
-    template: "%s · Brick UI",
-  },
-  description: "Finished, accessible React components built on Flowstack Atom. Coherent defaults, semantic theming, and public customization hooks.",
-  openGraph: {
-    type: "website",
-    siteName: "Brick UI",
-    title: "Brick UI — Finished React components",
-    description: "Build interfaces that already feel finished.",
-    images: [{ url: "/brick-social-card.png", width: 1200, height: 630, alt: "Brick UI modular component surfaces" }],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Brick UI — Finished React components",
-    description: "Build interfaces that already feel finished.",
-    images: ["/brick-social-card.png"],
-  },
-};
+export const metadata: Metadata = rootMetadata;
 
 const appearanceScript = `
   (() => {

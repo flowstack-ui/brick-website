@@ -1,12 +1,17 @@
 import type { Metadata } from "next";
 import { Badge } from "@flowstack-ui/brick/badge";
 import { WebsiteButton } from "@/app/components/WebsiteButton";
+import { createPageMetadata } from "@/app/lib/seo";
 import { Card } from "@flowstack-ui/brick/card";
 import { Grid } from "@flowstack-ui/brick/grid";
 import { Text } from "@flowstack-ui/brick/text";
 import { ArrowRight, Blocks, CircleDot, Eye, Keyboard, Layers3, PanelsTopLeft, ShieldCheck } from "lucide-react";
 
-export const metadata: Metadata = { title: "Built on Atom", description: "Understand how Atom and Brick form independent layers in the Flowstack ecosystem." };
+export const metadata: Metadata = createPageMetadata({
+  title: "Brick UI and Flowstack Atom",
+  description: "Understand how Flowstack Atom supplies accessible behavior while Brick UI adds finished React component styling and visual recipes.",
+  path: "/atom",
+});
 
 const ownership = [
   { icon: Keyboard, title: "Interaction", body: "Keyboard, pointer, controlled state, focus, dismissal, and form behavior." },
@@ -76,7 +81,7 @@ export default function AtomPage() {
           {ownership.map(({ icon: Icon, ...item }) => <Card.Root key={item.title} className="ownership-card"><Card.Header className="icon-card-header"><span className="pillar-icon"><Icon size={18} aria-hidden="true" /></span><Card.Title as="h3">{item.title}</Card.Title></Card.Header><Card.Content><Text tone="secondary">{item.body}</Text></Card.Content></Card.Root>)}
         </Grid.Root>
       </section>
-      <section className="atom-choice section-shell"><div><Text as="h2" variant="title-lg">Choose Atom when you want total visual control.</Text><Text tone="secondary">Choose Brick when you want the same behavioral foundation with a complete styled system already attached.</Text></div><WebsiteButton href="/docs/getting-started/" tone="neutral" variant="outline" endIcon={<ArrowRight size={15} />}>Start with Brick</WebsiteButton></section>
+      <section className="atom-choice section-shell"><div><Text as="h2" variant="title-lg">Choose Atom when you want total visual control.</Text><Text tone="secondary">Choose Brick when you want the same behavioral foundation with a complete styled system already attached.</Text></div><WebsiteButton href="/docs/getting-started" tone="neutral" variant="outline" endIcon={<ArrowRight size={15} />}>Start with Brick</WebsiteButton></section>
     </main>
   );
 }

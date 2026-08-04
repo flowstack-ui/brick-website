@@ -7,7 +7,9 @@ import { ArrowRight } from "lucide-react";
 import { DocsShell } from "@/app/components/DocsShell";
 import { GuideVisual } from "@/app/components/GuideVisual";
 import { MarkdownArticle } from "@/app/components/MarkdownArticle";
+import { StructuredData } from "@/app/components/StructuredData";
 import { guideBySlug, guides } from "@/app/lib/content";
+import { breadcrumbStructuredData, createGuideMetadata } from "@/app/lib/seo";
 import { extractMarkdownToc } from "@/app/lib/toc";
 
 export function generateStaticParams() {
@@ -18,7 +20,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const guide = guideBySlug(slug);
   if (!guide) return {};
-  return { title: guide.title, description: guide.description };
+  return createGuideMetadata(slug, guide);
 }
 
 export default async function GuidePage({ params }: { params: Promise<{ slug: string }> }) {
@@ -26,6 +28,12 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
   const guide = guideBySlug(slug);
   if (!guide) notFound();
   return (
+    <>
+      <StructuredData data={breadcrumbStructuredData([
+        { name: "Home", path: "/" },
+        { name: "Guides", path: "/docs" },
+        { name: guide.title, path: `/docs/${slug}` },
+      ])} />
     <DocsShell current={slug} toc={[{ id: "guide-map", label: "Guide map" }, ...extractMarkdownToc(guide.body), { id: "continue-with-catalog", label: "Continue with the catalog" }]}>
       <article className="docs-article">
         <Badge tone="accent" variant="soft">{guide.eyebrow}</Badge>
@@ -36,9 +44,10 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
         <section className="docs-next" id="continue-with-catalog">
           <Text as="h2" variant="title-md">Continue with the catalog</Text>
           <Text tone="secondary">See these principles expressed through real component APIs and examples.</Text>
-          <WebsiteButton href="/components/" endIcon={<ArrowRight size={15} />}>Browse components</WebsiteButton>
+          <WebsiteButton href="/components" endIcon={<ArrowRight size={15} />}>Browse components</WebsiteButton>
         </section>
       </article>
     </DocsShell>
+    </>
   );
 }

@@ -6,7 +6,7 @@ export function ComponentBreadcrumb({ category, categoryHref, title }: { categor
   return (
     <Breadcrumb.Root ariaLabel={`${title} documentation path`} className="component-breadcrumb" size="sm">
       <Breadcrumb.List>
-        <Breadcrumb.Item><Breadcrumb.Link href="/components/">Components</Breadcrumb.Link></Breadcrumb.Item>
+        <Breadcrumb.Item><Breadcrumb.Link href="/components">Components</Breadcrumb.Link></Breadcrumb.Item>
         <Breadcrumb.Separator />
         <Breadcrumb.Item><Breadcrumb.Link href={categoryHref}>{category}</Breadcrumb.Link></Breadcrumb.Item>
         <Breadcrumb.Separator />

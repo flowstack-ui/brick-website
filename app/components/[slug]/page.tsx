@@ -8,8 +8,10 @@ import { ComponentBreadcrumb } from "@/app/components/ComponentBreadcrumb";
 import { ComponentDocument } from "@/app/components/ComponentDocument";
 import { ComponentExampleCanvas } from "@/app/components/ComponentExampleCanvas";
 import { DocsShell } from "@/app/components/DocsShell";
+import { StructuredData } from "@/app/components/StructuredData";
 import { componentBySlug, componentDoc, components, source } from "@/app/lib/content";
 import { componentDocToc, consumerComponentMarkdown } from "@/app/lib/component-docs";
+import { breadcrumbStructuredData, createComponentMetadata } from "@/app/lib/seo";
 
 function categoryId(category: string) {
   return category.toLowerCase().replaceAll(" ", "-").replaceAll("&", "and");
@@ -23,7 +25,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const component = componentBySlug(slug);
   if (!component) return {};
-  return { title: component.title, description: component.description };
+  return createComponentMetadata(component);
 }
 
 export default async function ComponentPage({ params }: { params: Promise<{ slug: string }> }) {
@@ -37,9 +39,16 @@ export default async function ComponentPage({ params }: { params: Promise<{ slug
   const previous = categoryComponents[index - 1];
   const next = categoryComponents[index + 1];
   return (
+    <>
+      <StructuredData data={breadcrumbStructuredData([
+        { name: "Home", path: "/" },
+        { name: "Components", path: "/components" },
+        { name: component.category, path: `/components#${categoryId(component.category)}` },
+        { name: component.title, path: `/components/${component.slug}` },
+      ])} />
     <DocsShell componentSlug={slug} current="components" toc={componentDocToc(consumerMarkdown)}>
       <article className="docs-article component-doc">
-        <ComponentBreadcrumb category={component.category} categoryHref={`/components/#${categoryId(component.category)}`} title={component.title} />
+        <ComponentBreadcrumb category={component.category} categoryHref={`/components#${categoryId(component.category)}`} title={component.title} />
         <div className="component-kicker"><Badge tone="accent" variant="soft">{component.category}</Badge><span>Brick {source.version}</span></div>
         <Text as="h1" className="page-title">{component.title}</Text>
         <Text as="p" variant="body-lg" tone="secondary" className="page-lede">{component.description}</Text>
@@ -50,11 +59,12 @@ export default async function ComponentPage({ params }: { params: Promise<{ slug
         </section>
         <ComponentDocument componentSlug={slug} componentTitle={component.title} markdown={consumerMarkdown} />
         <nav className="component-pagination" aria-label={`${component.category} component pages`}>
-          {previous ? <a href={`/components/${previous.slug}/`}><ArrowLeft size={15} /><span><small>Previous</small>{previous.title}</span></a> : <span />}
-          <a className="component-category-return" href={`/components/#${categoryId(component.category)}`}><span><small>Back to category</small><strong>{component.category}</strong></span></a>
-          {next ? <a href={`/components/${next.slug}/`}><span><small>Next</small>{next.title}</span><ArrowRight size={15} /></a> : <span />}
+          {previous ? <a href={`/components/${previous.slug}`}><ArrowLeft size={15} /><span><small>Previous</small>{previous.title}</span></a> : <span />}
+          <a className="component-category-return" href={`/components#${categoryId(component.category)}`}><span><small>Back to category</small><strong>{component.category}</strong></span></a>
+          {next ? <a href={`/components/${next.slug}`}><span><small>Next</small>{next.title}</span><ArrowRight size={15} /></a> : <span />}
         </nav>
       </article>
     </DocsShell>
+    </>
   );
 }

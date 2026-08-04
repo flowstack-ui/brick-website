@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Badge } from "@flowstack-ui/brick/badge";
 import { WebsiteButton } from "@/app/components/WebsiteButton";
+import { createPageMetadata } from "@/app/lib/seo";
 import { Card } from "@flowstack-ui/brick/card";
 import { Grid } from "@flowstack-ui/brick/grid";
 import { HStack } from "@flowstack-ui/brick/stack";
@@ -8,7 +9,11 @@ import { Text } from "@flowstack-ui/brick/text";
 import { ArrowRight, Box, Check, Gauge, Palette, Sparkles, Type } from "lucide-react";
 import { InstallCommand } from "@/app/components/InstallCommand";
 
-export const metadata: Metadata = { title: "Themes", description: "See how semantic Brick tokens turn one component anatomy into a complete brand." };
+export const metadata: Metadata = createPageMetadata({
+  title: "Themes for Brick components",
+  description: "See how Brick UI's semantic CSS tokens turn stable React component anatomy into a coherent light and dark product theme.",
+  path: "/themes",
+});
 
 const tokenGroups = [
   { name: "Color", description: "Intent and hierarchy", icon: Palette, values: ["accent", "surface", "text", "border", "status"] },
@@ -25,7 +30,7 @@ export default function ThemesPage() {
           <Badge tone="accent" variant="soft" shape="pill"><Sparkles size={13} aria-hidden="true" /> Theme foundations</Badge>
           <Text as="h1" className="page-title" wrap="balance">Change the voice, not the component.</Text>
           <Text as="p" variant="body-lg" tone="secondary" className="page-lede">Brick themes assign meaningful visual roles. The same Button, Card, Input, and Dialog keep their anatomy, behavior, and tested recipes under every brand.</Text>
-          <HStack gap="3" wrap className="theme-actions"><WebsiteButton href="/docs/theming/" endIcon={<ArrowRight size={15} />}>Read the theme guide</WebsiteButton><WebsiteButton href="/components/" tone="neutral" variant="soft">See the catalog</WebsiteButton></HStack>
+          <HStack gap="3" wrap className="theme-actions"><WebsiteButton href="/docs/theming" endIcon={<ArrowRight size={15} />}>Read the theme guide</WebsiteButton><WebsiteButton href="/components" tone="neutral" variant="soft">See the catalog</WebsiteButton></HStack>
         </div>
         <div className="theme-orbit" role="img" aria-label="Brick semantic theme instrument with Accent, Surface, Type, and Motion roles surrounding a meaning-first core">
           <span className="orbit-aura" aria-hidden="true" />

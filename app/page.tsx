@@ -18,28 +18,30 @@ import {
 } from "lucide-react";
 import { InstallCommand } from "./components/InstallCommand";
 import { ProductWorkspace } from "./components/ProductWorkspace";
+import { StructuredData } from "./components/StructuredData";
 import { components, source } from "./lib/content";
+import { siteStructuredData } from "./lib/seo";
 
 const pillars = [
   {
     icon: ShieldCheck,
     title: "Accessible by foundation",
     body: "Behavior, semantics, focus, keyboard, portals, and interaction come from Atom, Flowstack’s headless foundation.",
-    link: "/atom/",
+    link: "/atom",
     label: "Meet Atom",
   },
   {
     icon: Sparkles,
     title: "Finished by default",
     body: "Coherent recipes, complete states, and responsive visual quality arrive in one static stylesheet.",
-    link: "/components/",
+    link: "/components",
     label: "Explore components",
   },
   {
     icon: Palette,
     title: "Branded through meaning",
     body: "Map your identity onto semantic tokens while keeping the same trusted component anatomy.",
-    link: "/themes/",
+    link: "/themes",
     label: "See the theme",
   },
 ];
@@ -47,6 +49,7 @@ const pillars = [
 export default function Home() {
   return (
     <>
+      <StructuredData data={siteStructuredData} />
       <main id="main-content">
         <section className="hero section-shell">
           <div className="hero-copy">
@@ -58,8 +61,8 @@ export default function Home() {
               A complete React component library with accessible behavior, coherent visual defaults, and a customization contract designed for real products.
             </Text>
             <HStack gap="3" wrap className="hero-actions">
-              <WebsiteButton href="/docs/getting-started/" size="lg" endIcon={<ArrowRight size={17} />}>Get started</WebsiteButton>
-              <WebsiteButton href="/components/" size="lg" tone="neutral" variant="soft">Explore 75 components</WebsiteButton>
+              <WebsiteButton href="/docs/getting-started" size="lg" endIcon={<ArrowRight size={17} />}>Get started</WebsiteButton>
+              <WebsiteButton href="/components" size="lg" tone="neutral" variant="soft">Explore 75 components</WebsiteButton>
             </HStack>
             <InstallCommand />
             <ul className="hero-proof" aria-label="Brick package qualities">
@@ -106,7 +109,7 @@ export default function Home() {
             <Badge tone="accent" variant="soft">The first Brick theme</Badge>
             <Text as="h2" id="theme-story-title" variant="display" wrap="balance">One anatomy. A completely different voice.</Text>
             <Text as="p" variant="body-lg" tone="secondary">The website theme changes public semantic roles—not component internals. Purple expression, warm surfaces, and softened geometry flow through the whole catalog.</Text>
-            <WebsiteButton href="/themes/" tone="neutral" variant="soft" endIcon={<ArrowRight size={15} />}>Explore theming</WebsiteButton>
+            <WebsiteButton href="/themes" tone="neutral" variant="soft" endIcon={<ArrowRight size={15} />}>Explore theming</WebsiteButton>
           </div>
           <div className="theme-pair">
             <div className="theme-sample theme-sample-default" data-brick-appearance="light">
@@ -145,7 +148,7 @@ export default function Home() {
             <Badge variant="outline" tone="neutral">Complete catalog</Badge>
             <Text as="h2" id="catalog-title" variant="display" wrap="balance">From a single Button to a complete product shell.</Text>
             <Text as="p" variant="body-lg" tone="secondary">Forms, overlays, menus, navigation, data surfaces, layout, feedback, and mobile-first composition—each with documented APIs and public customization hooks.</Text>
-            <WebsiteButton href="/components/" endIcon={<ArrowRight size={15} />}>Browse every component</WebsiteButton>
+            <WebsiteButton href="/components" endIcon={<ArrowRight size={15} />}>Browse every component</WebsiteButton>
           </div>
         </section>
 
@@ -156,7 +159,7 @@ export default function Home() {
           </div>
           <div className="closing-actions">
             <InstallCommand compact />
-            <WebsiteButton href="/docs/getting-started/" size="lg" endIcon={<ArrowRight size={17} />}>Read the guide</WebsiteButton>
+            <WebsiteButton href="/docs/getting-started" size="lg" endIcon={<ArrowRight size={17} />}>Read the guide</WebsiteButton>
           </div>
         </section>
       </main>

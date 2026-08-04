@@ -10,6 +10,17 @@ Brick UI Website is implemented as a multi-route product and documentation site.
   dependencies are removed. The clean Node 22 install reports zero known npm
   vulnerabilities, and native rendered-route verification owns the reserved
   `4012` server lifecycle.
+- All 84 indexable routes now emit unique titles and descriptions,
+  self-canonicals, page-specific Open Graph and Twitter metadata, and one
+  slashless URL contract shared by internal navigation, sitemap, and generated
+  AI documentation.
+- The homepage emits accurate `WebSite`, Swifty LLC `Organization`, and Brick
+  `SoftwareSourceCode` JSON-LD. Guides and components emit canonical
+  `BreadcrumbList` data. The consolidated AI documents remain readable with a
+  response-level noindex policy.
+- Unknown paths return a designed Brick recovery page with real 404 status,
+  explicit noindex/no-follow metadata, no inherited canonical/social identity,
+  and useful home, catalog, guide, and theme destinations.
 
 - Home page demonstrates a composed, stateful website-project workspace made from the published Brick package, with a conversion-first stacked viewport and a compact mobile presentation.
 - All 75 component owners have routes sourced from reviewed package documentation and a dedicated live example built from that component's public package export.
@@ -45,7 +56,9 @@ Brick UI Website is implemented as a multi-route product and documentation site.
 - The Docs overview presents Getting Started, Theming, Composition, and Accessibility as one compact outcome-led learning route, with its introduction on one reading axis and cards sized by content.
 - Each reader-facing guide begins with its own compact visual map whose uppercase eyebrow, primary title, and normal-case secondary body-large paragraph share one centered axis; quiet outlined metadata remains centered beneath the setup map before practical consumer examples or verification checkpoints.
 - Every Docs-shell route, including guides and component pages, clearly retains the subtle branded grid around the introduction before fading it into an opaque semantic reading plane ahead of sustained content.
-- Local search, light/dark appearance, responsive navigation, sitemap, robots, social card, favicon, and AI-readable documentation are present.
+- Local search, light/dark appearance, responsive navigation, sitemap, robots,
+  complete page metadata, structured data, social card, favicon, and
+  AI-readable documentation are present.
 - The site accent theme explicitly pairs purple solid actions with a white foreground in both appearances and verifies every solid interaction state at WCAG AA contrast.
 - The reviewed dependency is `@flowstack-ui/brick@0.1.0` at source commit `3351412342c6e0cd6af9f7403e2e7535bdfe72a0`.
 

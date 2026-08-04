@@ -13,10 +13,10 @@ export function DocsShell({ children, componentSlug, current, toc }: { children:
         <aside className="docs-sidebar" aria-label="Guide navigation">
           <nav>
             <span className="docs-nav-label">Guides</span>
-            <Link className={current === "guides" ? "is-current" : ""} href="/docs/">Overview</Link>
+            <Link className={current === "guides" ? "is-current" : ""} href="/docs">Overview</Link>
             {guideOrder.map((slug) => {
               const guide = guides[slug];
-              return <Link key={slug} className={current === slug ? "is-current" : ""} href={`/docs/${slug}/`}>{guide.title}</Link>;
+              return <Link key={slug} className={current === slug ? "is-current" : ""} href={`/docs/${slug}`}>{guide.title}</Link>;
             })}
           </nav>
         </aside>

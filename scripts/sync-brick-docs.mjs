@@ -114,16 +114,16 @@ const llmsIndex = [
   "",
   "## Documentation",
   "",
-  "- https://brick-ui.com/docs/",
-  "- https://brick-ui.com/docs/getting-started/",
-  "- https://brick-ui.com/docs/theming/",
-  "- https://brick-ui.com/components/",
-  "- https://brick-ui.com/themes/",
+  "- https://brick-ui.com/docs",
+  "- https://brick-ui.com/docs/getting-started",
+  "- https://brick-ui.com/docs/theming",
+  "- https://brick-ui.com/components",
+  "- https://brick-ui.com/themes",
   "- https://atom-ui.com/",
   "",
   "## Components",
   "",
-  ...components.map((component) => `- ${component.title}: https://brick-ui.com/components/${component.slug}/`),
+  ...components.map((component) => `- ${component.title}: https://brick-ui.com/components/${component.slug}`),
   "",
 ].join("\n");
 
@@ -145,4 +145,3 @@ await writeFile(path.join(publicRoot, "llms.txt"), llmsIndex);
 await writeFile(path.join(publicRoot, "llms-full.txt"), llmsFull);
 
 console.log(`Synchronized ${components.length} Brick component owners from ${source.version}.`);
-

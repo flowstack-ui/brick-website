@@ -258,7 +258,7 @@ export function ProductWorkspace() {
           <Text variant="body-sm" tone="secondary">A compact website-project view assembled from Brick components.</Text>
           <HStack justify="between"><Text tone="secondary">Pages ready</Text><Badge tone="success">2 of 3</Badge></HStack>
           <Progress.Root value={84} size="sm" aria-label="Mobile launch readiness"><Progress.Track><Progress.Indicator /></Progress.Track></Progress.Root>
-          <Button href="/components/" fullWidth endIcon={<ArrowRight size={15} />}>Explore the components</Button>
+          <Button href="/components" fullWidth endIcon={<ArrowRight size={15} />}>Explore the components</Button>
         </Stack>
       </div>
     </section>

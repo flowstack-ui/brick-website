@@ -134,7 +134,7 @@ export function ComponentCatalog() {
                           <Card.Action><ArrowRight size={16} aria-hidden="true" /></Card.Action>
                         </Card.Header>
                         <Card.Content><Text variant="body-sm" tone="secondary">{conciseDescription(component.description)}</Text></Card.Content>
-                        <a className="card-cover-link" href={`/components/${component.slug}/`} aria-label={`Open ${component.title} documentation`} />
+                        <a className="card-cover-link" href={`/components/${component.slug}`} aria-label={`Open ${component.title} documentation`} />
                       </Card.Root>
                     ))}
                   </div>

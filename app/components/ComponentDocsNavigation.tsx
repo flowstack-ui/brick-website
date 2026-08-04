@@ -31,7 +31,7 @@ function ComponentNavigationList({ closeOnNavigate = false, currentSlug }: { clo
 
   return (
     <nav className="component-nav" aria-label="Component documentation">
-      <NavigationLink className="component-nav-back" closeOnNavigate={closeOnNavigate} href={`/components/#${current ? categoryId(current.category) : "component-results"}`}>
+      <NavigationLink className="component-nav-back" closeOnNavigate={closeOnNavigate} href={`/components#${current ? categoryId(current.category) : "component-results"}`}>
         <ArrowLeft size={15} aria-hidden="true" />All components
       </NavigationLink>
       <div className="component-nav-heading"><span>Browse components</span><small>{components.length} total</small></div>
@@ -56,7 +56,7 @@ function ComponentNavigationList({ closeOnNavigate = false, currentSlug }: { clo
               aria-current={component.slug === currentSlug ? "page" : undefined}
               className={component.slug === currentSlug ? "is-current" : undefined}
               closeOnNavigate={closeOnNavigate}
-              href={`/components/${component.slug}/`}
+              href={`/components/${component.slug}`}
               key={component.slug}
             >
               {component.title}<small>{component.category}</small>
@@ -83,7 +83,7 @@ function ComponentNavigationList({ closeOnNavigate = false, currentSlug }: { clo
                         aria-current={component.slug === currentSlug ? "page" : undefined}
                         className={component.slug === currentSlug ? "is-current" : undefined}
                         closeOnNavigate={closeOnNavigate}
-                        href={`/components/${component.slug}/`}
+                        href={`/components/${component.slug}`}
                         key={component.slug}
                       >
                         {component.title}

@@ -4,87 +4,87 @@ Finished, accessible React components built on Flowstack Atom.
 
 ## Documentation
 
-- https://brick-ui.com/docs/
-- https://brick-ui.com/docs/getting-started/
-- https://brick-ui.com/docs/theming/
-- https://brick-ui.com/components/
-- https://brick-ui.com/themes/
+- https://brick-ui.com/docs
+- https://brick-ui.com/docs/getting-started
+- https://brick-ui.com/docs/theming
+- https://brick-ui.com/components
+- https://brick-ui.com/themes
 - https://atom-ui.com/
 
 ## Components
 
-- Accordion: https://brick-ui.com/components/accordion/
-- Alert Dialog: https://brick-ui.com/components/alert-dialog/
-- App Bar: https://brick-ui.com/components/app-bar/
-- Aspect Ratio: https://brick-ui.com/components/aspect-ratio/
-- Avatar: https://brick-ui.com/components/avatar/
-- Badge: https://brick-ui.com/components/badge/
-- Bottom Navigation: https://brick-ui.com/components/bottom-navigation/
-- Breadcrumb: https://brick-ui.com/components/breadcrumb/
-- Button: https://brick-ui.com/components/button/
-- Card: https://brick-ui.com/components/card/
-- Checkbox: https://brick-ui.com/components/checkbox/
-- Checkbox Group: https://brick-ui.com/components/checkbox-group/
-- Chip: https://brick-ui.com/components/chip/
-- Code: https://brick-ui.com/components/code/
-- Code Block: https://brick-ui.com/components/code-block/
-- Collapsible: https://brick-ui.com/components/collapsible/
-- Combobox: https://brick-ui.com/components/combobox/
-- Container: https://brick-ui.com/components/container/
-- Context Menu: https://brick-ui.com/components/context-menu/
-- Data Grid: https://brick-ui.com/components/data-grid/
-- Dialog: https://brick-ui.com/components/dialog/
-- Divider: https://brick-ui.com/components/divider/
-- Drawer: https://brick-ui.com/components/drawer/
-- Dropdown Menu: https://brick-ui.com/components/dropdown-menu/
-- Feed: https://brick-ui.com/components/feed/
-- Field: https://brick-ui.com/components/field/
-- Fieldset: https://brick-ui.com/components/fieldset/
-- File Upload: https://brick-ui.com/components/file-upload/
-- Form: https://brick-ui.com/components/form/
-- Grid: https://brick-ui.com/components/grid/
-- Hide: https://brick-ui.com/components/hide/
-- Hover Card: https://brick-ui.com/components/hover-card/
-- Icon: https://brick-ui.com/components/icon/
-- Icon Button: https://brick-ui.com/components/icon-button/
-- Image: https://brick-ui.com/components/image/
-- Input: https://brick-ui.com/components/input/
-- Link: https://brick-ui.com/components/link/
-- List: https://brick-ui.com/components/list/
-- Menubar: https://brick-ui.com/components/menubar/
-- Multi Select: https://brick-ui.com/components/multi-select/
-- Nav List: https://brick-ui.com/components/nav-list/
-- Navigation Menu: https://brick-ui.com/components/navigation-menu/
-- Notification Badge: https://brick-ui.com/components/notification-badge/
-- Number Input: https://brick-ui.com/components/number-input/
-- OTP Field: https://brick-ui.com/components/otp-field/
-- Pagination: https://brick-ui.com/components/pagination/
-- Password Toggle Field: https://brick-ui.com/components/password-toggle-field/
-- Popover: https://brick-ui.com/components/popover/
-- Progress: https://brick-ui.com/components/progress/
-- Progress Circle: https://brick-ui.com/components/progress-circle/
-- Radio Group: https://brick-ui.com/components/radio-group/
-- Rating: https://brick-ui.com/components/rating/
-- Scroll Area: https://brick-ui.com/components/scroll-area/
-- Select: https://brick-ui.com/components/select/
-- Show: https://brick-ui.com/components/show/
-- Sidebar: https://brick-ui.com/components/sidebar/
-- Skeleton: https://brick-ui.com/components/skeleton/
-- Skip Link: https://brick-ui.com/components/skip-link/
-- Slider: https://brick-ui.com/components/slider/
-- Stack: https://brick-ui.com/components/stack/
-- Surface: https://brick-ui.com/components/surface/
-- Swipeable Item: https://brick-ui.com/components/swipeable-item/
-- Switch: https://brick-ui.com/components/switch/
-- Table: https://brick-ui.com/components/table/
-- Tabs: https://brick-ui.com/components/tabs/
-- Text: https://brick-ui.com/components/text/
-- Textarea: https://brick-ui.com/components/textarea/
-- Toast: https://brick-ui.com/components/toast/
-- Toggle: https://brick-ui.com/components/toggle/
-- Toggle Group: https://brick-ui.com/components/toggle-group/
-- Toolbar: https://brick-ui.com/components/toolbar/
-- Tooltip: https://brick-ui.com/components/tooltip/
-- Tree: https://brick-ui.com/components/tree/
-- Tree Grid: https://brick-ui.com/components/tree-grid/
-- Visually Hidden: https://brick-ui.com/components/visually-hidden/
+- Accordion: https://brick-ui.com/components/accordion
+- Alert Dialog: https://brick-ui.com/components/alert-dialog
+- App Bar: https://brick-ui.com/components/app-bar
+- Aspect Ratio: https://brick-ui.com/components/aspect-ratio
+- Avatar: https://brick-ui.com/components/avatar
+- Badge: https://brick-ui.com/components/badge
+- Bottom Navigation: https://brick-ui.com/components/bottom-navigation
+- Breadcrumb: https://brick-ui.com/components/breadcrumb
+- Button: https://brick-ui.com/components/button
+- Card: https://brick-ui.com/components/card
+- Checkbox: https://brick-ui.com/components/checkbox
+- Checkbox Group: https://brick-ui.com/components/checkbox-group
+- Chip: https://brick-ui.com/components/chip
+- Code: https://brick-ui.com/components/code
+- Code Block: https://brick-ui.com/components/code-block
+- Collapsible: https://brick-ui.com/components/collapsible
+- Combobox: https://brick-ui.com/components/combobox
+- Container: https://brick-ui.com/components/container
+- Context Menu: https://brick-ui.com/components/context-menu
+- Data Grid: https://brick-ui.com/components/data-grid
+- Dialog: https://brick-ui.com/components/dialog
+- Divider: https://brick-ui.com/components/divider
+- Drawer: https://brick-ui.com/components/drawer
+- Dropdown Menu: https://brick-ui.com/components/dropdown-menu
+- Feed: https://brick-ui.com/components/feed
+- Field: https://brick-ui.com/components/field
+- Fieldset: https://brick-ui.com/components/fieldset
+- File Upload: https://brick-ui.com/components/file-upload
+- Form: https://brick-ui.com/components/form
+- Grid: https://brick-ui.com/components/grid
+- Hide: https://brick-ui.com/components/hide
+- Hover Card: https://brick-ui.com/components/hover-card
+- Icon: https://brick-ui.com/components/icon
+- Icon Button: https://brick-ui.com/components/icon-button
+- Image: https://brick-ui.com/components/image
+- Input: https://brick-ui.com/components/input
+- Link: https://brick-ui.com/components/link
+- List: https://brick-ui.com/components/list
+- Menubar: https://brick-ui.com/components/menubar
+- Multi Select: https://brick-ui.com/components/multi-select
+- Nav List: https://brick-ui.com/components/nav-list
+- Navigation Menu: https://brick-ui.com/components/navigation-menu
+- Notification Badge: https://brick-ui.com/components/notification-badge
+- Number Input: https://brick-ui.com/components/number-input
+- OTP Field: https://brick-ui.com/components/otp-field
+- Pagination: https://brick-ui.com/components/pagination
+- Password Toggle Field: https://brick-ui.com/components/password-toggle-field
+- Popover: https://brick-ui.com/components/popover
+- Progress: https://brick-ui.com/components/progress
+- Progress Circle: https://brick-ui.com/components/progress-circle
+- Radio Group: https://brick-ui.com/components/radio-group
+- Rating: https://brick-ui.com/components/rating
+- Scroll Area: https://brick-ui.com/components/scroll-area
+- Select: https://brick-ui.com/components/select
+- Show: https://brick-ui.com/components/show
+- Sidebar: https://brick-ui.com/components/sidebar
+- Skeleton: https://brick-ui.com/components/skeleton
+- Skip Link: https://brick-ui.com/components/skip-link
+- Slider: https://brick-ui.com/components/slider
+- Stack: https://brick-ui.com/components/stack
+- Surface: https://brick-ui.com/components/surface
+- Swipeable Item: https://brick-ui.com/components/swipeable-item
+- Switch: https://brick-ui.com/components/switch
+- Table: https://brick-ui.com/components/table
+- Tabs: https://brick-ui.com/components/tabs
+- Text: https://brick-ui.com/components/text
+- Textarea: https://brick-ui.com/components/textarea
+- Toast: https://brick-ui.com/components/toast
+- Toggle: https://brick-ui.com/components/toggle
+- Toggle Group: https://brick-ui.com/components/toggle-group
+- Toolbar: https://brick-ui.com/components/toolbar
+- Tooltip: https://brick-ui.com/components/tooltip
+- Tree: https://brick-ui.com/components/tree
+- Tree Grid: https://brick-ui.com/components/tree-grid
+- Visually Hidden: https://brick-ui.com/components/visually-hidden

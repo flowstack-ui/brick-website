@@ -2,9 +2,10 @@
 
 ## Next
 
-- Implement the approved production-discovery pass: canonical page metadata,
-  slashless URL consistency, JSON-LD, 404 indexing policy, broken-reference
-  repairs, route-scoped component previews, and optimized social assets.
+- Split the monolithic component-preview registry into route- or family-scoped
+  modules and optimize the social image in the performance pass.
+- Add the qualified Swifty organization logo and verified public `sameAs`
+  profiles to structured data when those final brand inputs are supplied.
 - Connect the repository to Vercel and qualify an immutable protected preview
   of the exact reviewed commit before attaching the public domain.
 - Review page-level spacing rhythm across the home, catalog, guide, and component layouts.

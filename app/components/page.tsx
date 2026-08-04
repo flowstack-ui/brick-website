@@ -2,8 +2,13 @@ import type { Metadata } from "next";
 import { Badge } from "@flowstack-ui/brick/badge";
 import { Text } from "@flowstack-ui/brick/text";
 import { ComponentCatalog } from "@/app/components/ComponentCatalog";
+import { createPageMetadata } from "@/app/lib/seo";
 
-export const metadata: Metadata = { title: "Components", description: "Explore all 75 finished Brick component owners." };
+export const metadata: Metadata = createPageMetadata({
+  title: "React component catalog",
+  description: "Explore 75 finished, accessible React component owners with live examples, practical guidance, APIs, styling hooks, and package provenance.",
+  path: "/components",
+});
 
 export default function ComponentsPage() {
   return (

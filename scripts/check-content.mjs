@@ -29,7 +29,7 @@ for (const component of components) {
   const exportSlug = component.slug === "notification-badge" ? "badge" : component.slug;
   if (!brickManifest.exports[`./${exportSlug}`]) errors.push(`component is not a public Brick export: ${component.slug}`);
   if (!docs[component.slug]?.startsWith("# ")) errors.push(`component has no synchronized documentation: ${component.slug}`);
-  if (!llms.includes(`/components/${component.slug}/`)) errors.push(`component missing from llms.txt: ${component.slug}`);
+  if (!llms.includes(`/components/${component.slug}`)) errors.push(`component missing from llms.txt: ${component.slug}`);
   if (!previewSource.includes(`case "${component.slug}"`)) errors.push(`component has no dedicated live preview: ${component.slug}`);
 }
 

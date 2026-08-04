@@ -2,6 +2,14 @@
 
 ## Unreleased
 
+- Centralized production discovery metadata for all 84 indexable routes with
+  unique search titles/descriptions, self-canonicals, page-specific Open Graph
+  and Twitter cards, slashless internal and generated URLs, exact sitemap and
+  robots policy, noindexed AI-document aggregates, accurate WebSite/Swifty LLC/
+  SoftwareSourceCode/Breadcrumb JSON-LD, repaired legacy demo references, and
+  exhaustive rendered-route verification. Rebuilt the real 404 as a responsive
+  missing-brick recovery composition with dedicated noindex metadata and no
+  inherited canonical or social identity.
 - Migrated the finished product from the temporary vinext/Vite/Sites worker
   shell to native Next.js App Router, retained static generation for all 88
   routes, replaced worker-import HTML checks with an owned Next production

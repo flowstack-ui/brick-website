@@ -29,18 +29,18 @@ import { BrandMark } from "./BrandMark";
 import { components, guides, source } from "@/app/lib/content";
 
 const nav = [
-  { href: "/docs/", label: "Guides" },
-  { href: "/components/", label: "Components" },
-  { href: "/themes/", label: "Themes" },
-  { href: "/atom/", label: "Atom" },
+  { href: "/docs", label: "Guides" },
+  { href: "/components", label: "Components" },
+  { href: "/themes", label: "Themes" },
+  { href: "/atom", label: "Atom" },
 ];
 
 const drawerNav = [
   { href: "/", label: "Home", description: "See what Brick makes possible", icon: Home },
-  { href: "/docs/", label: "Guides", description: "Learn the system", icon: BookOpen },
-  { href: "/components/", label: "Components", description: "Explore all 75 component owners", icon: Blocks },
-  { href: "/themes/", label: "Themes", description: "Shape the visual voice", icon: Palette },
-  { href: "/atom/", label: "Atom", description: "Understand the foundation", icon: Atom },
+  { href: "/docs", label: "Guides", description: "Learn the system", icon: BookOpen },
+  { href: "/components", label: "Components", description: "Explore all 75 component owners", icon: Blocks },
+  { href: "/themes", label: "Themes", description: "Shape the visual voice", icon: Palette },
+  { href: "/atom", label: "Atom", description: "Understand the foundation", icon: Atom },
 ];
 
 type Appearance = "light" | "dark";
@@ -153,7 +153,7 @@ export function SiteHeader() {
                       <div className="search-result-list">
                         {searchResults.componentResults.map((component) => (
                           <Dialog.Close asChild key={component.slug}>
-                            <a href={`/components/${component.slug}/`} className="search-result">
+                            <a href={`/components/${component.slug}`} className="search-result">
                               <span className="search-result-icon"><Package size={16} aria-hidden="true" /></span>
                               <span className="search-result-copy"><strong>{component.title}</strong><small>{component.description}</small></span>
                               <span className="search-result-meta"><Badge tone="neutral" variant="soft" size="sm">{component.category}</Badge><ArrowRight size={15} aria-hidden="true" /></span>
@@ -169,7 +169,7 @@ export function SiteHeader() {
                       <div className="search-result-list">
                         {searchResults.guideResults.map(([slug, guide]) => (
                           <Dialog.Close asChild key={slug}>
-                            <a href={`/docs/${slug}/`} className="search-result">
+                            <a href={`/docs/${slug}`} className="search-result">
                               <span className="search-result-icon"><BookOpen size={16} aria-hidden="true" /></span>
                               <span className="search-result-copy"><strong>{guide.title}</strong><small>{guide.description}</small></span>
                               <span className="search-result-meta"><Badge tone="accent" variant="soft" size="sm">Guide</Badge><ArrowRight size={15} aria-hidden="true" /></span>
@@ -301,7 +301,7 @@ export function SiteHeader() {
                 <Drawer.Footer className="mobile-drawer-footer">
                   <p className="drawer-proof"><span>75 components</span><span>React 18 + 19</span><span>Static CSS</span></p>
                   <Drawer.Close asChild>
-                    <Button href="/docs/getting-started/" endIcon={<ArrowRight size={17} />} fullWidth>Get started</Button>
+                    <Button href="/docs/getting-started" endIcon={<ArrowRight size={17} />} fullWidth>Get started</Button>
                   </Drawer.Close>
                 </Drawer.Footer>
               </Drawer.Content>

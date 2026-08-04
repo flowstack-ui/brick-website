@@ -77,6 +77,33 @@ async function render(pathname) {
   });
 }
 
+function htmlTags(html, name) {
+  return [...html.matchAll(new RegExp(`<${name}\\b[^>]*>`, "gi"))].map((match) => match[0]);
+}
+
+function htmlAttribute(tag, name) {
+  return tag.match(new RegExp(`\\s${name}="([^"]*)"`, "i"))?.[1] ?? null;
+}
+
+function metadataValue(html, attributeName, attributeValue) {
+  const tag = htmlTags(html, "meta").find((candidate) =>
+    htmlAttribute(candidate, attributeName) === attributeValue,
+  );
+  return tag ? htmlAttribute(tag, "content") : null;
+}
+
+function linkValue(html, relation) {
+  const tag = htmlTags(html, "link").find((candidate) =>
+    htmlAttribute(candidate, "rel") === relation,
+  );
+  return tag ? htmlAttribute(tag, "href") : null;
+}
+
+function jsonLdValues(html) {
+  return [...html.matchAll(/<script[^>]*type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/gi)]
+    .map((match) => JSON.parse(match[1]));
+}
+
 test("mobile drawer retains its branded reference composition", async () => {
   const headerSource = await readFile(new URL("../app/components/SiteHeader.tsx", import.meta.url), "utf8");
   const css = await readFile(new URL("../app/globals.css", import.meta.url), "utf8");
@@ -139,7 +166,7 @@ test("favicon reuses the transparent Brick brand mark", async () => {
 test("homepage theme story retains its content-pressure contract", async () => {
   const homepageSource = await readFile(new URL("../app/page.tsx", import.meta.url), "utf8");
   const css = await readFile(new URL("../app/globals.css", import.meta.url), "utf8");
-  assert.match(homepageSource, /href="\/themes\/" tone="neutral" variant="soft"/, "theme story action must use a quiet filled surface over the page grid");
+  assert.match(homepageSource, /href="\/themes" tone="neutral" variant="soft"/, "theme story action must use a quiet filled surface over the page grid");
   assert.match(css, /\.principles \{[^}]*padding-block-end: clamp\(3rem, 5vw, 5rem\);/, "promise section must not contribute an oversized lower gap");
   assert.match(css, /\.theme-story \{[^}]*padding-block: clamp\(3rem, 5vw, 5rem\);/, "theme story must own restrained transitions on both sides");
   assert.match(css, /@media \(max-width: 1080px\) \{\s*\.theme-story \{ grid-template-columns: 1fr; gap: 3rem; \}/, "theme story must stack when its live comparison starts squeezing the copy");
@@ -230,7 +257,7 @@ test("Themes hero retains its semantic instrument composition", async () => {
   assert.match(themesSource, /className="theme-copy"/, "theme hero copy must own explicit vertical rhythm");
   assert.match(themesSource, /<Sparkles size=\{13\} aria-hidden="true" \/>/, "theme eyebrow icon must remain decorative");
   assert.match(themesSource, /className="theme-actions"/, "theme actions must opt into authored description spacing");
-  assert.match(themesSource, /href="\/components\/" tone="neutral" variant="soft"/, "theme secondary action must use the opaque quiet treatment over the page grid");
+  assert.match(themesSource, /href="\/components" tone="neutral" variant="soft"/, "theme secondary action must use the opaque quiet treatment over the page grid");
   assert.match(themesSource, /role="img" aria-label="Brick semantic theme instrument/, "theme visual must expose one grouped accessible summary");
   assert.match(themesSource, /Semantic core[\s\S]*Accent[\s\S]*Surface[\s\S]*Type[\s\S]*Motion/, "theme instrument must retain its meaning-first semantic roles");
   assert.match(themesSource, /A theme is not a coat of paint\./, "comparison story must explain the semantic contract before presenting visual expressions");
@@ -269,7 +296,7 @@ test("documentation rails retain readable scalable navigation", async () => {
   assert.match(css, /@media \(max-width: 900px\)[\s\S]*\.docs-shell \{ display: block; \}/, "the remaining documentation navigation must reflow before narrow layouts");
   assert.match(shellSource, /<OnThisPage items=\{toc\} \/>/, "the documentation shell must render page-owned table-of-contents data");
   assert.match(shellSource, /\["getting-started", "theming", "composition", "accessibility"\]/, "the documentation navigation must follow the overview's recommended learning route");
-  assert.match(shellSource, /aria-label="Guide navigation"[\s\S]*docs-nav-label">Guides<[\s\S]*href="\/docs\/">Overview/, "the learning rail must present itself as Guides with a clear overview entry");
+  assert.match(shellSource, /aria-label="Guide navigation"[\s\S]*docs-nav-label">Guides<[\s\S]*href="\/docs">Overview/, "the learning rail must present itself as Guides with a clear overview entry");
   assert.doesNotMatch(shellSource, /docs-nav-label">Components|categories\.map|All components/, "component discovery must not be duplicated inside the Guides rail");
   assert.doesNotMatch(shellSource, /Introduction[\s\S]*Details[\s\S]*Next steps/, "the right rail must not ship a generic placeholder outline");
   assert.match(railSource, /aria-current=\{activeId === item\.id \? "location"/, "the visible page section must be exposed to assistive technology");
@@ -352,7 +379,7 @@ test("component discovery and rendering remain consumer-first Brick compositions
   assert.match(css, /\.preview-menubar-content \{ min-inline-size: 12rem; \}/, "Menubar preview content must retain a command-appropriate width");
   assert.match(previewSource, /case "navigation-menu":[^;]*NavigationMenu\.Trigger>Guides[^;]*NavigationMenu\.Content[^;]*NavigationMenu\.Trigger>Components[^;]*NavigationMenu\.Viewport/, "Navigation Menu must demonstrate disclosure triggers, destination panels, and the measured viewport");
   assert.match(previewSource, /href="#navigation-menu-preview" onClick=\{\(event\) => event\.preventDefault\(\)\}/, "example Navigation Menu destinations must preserve link anatomy without leaving the documentation page");
-  assert.doesNotMatch(previewSource, /case "navigation-menu":[^;]*href="\/docs\//, "Navigation Menu preview must not use live site routes as inert demonstration controls");
+  assert.doesNotMatch(previewSource, /case "navigation-menu":[^;]*href="\/docs"/, "Navigation Menu preview must not use live site routes as inert demonstration controls");
   assert.match(markdownSource, /<Code[^>]*data-code-kind=\{inlineCodeKind/, "inline technical literals must use the published Brick Code component with semantic token styling");
   assert.match(markdownSource, /<Table\.Container[\s\S]*<Table\.Root[\s\S]*<Table\.Header/, "Markdown API matrices must use the published Brick Table anatomy");
   assert.match(css, /\.catalog-outcomes \{[^}]*grid-template-columns: repeat\(3/, "the full-width outcome discovery surface must retain a scannable desktop grid");
@@ -389,7 +416,7 @@ test("icon-led cards and the Docs learning route use explicit composition patter
   assert.match(docsSource, /<Card\.Header className="docs-path-card-header">[\s\S]*\{path\.step\} · \{path\.time\}/, "guide cards must expose their sequence and learning intent");
   assert.match(docsSource, /docs-path-outcome[\s\S]*\{path\.outcome\}/, "each guide path must identify its concrete reader outcome");
   assert.match(docsSource, /<Link className="pillar-link" href=\{path\.href\}>Read guide<ArrowRight/, "documentation cards must use the animated editorial link pattern");
-  assert.match(docsSource, /<WebsiteButton href="\/components\/" endIcon=\{<ArrowRight[^>]*\/>\}>Explore components<\/WebsiteButton>/, "documentation closing CTA must retain primary button emphasis through the server-safe website adapter");
+  assert.match(docsSource, /<WebsiteButton href="\/components" endIcon=\{<ArrowRight[^>]*\/>\}>Explore components<\/WebsiteButton>/, "documentation closing CTA must retain primary button emphasis through the server-safe website adapter");
   assert.doesNotMatch(docsSource, /variant="ghost"/, "documentation path actions must not reintroduce padded ghost buttons");
 });
 
@@ -490,8 +517,134 @@ test("site search opens with an explicit initial focus target", async () => {
   assert.match(css, /@media \(max-width: 640px\)[\s\S]*\.search-dialog, \.search-dialog\[data-state="closed"\] \{[^}]*inset: 0;[^}]*transform: none;/, "full-screen mobile search must remain exempt from desktop anchoring");
 });
 
+test("every indexable route emits complete unique discovery metadata without internal redirect hops", async () => {
+  const componentEntries = JSON.parse(await readFile(new URL("../content/components.json", import.meta.url), "utf8"));
+  const guideEntries = JSON.parse(await readFile(new URL("../content/guides.json", import.meta.url), "utf8"));
+  const paths = [
+    "/",
+    "/docs",
+    "/components",
+    "/themes",
+    "/atom",
+    ...Object.keys(guideEntries).map((slug) => `/docs/${slug}`),
+    ...componentEntries.map((component) => `/components/${component.slug}`),
+  ];
+  const titles = new Set();
+  const descriptions = new Set();
+
+  for (const pathname of paths) {
+    const response = await render(pathname);
+    assert.equal(response.status, 200, `${pathname} must return 200`);
+    const html = await response.text();
+    const title = html.match(/<title>([^<]+)<\/title>/i)?.[1] ?? "";
+    const description = metadataValue(html, "name", "description") ?? "";
+    const canonical = linkValue(html, "canonical");
+    const expectedCanonical = pathname === "/"
+      ? "https://brick-ui.com"
+      : `https://brick-ui.com${pathname}`;
+
+    assert.ok(title.length >= 20 && title.length <= 70, `${pathname} needs a useful title`);
+    assert.ok(description.length >= 70 && description.length <= 170, `${pathname} needs a concise description`);
+    assert.ok(!titles.has(title), `${pathname} duplicates title ${title}`);
+    assert.ok(!descriptions.has(description), `${pathname} duplicates its description`);
+    titles.add(title);
+    descriptions.add(description);
+    assert.equal(canonical, expectedCanonical, `${pathname} must self-canonicalize`);
+    assert.equal(metadataValue(html, "property", "og:url"), expectedCanonical, `${pathname} needs its own Open Graph URL`);
+    assert.ok(metadataValue(html, "property", "og:title")?.includes("Brick UI"), `${pathname} needs a page-specific Open Graph title`);
+    assert.equal(metadataValue(html, "name", "twitter:card"), "summary_large_image", `${pathname} needs a large Twitter card`);
+    assert.ok(metadataValue(html, "name", "twitter:title")?.includes("Brick UI"), `${pathname} needs a page-specific Twitter title`);
+    assert.equal(metadataValue(html, "property", "og:image"), "https://brick-ui.com/brick-social-card.png", `${pathname} needs the canonical social image`);
+    assert.doesNotMatch(html, /(?:href|src)="\/guides\/|(?:href|src)="\/og\.png"/, `${pathname} contains a broken legacy reference`);
+
+    for (const tag of htmlTags(html, "a")) {
+      const href = htmlAttribute(tag, "href");
+      if (!href?.startsWith("/")) continue;
+      const pathOnly = href.split(/[?#]/, 1)[0];
+      if (pathOnly.length > 1) {
+        assert.ok(!pathOnly.endsWith("/"), `${pathname} links through a trailing-slash redirect: ${href}`);
+      }
+    }
+  }
+  assert.equal(titles.size, paths.length);
+  assert.equal(descriptions.size, paths.length);
+});
+
+test("sitemap, robots, and AI documentation expose one canonical crawl policy", async () => {
+  const componentEntries = JSON.parse(await readFile(new URL("../content/components.json", import.meta.url), "utf8"));
+  const guideEntries = JSON.parse(await readFile(new URL("../content/guides.json", import.meta.url), "utf8"));
+  const expected = new Set([
+    "https://brick-ui.com/",
+    "https://brick-ui.com/docs",
+    "https://brick-ui.com/components",
+    "https://brick-ui.com/themes",
+    "https://brick-ui.com/atom",
+    ...Object.keys(guideEntries).map((slug) => `https://brick-ui.com/docs/${slug}`),
+    ...componentEntries.map((component) => `https://brick-ui.com/components/${component.slug}`),
+  ]);
+  const sitemapResponse = await render("/sitemap.xml");
+  assert.equal(sitemapResponse.status, 200);
+  const sitemap = await sitemapResponse.text();
+  const locations = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => match[1]);
+  assert.deepEqual(new Set(locations), expected, "sitemap must contain every canonical route exactly once");
+  assert.equal(locations.length, expected.size, "sitemap must not duplicate routes");
+  assert.doesNotMatch(sitemap, /<priority>|<changefreq>/, "sitemap must not emit ignored priority or frequency hints");
+
+  const robotsResponse = await render("/robots.txt");
+  assert.equal(robotsResponse.status, 200);
+  const robots = await robotsResponse.text();
+  assert.match(robots, /Allow: \//);
+  assert.match(robots, /Host: https:\/\/brick-ui\.com/);
+  assert.match(robots, /Sitemap: https:\/\/brick-ui\.com\/sitemap\.xml/);
+
+  for (const pathname of ["/llms.txt", "/llms-full.txt"]) {
+    const response = await render(pathname);
+    assert.equal(response.status, 200);
+    assert.equal(response.headers.get("x-robots-tag"), "noindex");
+  }
+});
+
+test("structured data identifies the site, Swifty publisher, software, and content hierarchy", async () => {
+  const home = await (await render("/")).text();
+  const homeValues = jsonLdValues(home);
+  const graph = homeValues.find((value) => Array.isArray(value["@graph"]))?.["@graph"];
+  assert.ok(graph, "homepage must emit a structured-data graph");
+  assert.equal(graph.find((entry) => entry["@type"] === "WebSite")?.name, "Brick UI");
+  assert.equal(graph.find((entry) => entry["@type"] === "Organization")?.legalName, "Swifty LLC");
+  const software = graph.find((entry) => entry["@type"] === "SoftwareSourceCode");
+  assert.equal(software?.alternateName, "@flowstack-ui/brick");
+  assert.equal(software?.version, "0.1.0");
+  assert.equal(software?.codeRepository, "https://github.com/flowstack-ui/brick");
+
+  for (const [pathname, finalName, expectedLength] of [
+    ["/docs/getting-started", "Getting started", 3],
+    ["/components/button", "Button", 4],
+  ]) {
+    const html = await (await render(pathname)).text();
+    const breadcrumb = jsonLdValues(html).find((value) => value["@type"] === "BreadcrumbList");
+    assert.ok(breadcrumb, `${pathname} must emit BreadcrumbList data`);
+    assert.equal(breadcrumb.itemListElement.length, expectedLength);
+    assert.equal(breadcrumb.itemListElement.at(-1).name, finalName);
+    assert.equal(breadcrumb.itemListElement.at(-1).position, expectedLength);
+  }
+});
+
+test("unknown routes return the designed non-indexable Brick recovery page", async () => {
+  const response = await render("/a-piece-that-does-not-exist");
+  assert.equal(response.status, 404);
+  const html = await response.text();
+  assert.match(html, /<title>Page not found · Brick UI<\/title>/);
+  assert.match(metadataValue(html, "name", "robots") ?? "", /noindex/);
+  assert.equal(linkValue(html, "canonical"), null, "404 must not inherit the homepage canonical");
+  assert.equal(metadataValue(html, "property", "og:url"), null, "404 must not inherit homepage Open Graph metadata");
+  assert.match(html, /This piece is not in the wall\./);
+  assert.match(html, /One piece is out of place/);
+  assert.match(html, /href="\/components"/);
+  assert.equal((html.match(/<main\b/g) ?? []).length, 1);
+});
+
 const routes = [
-  ["/", /Build interfaces that already feel finished/i],
+  ["/", /Build interfaces that already feel/i],
   ["/docs", /Build with Brick/i],
   ["/components", /75 component owners/i],
   ["/components/button", /Maintainer resources/i],
