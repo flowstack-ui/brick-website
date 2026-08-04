@@ -7,6 +7,8 @@
 - Added primary guide links, component descriptions, and an optional section for
   the complete reference, Atom foundation, and public Brick source.
 - Added content and rendered-response assertions that prevent bare-link regressions.
+- Pinned the deployment runtime to the Node 22 release line so Vercel cannot
+  silently advance the website to an unqualified future major.
 
 ## Unreleased
 
