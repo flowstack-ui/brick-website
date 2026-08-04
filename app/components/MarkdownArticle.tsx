@@ -1,8 +1,8 @@
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
-import { isValidElement, type ReactNode } from "react";
+import { Children, isValidElement, type ReactNode } from "react";
 import { Code } from "@flowstack-ui/brick/code";
-import { Table } from "@flowstack-ui/brick/table";
+import { Table, type TableDensity, type TableSize } from "@flowstack-ui/brick/table";
 import { headingId } from "@/app/lib/toc";
 import { HighlightedCodeBlock } from "@/app/components/HighlightedCodeBlock";
 import { highlightedLines, languageFromClassName, normalizeCodeSource } from "@/app/lib/syntax";
@@ -33,7 +33,7 @@ function MarkdownCodeBlock({ children, index, labelPrefix }: { children: ReactNo
   return <HighlightedCodeBlock label={label} language={language} lines={highlightedLines(language, source)} source={source} />;
 }
 
-export function MarkdownArticle({ bodyOnly = false, codeLabelPrefix, markdown, componentSlug }: { bodyOnly?: boolean; codeLabelPrefix?: string; markdown: string; componentSlug?: string }) {
+export function MarkdownArticle({ bodyOnly = false, codeLabelPrefix, componentSlug, markdown, tableDensity = "compact", tableSize = "sm" }: { bodyOnly?: boolean; codeLabelPrefix?: string; componentSlug?: string; markdown: string; tableDensity?: TableDensity; tableSize?: TableSize }) {
   const body = bodyOnly ? markdown : markdown.replace(/^# .+\n/, "");
   const headingOccurrences = new Map<string, number>();
   let codeExampleIndex = 0;
@@ -61,8 +61,12 @@ export function MarkdownArticle({ bodyOnly = false, codeLabelPrefix, markdown, c
             return <h2 id={occurrence === 0 ? baseId : `${baseId}-${occurrence}`}>{children}</h2>;
           },
           code: ({ children, className }) => <Code className={className} data-code-kind={inlineCodeKind(nodeText(children))} variant="subtle">{children}</Code>,
+          p: ({ children }) => {
+            const codeCount = Children.toArray(children).filter((child) => isValidElement<{ "data-code-kind"?: string }>(child) && child.props["data-code-kind"]).length;
+            return <p className={codeCount >= 4 ? "markdown-token-cluster" : undefined}>{children}</p>;
+          },
           pre: ({ children }) => <MarkdownCodeBlock index={++codeExampleIndex} labelPrefix={codeLabelPrefix}>{children}</MarkdownCodeBlock>,
-          table: ({ children }) => <Table.Container className="markdown-table-wrap"><Table.Root density="compact" size="sm" variant="line">{children}</Table.Root></Table.Container>,
+          table: ({ children }) => <Table.Container className="markdown-table-wrap"><Table.Root density={tableDensity} size={tableSize} variant="line">{children}</Table.Root></Table.Container>,
           thead: ({ children }) => <Table.Header>{children}</Table.Header>,
           tbody: ({ children }) => <Table.Body>{children}</Table.Body>,
           tfoot: ({ children }) => <Table.Footer>{children}</Table.Footer>,

@@ -25,16 +25,12 @@ function ComponentNavigationList({ closeOnNavigate = false, currentSlug }: { clo
   const normalized = query.trim().toLowerCase();
   const matches = useMemo(() => components.filter((component) => !normalized || `${component.title} ${component.description} ${component.category}`.toLowerCase().includes(normalized)), [normalized]);
 
-  const allComponentsLink = (
-    <NavigationLink className="component-nav-back" closeOnNavigate={closeOnNavigate} href={`/components/#${current ? categoryId(current.category) : "component-results"}`}>
-      <ArrowLeft size={15} aria-hidden="true" />
-      <span><small>Component catalog</small><strong>All components</strong></span>
-    </NavigationLink>
-  );
-
   return (
     <nav className="component-nav" aria-label="Component documentation">
-      {allComponentsLink}
+      <NavigationLink className="component-nav-back" closeOnNavigate={closeOnNavigate} href={`/components/#${current ? categoryId(current.category) : "component-results"}`}>
+        <ArrowLeft size={15} aria-hidden="true" />All components
+      </NavigationLink>
+      <div className="component-nav-heading"><span>Browse components</span><small>{components.length} total</small></div>
       <Input
         autoComplete="off"
         clearable

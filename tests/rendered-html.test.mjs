@@ -186,7 +186,7 @@ test("documentation rails retain readable scalable navigation", async () => {
   assert.match(css, /\.docs-shell \{ position: relative; isolation: isolate;/, "documentation routes must establish their own reading-plane stacking context");
   assert.match(css, /\.docs-shell::before \{[^}]*background: linear-gradient\(180deg, transparent 0 4rem,[^}]*transparent 50%\) 10rem,[^}]*var\(--brick-color-surface-canvas\) 22rem\);/, "documentation introductions must visibly retain the global grid before the reading-plane fade");
   assert.match(css, /\.docs-shell::before \{[^}]*width: 100vw;[^}]*background: linear-gradient\(180deg,[^}]*var\(--brick-color-surface-canvas\) 22rem\);/, "documentation grid must fade into an opaque semantic reading canvas");
-  assert.match(css, /\.docs-shell::before \{ background: Canvas; \}/, "forced-colors mode must receive a fully opaque reading plane");
+  assert.match(css, /\.docs-shell::before, \.catalog-shell::before \{ background: Canvas; \}/, "forced-colors mode must give documentation and catalog routes a fully opaque reading plane");
   assert.match(css, /@media \(max-width: 1180px\)[\s\S]*\.docs-rail \{ display: none; \}/, "the right rail must leave the layout before text zoom compresses the article");
   assert.match(css, /@media \(max-width: 900px\)[\s\S]*\.docs-shell \{ display: block; \}/, "the remaining documentation navigation must reflow before narrow layouts");
   assert.match(shellSource, /<OnThisPage items=\{toc\} \/>/, "the documentation shell must render page-owned table-of-contents data");
@@ -202,7 +202,8 @@ test("documentation rails retain readable scalable navigation", async () => {
   assert.match(componentNavSource, /aria-current=\{component\.slug === currentSlug \? "page"/, "component navigation must expose the current component route");
   assert.match(componentNavSource, /<Accordion\.Root[\s\S]*categories\.map/, "component navigation must use collapsible Brick category groups");
   assert.match(componentNavSource, /docs-mobile-toolbar[\s\S]*title="Components"[\s\S]*title="On this page"/, "component pages must retain both navigation layers on narrow screens");
-  assert.match(catalogSource, /toc=\{categories\.map/, "the component catalog rail must list its real category sections");
+  assert.match(catalogSource, /<main id="main-content" className="catalog-shell section-shell">/, "the component catalog must own a focused full-width discovery surface");
+  assert.doesNotMatch(catalogSource, /DocsShell/, "the catalog must not duplicate its own filters with a documentation rail");
   assert.match(css, /\.docs-sidebar a:focus-visible, \.docs-rail a:focus-visible \{ outline: 2px solid var\(--brick-color-focus-ring\); outline-offset: -2px; \}/, "scrollable documentation rails must use an inset semantic focus ring that cannot be clipped");
   assert.match(css, /\.site-canvas :focus-visible \{ outline-color: var\(--brick-color-focus-ring\); \}/, "authored focus indicators must inherit the website's semantic purple focus color");
   assert.match(css, /@media \(forced-colors: active\)[\s\S]*\.site-canvas :focus-visible \{ outline-color: Highlight; \}/, "forced-colors users must retain the system focus indicator color");
@@ -219,8 +220,11 @@ test("component discovery and rendering remain consumer-first Brick compositions
   assert.match(componentSource, /categoryComponents[\s\S]*component-category-return/, "previous, category, and next navigation must remain category-relative");
   assert.match(markdownSource, /<Code[^>]*data-code-kind=\{inlineCodeKind/, "inline technical literals must use the published Brick Code component with semantic token styling");
   assert.match(markdownSource, /<Table\.Container[\s\S]*<Table\.Root[\s\S]*<Table\.Header/, "Markdown API matrices must use the published Brick Table anatomy");
-  assert.match(css, /\.catalog-outcomes \{[^}]*grid-template-columns: repeat\(2/, "outcome discovery must retain a scannable desktop grid");
-  assert.match(css, /@media \(max-width: 640px\)[\s\S]*\.catalog-outcomes, \.component-result-grid, \.component-guidance-grid \{ grid-template-columns: 1fr; \}/, "catalog and component guidance must stack at the narrow-mobile boundary");
+  assert.match(css, /\.catalog-outcomes \{[^}]*grid-template-columns: repeat\(3/, "the full-width outcome discovery surface must retain a scannable desktop grid");
+  assert.match(css, /@media \(max-width: 640px\)[\s\S]*\.catalog-outcomes, \.component-result-grid \{ grid-template-columns: 1fr; \}/, "catalog discovery and results must stack at the narrow-mobile boundary");
+  assert.match(css, /@media \(max-width: 640px\)[\s\S]*\.component-guidance-item \{ grid-template-columns: 1fr; gap: 1rem; \}/, "usage guidance must stack its label and content at the narrow-mobile boundary");
+  assert.match(css, /\.component-api \.brick-table \{ --brick-table-min-inline-size: 40rem; font-size: \.92rem; \}/, "component API tables must use a comfortable readable reference scale");
+  assert.match(css, /\.component-styling \.markdown-token-cluster \{[^}]*background: var\(--brick-color-surface-base\);/, "dense classes and tokens must receive a distinct scannable cluster surface");
 });
 
 test("rendered component documentation omits maintainer prose from the reading path", async () => {

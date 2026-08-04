@@ -6,8 +6,8 @@ import { MarkdownArticle } from "@/app/components/MarkdownArticle";
 import { WebsiteButton } from "@/app/components/WebsiteButton";
 import { structureComponentDoc, type ComponentDocSection } from "@/app/lib/component-docs";
 
-function SectionBody({ componentSlug, section }: { componentSlug: string; section: ComponentDocSection }) {
-  return <MarkdownArticle bodyOnly codeLabelPrefix={`${componentSlug} ${section.id}`} componentSlug={componentSlug} markdown={section.body} />;
+function SectionBody({ comfortableTable = false, componentSlug, section }: { comfortableTable?: boolean; componentSlug: string; section: ComponentDocSection }) {
+  return <MarkdownArticle bodyOnly codeLabelPrefix={`${componentSlug} ${section.id}`} componentSlug={componentSlug} markdown={section.body} tableDensity={comfortableTable ? "comfortable" : "compact"} tableSize={comfortableTable ? "md" : "sm"} />;
 }
 
 function StandardSection({ componentSlug, section }: { componentSlug: string; section?: ComponentDocSection }) {
@@ -35,18 +35,18 @@ export function ComponentDocument({ componentSlug, componentTitle, markdown }: {
             <span>Choose with confidence</span>
             <Text as="h2" variant="title-lg">Know when {componentTitle} is the right part</Text>
           </div>
-          <div className="component-guidance-grid">
+          <div className="component-guidance-list">
             {useSection && (
-              <Card.Root as="article" className="component-guidance-card" size="sm" variant="outline">
-                <Card.Header className="component-guidance-card-header"><span><CheckCircle2 size={18} aria-hidden="true" /></span><Card.Title as="h3">Use it when</Card.Title></Card.Header>
-                <Card.Content><SectionBody componentSlug={componentSlug} section={useSection} /></Card.Content>
-              </Card.Root>
+              <article className="component-guidance-item">
+                <div className="component-guidance-item-heading"><span><CheckCircle2 size={18} aria-hidden="true" /></span><Text as="h3" variant="title-sm">Use it when</Text></div>
+                <SectionBody componentSlug={componentSlug} section={useSection} />
+              </article>
             )}
             {avoidSection && (
-              <Card.Root as="article" className="component-guidance-card" size="sm" variant="outline">
-                <Card.Header className="component-guidance-card-header"><span><Route size={18} aria-hidden="true" /></span><Card.Title as="h3">Choose another path when</Card.Title></Card.Header>
-                <Card.Content><SectionBody componentSlug={componentSlug} section={avoidSection} /></Card.Content>
-              </Card.Root>
+              <article className="component-guidance-item component-guidance-item--alternate">
+                <div className="component-guidance-item-heading"><span><Route size={18} aria-hidden="true" /></span><Text as="h3" variant="title-sm">Choose another path when</Text></div>
+                <SectionBody componentSlug={componentSlug} section={avoidSection} />
+              </article>
             )}
           </div>
         </section>
@@ -56,7 +56,16 @@ export function ComponentDocument({ componentSlug, componentTitle, markdown }: {
       <StandardSection componentSlug={componentSlug} section={sections.get("Quick start")} />
       <StandardSection componentSlug={componentSlug} section={sections.get("Visual recipes and states")} />
       <StandardSection componentSlug={componentSlug} section={sections.get("Examples")} />
-      <StandardSection componentSlug={componentSlug} section={sections.get("API")} />
+      {sections.get("API") && (
+        <section className="component-doc-section component-api" id="api">
+          <div className="component-section-heading">
+            <span>Public contract</span>
+            <Text as="h2" variant="title-lg">API</Text>
+            <Text tone="secondary">Start with the public parts and root options below. Components with multiple parts separate each area into its own named subsection.</Text>
+          </div>
+          <SectionBody comfortableTable componentSlug={componentSlug} section={sections.get("API")!} />
+        </section>
+      )}
 
       {sections.get("Accessibility") && (
         <section className="component-doc-section component-accessibility" id="accessibility">
@@ -80,10 +89,9 @@ export function ComponentDocument({ componentSlug, componentTitle, markdown }: {
 
       {advanced.length > 0 && (
         <section className="component-doc-section component-advanced" id="advanced-reference">
-          <div className="component-section-heading">
-            <span>For deeper composition</span>
+          <div className="component-section-heading component-advanced-heading">
             <Text as="h2" variant="title-lg">Advanced reference</Text>
-            <Text tone="secondary">Open these details when you need to inspect DOM ownership, native forwarding, or lower-level composition.</Text>
+            <Text as="p" tone="secondary">Open these details only when you need to inspect DOM ownership, native forwarding, or lower-level composition.</Text>
           </div>
           <ComponentAdvancedDisclosure items={advanced.map((section) => ({
             content: <SectionBody componentSlug={componentSlug} section={section} />,

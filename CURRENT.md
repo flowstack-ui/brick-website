@@ -4,9 +4,9 @@ Brick UI Website is implemented as a multi-route product and documentation site.
 
 - Home page demonstrates a composed, stateful website-project workspace made from the published Brick package, with a conversion-first stacked viewport and a compact mobile presentation.
 - All 75 component owners have routes sourced from reviewed package documentation and a dedicated live example built from that component's public package export.
-- The component catalog is an outcome-led discovery hub with scoped search, category filters, compact source-backed results, and useful empty states instead of one undifferentiated card wall.
-- Component routes use a searchable, route-aware category navigator on desktop and a paired Components/On-this-page toolbar with full-height Brick drawers on narrow screens.
-- Component guides now present source-backed consumer guidance, setup, examples, API, accessibility, responsive behavior, styling, and optional advanced reference before linking to maintainer evidence and changelogs.
+- The component catalog is a full-width, outcome-led discovery hub without documentation rails; scoped search, category filters, source-backed results, and a query-aware empty state replace one undifferentiated card wall.
+- Component routes use a searchable, route-aware category navigator with aligned category groups on desktop and a paired Components/On-this-page toolbar with full-height Brick drawers on narrow screens.
+- Component guides present source-backed consumer guidance, setup, examples, a single-lane usage decision, roomier multi-part API sections, accessibility, responsive behavior, grouped styling references, and optional advanced reference before linking to maintainer evidence and changelogs.
 - Breadcrumbs and category-relative previous/category/next navigation preserve a clear return path from every component route.
 - Markdown API matrices render through Brick Table, inline technical literals render through Brick Code with restrained semantic token roles, and fenced examples retain the website's Shiki-to-Brick Code Block adapter.
 - Guides cover installation, theming, accessibility, and composition.

@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- Removed the redundant Docs rails from the component catalog, rebuilt its no-results treatment as query-aware guidance, and let discovery results use the full reading width.
+- Simplified and aligned the component navigator, replaced the dense two-column usage comparison with a single readable decision lane, and moved advanced-reference framing back to normal-case prose.
+- Gave API content a proper public-contract introduction, roomier tables, and named subsections for compound APIs; grouped dense stable-class and token runs into scannable technical clusters.
 - Rebuilt the 75-component catalog as an outcome-led discovery hub with scoped search, accessible category filters, compact results, and an explicit empty state.
 - Added a searchable, route-aware component navigator with collapsible Brick category groups, current-page state, category return paths, and responsive Components/On-this-page drawers.
 - Reorganized every component route into a consumer-first reading path while keeping package docs canonical; maintainer evidence and full changelogs now remain linked resources instead of inline article content.

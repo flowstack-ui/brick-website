@@ -4,6 +4,7 @@ import { useMemo, useState } from "react";
 import { Badge } from "@flowstack-ui/brick/badge";
 import { Button } from "@flowstack-ui/brick/button";
 import { Card } from "@flowstack-ui/brick/card";
+import { Code } from "@flowstack-ui/brick/code";
 import { Input } from "@flowstack-ui/brick/input";
 import { Text } from "@flowstack-ui/brick/text";
 import {
@@ -144,10 +145,13 @@ export function ComponentCatalog() {
           </div>
         ) : (
           <div className="catalog-empty" role="status">
-            <span><Search size={20} aria-hidden="true" /></span>
-            <Text as="h3" variant="title-md">No components match “{query}”</Text>
-            <Text tone="secondary">Try a broader term or clear the current category.</Text>
-            <Button onPress={() => { setQuery(""); setCategory("All"); }} tone="neutral" variant="soft">Clear filters</Button>
+            <span className="catalog-empty-icon"><Search size={19} aria-hidden="true" /></span>
+            <div className="catalog-empty-copy">
+              <small>Nothing matched</small>
+              <Text as="h3" variant="title-md">No Brick component for <Code>{query}</Code></Text>
+              <Text tone="secondary">Try a shorter capability such as dialog, field, navigation, status, or data.</Text>
+            </div>
+            <Button onPress={() => { setQuery(""); setCategory("All"); }} tone="accent" variant="soft">Show all components</Button>
           </div>
         )}
       </section>
