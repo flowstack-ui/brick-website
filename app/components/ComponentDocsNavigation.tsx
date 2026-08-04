@@ -1,6 +1,7 @@
 "use client";
 
-import { useId, useMemo, useState, type ReactNode } from "react";
+import { useId, useLayoutEffect, useMemo, useRef, useState, type ReactNode } from "react";
+import Link from "next/link";
 import { Accordion } from "@flowstack-ui/brick/accordion";
 import { Button } from "@flowstack-ui/brick/button";
 import { Drawer } from "@flowstack-ui/brick/drawer";
@@ -9,12 +10,14 @@ import { ArrowLeft, ListTree, Menu, Search, X } from "lucide-react";
 import { categories, componentBySlug, components } from "@/app/lib/content";
 import type { TocItem } from "@/app/lib/toc";
 
+const componentRailScrollKey = "brick-component-navigation-scroll";
+
 function categoryId(category: string) {
   return category.toLowerCase().replaceAll(" ", "-").replaceAll("&", "and");
 }
 
-function NavigationLink({ children, closeOnNavigate, ...props }: React.ComponentProps<"a"> & { closeOnNavigate?: boolean }) {
-  const link = <a {...props}>{children}</a>;
+function NavigationLink({ children, closeOnNavigate, ...props }: React.ComponentProps<typeof Link> & { closeOnNavigate?: boolean }) {
+  const link = <Link {...props}>{children}</Link>;
   return closeOnNavigate ? <Drawer.Close asChild>{link}</Drawer.Close> : link;
 }
 
@@ -116,9 +119,24 @@ function DocsDrawer({ children, description, title, trigger }: { children: React
 
 export function ComponentDocsNavigation({ currentSlug, toc }: { currentSlug: string; toc: TocItem[] }) {
   const current = componentBySlug(currentSlug);
+  const desktopRailRef = useRef<HTMLElement>(null);
+
+  useLayoutEffect(() => {
+    const rail = desktopRailRef.current;
+    const savedPosition = sessionStorage.getItem(componentRailScrollKey);
+    if (!rail || savedPosition === null) return;
+    const scrollTop = Number(savedPosition);
+    if (!Number.isFinite(scrollTop)) return;
+    rail.scrollTop = scrollTop;
+  }, []);
+
   return (
     <>
-      <aside className="docs-sidebar component-docs-sidebar">
+      <aside
+        className="docs-sidebar component-docs-sidebar"
+        onScroll={(event) => sessionStorage.setItem(componentRailScrollKey, String(event.currentTarget.scrollTop))}
+        ref={desktopRailRef}
+      >
         <ComponentNavigationList currentSlug={currentSlug} />
       </aside>
       <div className="docs-mobile-toolbar" aria-label="Component documentation tools">

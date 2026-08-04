@@ -203,6 +203,9 @@ test("documentation rails retain readable scalable navigation", async () => {
   assert.match(componentParserSource, /maintainerOnlyExamples[^;]*title === "Examples"[^;]*playground[^;]*!\/```\//, "playground-only source sections must route to maintainer resources instead of masquerading as consumer examples");
   assert.match(componentDocSource, /Know when \{componentTitle\} is the right part[\s\S]*Advanced reference[\s\S]*Maintainer resources/, "component pages must progress from adoption guidance to optional advanced and maintainer resources");
   assert.match(componentNavSource, /aria-current=\{component\.slug === currentSlug \? "page"/, "component navigation must expose the current component route");
+  assert.match(componentNavSource, /import Link from "next\/link";[\s\S]*const link = <Link/, "component destinations must use client navigation instead of reloading the complete document");
+  assert.match(componentNavSource, /componentRailScrollKey = "brick-component-navigation-scroll"[\s\S]*useLayoutEffect[\s\S]*rail\.scrollTop = scrollTop/, "the desktop component rail must restore its independent scroll position before paint");
+  assert.match(componentNavSource, /onScroll=\{\(event\) => sessionStorage\.setItem\(componentRailScrollKey, String\(event\.currentTarget\.scrollTop\)\)\}/, "the desktop component rail must persist its own scroll position as the reader browses");
   assert.match(componentNavSource, /<Accordion\.Root[\s\S]*categories\.map/, "component navigation must use collapsible Brick category groups");
   assert.match(componentNavSource, /docs-mobile-toolbar[\s\S]*title="Components"[\s\S]*title="On this page"/, "component pages must retain both navigation layers on narrow screens");
   assert.match(catalogSource, /<main id="main-content" className="catalog-shell section-shell">/, "the component catalog must own a focused full-width discovery surface");
