@@ -12,11 +12,13 @@ Brick UI Website is implemented as a multi-route product and documentation site.
   responses confirm Brotli/gzip negotiation, immutable hashed assets, bounded
   social-card caching, application security headers, correct 404 behavior, and
   the representative route matrix.
-- Brick `0.1.2` is published with backward-compatible, self-sufficient modular
-  CSS entrypoints,
-  and this website consumes that exact npm release. A deterministic prebuild
+- Brick `0.1.2` introduced backward-compatible, self-sufficient modular CSS
+  entrypoints, and exact `0.1.3` retains that contract. A deterministic prebuild
   step assembles route-owned and preview-owned CSS from those public files;
   production never reads the sibling Brick checkout or package-private source.
+- Brick `0.1.3` publishes the physical-iPhone-confirmed Code Block text-sizing
+  correction. This website consumes it exactly and keeps only framework-owned
+  browser-target and optimized-output verification.
 - Getting Started and Theming explain the complete and modular delivery modes,
   and every synchronized component guide names `styles/core.css` plus its
   matching component stylesheet while preserving `styles.css` as the default.
@@ -99,13 +101,10 @@ Brick UI Website is implemented as a multi-route product and documentation site.
 - Footer navigation retains full touch targets while its focus indicator wraps only the visible text-and-icon label.
 - Markdown fences are pre-tokenized with a fine-grained build-time Shiki adapter and rendered through the published Brick Code Block with language metadata, a compact stateful copy action, and a WCAG-qualified light/dark syntax palette; the deployed browser does not receive the tokenizer.
 - Code Block overflow landmarks retain keyboard scrolling and receive unique article-scoped names such as `TSX code example 1`, preventing repeated-language examples from sharing one landmark label.
-- Documentation Code Blocks disable automatic mobile text inflation on their
-  native `pre` owner so long imports retain the same authored size as short
-  commands. The production browser target explicitly includes iOS Safari 16.4,
-  and rendered verification confirms Next's optimized CSS retains the required
-  WebKit-prefixed declaration instead of checking authored source alone. The
-  owner confirmed the corrected long examples on the physical iPhone that
-  exposed the production-only defect.
+- Exact Brick `0.1.3` owns automatic mobile text-inflation prevention on Code
+  Block's native `pre`. The website no longer duplicates that component rule;
+  its qualified iOS Safari target and rendered verification still prove that
+  Next preserves the required WebKit-prefixed declaration in optimized CSS.
 - Component example canvases expose contained horizontal touch scrolling for
   specimens wider than a phone viewport, and their Interactive status badge
   remains one non-shrinking line while the title column contracts.
@@ -115,7 +114,7 @@ Brick UI Website is implemented as a multi-route product and documentation site.
 - Every guide ends with one ordered previous/next reading path from Overview
   through Accessibility, while the first and last pages expose only their
   available direction.
-- The website consumes exact Brick `0.1.2` provenance and regenerates previews
+- The website consumes exact Brick `0.1.3` provenance and regenerates previews
   from self-sufficient composed-component CSS entrypoints. Fresh Checkbox
   Group and Toggle Group routes are explicitly guarded against route-history
   styling dependencies.
@@ -145,7 +144,7 @@ Brick UI Website is implemented as a multi-route product and documentation site.
   Next runtime; the two intentional CSS requests estimate 70 ms mobile savings
   and do not justify weakening package/application ownership.
 - The site accent theme explicitly pairs purple solid actions with a white foreground in both appearances and verifies every solid interaction state at WCAG AA contrast.
-- The reviewed dependency is `@flowstack-ui/brick@0.1.2` at source commit
-  `6daadb4ccc1eb8b91b7c0be2fb0a8355c77cdc6b`.
+- The reviewed dependency is `@flowstack-ui/brick@0.1.3` at source commit
+  `9f83bac45f3d12efcc021190900cc203ae98e09b`.
 
 Local development uses port 3012. The paired automated browser-test port is 4012.

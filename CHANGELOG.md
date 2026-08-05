@@ -1,13 +1,8 @@
 # Changelog
 
-- Disabled automatic mobile text inflation on documentation Code Blocks after
-  physical-phone review showed that normalization alone did not keep long
-  scrollable imports at the same size as short command examples. Explicitly
-  qualified iOS Safari 16.4 in the production browser target so Next's CSS
-  optimizer retains the required `-webkit-text-size-adjust` declaration, and
-  added an assertion against the generated CSS chunks rather than source alone.
-  The owner confirmed the corrected long examples on the physical iPhone that
-  exposed the production-only defect.
+- Adopted exact Brick `0.1.3`, removed the website's temporary Code Block
+  text-inflation override, and kept built-output evidence that Next preserves
+  Brick's component-owned WebKit declaration for physical iPhones.
 - Made component canvases contained horizontal scroll owners on mobile so wide
   specimens remain reachable instead of being clipped, and kept the
   Interactive badge on one stable line while the title column contracts.
