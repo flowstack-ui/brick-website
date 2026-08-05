@@ -401,7 +401,7 @@ test("component discovery and rendering remain consumer-first Brick compositions
   assert.match(navigationMenuPreview, /href="#navigation-menu-preview" onClick=\{\(event\) => event\.preventDefault\(\)\}/, "example Navigation Menu destinations must preserve link anatomy without leaving the documentation page");
   assert.doesNotMatch(navigationMenuPreview, /href="\/docs"/, "Navigation Menu preview must not use live site routes as inert demonstration controls");
   assert.match(markdownSource, /<Code[^>]*data-code-kind=\{inlineCodeKind/, "inline technical literals must use the published Brick Code component with semantic token styling");
-  assert.match(css, /\.markdown-body \.brick-code-block-pre \{[^}]*-webkit-text-size-adjust: none;[^}]*text-size-adjust: none;/, "documentation fences must disable independent mobile inflation of long examples");
+  assert.doesNotMatch(css, /\.markdown-body \.brick-code-block-pre \{[^}]*text-size-adjust:/, "the website must not duplicate Brick's component-owned mobile text-sizing policy");
   assert.match(markdownSource, /<Table\.Container[\s\S]*<Table\.Root[\s\S]*<Table\.Header/, "Markdown API matrices must use the published Brick Table anatomy");
   assert.match(css, /\.catalog-outcomes \{[^}]*grid-template-columns: repeat\(3/, "the full-width outcome discovery surface must retain a scannable desktop grid");
   assert.match(css, /@media \(max-width: 640px\)[\s\S]*\.catalog-outcomes, \.component-result-grid \{ grid-template-columns: 1fr; \}/, "catalog discovery and results must stack at the narrow-mobile boundary");
@@ -423,8 +423,8 @@ test("the production CSS preserves the iOS Code Block text-size contract", async
   assert.ok(packageManifest.browserslist.includes("ios_saf 16.4"), "the qualified iOS Safari floor must remain an explicit production target");
   assert.match(
     productionCss,
-    /\.markdown-body \.brick-code-block-pre\{[^}]*-webkit-text-size-adjust:none;[^}]*text-size-adjust:none/,
-    "Next's optimized CSS must retain the WebKit-prefixed declaration required by physical iPhones",
+    /\.brick-code-block-pre\{[^}]*-webkit-text-size-adjust:none;[^}]*text-size-adjust:none/,
+    "Next's optimized CSS must retain Brick's WebKit-prefixed declaration required by physical iPhones",
   );
 });
 

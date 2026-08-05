@@ -468,7 +468,6 @@
   .markdown-token-cluster { line-height: 2.25; }
   .markdown-token-cluster .brick-code { display: inline-flex; margin: .12rem .15rem; white-space: normal; }
   .markdown-body .brick-code-block { margin-block: 1.2rem; }
-  .markdown-body .brick-code-block-pre { -webkit-text-size-adjust: none; text-size-adjust: none; }
   .markdown-body .brick-code-block .brick-code { padding: 0; background: transparent; color: inherit; font-size: inherit; }
   .brick-code-block-content:focus-visible {
     border-end-start-radius: calc(var(--brick-code-block-radius) - var(--brick-border-focus-width) - var(--brick-border-focus-width));

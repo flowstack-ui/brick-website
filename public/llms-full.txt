@@ -1,7 +1,7 @@
 # Brick UI — complete public documentation
 
-Package version: 0.1.2
-Source commit: 6daadb4ccc1eb8b91b7c0be2fb0a8355c77cdc6b
+Package version: 0.1.3
+Source commit: 9f83bac45f3d12efcc021190900cc203ae98e09b
 
 # Accordion
 
@@ -3163,8 +3163,9 @@ is not accepted and Brick does not bundle a tokenizer.
 
 The root fills available inline space but owns no external dimensions or
 breakpoints. `scroll` preserves long lines in the horizontal viewport; `wrap`
-reflows them. Code defaults to LTR inside an RTL page while Header follows page
-direction.
+reflows them. Scrollable source normalizes mobile browser text adjustment so
+short and long examples retain the selected Code Block size. Code defaults to
+LTR inside an RTL page while Header follows page direction.
 
 ## Accessibility
 
@@ -3222,6 +3223,11 @@ See the [Code Block changelog](CHANGELOG.md) and
 Code Block follows the package version of `@flowstack-ui/brick`.
 
 ## Unreleased
+
+### Fixed
+
+- Disabled automatic mobile text inflation on the native `pre` owner so long
+  scrollable examples cannot be enlarged independently of shorter Code Blocks.
 
 ### Added
 
