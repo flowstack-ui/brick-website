@@ -1,5 +1,14 @@
 # Changelog
 
+- Adopted exact published Brick `0.1.5` and its exact Atom `0.21.0`
+  dependency, then regenerated all 75 component documents, AI-readable
+  references, syntax tokens, route CSS, and preview CSS from the reviewed
+  package revision.
+- Synchronized the public documentation for RSC-safe Navigation Menu and
+  Drawer namespaces, wrapper-free Grid items, adaptive Drawer sizing,
+  Navigation Menu panel links, Text eyebrows, and the expanded interface Agent
+  Knowledge contract without adding website-local component patches.
+
 - Adopted exact Brick `0.1.3`, removed the website's temporary Code Block
   text-inflation override, and kept built-output evidence that Next preserves
   Brick's component-owned WebKit declaration for physical iPhones.
