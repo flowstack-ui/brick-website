@@ -1,7 +1,7 @@
 # Brick UI — complete public documentation
 
-Package version: 0.1.3
-Source commit: 9f83bac45f3d12efcc021190900cc203ae98e09b
+Package version: 0.1.5
+Source commit: b69da29b14d1d5d21ee4f0d49e6a4dfc78e3a5ed
 
 # Accordion
 
@@ -298,7 +298,7 @@ Public exports are the `AlertDialog` namespace; named `AlertDialogRoot`,
 `AlertDialogContent`, `AlertDialogHeader`, `AlertDialogTitle`,
 `AlertDialogDescription`, `AlertDialogBody`, `AlertDialogFooter`,
 `AlertDialogCancel`, and `AlertDialogAction` parts; and their corresponding
-prop types plus `AlertDialogSize`.
+prop types plus `AlertDialogSize` and `AlertDialogFooterJustify`.
 
 ```ts
 AlertDialogRootProps
@@ -336,6 +336,17 @@ preferred maximum inline measure. Content also forwards supported native ARIA,
 Portal forwards `container` and `disabled`. A container must be a same-document
 `HTMLElement`. Overlay has no dismissal-control prop because scrim interaction
 never closes AlertDialog.
+
+### Footer
+
+| Prop | Values | Default |
+| --- | --- | --- |
+| `justify` | `start`, `center`, `end`, `between` | `end` |
+
+Use `justify` for simple logical response distribution. Compose a layout
+component inside Footer for more complex groups; use `Button fullWidth` when
+one response itself should fill the available row. Footer reflects the
+selected value through `data-justify`.
 
 ### Trigger, Cancel, and Action
 
@@ -486,6 +497,8 @@ Alert Dialog follows the package version of `@flowstack-ui/brick`.
 
 ### Added
 
+- Added logical Footer `justify` values for start, center, end, and
+  space-between response distribution; end remains the default.
 - Initial twelve-part `AlertDialog` compound namespace with Root, Trigger,
   Portal, Overlay, Content, Header, Title, Description, Body, Footer, Cancel,
   and Action.
@@ -550,7 +563,7 @@ Named part exports and the root package export are also available.
 
 | Part | Default DOM | Ref |
 | --- | --- | --- |
-| `Root` | Atom AppBar landmark/header | `HTMLElement` |
+| `Root` | semantic `header` | `HTMLElement` |
 | `Toolbar` | structural `div` | `HTMLDivElement` |
 | `Start`, `Center`, `End` | section `div` | `HTMLDivElement` |
 
@@ -621,6 +634,12 @@ forced-color output, and reduced-transparency fallback.
 Every part forwards its public Atom/native props and composition behavior.
 Refs target the elements in the anatomy table.
 
+Keep Root's default `header` when it owns page or application banner content.
+Use `asChild` or `render` only when another intentional host is required, such
+as neutral AppBar chrome inside a Drawer. When the AppBar surface should remain
+full bleed but its content needs a bounded measure, compose
+`Root > Container > Toolbar`; do not cap Root itself.
+
 ## Examples
 
 ```tsx
@@ -653,7 +672,16 @@ App Bar follows the package version of `@flowstack-ui/brick`.
 
 ## Unreleased
 
+### Changed
+
+- Clarified that Root defaults to a semantic `header`, that non-banner chrome
+  should deliberately compose another host, and that Container belongs between
+  a full-bleed Root and bounded Toolbar content.
+
 ### Added
+
+- Added public Agent Knowledge for component selection, composition,
+  CSS-delivery, recurring mistakes, and validation.
 
 - Initial `Root`, `Toolbar`, `Start`, `Center`, and `End` compound API.
 - Static, absolute, sticky, and fixed positioning with compact and comfortable
@@ -1088,7 +1116,7 @@ Stable hooks are `.brick-badge`, Atom slot `badge`, and `data-variant`,
 `--brick-badge-background`, `--brick-badge-foreground`,
 `--brick-badge-border-color`, `--brick-badge-min-block-size`,
 `--brick-badge-inline-padding`, `--brick-badge-block-padding`,
-`--brick-badge-font-size`, `--brick-badge-radius`,
+`--brick-badge-gap`, `--brick-badge-font-size`, `--brick-badge-radius`,
 `--brick-badge-tone-solid`, `--brick-badge-tone-on-solid`,
 `--brick-badge-tone-soft`, `--brick-badge-tone-on-soft`,
 `--brick-badge-tone-border`, and `--brick-badge-tone-text`.
@@ -1117,6 +1145,15 @@ rendered span; composed output must remain passive.
 
 ```tsx
 <Badge variant="outline" tone="success">Ready</Badge>
+```
+
+Badge applies its public gap token when children include an icon and label:
+
+```tsx
+<Badge tone="accent" shape="pill">
+  <Icon size="xs">{icon}</Icon>
+  Built for business
+</Badge>
 ```
 
 ## Evidence
@@ -1151,6 +1188,8 @@ Badge follows the package version of `@flowstack-ui/brick`.
 
 ### Fixed
 
+- Added a themeable default gap between composed Badge children such as an
+  icon and visible label.
 - Solid danger Badges now retain WCAG AA foreground contrast in light and dark
   appearances.
 
@@ -1296,6 +1335,9 @@ Bottom Navigation follows the package version of `@flowstack-ui/brick`.
 - Fixed every size to a stable base height across viewport widths, destination counts, label-visibility policies, and mobile browser-chrome changes. Positioned recipes now use only stable maximum safe-area insets, small bars no longer clip labels, and Notification Badge anchors to the glyph without shifting the Icon/Label column.
 
 ### Added
+
+- Added public Agent Knowledge for component selection, composition,
+  CSS-delivery, recurring mistakes, and validation.
 
 - Added the complete four-part Bottom Navigation family with native destination and controlled-view models; four surface variants; accent and neutral tones; full and floating layouts; equal and centered arrangements; three sizes; four position intents; indicator and item selection shapes; three accessible label policies; safe-area handling; elevation; blur; and composition.
 
@@ -1624,6 +1666,9 @@ Breadcrumb follows the package version of `@flowstack-ui/brick`.
 ## Unreleased
 
 ### Added
+
+- Added public Agent Knowledge for component selection, composition,
+  CSS-delivery, recurring mistakes, and validation.
 
 - Added the complete Atom-backed seven-part hierarchy trail with three sizes,
   plain and underline ancestor-link recipes, current-page styling, custom
@@ -2880,6 +2925,12 @@ Chip follows the package version of `@flowstack-ui/brick`.
 
 ## Unreleased
 
+### Fixed
+
+- Chip Root and Remove Trigger now compose Atom's direct Badge and Button root
+  exports so the normal Chip composition can render directly from a Next.js
+  server page without an application client wrapper.
+
 ### Added
 
 - Added compound Root, Label, and optional RemoveTrigger value-token anatomy
@@ -3781,6 +3832,9 @@ Container follows the package version of `@flowstack-ui/brick`.
 
 ### Added
 
+- Added public Agent Knowledge for component selection, composition,
+  CSS-delivery, recurring mistakes, and validation.
+
 - Initial one-root `Container` API with five closed measures, four logical
   gutters, controlled semantic hosts, native prop/ref forwarding, stable
   recipe metadata, and public geometry variables.
@@ -4272,7 +4326,7 @@ Public exports are the `Dialog` namespace; named `DialogRoot`,
 `DialogTrigger`, `DialogPortal`, `DialogOverlay`, `DialogContent`,
 `DialogHeader`, `DialogTitle`, `DialogDescription`, `DialogBody`,
 `DialogFooter`, `DialogClose`, and `DialogBranch` parts; and their
-corresponding prop types plus `DialogSize`.
+corresponding prop types plus `DialogSize` and `DialogFooterJustify`.
 
 ```ts
 DialogRootProps
@@ -4309,6 +4363,17 @@ the preferred maximum inline measure only. Content also forwards native ARIA,
 
 Portal forwards `container` and `disabled`. A container must be a same-document
 `HTMLElement`. Overlay forwards its independent `disabled` dismissal control.
+
+### Footer
+
+| Prop | Values | Default |
+| --- | --- | --- |
+| `justify` | `start`, `center`, `end`, `between` | `end` |
+
+Use `justify` for simple logical action distribution. Compose a layout
+component inside Footer for more complex groups; use `Button fullWidth` when
+the action itself should fill the available row. Footer reflects the selected
+value through `data-justify`.
 
 ### Trigger, Close, and Branch
 
@@ -4457,6 +4522,8 @@ Dialog follows the package version of `@flowstack-ui/brick`.
 
 ### Added
 
+- Added logical Footer `justify` values for start, center, end, and
+  space-between action distribution; end remains the default.
 - Initial modal-only twelve-part `Dialog` compound namespace with Root, Trigger, Portal,
   Overlay, Content, Header, Title, Description, Body, Footer, Close, and Branch.
 - Small, medium, and large centered surfaces with safe-area-aware dynamic
@@ -4606,6 +4673,10 @@ separates. `render` replaces the root. `asChild` merges the root contract
 onto one React element. Labels are passive content and never replace headings,
 legends, or field labels.
 
+Place Divider between complete groups under their shared layout owner. A
+Divider must not split a disclosure trigger from the content it controls; when
+rows repeat, every boundary should occupy the same relative anatomy.
+
 ## Examples
 
 ### Vertical peer-group boundary
@@ -4646,7 +4717,15 @@ Divider follows the package version of `@flowstack-ui/brick`.
 
 ## Unreleased
 
+### Changed
+
+- Documented complete-group and consistent-owner placement for repeated
+  boundaries, including disclosure content.
+
 ### Added
+
+- Added public Agent Knowledge for component selection, composition,
+  CSS-delivery, recurring mistakes, and validation.
 
 - Initial Atom-backed `Divider` with horizontal and vertical orientation,
   decorative and semantic output, solid/dashed/dotted lines, three
@@ -4673,9 +4752,13 @@ content. Drawer does not own application navigation or responsive shell policy.
 ## Installation and imports
 
 ```tsx
-import { Drawer } from "@flowstack-ui/brick/drawer";
+import * as Drawer from "@flowstack-ui/brick/drawer";
 import "@flowstack-ui/brick/styles.css";
 ```
+
+The module-namespace form above is safe in React Server Components and keeps
+the containing page server-rendered. Inside an already client-owned module,
+the legacy `import { Drawer }` runtime object remains supported.
 
 The complete stylesheet above is the recommended default. For a measured
 route-aware build, replace it with the shared foundation and this component's
@@ -4720,7 +4803,12 @@ Public exports are the `Drawer` namespace; named `DrawerRoot`,
 `DrawerTrigger`, `DrawerPortal`, `DrawerOverlay`, `DrawerContent`,
 `DrawerHeader`, `DrawerTitle`, `DrawerDescription`, `DrawerBody`,
 `DrawerFooter`, `DrawerClose`, and `DrawerBranch` parts; their corresponding
-prop types; and `DrawerPlacement` plus `DrawerSize`.
+prop types; and `DrawerPlacement`, `DrawerSize`, plus `DrawerFooterJustify`.
+
+The component subpath additionally exports `Root`, `Trigger`, `Portal`,
+`Overlay`, `Content`, `Header`, `Title`, `Description`, `Body`, `Footer`,
+`Close`, and `Branch` as short aliases for the recommended RSC-safe
+module-namespace composition.
 
 ```ts
 DrawerRootProps
@@ -4740,17 +4828,27 @@ DrawerBranchProps
 | Content prop | Values | Default |
 | --- | --- | --- |
 | `placement` | `start`, `end`, `top`, `bottom` | `end` |
-| `size` | `sm`, `md`, `lg`, `full` | `md` |
+| `size` | `sm`, `md`, `lg`, `xl`, `full` | `md` |
+
+| Footer prop | Values | Default |
+| --- | --- | --- |
+| `justify` | `start`, `center`, `end`, `between` | `end` |
 
 Root and all behavior parts
 inherit Atom modal/drawer props. Header, Body, and Footer accept native div
-attributes and `data-slot`.
+attributes and `data-slot`. Footer `justify` controls simple logical action
+distribution; use layout components inside Footer for more complex grouping,
+and use `Button fullWidth` when an action itself should fill the row. Footer
+reflects the selected value through `data-justify`.
 
 ## Visual recipes and states
 
-Placement selects the entering edge; start/end are logical. Size selects inline
-dimensions for side drawers and block dimensions for top/bottom; `full` uses
-the viewport. Atom owns state, focus trap/return, dismissal, presence, portal,
+Placement selects the entering edge; start/end are logical. Size selects fixed
+inline dimensions for side drawers and content-responsive block-size caps for
+top/bottom drawers. `xl` may grow to the available viewport but still shrinks
+around shorter content; `full` always uses the viewport. A top/bottom Drawer
+grows with its authored content until the selected cap, then Body becomes the
+scroll owner. Atom owns state, focus trap/return, dismissal, presence, portal,
 and placement state.
 
 ## Tokens and CSS hooks
@@ -4759,11 +4857,18 @@ Stable classes and overridable `data-slot` values cover Trigger, Overlay,
 Content, Header, Title, Description, Body, Footer, Close, and Branch. Content
 reflects `data-size`; Atom reflects placement. Public tokens are
 `--brick-drawer-inline-size-sm`, `--brick-drawer-inline-size-md`,
-`--brick-drawer-inline-size-lg`, `--brick-drawer-block-size-sm`,
-`--brick-drawer-block-size-md`, `--brick-drawer-block-size-lg`,
-`--brick-drawer-radius`, `--brick-drawer-shadow`, `--brick-drawer-space`,
+`--brick-drawer-inline-size-lg`, `--brick-drawer-inline-size-xl`,
+`--brick-drawer-block-size-sm`, `--brick-drawer-block-size-md`,
+`--brick-drawer-block-size-lg`, `--brick-drawer-block-size-xl`,
+`--brick-drawer-background`, `--brick-drawer-radius`,
+`--brick-drawer-shadow`, `--brick-drawer-space`,
 `--brick-drawer-safe-top`, `--brick-drawer-safe-right`,
 `--brick-drawer-safe-bottom`, and `--brick-drawer-safe-left`.
+
+`--brick-drawer-background` and `--brick-drawer-radius` may be set on a theme
+ancestor to change every Drawer in that scope, or on one Content instance for
+a local exception. When unset, they fall back to
+`--brick-color-surface-overlay` and `--brick-radius-overlay`, respectively.
 
 ## Customization
 
@@ -4820,10 +4925,29 @@ Drawer follows the package version of `@flowstack-ui/brick`.
 
 ### Fixed
 
+- Top and bottom Drawers now grow naturally with their content until the
+  selected size cap; Body scroll begins only after that cap is reached.
+- Drawer Content now accepts an inherited `--brick-drawer-background` theme
+  value while retaining `--brick-color-surface-overlay` as its default.
+- Drawer radius now accepts an inherited `--brick-drawer-radius` theme value
+  instead of redeclaring and shadowing it on every Content instance; the
+  default still falls back to `--brick-radius-overlay`.
 - Inherited Atom's document-only scroll lock so sticky application chrome
   remains anchored while Drawer is open at a nonzero page offset.
 
 ### Added
+
+- Added logical Footer `justify` values for start, center, end, and
+  space-between action distribution; end remains the default.
+- Added the `xl` size: an almost-full side width and a content-responsive
+  top/bottom cap that may reach the viewport without forcing short content to
+  fill it.
+- Added short named part exports on the `drawer` subpath so
+  `import * as Drawer` preserves compound syntax from a React Server Component
+  without promoting the containing page to a Client Component.
+
+- Added public Agent Knowledge for component selection, composition,
+  CSS-delivery, recurring mistakes, and validation.
 
 - Initial modal-only twelve-part Drawer namespace with Root, Trigger, Portal,
   Overlay, Content, Header, Title, Description, Body, Footer, Close, and Branch.
@@ -5964,8 +6088,10 @@ Root and optional Item each render exactly one selected native element:
 ```
 
 Root never clones, wraps, reorders, or annotates ordinary children. Item adds
-only the wrapper explicitly authored by the consumer. Each selected element is
-its corresponding `HTMLElement` ref target.
+only the wrapper explicitly authored by the consumer unless `asChild` is set.
+With `asChild`, Item transfers its placement hooks to exactly one authored
+React element and adds no wrapper. Each selected or composed element is its
+corresponding `HTMLElement` ref target.
 
 ## API
 
@@ -5992,6 +6118,7 @@ selects intrinsic mode; otherwise Root uses explicit mode.
 | Prop | Values | Default |
 | --- | --- | --- |
 | `as` | `div`, `span`, `section`, `article`, `header`, `footer`, `aside`, `li` | `div` |
+| `asChild` | `boolean` | `false` |
 | `columnSpan` | `1`–`12`, `full` | unset |
 | `columnStart` / `columnEnd` | grid lines `1`–`13` | unset |
 | `rowSpan` | `1`–`12` | unset |
@@ -6004,6 +6131,20 @@ selects intrinsic mode; otherwise Root uses explicit mode.
 On each axis, a span and explicit end are mutually exclusive. A start may
 combine with a span or end. `columnSpan="full"` cannot combine with column
 start/end.
+
+Set `asChild` when an existing element should itself be the grid item:
+
+```tsx
+<Grid.Item asChild columnStart={2}>
+  <NavigationMenu.Link href="/services" variant="panel">
+    <Surface inset="sm">Services</Surface>
+  </NavigationMenu.Link>
+</Grid.Item>
+```
+
+`asChild` requires exactly one React element and cannot be combined with
+`as`. Grid classes, placement metadata, native props, events, styles, and the
+ref are merged onto that element without changing its semantics.
 
 ## Visual recipes and states
 
@@ -6093,9 +6234,9 @@ for paint. Use Item only for placement or self-alignment. Native global
 attributes, events, ARIA/data attributes, `className`, `style`, slot hook, and
 an `HTMLElement` ref pass to each authored part.
 
-Grid does not expose `asChild`, `render`, child cloning, arbitrary template
-strings, named areas, responsive objects, padding, margins, width/height,
-overflow, or generic style props.
+Grid Root does not expose `asChild`; neither part exposes `render`. Grid also
+excludes arbitrary template strings, named areas, responsive objects, padding,
+margins, width/height, overflow, or generic style props.
 
 ## Examples
 
@@ -6148,6 +6289,8 @@ Grid follows the package version of `@flowstack-ui/brick`.
 
 ### Added
 
+- Added `Grid.Item asChild` so one authored link, Surface, or component can
+  receive Grid placement and self-alignment without an extra wrapper.
 - Initial compound `Grid.Root` and optional `Grid.Item` API.
 - Exact equal columns, intrinsic auto-fit columns, tokenized uniform and axis
   gaps, Root item alignment, Item spans, line placement, full-column
@@ -6262,6 +6405,9 @@ Hide follows the package version of `@flowstack-ui/brick`.
 ## Unreleased
 
 ### Added
+
+- Added public Agent Knowledge for component selection, composition,
+  CSS-delivery, recurring mistakes, and validation.
 
 - Initial CSS-only `Hide` API with fixed `from` breakpoints, semantic native hosts, natural visible display, and always-mounted children.
 
@@ -6947,12 +7093,17 @@ Icon Button follows the package version of `@flowstack-ui/brick`.
 
 ### Added
 
+- Added public Agent Knowledge for component selection, composition,
+  CSS-delivery, recurring mistakes, and validation.
+
 - Added the Atom-backed Icon Button action and genuine link paths.
 - Added four variants, six tones, five square sizes, rounded/circle geometry,
   loading, disabled, forced-colors, dark, and reduced-motion presentation.
 
 ### Fixed
 
+- Icon Button now composes Atom's direct Button root export so it can render
+  directly from a Next.js server page without an application client wrapper.
 - Danger solid Icon Buttons now retain WCAG AA icon contrast in both
   appearances and throughout hover and pressed interaction states.
 - Centered the loading spinner when IconButton inherits right-to-left
@@ -7172,6 +7323,9 @@ Image follows the package version of `@flowstack-ui/brick`.
 ## Unreleased
 
 ### Added
+
+- Added public Agent Knowledge for component selection, composition,
+  CSS-delivery, recurring mistakes, and validation.
 
 - Initial Atom-backed `Image.Root`, `Image.Content`, and `Image.Fallback` API
   with authored alternative text, native responsive attributes, fit, logical
@@ -8688,7 +8842,10 @@ Link anatomy adds `__link-start`, `__link-content`, `__link-label`,
 Public variables include `--brick-nav-list-gap`,
 `--brick-nav-list-section-gap`, `--brick-nav-list-item-gap`,
 `--brick-nav-list-content-inset`, `--brick-nav-list-row-min-block-size`,
-row padding/radius, link foreground/surface state variables,
+`--brick-nav-list-row-padding-block`,
+`--brick-nav-list-row-padding-inline`, and its logical
+`--brick-nav-list-row-padding-inline-start` / `-end` overrides, row radius,
+link foreground/surface state variables,
 `--brick-nav-list-current-border`, `--brick-nav-list-focus-ring`,
 icon size/gap, description foreground, label typography aliases, and
 `--brick-nav-list-trigger-indicator-size`.
@@ -8708,6 +8865,8 @@ icon size/gap, description foreground, label typography aliases, and
 ```
 
 Prefer closed recipes first. Use public variables for deliberate local themes.
+The logical row-padding overrides are useful when leading text and trailing
+artwork must align independently with a surrounding Sidebar, Drawer, or shell.
 
 ## Responsive behavior
 
@@ -8734,6 +8893,11 @@ Every part forwards its Atom composition contract. A composed Link must
 produce a final destination anchor. `asChild` delegates complete child
 anatomy; normal and `render` Link paths receive Brick label/icon/description
 anatomy.
+
+When top-level rows use Dividers, place each boundary after the complete Item
+or collapsible Section it separates. Never place a Divider between a
+SectionTrigger and its controlled SectionContent, and keep repeated boundaries
+under the same layout owner so spacing remains consistent.
 
 Refs match the rendered parts: landmark/section/label/trigger `HTMLElement`,
 List `HTMLUListElement | HTMLOListElement`, Item `HTMLLIElement`, Link
@@ -8793,7 +8957,18 @@ Nav List follows the package version of `@flowstack-ui/brick`.
 
 ## Unreleased
 
+### Changed
+
+- Documented that repeated Dividers follow complete Items or collapsible
+  Sections under one layout owner and never split a trigger from its content.
+
 ### Added
+
+- Added logical `--brick-nav-list-row-padding-inline-start` and
+  `--brick-nav-list-row-padding-inline-end` tokens for aligning row content
+  with surrounding shells while preserving the existing symmetric default.
+- Added public Agent Knowledge for component selection, composition,
+  CSS-delivery, recurring mistakes, and validation.
 
 - Added the complete Atom-backed navigation-list family with current,
   disabled, grouped, collapsible, composed, and responsive visual recipes.
@@ -8816,9 +8991,14 @@ Do not use it for application commands, form choices, small action lists, or con
 ## Installation and imports
 
 ```tsx
-import { NavigationMenu } from "@flowstack-ui/brick/navigation-menu";
+import * as NavigationMenu from "@flowstack-ui/brick/navigation-menu";
 import "@flowstack-ui/brick/styles.css";
 ```
+
+The module-namespace import is safe to compose from a React Server Component:
+each part remains a focused Client Component while the containing page remains
+server-rendered. The legacy `import { NavigationMenu }` runtime object remains
+available for client-owned modules.
 
 The complete stylesheet above is the recommended default. For a measured
 route-aware build, replace it with the shared foundation and this component's
@@ -8852,11 +9032,16 @@ Root renders navigation, List a native list, Item a list item, Link a native des
 
 ## API
 
-Public exports are `NavigationMenu`, `NavigationMenuRoot`, `NavigationMenuSub`, `NavigationMenuList`, `NavigationMenuItem`, `NavigationMenuTrigger`, `NavigationMenuContent`, `NavigationMenuLink`, `NavigationMenuIndicator`, `NavigationMenuIndicatorArrow`, `NavigationMenuViewport`, `NavigationMenuRootProps`, `NavigationMenuSubProps`, `NavigationMenuListProps`, `NavigationMenuItemProps`, `NavigationMenuTriggerProps`, `NavigationMenuContentProps`, `NavigationMenuLinkProps`, `NavigationMenuIndicatorProps`, `NavigationMenuIndicatorArrowProps`, `NavigationMenuViewportProps`, `NavigationMenuSize`.
+Public exports are `NavigationMenu`, `NavigationMenuRoot`, `NavigationMenuSub`, `NavigationMenuList`, `NavigationMenuItem`, `NavigationMenuTrigger`, `NavigationMenuContent`, `NavigationMenuLink`, `NavigationMenuIndicator`, `NavigationMenuIndicatorArrow`, `NavigationMenuViewport`, `NavigationMenuRootProps`, `NavigationMenuSubProps`, `NavigationMenuListProps`, `NavigationMenuItemProps`, `NavigationMenuTriggerProps`, `NavigationMenuContentProps`, `NavigationMenuLinkProps`, `NavigationMenuIndicatorProps`, `NavigationMenuIndicatorArrowProps`, `NavigationMenuViewportProps`, `NavigationMenuSize`, `NavigationMenuLinkVariant`.
+
+The component subpath additionally exports `Root`, `Sub`, `List`, `Item`,
+`Trigger`, `Content`, `Link`, `Indicator`, `IndicatorArrow`, and `Viewport` as
+short aliases for the recommended module-namespace composition.
 
 | Prop | Values | Default |
 | --- | --- | --- |
 | `size` | `sm`, `md`, `lg` | `md` |
+| `variant` | `control`, `panel` | `control` |
 
 Action-like rows accept `tone="neutral"` or `tone="danger"` when exposed; neutral is the default. Behavioral props come from the matching Atom parts.
 
@@ -8873,13 +9058,27 @@ In vertical orientation, the Viewport follows Atom's
 measured active-trigger offset so the connector stays attached while panels of
 different heights replace one another.
 
+`Link variant="panel"` turns the same native destination into a full-width,
+wrapping link frame for concise rich content. Place one direct `Surface` child
+inside it so Surface owns background, inset, border, elevation, and radius
+while the Link owns the complete click, touch, and focus target. Never place
+another link or control inside it. If a direct Surface is omitted, the Link
+keeps its own visible focus ring rather than leaving keyboard focus invisible.
+In horizontal orientation, Atom centers the Viewport on the active Trigger and
+collision-shifts it inside the visible browser boundary. Brick uses the same
+physical geometry for the Indicator arrow in LTR and RTL. Set the inherited
+`collisionPadding` prop on `Viewport` to change its eight-pixel boundary gap.
+
 ## Tokens and CSS hooks
 
-Public variables use the `--brick-navigation-menu-*` namespace for gaps, control geometry and states, focus, chevron, indicator, viewport surface and sizing, and motion.
+Public variables use the `--brick-navigation-menu-*` namespace for gaps,
+control geometry and states, focus, chevron, indicator, viewport surface and
+sizing, and motion. A composed panel Link uses Surface props and
+`--brick-surface-*` variables for its visual container.
 
 Documented tokens are `--brick-navigation-menu-gap`, `--brick-navigation-menu-control-min-block-size`, `--brick-navigation-menu-control-padding-inline`, `--brick-navigation-menu-control-radius`, `--brick-navigation-menu-control-foreground`, `--brick-navigation-menu-control-hover-background`, `--brick-navigation-menu-control-open-background`, `--brick-navigation-menu-control-open-foreground`, `--brick-navigation-menu-control-current-foreground`, `--brick-navigation-menu-focus-ring`, `--brick-navigation-menu-chevron-size`, `--brick-navigation-menu-chevron-stroke`, `--brick-navigation-menu-chevron-gap`, `--brick-navigation-menu-current-underline-size`, `--brick-navigation-menu-current-underline-offset`, `--brick-navigation-menu-indicator-size`, `--brick-navigation-menu-indicator-offset`, `--brick-navigation-menu-indicator-color`, `--brick-navigation-menu-indicator-border`, `--brick-navigation-menu-viewport-background`, `--brick-navigation-menu-viewport-foreground`, `--brick-navigation-menu-viewport-border`, `--brick-navigation-menu-viewport-radius`, `--brick-navigation-menu-viewport-shadow`, `--brick-navigation-menu-viewport-padding`, `--brick-navigation-menu-viewport-max-inline-size`, `--brick-navigation-menu-motion-duration`.
-
-Stable output includes `data-size`, component `data-slot` hooks, and Atom state attributes.
+Stable output includes `data-size`, Link `data-variant`, component `data-slot`
+hooks, and Atom state attributes.
 
 ## Customization
 
@@ -8887,7 +9086,11 @@ Set documented variables on Root or Content as applicable. Use `className` and `
 
 ## Responsive behavior
 
-Popup geometry stays collision-aware and constrained to available space. Narrow layouts preserve usable targets, logical alignment, zoom, and writing direction; applications decide whether the pattern belongs in their mobile information architecture.
+Popup geometry stays centered on the active Trigger when space permits, then
+collision-shifts and constrains itself to the visible boundary. Narrow layouts
+preserve usable targets, arrow alignment, zoom, and writing direction;
+applications decide whether the pattern belongs in their mobile information
+architecture.
 
 ## Accessibility
 
@@ -8898,6 +9101,20 @@ Name icon-only triggers and label every command or destination clearly. Preserve
 Every part preserves its Atom native attributes, refs, custom slots, handlers, and supported `render` or `asChild` composition. Link remains an anchor unless composed with a router adapter.
 
 ## Examples
+
+```tsx
+<NavigationMenu.Link href="/services" variant="panel">
+  <Surface inset="sm" level="subtle" radius="surface">
+    <VStack gap="2">
+      <Text variant="eyebrow">One accountable team</Text>
+      <Text weight="semibold">Explore every service</Text>
+      <Text tone="secondary" variant="body-sm">
+        One destination with concise supporting context.
+      </Text>
+    </VStack>
+  </Surface>
+</NavigationMenu.Link>
+```
 
 See the [component playground](../../../playground/src/components/navigation-menu/) for defaults, sizes, anatomy, state, composition, customization, responsive, RTL, and preference evidence.
 
@@ -8931,10 +9148,30 @@ Navigation Menu follows the package version of `@flowstack-ui/brick`.
 
 ### Added
 
+- Added the `panel` Link variant for one full-width, wrapping rich destination
+  frame inside Navigation Menu Content. A direct Surface child owns its inset,
+  radius, border, elevation, and paint without shrinking the anchor hit area.
+
+- Added short named part exports on the `navigation-menu` subpath so
+  `import * as NavigationMenu` preserves compound syntax when composed from a
+  React Server Component without making the containing page client-rendered.
+
+- Added public Agent Knowledge for component selection, composition,
+  CSS-delivery, recurring mistakes, and validation.
+
 - Added the decorative `NavigationMenu.IndicatorArrow` part. Indicator renders
   it by default when no custom Indicator children are supplied.
 
 ### Fixed
+
+- Panel Links now retain the normal Link focus ring when their direct child is
+  not a Surface; the ring transfers to the Surface boundary only when that
+  documented composition is present.
+
+- Upgraded to Atom 0.21.0 and now positions the horizontal Viewport from its
+  collision-aware active-trigger geometry instead of centering it on the
+  complete Navigation Menu root. The Indicator follows the same physical
+  coordinates so its arrow remains aligned in LTR and RTL.
 
 - Vertical Viewports now follow the Root-relative active-trigger geometry
   carried by exact Atom `0.20.11`, so the Indicator arrow remains connected
@@ -9474,6 +9711,9 @@ Pagination follows the package version of `@flowstack-ui/brick`.
 ## Unreleased
 
 ### Added
+
+- Added public Agent Knowledge for component selection, composition,
+  CSS-delivery, recurring mistakes, and validation.
 
 - Added the seven-part Atom-backed `Pagination` family with generated stable ranges, localized labels, explicit composition, three variants and sizes, logical controls, and no-wrap inline overflow.
 
@@ -10676,6 +10916,9 @@ Scroll Area follows the package version of `@flowstack-ui/brick`.
 
 ### Added
 
+- Added public Agent Knowledge for component selection, composition,
+  CSS-delivery, recurring mistakes, and validation.
+
 - Added Atom-backed Root and Viewport anatomy.
 - Added vertical, horizontal, and both-axis native overflow.
 - Added auto, always, and interaction visibility plus stable gutter.
@@ -11106,6 +11349,9 @@ Show follows the package version of `@flowstack-ui/brick`.
 
 ### Added
 
+- Added public Agent Knowledge for component selection, composition,
+  CSS-delivery, recurring mistakes, and validation.
+
 - Initial CSS-only `Show` API with fixed `from` breakpoints, semantic native hosts, natural visible display, and always-mounted children.
 
 
@@ -11291,6 +11537,9 @@ Sidebar follows the package version of `@flowstack-ui/brick`.
 ## Unreleased
 
 ### Added
+
+- Added public Agent Knowledge for component selection, composition,
+  CSS-delivery, recurring mistakes, and validation.
 
 - Added the Atom-backed seven-part Sidebar with expanded, rail, and offcanvas
   states, docked/floating surfaces, closed sizes, static/sticky positioning,
@@ -11712,6 +11961,9 @@ Skip Link follows the package version of `@flowstack-ui/brick`.
 ## Unreleased
 
 ### Added
+
+- Added public Agent Knowledge for component selection, composition,
+  CSS-delivery, recurring mistakes, and validation.
 
 - Added `SkipLink.Root` and `SkipLink.Target` for a finished focus-reveal
   bypass link paired with Atom-owned native focus and fragment behavior.
@@ -13036,6 +13288,9 @@ Tabs follows the package version of `@flowstack-ui/brick`.
 
 ### Added
 
+- Added public Agent Knowledge for component selection, composition,
+  CSS-delivery, recurring mistakes, and validation.
+
 - Added the complete five-part Tabs API with four variants, three sizes,
   full-width and orientation-aware layout, and Atom-owned interaction.
 
@@ -13136,7 +13391,7 @@ recipe metadata, and documented variables are stable public hooks.
 | Prop | Values | Default |
 | --- | --- | --- |
 | `as` | `span`, `p`, `div`, `h1`, `h2`, `h3`, `h4`, `h5`, `h6` | `span` |
-| `variant` | `display`, `title-lg`, `title-md`, `title-sm`, `body-lg`, `body-md`, `body-sm`, `caption` | `body-md` |
+| `variant` | `display`, `title-lg`, `title-md`, `title-sm`, `body-lg`, `body-md`, `body-sm`, `caption`, `eyebrow` | `body-md` |
 | `tone` | `inherit`, `primary`, `secondary`, `muted`, `accent`, `info`, `success`, `warning`, `danger` | `primary` |
 | `weight` | `inherit`, `regular`, `medium`, `semibold` | recipe default |
 | `align` | `start`, `center`, `end` | natural/start |
@@ -13157,6 +13412,8 @@ data attributes pass to the selected host. The ref type is `HTMLElement`.
 - `title-lg`, `title-md`, and `title-sm` create heading hierarchy.
 - `body-lg`, `body-md`, and `body-sm` cover prose and supporting copy.
 - `caption` covers compact metadata without replacing accessible labels.
+- `eyebrow` covers a short uppercase editorial label placed before a heading;
+  it is not body copy, status, or category semantics.
 
 Display/title recipes use the heading family, semibold weight, tight leading,
 and restrained negative tracking. Body/caption recipes use the body family,
@@ -13189,6 +13446,7 @@ Public Text variables:
 - `--brick-text-font-weight`
 - `--brick-text-line-height`
 - `--brick-text-letter-spacing`
+- `--brick-text-text-transform`
 - `--brick-text-foreground`
 
 Each Text variant aliases the matching public semantic recipe:
@@ -13262,6 +13520,14 @@ polymorphism; specialized components own those contracts.
 </Text>
 ```
 
+### Section eyebrow
+
+```tsx
+<Text variant="eyebrow" tone="accent">
+  Built for business
+</Text>
+```
+
 ### Supporting and status copy
 
 ```tsx
@@ -13302,7 +13568,12 @@ Text follows the package version of `@flowstack-ui/brick`.
 
 ### Added
 
-- Initial Text API with independent semantic hosts and eight visual type
+- Added the `eyebrow` Text variant for short uppercase editorial labels.
+
+- Added public Agent Knowledge for component selection, composition,
+  CSS-delivery, recurring mistakes, and validation.
+
+- Initial Text API with independent semantic hosts and nine visual type
   recipes.
 - Primary, secondary, muted, accent, info, success, warning, danger, and
   inherited foreground roles; regular, medium, semibold, and inherited weight;
@@ -14154,6 +14425,9 @@ Toolbar follows the package version of `@flowstack-ui/brick`.
 ## Unreleased
 
 ### Added
+
+- Added public Agent Knowledge for component selection, composition,
+  CSS-delivery, recurring mistakes, and validation.
 
 - Added the compound `Toolbar` family with three surfaces, three sizes, horizontal and vertical layouts, coordinated command/link/toggle controls, separators, RTL keyboard behavior, and no-wrap overflow containment.
 
