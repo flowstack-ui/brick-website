@@ -99,7 +99,7 @@ if (errors.length) {
   process.exit(1);
 }
 
-console.log(`Verified 75 component routes; largest initial JavaScript is ${largest.slug} at ${largest.raw} raw / ${largest.gzip} gzip.`);
+console.log(`Verified ${components.length} component routes; largest initial JavaScript is ${largest.slug} at ${largest.raw} raw / ${largest.gzip} gzip.`);
 console.log(`Verified representative route budgets and deferred search at ${searchIndex.length} raw / ${searchIndexGzip} gzip.`);
 console.log(`Verified ${sharedStyleContracts.length} cross-route style contracts in the shared shell.`);
 console.log(`Verified 1200x630 social card at ${socialCardSize} bytes.`);

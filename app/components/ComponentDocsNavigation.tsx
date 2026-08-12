@@ -154,7 +154,7 @@ export function ComponentDocsNavigation({ currentSlug, toc }: { currentSlug: str
       </aside>
       <Hide as="div" className="docs-mobile-toolbar" from="lg" aria-label="Component documentation tools">
         <DocsDrawer
-          description="Search all 75 components or browse by category."
+          description="Search all 80 components or browse by category."
           title="Components"
           trigger={<Button startIcon={<Menu size={16} aria-hidden="true" />} tone="neutral" variant="soft">Components</Button>}
         >

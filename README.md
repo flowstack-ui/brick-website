@@ -23,7 +23,7 @@ npm run verify          # content, types, lint, build, rendered routes
 
 - Production reads only committed files and the exact npm dependency. It never reads the sibling package checkout.
 - `content/brick-source.json` records the reviewed Brick version and source commit.
-- `content/components.json` and `content/component-docs.json` are generated from the 75 public component owners.
+- `content/components.json` and `content/component-docs.json` are generated from the 80 public component owners.
 - `public/llms.txt` and `public/llms-full.txt` expose AI-readable public documentation.
 - Local UI search uses the committed component and guide records; no hosted search service is required.
 

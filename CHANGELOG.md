@@ -1,5 +1,16 @@
 # Changelog
 
+- Adopted exact published Brick `0.1.9` and Atom `0.22.6`, verified npm
+  provenance and tarball integrity, and refreshed the production lockfile past
+  the resolved Nano ID advisory.
+- Expanded the public catalog from 75 to 80 owners with synchronized
+  Appearance, Carousel, Frame, Section, and ZStack documentation, dedicated
+  route-scoped live examples, modular preview CSS, search records, sitemap
+  entries, and AI-readable references.
+- Added current-facing guidance for the server-safe Appearance utility and the
+  generated theme-contract revision 2 with 76 maintained semantic contrast
+  pairs.
+
 - Adopted exact published Brick `0.1.5` and its exact Atom `0.21.0`
   dependency, then regenerated all 75 component documents, AI-readable
   references, syntax tokens, route CSS, and preview CSS from the reviewed

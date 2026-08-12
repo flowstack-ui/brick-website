@@ -2,6 +2,7 @@ export const componentExampleModes = {
   "accordion": "expanding",
   "alert-dialog": "overlay",
   "app-bar": "structural",
+  "appearance": "structural",
   "aspect-ratio": "structural",
   "avatar": "compact",
   "badge": "compact",
@@ -9,6 +10,7 @@ export const componentExampleModes = {
   "breadcrumb": "structural",
   "button": "compact",
   "card": "structural",
+  "carousel": "structural",
   "checkbox": "compact",
   "checkbox-group": "form",
   "chip": "compact",
@@ -28,6 +30,7 @@ export const componentExampleModes = {
   "fieldset": "form",
   "file-upload": "interaction",
   "form": "form",
+  "frame": "structural",
   "grid": "structural",
   "hide": "compact",
   "hover-card": "overlay",
@@ -52,6 +55,7 @@ export const componentExampleModes = {
   "radio-group": "form",
   "rating": "compact",
   "scroll-area": "structural",
+  "section": "structural",
   "select": "form",
   "show": "compact",
   "sidebar": "structural",
@@ -74,6 +78,7 @@ export const componentExampleModes = {
   "tree": "expanding",
   "tree-grid": "structural",
   "visually-hidden": "interaction",
+  "z-stack": "structural",
 } as const;
 
 export type ComponentExampleMode = (typeof componentExampleModes)[keyof typeof componentExampleModes];

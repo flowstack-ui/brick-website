@@ -18,6 +18,12 @@
     "description": "AppBar is a top surface and one-row alignment structure built on Atom AppBar."
   },
   {
+    "slug": "appearance",
+    "title": "Appearance",
+    "category": "Navigation & layout",
+    "description": "Appearance applies an explicit light, dark, or inherited semantic-token scope to one native or existing Brick host. It adds no paint, spacing, state, persistence, or required client provider."
+  },
+  {
     "slug": "aspect-ratio",
     "title": "Aspect Ratio",
     "category": "Accessibility",
@@ -58,6 +64,12 @@
     "title": "Card",
     "category": "Content & status",
     "description": "Card is a static compound surface for grouping information and related actions about one subject."
+  },
+  {
+    "slug": "carousel",
+    "title": "Carousel",
+    "category": "Data & collections",
+    "description": "Carousel presents one peer slide at a time with native touch scrolling and optional finished controls."
   },
   {
     "slug": "checkbox",
@@ -172,6 +184,12 @@
     "title": "Form",
     "category": "Forms & choices",
     "description": "Form is Brick’s styled form boundary over Atom’s native form behavior."
+  },
+  {
+    "slug": "frame",
+    "title": "Frame",
+    "category": "Navigation & layout",
+    "description": "Frame owns responsive logical size constraints for one local element. It does not own paint, spacing, child layout, parent participation, aspect ratio, overflow, semantics, or behavior."
   },
   {
     "slug": "grid",
@@ -318,6 +336,12 @@
     "description": "Scroll Area constrains native browser scrolling to explicit axes while keeping content, input, momentum, and platform scrollbar behavior native. It adopts Atom's Root/Viewport behavior and adds finished gutter, visibility, focus, and semantic-color styling."
   },
   {
+    "slug": "section",
+    "title": "Section",
+    "category": "Navigation & layout",
+    "description": "Section owns responsive logical block rhythm for major page and application regions. It renders one native element and adds no paint, inline measure, child arrangement, content anatomy, role, or behavior."
+  },
+  {
     "slug": "select",
     "title": "Select",
     "category": "Forms & choices",
@@ -357,13 +381,13 @@
     "slug": "stack",
     "title": "Stack",
     "category": "Navigation & layout",
-    "description": "Stack is Brick's one-dimensional layout primitive. Use Stack or VStack for vertical flows and HStack for horizontal rows. All three share one rendered contract and tokenized spacing scale."
+    "description": "Stack is Brick's one-dimensional layout primitive. Use VStack for a fixed vertical flow, HStack for a fixed horizontal row, and Stack when the axis changes at a Brick breakpoint. Stack.Item controls how an individual child uses available space."
   },
   {
     "slug": "surface",
     "title": "Surface",
     "category": "Navigation & layout",
-    "description": "Surface paints a semantic region with a controlled background level, optional border, elevation, radius, and inset. It renders one native element and adds no layout, clipping, interaction, role, or runtime color context."
+    "description": "Surface paints a semantic region with a controlled background level, optional border, elevation, radius, and inset. Ordinary Surface renders one native element. Optional Media, Scrim, and Content parts layer decorative authored media behind foreground content without adding interaction or runtime color context."
   },
   {
     "slug": "swipeable-item",
@@ -448,5 +472,11 @@
     "title": "Visually Hidden",
     "category": "Accessibility",
     "description": "Visually Hidden keeps authored text available to assistive technology while removing its visual layout footprint."
+  },
+  {
+    "slug": "z-stack",
+    "title": "ZStack",
+    "category": "Navigation & layout",
+    "description": "ZStack is Brick's depth-layout primitive. It places authored children in one shared CSS Grid cell so layers overlap without absolute positioning or visual reordering."
   }
 ]
