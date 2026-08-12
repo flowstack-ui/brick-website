@@ -702,6 +702,8 @@
   .token-family:hover { background: color-mix(in srgb, var(--brick-color-surface-raised), transparent 8%); transform: translateX(2px); }
   .token-family-index { color: var(--brick-color-text-muted); font-family: var(--site-font-mono); font-size: .58rem; }
   .token-family-icon { display: grid; width: 2.5rem; height: 2.5rem; place-items: center; border: 1px solid var(--brick-color-accent-border); border-radius: .75rem; background: var(--brick-color-surface-raised); color: var(--brick-color-accent-text); box-shadow: 0 .65rem 1.5rem color-mix(in srgb, var(--brick-color-shadow), transparent 84%); }
+  .theme-contract-story { display: grid; gap: clamp(1.5rem, 4vw, 2.5rem); }
+  .theme-contract-story code { font-family: var(--site-font-mono); font-size: .92em; }
   .token-family-copy { display: grid; gap: .12rem; }
   .token-family-copy strong { color: var(--brick-color-text-primary); font-family: var(--site-font-display); font-size: .92rem; }
   .token-family-copy small { color: var(--brick-color-text-secondary); font-size: .68rem; }

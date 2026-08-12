@@ -32,7 +32,7 @@ export default function GuidesOverview() {
         <Text as="h1" className="page-title" wrap="balance">Build with Brick</Text>
         <Text as="p" variant="body-lg" tone="secondary" className="page-lede">Start with a coherent visual system, then customize through explicit public contracts instead of rebuilding every control.</Text>
         <div className="docs-overview-proof" aria-label="Brick documentation scope">
-          <span><strong>1</strong> package</span><span><strong>75</strong> component owners</span><span><strong>0</strong> required providers</span>
+          <span><strong>1</strong> package</span><span><strong>80</strong> component owners</span><span><strong>0</strong> required providers</span>
         </div>
         <section className="docs-paths" id="guide-paths" aria-labelledby="guide-paths-title">
           <div className="docs-path-heading"><div><span>Recommended learning route</span><Text as="h2" id="guide-paths-title" variant="title-lg">Build confidence in four moves</Text></div><Text tone="secondary">Follow the sequence or jump directly to the guide you need.</Text></div>
@@ -48,7 +48,7 @@ export default function GuidesOverview() {
         </section>
         <section className="docs-next" id="explore-components">
           <Text as="h2" variant="title-lg">Prefer to explore first?</Text>
-          <Text tone="secondary">Browse all 75 component owners and open live examples before installing.</Text>
+          <Text tone="secondary">Browse all 80 component owners and open live examples before installing.</Text>
           <WebsiteButton href="/components" endIcon={<ArrowRight size={15} aria-hidden="true" />}>Explore components</WebsiteButton>
         </section>
         <GuidePagination current="overview" />

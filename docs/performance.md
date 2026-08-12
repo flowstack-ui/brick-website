@@ -6,7 +6,7 @@ Lighthouse lab results, or post-launch field Core Web Vitals.
 
 ## Component previews
 
-Each of the 75 live examples owns a client module under `components/previews/`.
+Each of the 80 live examples owns a client module under `components/previews/`.
 `ComponentPreview.tsx` contains only the dynamic registry and fallback, so a
 component route loads its own preview rather than the implementation and Brick
 subpaths for the entire catalog.

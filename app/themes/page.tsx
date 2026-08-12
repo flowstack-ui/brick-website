@@ -80,6 +80,18 @@ export default function ThemesPage() {
         </div>
       </section>
 
+      <section className="section-shell theme-contract-story" aria-labelledby="theme-contract-title">
+        <div className="section-heading">
+          <Badge tone="accent" variant="soft">Generated contract · revision 2</Badge>
+          <Text as="h2" id="theme-contract-title" variant="display" wrap="balance">Theme tooling can read the same contract Brick ships.</Text>
+          <Text as="p" variant="body-lg" tone="secondary" wrap="balance">Import <code>@flowstack-ui/brick/theme-contract.json</code> to discover semantic roles, supported scopes, cascade placement, and 76 maintained contrast pairs without copying Brick’s token source.</Text>
+        </div>
+        <Grid.Root columns={2} gap="4">
+          <Card.Root variant="outline"><Card.Header><Card.Title as="h3">Typed local appearance</Card.Title><Card.Description>The server-safe Appearance utility decorates one existing host with a light, dark, or inherited boundary—without a provider or wrapper.</Card.Description></Card.Header></Card.Root>
+          <Card.Root variant="outline"><Card.Header><Card.Title as="h3">Evidence-ready contrast</Card.Title><Card.Description>Each published pair declares its text or non-text role and required ratio so Theme can validate assignments without rounding.</Card.Description></Card.Header></Card.Root>
+        </Grid.Root>
+      </section>
+
       <section className="theme-cta section-shell">
         <div><Text as="h2" variant="title-lg">Start with Brick’s defaults.</Text><Text tone="secondary">Then make them unmistakably yours.</Text></div>
         <InstallCommand compact />

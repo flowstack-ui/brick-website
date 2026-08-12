@@ -369,7 +369,7 @@ test("component discovery and rendering remain consumer-first Brick compositions
   assert.match(swipeablePreview, /preview-swipeable-content[\s\S]*size="sm" tone="danger" variant="ghost"/, "the Swipeable Item preview must use the complete padded content composition and bounded action recipe");
   assert.match(css, /\.preview-swipeable-content \{[^}]*grid-template-columns: minmax\(0, 1fr\) auto;[^}]*padding: var\(--brick-space-4\);/, "Swipeable Item preview content must remain fully visible inside its component boundary");
   const mappedSlugs = [...layoutSource.matchAll(/^\s+"([^"]+)": "(?:compact|form|overlay|expanding|structural|interaction)",$/gm)].map((match) => match[1]).sort();
-  assert.deepEqual(mappedSlugs, components.map((component) => component.slug).sort(), "all 75 component owners must receive one explicit example-stage behavior mode");
+  assert.deepEqual(mappedSlugs, components.map((component) => component.slug).sort(), "all component owners must receive one explicit example-stage behavior mode");
   assert.equal([...previewSource.matchAll(/dynamic\(\(\) => import\("@\/components\/previews\/[^"\)]+"\)\)/g)].length, components.length, "all previews must cross an explicit route-scoped dynamic boundary");
   assert.doesNotMatch(previewSource, /@flowstack-ui\/brick\/(?!text)/, "the preview registry must not import component implementations into one shared client bundle");
   assert.match(componentSource, /<ComponentExampleCanvas slug=\{component\.slug\} \/>/, "component routes must use the shared behavior-aware example stage");
@@ -745,8 +745,13 @@ test("unknown routes return the designed non-indexable Brick recovery page", asy
 const routes = [
   ["/", /Build interfaces that already feel/i],
   ["/docs", /Build with Brick/i],
-  ["/components", /75 component owners/i],
+  ["/components", /80 component owners/i],
   ["/components/button", /Maintainer resources/i],
+  ["/components/appearance", /Maintainer resources/i],
+  ["/components/carousel", /Maintainer resources/i],
+  ["/components/frame", /Maintainer resources/i],
+  ["/components/section", /Maintainer resources/i],
+  ["/components/z-stack", /Maintainer resources/i],
   ["/components/visually-hidden", /Maintainer resources/i],
   ["/docs/getting-started", /Getting started/i],
   ["/themes", /Change the voice, not the component/i],

@@ -14,8 +14,8 @@ const categories = {
   "Forms & choices": new Set(["form", "field", "fieldset", "input", "number-input", "otp-field", "password-toggle-field", "textarea", "select", "combobox", "multi-select", "file-upload", "checkbox", "checkbox-group", "radio-group", "switch", "slider", "rating"]),
   "Content & status": new Set(["text", "icon", "image", "code", "code-block", "avatar", "badge", "notification-badge", "chip", "card", "list", "table", "divider", "collapsible", "accordion", "skeleton", "progress", "progress-circle", "toast"]),
   "Overlays & menus": new Set(["tooltip", "hover-card", "popover", "dropdown-menu", "context-menu", "menubar", "dialog", "alert-dialog", "drawer"]),
-  "Navigation & layout": new Set(["breadcrumb", "tabs", "navigation-menu", "bottom-navigation", "link", "nav-list", "sidebar", "app-bar", "stack", "grid", "container", "show", "hide", "surface", "scroll-area"]),
-  "Data & collections": new Set(["data-grid", "tree-grid", "tree", "feed", "swipeable-item"]),
+  "Navigation & layout": new Set(["appearance", "breadcrumb", "tabs", "navigation-menu", "bottom-navigation", "link", "nav-list", "sidebar", "app-bar", "stack", "grid", "container", "section", "frame", "z-stack", "show", "hide", "surface", "scroll-area"]),
+  "Data & collections": new Set(["data-grid", "tree-grid", "tree", "feed", "swipeable-item", "carousel"]),
   Accessibility: new Set(["skip-link", "visually-hidden", "aspect-ratio"]),
 };
 
@@ -47,6 +47,7 @@ const displayNames = {
   "toggle-group": "Toggle Group",
   "tree-grid": "Tree Grid",
   "visually-hidden": "Visually Hidden",
+  "z-stack": "ZStack",
 };
 
 function titleize(slug) {
@@ -74,8 +75,8 @@ const entries = (await readdir(componentRoot, { withFileTypes: true }))
   .map((entry) => entry.name)
   .sort();
 
-if (entries.length !== 75) {
-  throw new Error(`Expected 75 public component owners, found ${entries.length}`);
+if (entries.length !== 80) {
+  throw new Error(`Expected 80 public component owners, found ${entries.length}`);
 }
 
 const components = [];

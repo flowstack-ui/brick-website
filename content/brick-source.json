@@ -1,7 +1,7 @@
 {
   "package": "@flowstack-ui/brick",
-  "version": "0.1.5",
+  "version": "0.1.9",
   "repository": "https://github.com/flowstack-ui/brick",
-  "commit": "b69da29b14d1d5d21ee4f0d49e6a4dfc78e3a5ed",
-  "reviewedAt": "2026-08-07T15:47:17.738Z"
+  "commit": "d6ab2c0aea66ddbe2331c0e0be166f438370ee9e",
+  "reviewedAt": "2026-08-12T14:39:53.697Z"
 }

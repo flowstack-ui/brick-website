@@ -37,6 +37,6 @@ anatomy; application routing and content selection remain website-owned.
 
 Live examples use a route-scoped dynamic registry. Every component preview is
 an independent client module under `components/previews/`; the shared registry
-does not import all 75 implementations into one browser bundle. Build-time
+does not import all 80 implementations into one browser bundle. Build-time
 budgets and the social-asset contract are recorded in
 [performance.md](performance.md).

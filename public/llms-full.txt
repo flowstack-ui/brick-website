@@ -1,7 +1,7 @@
 # Brick UI — complete public documentation
 
-Package version: 0.1.5
-Source commit: b69da29b14d1d5d21ee4f0d49e6a4dfc78e3a5ed
+Package version: 0.1.9
+Source commit: d6ab2c0aea66ddbe2331c0e0be166f438370ee9e
 
 # Accordion
 
@@ -96,6 +96,10 @@ and outline adds one containing border. Sizes coordinate trigger height,
 typography, indicator, and panel padding. A locked-open single trigger remains
 focusable with `aria-disabled="true"` and `data-locked-open`.
 
+Grouped vertical recipes use the Root as the outer silhouette: interior Trigger
+edges stay square, only the exposed first and last corners follow the Root
+radius, and keyboard focus remains fully visible outside that silhouette.
+
 ## Tokens and CSS hooks
 
 Stable classes use `.brick-accordion*`. Root exposes `data-variant`,
@@ -168,8 +172,17 @@ Accordion follows the package version of `@flowstack-ui/brick`.
 
 ## Unreleased
 
+### Fixed
+
+- Kept vertical group interiors square, rounded only exposed outer Trigger
+  corners, and stopped Root paint containment from clipping the first or last
+  Trigger focus ring.
+
 ### Added
 
+- Added public Agent Knowledge for selecting grouped disclosures, preserving
+  complete anatomy, heading and landmark policy, ContentInner ownership, CSS
+  delivery, and interaction validation.
 - Added the seven-part Atom-backed Accordion with single and multiple models,
   locked-open and disabled semantics, landmark control, three variants and
   sizes, two-axis motion, direction-aware keyboard navigation, composition,
@@ -609,7 +622,10 @@ attributes include Atom `data-position`/`data-density` and Brick
 `--brick-app-bar-foreground`, `--brick-app-bar-border-color`,
 `--brick-app-bar-blurred-background`,
 `--brick-app-bar-reduced-transparency-background`, and
-`--brick-app-bar-shadow`.
+`--brick-app-bar-shadow`. Brick also publishes the density measurements
+`--brick-app-bar-toolbar-min-block-size-comfortable` and
+`--brick-app-bar-toolbar-min-block-size-compact`; Toolbar resolves the selected
+recipe through `--brick-app-bar-toolbar-min-block-size`.
 
 ## Customization
 
@@ -622,6 +638,12 @@ truncation, offsets, and navigation behavior.
 Root fills available inline size. AppBar does not wrap itself or prescribe
 breakpoints; applications decide what truncates, hides, scrolls, or moves.
 Logical tracks and edges support RTL.
+
+When an application-owned opening region must fill the viewport remaining
+below a one-row App Bar, reference the token matching the authored Toolbar
+density instead of repeating `4rem` or `3rem`. Treat it as a minimum recipe:
+zoomed, translated, or enlarged content may make the rendered Toolbar taller,
+and the opening region must be allowed to grow rather than clip.
 
 ## Accessibility
 
@@ -680,6 +702,9 @@ App Bar follows the package version of `@flowstack-ui/brick`.
 
 ### Added
 
+- Added public comfortable and compact Toolbar minimum block-size recipe
+  tokens for application-owned viewport and shell calculations without
+  duplicating Brick's density values.
 - Added public Agent Knowledge for component selection, composition,
   CSS-delivery, recurring mistakes, and validation.
 
@@ -690,6 +715,152 @@ App Bar follows the package version of `@flowstack-ui/brick`.
   optional border, elevation, and blur.
 - Logical RTL layout, geometric center alignment, public customization tokens,
   forced-colors support, and server-safe rendering.
+
+
+# Appearance
+
+# Appearance
+
+Appearance applies an explicit light, dark, or inherited semantic-token scope
+to one native or existing Brick host. It adds no paint, spacing, state,
+persistence, or required client provider.
+
+## When and where to use
+
+Use Appearance when one region intentionally differs from its ancestor, when
+an existing component such as App Bar or Tabs should own the boundary, or when
+portalled visual roots must reproduce a local scope.
+
+## When not to use
+
+Do not use it for document preference persistence, theme generation, or
+visual surface paint. Applications and framework adapters own preference and
+pre-paint policy; Surface owns neutral paint.
+
+## Installation and imports
+
+```tsx
+import { Appearance } from "@flowstack-ui/brick/appearance";
+import "@flowstack-ui/brick/styles.css";
+```
+
+For modular CSS, load `@flowstack-ui/brick/styles/core.css` once, then
+`@flowstack-ui/brick/styles/appearance.css` plus the modular styles for every
+component composed inside it.
+
+Exports are `Appearance`, `AppearanceProps`, and `AppearanceValue`.
+
+## Quick start
+
+```tsx
+<Appearance value="dark">
+  <AppBar.Root>...</AppBar.Root>
+</Appearance>
+```
+
+## Anatomy and DOM ownership
+
+Appearance requires exactly one existing React element and decorates that host
+without adding a wrapper. The host can contain any number of descendants. Its
+component slot, props, handlers, styles, and refs remain owned by the child.
+
+## API
+
+| Prop | Values | Default |
+| --- | --- | --- |
+| `value` | `light`, `dark`, `inherit` | `inherit` |
+
+The direct child must accept DOM props and a ref. Strings, Fragments, and
+multiple direct children are invalid. If the boundary needs semantic markup,
+author that element explicitly as the child.
+
+## Visual recipes and states
+
+Appearance has no component recipe or state. It applies
+`data-brick-appearance`; the complete token stylesheet assigns `color-scheme`
+and semantic values. Themes must supply complete assignments for every
+appearance they support.
+
+## Tokens and CSS hooks
+
+Stable hooks are `.brick-appearance` and `data-brick-appearance`. Appearance
+publishes no component tokens and preserves the child's existing slot.
+
+## Customization
+
+Use a complete theme assignment at explicit light and dark selectors. Put
+native attributes, events, class, and style on the child host. Do not set
+component colors on Appearance or use it as another theme-value authority.
+
+## Responsive behavior
+
+Appearance has no breakpoint behavior. The existing child host keeps its
+responsive contract unchanged.
+
+## Accessibility
+
+Appearance adds no role, accessible name, focus behavior, or client state.
+Choose valid host semantics. The output is deterministic during SSR and
+hydration; applications that persist a root preference must apply it before
+paint.
+
+## Composition, native props, and refs
+
+Portalled content does not inherit the trigger's DOM scope. Portal into a
+container inside the desired scope or compose Appearance onto every portalled
+visual root:
+
+```tsx
+<Drawer.Portal>
+  <Appearance value="dark"><Drawer.Overlay /></Appearance>
+  <Appearance value="dark"><Drawer.Content /></Appearance>
+</Drawer.Portal>
+```
+
+Appearance refs compose with the child ref and target the existing host.
+Appearance adds its class and data attribute; every authored prop remains on
+the child, which keeps its component slot.
+
+## Examples
+
+```tsx
+<Appearance value="dark">
+  <section>
+    <Appearance value="light">
+      <Surface>Light content inside a dark section</Surface>
+    </Appearance>
+  </section>
+</Appearance>
+```
+
+## Evidence
+
+See the [playground](../../../playground/src/components/appearance/AppearancePage.tsx),
+[unit test](../../../test/components/appearance/appearance.test.tsx),
+[type test](../../../test/types/components/appearance.test.ts),
+[browser test](../../../playground/tests/components/appearance/behavior.spec.ts),
+[visual owner](../../../playground/tests/components/appearance/visual.spec.ts),
+and [manual protocol](../../../playground/manual-tests/appearance.md).
+
+## Changelog
+
+See [CHANGELOG.md](CHANGELOG.md).
+
+---
+
+# Appearance changelog
+
+Appearance follows the package version of `@flowstack-ui/brick`.
+
+## Unreleased
+
+### Added
+
+- Added `Appearance`, one server-safe native or wrapper-free semantic boundary
+  with explicit portal composition and no runtime theme provider.
+- Added a compiled Theme qualification fixture covering complete nested
+  appearances, native color scheme, project roles, and Drawer inputs across
+  scoped and body-level portals.
 
 
 # Aspect Ratio
@@ -1156,6 +1327,20 @@ Badge applies its public gap token when children include an icon and label:
 </Badge>
 ```
 
+When a separately configured `Text` child is necessary, inherit Badge's
+foreground so the selected Badge recipe continues to own contrast:
+
+```tsx
+<Badge tone="accent" shape="pill">
+  <Icon size="xs">{icon}</Icon>
+  <Text tone="inherit" variant="caption">Built for business</Text>
+</Badge>
+```
+
+Prefer plain label text when no separate Text recipe is needed. Do not use
+default-tone Text inside Badge, add literal spaces around children, or select
+Badge only to imitate an editorial eyebrow.
+
 ## Evidence
 
 - [Playground](../../../playground/src/components/badge/BadgePage.tsx)
@@ -1178,6 +1363,9 @@ Badge follows the package version of `@flowstack-ui/brick`.
 ## Unreleased
 
 ### Added
+
+- Added public Agent Knowledge covering passive selection, inherited Text
+  foreground, composed child spacing, CSS delivery, and validation.
 
 - Initial direct Badge component built on the public server-safe Atom Badge
   subpath.
@@ -2182,11 +2370,15 @@ Public exports are `Card`, `CardRootProps`, `CardRootElement`,
 | Prop | Values | Default |
 |---|---|---|
 | `as` | `div`, `article`, `section`, `li` | `div` |
+| `bordered` | boolean | `true` |
 | `variant` | `outline`, `elevated`, `subtle` | `outline` |
 | `size` | `sm`, `md`, `lg` | `md` |
 
 Root also accepts ordinary `HTMLAttributes<HTMLElement>`, including `id`,
 ARIA and data attributes, events, `className`, `style`, and `ref`.
+`bordered={false}` removes only the selected recipe's border geometry while
+retaining its background, elevation, radius, clipping, and anatomy. It is
+useful when authored media must reach Card's clipped outer edge.
 
 ### Card.Title
 
@@ -2227,6 +2419,7 @@ They do not set width, height, grid columns, or viewport breakpoints.
 |---|---|
 | `--brick-card-space` | Section inset and coordinated region spacing |
 | `--brick-card-radius` | Root surface radius |
+| `--brick-card-border-width` | Root border geometry |
 | `--brick-card-shadow` | Elevated surface shadow |
 
 ### Stable classes and slots
@@ -2241,7 +2434,8 @@ They do not set width, height, grid columns, or viewport breakpoints.
 | Content | `.brick-card-content` | `card-content` |
 | Footer | `.brick-card-footer` | `card-footer` |
 
-Root reflects `data-variant` and `data-size`. Classes, slots, and the three
+Root reflects optional `data-bordered` with the value `"false"`, plus
+`data-variant` and `data-size`. Classes, slots, and the public
 component tokens are the stable Card-specific CSS contract. Semantic surface,
 border, text, radius, spacing, and shadow-color tokens remain the normal theme
 layer.
@@ -2407,6 +2601,8 @@ Card follows the package version of `@flowstack-ui/brick`.
 
 ### Added
 
+- Added optional `bordered={false}` so edge-to-edge media can retain Card's
+  selected background, elevation, radius, and clipping without a border seam.
 - Initial `Card.Root`, `Card.Header`, `Card.Title`, `Card.Description`,
   `Card.Action`, `Card.Content`, and `Card.Footer` compound API.
 - Outline, elevated, and subtle variants with small, medium, and large sizes.
@@ -2422,6 +2618,256 @@ Card follows the package version of `@flowstack-ui/brick`.
   normalized tracking.
 - Elevated Cards use a subtle raised-surface difference so their hierarchy
   remains visible in dark appearance without depending on shadow alone.
+
+
+# Carousel
+
+# Carousel
+
+Carousel presents one peer slide at a time with native touch scrolling and optional finished controls.
+
+## When and where to use
+
+Use Carousel for campaign heroes, product stories, galleries, or other bounded sequences where one item should lead at a time. Keep slide messaging and layout in application or Block composition; Brick owns the finished carousel frame and controls while Atom owns selection, rotation, scrolling, and accessibility behavior.
+
+## When not to use
+
+Do not hide information people must compare, required form steps, or unrelated page sections in a Carousel. Use Grid, Stack, List, Tabs, or a purpose-built workflow instead.
+
+## Installation and imports
+
+Import `Carousel` from `@flowstack-ui/brick` or `@flowstack-ui/brick/carousel`, and load `@flowstack-ui/brick/styles.css` once.
+
+For measured modular delivery, load the foundation once and this component stylesheet:
+
+```tsx
+import "@flowstack-ui/brick/styles/core.css";
+import "@flowstack-ui/brick/styles/carousel.css";
+```
+
+Also load the modular stylesheet for every Brick component rendered inside a slide.
+
+## Quick start
+
+```tsx
+import * as Carousel from "@flowstack-ui/brick/carousel";
+
+<Carousel.Root defaultValue="first" aria-label="Featured services">
+  <Carousel.Viewport>
+    <Carousel.Track>
+      <Carousel.Slide value="first" label="Web development">First</Carousel.Slide>
+      <Carousel.Slide value="second" label="Managed hosting">Second</Carousel.Slide>
+    </Carousel.Track>
+  </Carousel.Viewport>
+  <Carousel.Navigation visibility="interaction">
+    <Carousel.Previous />
+    <Carousel.Next />
+  </Carousel.Navigation>
+  <Carousel.Controls>
+    <Carousel.Picker variant="bare">
+      <Carousel.PickerItem value="first" />
+      <Carousel.PickerItem value="second" />
+    </Carousel.Picker>
+  </Carousel.Controls>
+</Carousel.Root>
+```
+
+## Anatomy and DOM ownership
+
+`Root`, `Viewport`, `Track`, `Slide`, `Previous`, `Next`, `Picker`, `PickerItem`, and `RotationControl` adapt Atom. `Navigation` and `Controls` are Brick-only layout wrappers with no behavior. Every control is optional for a manual carousel. If rotation is enabled, `RotationControl`, `Previous`, and `Next` are required.
+
+## API
+
+Root preserves Atom's `value`, `defaultValue`, `onValueChange`, `autoPlay`, `defaultAutoPlay`, `onAutoPlayChange`, `interval`, `loop`, direction, and localized control labels.
+
+In React Server Components, prefer the module namespace shown above. It keeps
+compound syntax without dereferencing a client-owned runtime object in the
+server module. Client components may also import the frozen `Carousel` object
+from the root or subpath.
+
+### Exports
+
+`Carousel`, `CarouselRoot`, `CarouselViewport`, `CarouselTrack`,
+`CarouselSlide`, `CarouselNavigation`, `CarouselPrevious`, `CarouselNext`,
+`CarouselControls`, `CarouselRotationControl`, `CarouselPicker`, and
+`CarouselPickerItem` are available with `CarouselRootProps`,
+`CarouselViewportProps`, `CarouselTrackProps`, `CarouselSlideProps`,
+`CarouselNavigationProps`, `CarouselPreviousProps`, `CarouselNextProps`,
+`CarouselControlsProps`, `CarouselRotationControlProps`, `CarouselPickerProps`,
+`CarouselPickerItemProps`, `CarouselSize`, `CarouselControlPlacement`,
+`CarouselControlSize`, `CarouselControlShape`, `CarouselControlVariant`,
+`CarouselNavigationVisibility`, and `CarouselPickerVariant` from
+root and subpath imports.
+
+| Prop | Values | Default |
+| --- | --- | --- |
+| `fill` | boolean | `false` |
+| `size` | `sm`, `md`, `lg` | `md` |
+| `controlPlacement` | `overlay`, `outside` | `overlay` |
+| `controlShape` | `rounded`, `circle` | `circle` |
+| `controlVariant` | `solid`, `soft`, `outline`, `ghost` | `soft` |
+| `visibility` (Navigation) | `always`, `interaction` | `always` |
+| `variant` (Picker) | `surface`, `bare` | `surface` |
+
+`Previous`, `Next`, and `RotationControl` accept independent `size`, `shape`,
+and `variant` overrides. `Navigation visibility="interaction"` reveals arrows
+on keyboard or fine-pointer interaction and briefly after touch. Picker's
+`surface` and `bare` variants are independent of arrow visibility.
+
+Each Slide and PickerItem requires the same unique `value`. A Slide's `label` becomes the default accessible PickerItem label. Authored children replace the default direction, rotation, or dot artwork without replacing Atom behavior.
+
+## Visual recipes and states
+
+Small, medium, and large root recipes coordinate control and picker geometry;
+`radius="surface|none"` coordinates Viewport and overlay-focus corners;
+direction and rotation controls may use `xs` through `xl` independently. Circle
+and rounded shapes plus solid, soft, outline, and ghost treatments keep control
+hierarchy themeable without application CSS. Overlay placement floats controls
+above authored slide content; outside placement moves them into document flow.
+Hover, focus-visible, active picker, disabled boundary, playing, and stopped
+states change paint without changing behavior. For overlay compositions, the
+focusable native Viewport activates a rounded Root overlay indicator above
+slide media so neither clipping nor artwork can crop or cover keyboard focus.
+Outside-control compositions retain an ordinary Viewport outline.
+
+## Tokens and CSS hooks
+
+Stable classes are `.brick-carousel`, `.brick-carousel__viewport`, `.brick-carousel__track`, `.brick-carousel__slide`, `.brick-carousel__navigation`, `.brick-carousel__previous`, `.brick-carousel__next`, `.brick-carousel__controls`, `.brick-carousel__rotation-control`, `.brick-carousel__picker`, and `.brick-carousel__picker-item`.
+
+Root exposes `data-control-placement`, `data-control-shape`,
+`data-control-variant`, optional `data-fill`, `data-radius`, `data-size`,
+`data-touch-navigation`, and `data-slot`;
+Navigation exposes `data-visibility`, Picker exposes `data-variant`, and each
+direction/rotation control exposes optional `data-size`, `data-shape`, and
+`data-variant`. Atom's `data-initialized`, `data-state`, `data-value`,
+`data-direction`, and disabled attributes remain available on the relevant
+parts. Brick keeps viewport movement instant until `data-initialized` is
+present so server-rendered loop boundaries settle before smooth motion begins.
+
+Public variables:
+
+- `--brick-carousel-gap`
+- `--brick-carousel-radius`
+- `--brick-carousel-control-size`
+- `--brick-carousel-control-radius`
+- `--brick-carousel-control-foreground`
+- `--brick-carousel-control-background`
+- `--brick-carousel-control-border-color`
+- `--brick-carousel-control-hover-background`
+- `--brick-carousel-control-shadow`
+- `--brick-carousel-focus-ring`
+- `--brick-carousel-picker-gap`
+- `--brick-carousel-picker-target-size`
+- `--brick-carousel-picker-background`
+- `--brick-carousel-picker-padding`
+- `--brick-carousel-picker-radius`
+- `--brick-carousel-dot-size`
+- `--brick-carousel-dot-background`
+- `--brick-carousel-dot-active-background`
+- `--brick-carousel-transition-duration`
+- `--brick-carousel-transition-easing`
+- `--brick-carousel-navigation-block-start`
+- `--brick-carousel-navigation-block-end`
+- `--brick-carousel-navigation-inline`
+- `--brick-carousel-navigation-transform`
+- `--brick-carousel-controls-block-end`
+
+## Customization
+
+Choose `size` and `controlPlacement` first. Then customize semantic theme tokens or the documented `--brick-carousel-*` variables. Use part `className` or `style` only for intentional product-specific composition, such as positioning controls around unusual media.
+
+Use `radius="none"` rather than overriding `--brick-carousel-radius` when the
+Carousel sits edge-to-edge inside a square Surface. Omission preserves the
+finished surface-radius default.
+
+## Responsive behavior
+
+Slides occupy one viewport width and snap during native horizontal scrolling.
+`fill` propagates an explicitly sized parent's block size through Viewport,
+Track, and Slide; it does not create a viewport-height policy or resize
+authored slide content such as Surface and Container. The recipe uses an
+internal grid so percentage heights also resolve when the Root receives its
+used size by growing inside a flex composition.
+Looping moves the authored boundary slide in the requested direction and then
+silently rebases; it does not clone authored content. Controls remain authored
+and may move outside the media with `controlPlacement="outside"`. Picker dots
+are ordinary named buttons, not Tabs. Automatic rotation pauses for focus and
+hover and must expose a stop/start control. Inactive slides remain mounted but
+are hidden from interaction and assistive technology by Atom.
+
+## Accessibility
+
+Give Root a concise accessible label. Slides are labelled groups, picker items
+are direct named buttons, and inactive slides are inert and assistive-hidden.
+If automatic rotation is enabled, include RotationControl, Previous, and Next,
+and author RotationControl before the rotating viewport so it is the first
+focusable carousel control. Rotation pauses for hover and focus and does not
+restart after focus without an explicit user action. Interaction-only arrows
+remain keyboard focusable even while visually at rest. Viewport and control
+focus indicators remain fully visible above clipped media and at rounded
+boundaries.
+
+## Composition, native props, and refs
+
+Refs target the root, viewport, track, slides, controls, and picker hosts. Atom-backed parts preserve supported native props, render, and `asChild`; Brick-only Navigation and Controls preserve native div props. Carousel does not own slide typography, actions, media, campaign content, or the parent height that `fill` consumes.
+
+## Examples
+
+```tsx
+<Carousel.Root defaultValue="launch" defaultAutoPlay interval={8000} aria-label="Company highlights">
+  <Carousel.Controls>
+    <Carousel.RotationControl size="xs" variant="ghost" />
+    <Carousel.Picker variant="bare">{pickerItems}</Carousel.Picker>
+  </Carousel.Controls>
+  <Carousel.Viewport>
+    <Carousel.Track>{slides}</Carousel.Track>
+  </Carousel.Viewport>
+  <Carousel.Navigation visibility="interaction"><Carousel.Previous /><Carousel.Next /></Carousel.Navigation>
+</Carousel.Root>
+```
+
+## Evidence
+
+- [Playground source](../../../playground/src/components/carousel/)
+- [Unit tests](../../../test/components/carousel/carousel.test.tsx)
+- [Type tests](../../../test/types/components/carousel.test.ts)
+- [Browser behavior](../../../playground/tests/components/carousel/behavior.spec.ts)
+- [Visual owner](../../../playground/tests/components/carousel/visual.spec.ts)
+- [Manual protocol](../../../playground/manual-tests/carousel.md)
+
+## Changelog
+
+See [`CHANGELOG.md`](CHANGELOG.md).
+
+---
+
+# Carousel changelog
+
+Carousel follows the package version of `@flowstack-ui/brick`.
+
+## Unreleased
+
+### Added
+
+- Added `Carousel.Root radius="surface|none"` so Viewport and overlay-focus
+  geometry can match square or rounded containing Surfaces without CSS.
+- Added an opt-in parent-fill recipe that propagates an explicitly owned block
+  size through Root, Viewport, Track, and Slide, including flex-grown parents,
+  without making ordinary Carousels viewport-sized.
+- Added public navigation and controls inset variables for responsive product
+  composition without overriding Carousel part selectors.
+
+### Fixed
+
+- Added an overlay-safe rounded focus-visible indicator above slide media so
+  Viewport clipping, edge-to-edge parents, and artwork cannot crop or cover
+  keyboard focus.
+- Updated the Atom behavior dependency so pointer activation of
+  RotationControl no longer races focus handling in Firefox or WebKit.
+
+### Added
+
+- Added the Atom-backed Carousel family with one-slide native scrolling, optional overlay or outside controls, optional picker dots, user-controlled automatic rotation, three sizes, public styling variables, and Agent Knowledge.
 
 
 # Checkbox
@@ -3764,6 +4210,12 @@ Nest only to create a deliberately narrower content region. Use
 `gutter="none"` when the outer Container already owns page gutters. Do not
 nest an equal or wider Container as ordinary grouping.
 
+Separate shell regions that should share one visual grid line must repeat the
+same named `measure` and `gutter`. For example, an App Bar, hero content, and
+an attached proof rail can each own a Container boundary while still aligning
+because they use the same recipes; do not recreate those widths independently
+in application CSS.
+
 ## Accessibility
 
 Container adds no role, name, landmark, focus target, state, or keyboard
@@ -3831,6 +4283,9 @@ Container follows the package version of `@flowstack-ui/brick`.
 ## Unreleased
 
 ### Added
+
+- Expanded Agent Knowledge for aligning separate shell regions through shared
+  Container measure and gutter recipes.
 
 - Added public Agent Knowledge for component selection, composition,
   CSS-delivery, recurring mistakes, and validation.
@@ -4719,11 +5174,17 @@ Divider follows the package version of `@flowstack-ui/brick`.
 
 ### Changed
 
+- Consumed Atom's direct server-safe Divider root so Next.js Server Component
+  static prerendering no longer serializes a namespace member as undefined.
 - Documented complete-group and consistent-owner placement for repeated
   boundaries, including disclosure content.
+- Corrected Agent Knowledge to teach Brick's direct `Divider` export rather
+  than a nonexistent `Divider.Root` compound part.
 
 ### Added
 
+- Added package and application regression coverage for direct Divider
+  rendering across the React Server Component boundary.
 - Added public Agent Knowledge for component selection, composition,
   CSS-delivery, recurring mistakes, and validation.
 
@@ -4834,8 +5295,9 @@ DrawerBranchProps
 | --- | --- | --- |
 | `justify` | `start`, `center`, `end`, `between` | `end` |
 
-Root and all behavior parts
-inherit Atom modal/drawer props. Header, Body, and Footer accept native div
+Root and the composable behavior parts inherit Atom modal/drawer props. Title
+is intentionally a native heading with an `as` level prop rather than an
+`asChild` layout host; Description is a native paragraph. Header, Body, and Footer accept native div
 attributes and `data-slot`. Footer `justify` controls simple logical action
 distribution; use layout components inside Footer for more complex grouping,
 and use `Button fullWidth` when an action itself should fill the row. Footer
@@ -4884,14 +5346,18 @@ pattern. Logical placement supports RTL.
 ## Accessibility
 
 Atom owns modal semantics, focus containment/return, Escape and outside
-dismissal. Supply a Title and, when useful, Description. Keep an accessible
-Close action and use Branch only for externally portalled content that belongs
-to the same modal interaction.
+dismissal. Supply a concise Title and, when useful, Description. When a visible
+heading would be inappropriate, give Content an explicit `aria-label` or
+`aria-labelledby`; do not pass a multi-element brand lockup through Title.
+Keep an accessible Close action and use Branch only for externally portalled
+content that belongs to the same modal interaction.
 
 ## Composition, native props, and refs
 
-Atom behavior parts inherit Atom composition/native props. Brick structure
-parts are native divs. Refs target the elements listed under anatomy.
+Atom behavior parts inherit their documented Atom composition/native props.
+Title remains a native heading and Description remains a native paragraph;
+neither is a generic polymorphic layout wrapper. Brick structure parts are
+native divs. Refs target the elements listed under anatomy.
 
 ## Examples
 
@@ -5995,6 +6461,192 @@ Form follows the package version of `@flowstack-ui/brick`.
   presentation remains available.
 
 
+# Frame
+
+# Frame
+
+Frame owns responsive logical size constraints for one local element. It does
+not own paint, spacing, child layout, parent participation, aspect ratio,
+overflow, semantics, or behavior.
+
+## When and where to use
+
+Use Frame for a minimum-width rail, maximum-width copy region, minimum-height
+media canvas, or maximum-height boundary around a ScrollArea.
+
+## When not to use
+
+Use Container for shared page measure, Stack/Grid for arrangement, their Item
+parts for parent participation, Surface for paint, AspectRatio for ratio, and
+ScrollArea for scrolling. Keep product-specific calculations in a Block or
+application until they qualify as a reusable primitive rule.
+
+## Installation and imports
+
+```tsx
+import { Frame } from "@flowstack-ui/brick";
+// or
+import { Frame } from "@flowstack-ui/brick/frame";
+
+import "@flowstack-ui/brick/styles.css";
+```
+
+With modular styles, load `core.css` once and `frame.css` on every route that
+renders Frame.
+
+```tsx
+import "@flowstack-ui/brick/styles/core.css";
+import "@flowstack-ui/brick/styles/frame.css";
+```
+
+Public exports are `Frame`, `FrameProps`, `FrameElement`, `FrameLength`, and
+`ResponsiveValue`.
+
+## Quick start
+
+```tsx
+<Frame maxInlineSize={{ initial: "100%", lg: "68ch" }}>
+  <Text>Readable content</Text>
+</Frame>
+```
+
+## Anatomy and DOM ownership
+
+Frame renders one selected native host. With `asChild`, it enhances exactly one
+existing element and preserves that element's props, style, events, and ref.
+
+```html
+<div class="brick-frame" data-frame data-slot="frame" style="--brick-frame-max-inline-size:68ch">...</div>
+```
+
+## API
+
+| Prop | Value | Default |
+| --- | --- | --- |
+| `as` | `div`, `span`, `section`, `article`, `aside`, `main`, `header`, `footer`, `nav`, `ul`, `ol`, `li` | `div` |
+| `asChild` | `boolean` | `false` |
+| `inlineSize` | responsive `string \| number` | native `auto` |
+| `minInlineSize` | responsive `string \| number` | native `auto` |
+| `maxInlineSize` | responsive `string \| number` | native `none` |
+| `blockSize` | responsive `string \| number` | native `auto` |
+| `minBlockSize` | responsive `string \| number` | native `auto` |
+| `maxBlockSize` | responsive `string \| number` | native `none` |
+| `slot` | `string` | `frame` |
+
+A responsive value is `{ initial, sm?, md?, lg?, xl? }`. A nonzero number is
+serialized as pixels; strings accept valid CSS values such as `rem`, `ch`,
+percentages, `min()`, `max()`, and `clamp()`.
+
+## Visual recipes and states
+
+Frame has no visual recipe or interactive state. It only resolves authored
+logical constraints. Unset properties retain native CSS sizing behavior.
+
+## Tokens and CSS hooks
+
+Stable hooks are `.brick-frame`, `data-frame`, `data-slot`, `data-slot="frame"`, and
+`--brick-frame-inline-size`, `--brick-frame-min-inline-size`,
+`--brick-frame-max-inline-size`, `--brick-frame-block-size`,
+`--brick-frame-min-block-size`, and `--brick-frame-max-block-size`, each with
+optional `-sm`, `-md`, `-lg`, and `-xl` suffixes.
+
+## Customization
+
+Choose the six props first. Scoped CSS remains appropriate for product-specific
+calculations or geometry that is not a simple size constraint; report repeated
+fallbacks so the public grammar can be reassessed.
+
+## Responsive behavior
+
+Values are mobile-first. Each authored value continues upward until another
+standard Brick breakpoint replaces it. No JavaScript viewport detection runs.
+Every Frame keeps its constraint variables locally scoped, so a parent's base
+or optional breakpoint values never replace a nested Frame's values.
+
+## Accessibility
+
+Frame adds no role, label, focusability, state, or keyboard behavior. Verify
+that constraints do not clip focus indicators or hide long content at zoom,
+narrow widths, RTL, or vertical writing modes. `maxBlockSize` does not make
+overflow reachable by itself.
+
+## Composition, native props, and refs
+
+```tsx
+<Grid.Item asChild>
+  <Frame minInlineSize={{ initial: 0, lg: "17rem" }}>...</Frame>
+</Grid.Item>
+```
+
+```tsx
+<Frame maxBlockSize={{ initial: "18rem", lg: "24rem" }}>
+  <ScrollArea.Root>
+    <ScrollArea.Viewport>...</ScrollArea.Viewport>
+  </ScrollArea.Root>
+</Frame>
+```
+
+Frame owns the constraint; Grid.Item owns grid participation; ScrollArea owns
+overflow. Native attributes, events, `className`, `style`, children, and the
+HTMLElement ref pass through.
+
+Frame's constraint declarations live in Brick's `brick.utilities` cascade
+layer, after component defaults and before effects. This makes an explicitly
+authored Frame constraint reliable on a composed finished-component host
+without `!important` or stylesheet import-order dependence.
+
+## Examples
+
+### Media canvas minimum height
+
+```tsx
+<Frame minBlockSize={{ initial: "18rem", lg: "28rem" }}>
+  <Surface>...</Surface>
+</Frame>
+```
+
+### One host with Surface paint
+
+```tsx
+<Frame asChild maxInlineSize="44rem">
+  <Surface as="article">...</Surface>
+</Frame>
+```
+
+## Evidence
+
+- [Focused component tests](../../../test/components/frame/)
+- [Type tests](../../../test/types/components/frame.test.ts)
+- [Playground evidence](../../../playground/src/components/frame/)
+- [Manual protocol](../../../playground/manual-tests/frame.md)
+- [Browser behavior](../../../playground/tests/components/frame/behavior.spec.ts)
+- [Visual owner](../../../playground/tests/components/frame/visual.spec.ts)
+
+## Changelog
+
+See the [Frame changelog](CHANGELOG.md) and the
+[package changelog](../../../CHANGELOG.md).
+
+---
+
+# Frame changelog
+
+Frame follows the package version of `@flowstack-ui/brick`.
+
+## Unreleased
+
+### Added
+
+- Initial responsive logical size-constraint primitive with six focused props,
+  semantic hosts, one-child composition, public custom properties, and Agent
+  Knowledge guidance.
+
+### Fixed
+
+- Isolated base and responsive variables on every Frame so a nested Frame no
+  longer inherits any parent constraint.
+
+
 # Grid
 
 # Grid
@@ -6043,7 +6695,7 @@ Do not combine modular styles with `styles.css` or `tokens.css`.
 Public exports are `Grid`, `GridRootProps`, `GridItemProps`,
 `GridRootElement`, `GridItemElement`, `GridColumns`, `GridLine`, `GridSpan`,
 `GridColumnSpan`, `GridGap`, `GridMinItemSize`, `GridAlign`, `GridJustify`,
-`GridSelfAlign`, and `GridSelfJustify`.
+`GridSelfAlign`, `GridSelfJustify`, and `ResponsiveValue`.
 
 ## Quick start
 
@@ -6100,13 +6752,13 @@ corresponding `HTMLElement` ref target.
 | Prop | Values | Default |
 | --- | --- | --- |
 | `as` | `div`, `span`, `section`, `article`, `nav`, `header`, `footer`, `main`, `aside`, `ul`, `ol`, `li` | `div` |
-| `columns` | `1`–`12` | `1` |
+| `columns` | `1`–`12`, or responsive object | `1` |
 | `minItemSize` | `xs`, `sm`, `md`, `lg`, `xl` | unset |
-| `gap` | `0`, `1`, `2`, `3`, `4`, `5`, `6` | `0` |
-| `rowGap` | `0`, `1`, `2`, `3`, `4`, `5`, `6` | inherits `gap` |
-| `columnGap` | `0`, `1`, `2`, `3`, `4`, `5`, `6` | inherits `gap` |
-| `align` | `stretch`, `start`, `center`, `end`, `baseline` | `stretch` |
-| `justify` | `stretch`, `start`, `center`, `end` | `stretch` |
+| `gap` | `0`, `1`, `2`, `3`, `4`, `5`, `6`, or responsive object | `0` |
+| `rowGap` | `0`, `1`, `2`, `3`, `4`, `5`, `6`, or responsive object | inherits `gap` |
+| `columnGap` | `0`, `1`, `2`, `3`, `4`, `5`, `6`, or responsive object | inherits `gap` |
+| `align` | `stretch`, `start`, `center`, `end`, `baseline`, or responsive object | `stretch` |
+| `justify` | `stretch`, `start`, `center`, `end`, or responsive object | `stretch` |
 | `slot` | `string` | `grid` |
 | `children` | `ReactNode` | optional |
 
@@ -6119,18 +6771,23 @@ selects intrinsic mode; otherwise Root uses explicit mode.
 | --- | --- | --- |
 | `as` | `div`, `span`, `section`, `article`, `header`, `footer`, `aside`, `li` | `div` |
 | `asChild` | `boolean` | `false` |
-| `columnSpan` | `1`–`12`, `full` | unset |
+| `columnSpan` | `1`–`12`, `full`, or responsive object | unset |
 | `columnStart` / `columnEnd` | grid lines `1`–`13` | unset |
-| `rowSpan` | `1`–`12` | unset |
+| `rowSpan` | `1`–`12`, or responsive object | unset |
 | `rowStart` / `rowEnd` | grid lines `1`–`13` | unset |
-| `align` | `auto`, `stretch`, `start`, `center`, `end`, `baseline` | `auto` |
-| `justify` | `auto`, `stretch`, `start`, `center`, `end` | `auto` |
+| `align` | `auto`, `stretch`, `start`, `center`, `end`, `baseline`, or responsive object | `auto` |
+| `justify` | `auto`, `stretch`, `start`, `center`, `end`, or responsive object | `auto` |
 | `slot` | `string` | `grid-item` |
 | `children` | `ReactNode` | optional |
 
 On each axis, a span and explicit end are mutually exclusive. A start may
 combine with a span or end. `columnSpan="full"` cannot combine with column
 start/end.
+
+A responsive span is deliberately unanchored and cannot combine with explicit
+start/end lines. Keep explicit lines static, or let the responsive item
+auto-place. This prevents stale line geometry when a span changes to or from
+`full`.
 
 Set `asChild` when an existing element should itself be the grid item:
 
@@ -6209,12 +6866,25 @@ Paint and outer sizing remain consumer or Surface/Card responsibilities.
 
 ## Responsive behavior
 
-Intrinsic mode responds to Grid's available inline size without JavaScript,
-viewport breakpoints, or responsive prop objects. Its `min(100%, …)` track
+Intrinsic mode responds to Grid's available inline size without JavaScript or
+viewport breakpoints. Its `min(100%, …)` track
 safeguard prevents the minimum token from forcing page overflow.
 
-Explicit mode keeps the requested track count. Application CSS owns a
-different mode or count at application breakpoints.
+Explicit mode accepts Brick's responsive object grammar:
+
+```tsx
+<Grid.Root columns={{ initial: 1, md: 2, lg: 4 }} gap={{ initial: "2", lg: "4" }}>
+  <Card.Root>First</Card.Root>
+  <Grid.Item columnSpan={{ initial: "full", lg: 2 }}>
+    <Card.Root>Featured</Card.Root>
+  </Grid.Item>
+</Grid.Root>
+```
+
+Objects require `initial` and may add `sm`, `md`, `lg`, and `xl`. The same
+grammar applies to Root gaps/alignment and unanchored Item spans/alignment.
+It never changes DOM or focus order. `minItemSize` and explicit line placement
+remain static.
 
 ## Accessibility
 
@@ -6289,6 +6959,9 @@ Grid follows the package version of `@flowstack-ui/brick`.
 
 ### Added
 
+- Added focused responsive values for explicit Root columns, gaps, alignment,
+  and unanchored Item spans/alignment while preserving intrinsic reflow,
+  source order, and static explicit line placement.
 - Added `Grid.Item asChild` so one authored link, Surface, or component can
   receive Grid placement and self-alignment without an extra wrapper.
 - Initial compound `Grid.Root` and optional `Grid.Item` API.
@@ -6818,6 +7491,8 @@ Icon follows the package version of `@flowstack-ui/brick`.
 
 ### Added
 
+- Added public Agent Knowledge for Icon selection, decorative/informative
+  semantics, control naming, currentColor, directional RTL, and composition.
 - Initial SVG-only `Icon` API with decorative and informative modes, six
   sizes, semantic currentColor tones, opt-in RTL mirroring, direct SVG
   composition, and public customization variables.
@@ -7131,7 +7806,7 @@ an authored unavailable state.
 ## When not to use
 
 Use Avatar for people or entity identity, Icon for inline SVG symbols, and
-native CSS backgrounds for decorative background paint. Image is not an
+Surface.Media for decorative layered background media. Image is not an
 optimizer, gallery, lightbox, figure/caption, upload editor, or framework image
 loader.
 
@@ -7157,9 +7832,11 @@ Add the modular stylesheet for every other Brick component the route renders.
 Do not combine modular styles with `styles.css` or `tokens.css`.
 
 
-Public exports are `Image`, `ImageRootProps`, `ImageContentProps`,
-`ImageFallbackProps`, `ImageFit`, `ImagePosition`, `ImageRadius`, and
-`ImageFrame`.
+Public exports are `Image`, `ImageRoot`, `ImageContent`, `ImageFallback`,
+`ImageRootProps`, `ImageContentProps`, `ImageFallbackProps`, `ImageFit`,
+`ImagePosition`, `ImageRadius`, and `ImageFrame`.
+Direct parts are equivalent to the compound namespace and support imports from
+React Server Components without a client wrapper around `Image`.
 
 ## Quick start
 
@@ -7194,6 +7871,7 @@ exclusive under Atom's source state.
 | `radius` | `none`, `sm`, `md`, `lg`, `full` | `none` |
 | `frame` | `none`, `subtle` | `none` |
 | `ratio` | positive finite number | intrinsic |
+| `fill` | `boolean` | `false` |
 | `onLoadingStatusChange` | `(status) => void` | none |
 
 ### Content and Fallback
@@ -7207,12 +7885,28 @@ its image ref. `src` belongs to Root.
 of those values. Its default covers all three non-loaded states. All parts
 retain Atom `render` and `asChild` composition.
 
+`fill` makes Root, Content, and Fallback consume a block size established by
+the parent. It is useful for media slots and other deliberately sized regions:
+
+```tsx
+<Surface.Media>
+  <Image.Root fill fit="cover" src="/workspace.jpg">
+    <Image.Content alt="" height={675} width={1200} />
+  </Image.Root>
+</Surface.Media>
+```
+
+`fill` does not position Image absolutely or infer geometry. The parent must
+establish the available block size; `fit` and `position` still control the
+pixels inside it. Prefer `ratio` when the image should establish its own box.
+
 ## Visual recipes and states
 
 Fit changes only `object-fit`; position changes only `object-position`. Logical
 start/end reverse under RTL without mirroring pixels. Radius clips the complete
-frame. `frame="subtle"` adds a semantic canvas and border. Ratio reserves the
-box; without it, loaded native dimensions remain intrinsic.
+frame. `frame="none"` reserves no border geometry, so embedded media reaches
+the Root edge. `frame="subtle"` adds a semantic canvas and one-pixel border.
+Ratio reserves the box; without it, loaded native dimensions remain intrinsic.
 
 Atom exposes `data-state="idle | loading | loaded | error"`. Content appears
 only when loaded. Authored Fallback fills the same reserved box for its selected
@@ -7223,7 +7917,8 @@ states.
 Stable classes are `.brick-image`, `.brick-image__content`, and
 `.brick-image__fallback`. Stable slots are `image`, `image-content`, and
 `image-fallback` through `data-slot`. Root exposes `data-fit`, `data-position`, `data-radius`,
-`data-frame`, optional `data-ratio`, and Atom `data-state`.
+`data-frame`, optional `data-ratio`, optional `data-fill`, and Atom
+`data-state`.
 
 Public variables:
 
@@ -7232,6 +7927,7 @@ Public variables:
 - `--brick-image-radius`
 - `--brick-image-frame-background`
 - `--brick-image-frame-border`
+- `--brick-image-frame-border-width`
 - `--brick-image-fallback-foreground`
 - `--brick-image-fallback-inset`
 
@@ -7322,7 +8018,21 @@ Image follows the package version of `@flowstack-ui/brick`.
 
 ## Unreleased
 
+### Fixed
+
+- Made `frame="none"` reserve zero border width so embedded media reaches the
+  Root edge without a transparent one-pixel seam; `frame="subtle"` retains the
+  established semantic border.
+
 ### Added
+
+- Added explicit `fill` geometry so Image Root, Content, and Fallback can
+  consume a parent-established block size, including `Surface.Media`, while
+  retaining independent fit and focal-position recipes.
+
+- Added direct `ImageRoot`, `ImageContent`, and `ImageFallback` exports so
+  React Server Components can reference the client parts without serializing a
+  compound namespace.
 
 - Added public Agent Knowledge for component selection, composition,
   CSS-delivery, recurring mistakes, and validation.
@@ -8246,6 +8956,9 @@ List follows the package version of `@flowstack-ui/brick`.
 
 ### Added
 
+- Added public Agent Knowledge for native list meaning, structured row anatomy,
+  compact trailing content, narrow-screen reading, CSS delivery, and choosing
+  navigation, interaction, or data owners instead.
 - Added the Atom-backed seven-part `List` family with native ordered and
   unordered semantics, structured rows, marker, variant, size, density,
   disabled presentation, nesting, composition, and public CSS properties.
@@ -10925,6 +11638,251 @@ Scroll Area follows the package version of `@flowstack-ui/brick`.
 - Added semantic scrollbar variables, focus, composition, and evidence.
 
 
+# Section
+
+# Section
+
+Section owns responsive logical block rhythm for major page and application
+regions. It renders one native element and adds no paint, inline measure,
+child arrangement, content anatomy, role, or behavior.
+
+## When and where to use
+
+Use Section for a thematic region that needs larger, themeable page rhythm
+than the local Stack spacing scale. A Section commonly contains Container,
+then Stack or Grid.
+
+## When not to use
+
+Use Stack or Grid for child relationships, Container for measure and gutters,
+Surface for paint, and a qualified Block for a complete reusable content
+pattern. Do not use the default `section` host as a generic styling wrapper;
+choose `as="div"` when the content is not a thematic section.
+
+## Installation and imports
+
+```tsx
+import { Section } from "@flowstack-ui/brick";
+// or
+import { Section } from "@flowstack-ui/brick/section";
+
+import "@flowstack-ui/brick/styles.css";
+```
+
+For measured route-aware CSS, load the shared foundation once and the Section
+stylesheet on every route that renders it:
+
+```tsx
+import "@flowstack-ui/brick/styles/core.css";
+import "@flowstack-ui/brick/styles/section.css";
+```
+
+Add the modular stylesheet for every other Brick component the route renders.
+Do not combine modular styles with `styles.css` or `tokens.css`.
+
+Public exports are `Section`, `SectionProps`, `SectionElement`, and
+`SectionSpacing`.
+
+## Quick start
+
+```tsx
+<Section spacing={{ initial: "md", lg: "xl" }}>
+  <Container>
+    <VStack gap="4">
+      <Text as="h2" variant="title-lg">Services</Text>
+      <Grid.Root minItemSize="md" gap="4">{services}</Grid.Root>
+    </VStack>
+  </Container>
+</Section>
+```
+
+## Anatomy and DOM ownership
+
+Section renders exactly one selected native element:
+
+```html
+<section
+  class="brick-section"
+  data-spacing="md"
+  data-spacing-lg="xl"
+  data-slot="section"
+>...</section>
+```
+
+It inserts no inner element and preserves authored source, reading, and focus
+order. The selected host is the `HTMLElement` ref target.
+
+## API
+
+| Prop | Values | Default |
+| --- | --- | --- |
+| `as` | `section`, `div`, `article`, `aside` | `section` |
+| `spacing` | responsive `none`, `sm`, `md`, `lg`, `xl`, `2xl` | `md` |
+| `startSpacing` | responsive Section spacing | follows `spacing` |
+| `endSpacing` | responsive Section spacing | follows `spacing` |
+| `slot` | `string` | `section` |
+| `children` | `ReactNode` | optional |
+
+A responsive value uses `{ initial, sm?, md?, lg?, xl? }`. Native global,
+ARIA, and data attributes, events, `className`, `style`, and an `HTMLElement`
+ref pass through.
+
+## Visual recipes and states
+
+The default recipes are:
+
+| Recipe | Fluid block spacing |
+| --- | --- |
+| `none` | `0` |
+| `sm` | `clamp(2rem, 4vw, 3rem)` |
+| `md` | `clamp(3rem, 6vw, 5rem)` |
+| `lg` | `clamp(4rem, 8vw, 7rem)` |
+| `xl` | `clamp(5rem, 10vw, 9rem)` |
+| `2xl` | `clamp(6rem, 12vw, 12rem)` |
+
+Section applies logical block padding only. It has no appearance, background,
+inline padding, width, display mode, gap, hover, focus, disabled, loading,
+validation, or motion state.
+
+## Tokens and CSS hooks
+
+Stable hooks are `.brick-section`, `data-slot`, `[data-slot="section"]`,
+`data-spacing`, `data-start-spacing`, `data-end-spacing`, and their `-sm|-md|-lg|-xl`
+responsive forms.
+
+Public variables:
+
+- `--brick-section-space-none`
+- `--brick-section-space-sm`
+- `--brick-section-space-md`
+- `--brick-section-space-lg`
+- `--brick-section-space-xl`
+- `--brick-section-space-2xl`
+- `--brick-section-spacing`
+- `--brick-section-start-spacing`
+- `--brick-section-end-spacing`
+
+## Customization
+
+Themes should override the named recipe variables. One deliberate region may
+override a resolved edge without adding a new public recipe:
+
+```tsx
+<Section
+  style={{
+    "--brick-section-start-spacing": "clamp(5rem, 9vw, 10rem)",
+  }}
+>
+  ...
+</Section>
+```
+
+This escape hatch does not make arbitrary values part of the React API.
+
+## Responsive behavior
+
+Responsive values use Brick's mobile-first `sm`, `md`, `lg`, and `xl`
+breakpoints. A value continues upward until a later breakpoint overrides it.
+Fluid recipes continue adapting between those boundaries without JavaScript.
+
+Use `spacing` for equal edges. Use `startSpacing` or `endSpacing` only when
+page composition requires an intentionally different transition.
+
+## Accessibility
+
+Section adds no role, name, landmark label, state, focus target, or keyboard
+behavior. The default native `section` represents a thematic grouping and
+normally contains a heading. Use `as="div"` when only spacing is needed.
+Author IDs or labels only when the document structure requires them.
+
+Logical padding works in RTL and vertical writing modes. Section does not
+clip focus indicators or impose fixed dimensions.
+
+## Composition, native props, and refs
+
+For an unpainted measured region:
+
+```tsx
+<Section spacing="lg">
+  <Container>...</Container>
+</Section>
+```
+
+When paint must cover the complete Section rhythm, enhance the same host:
+
+```tsx
+<Surface asChild level="subtle">
+  <Section spacing="xl">
+    <Container>...</Container>
+  </Section>
+</Surface>
+```
+
+On that shared host, Section owns logical block padding and Surface owns
+paint. A selected Surface inset can still supply inline inset; use
+`inset="none"` when Container should remain the only inline-gutter owner.
+
+When only a contained panel is painted:
+
+```tsx
+<Section spacing="xl">
+  <Container>
+    <Surface inset="lg">...</Surface>
+  </Container>
+</Section>
+```
+
+Section does not expose arbitrary length props, viewport sizing, safe-area
+policy, paint, width, child alignment, or Block content anatomy.
+
+## Examples
+
+### Asymmetric transition between adjacent regions
+
+```tsx
+<Section spacing="lg" endSpacing="2xl">
+  <Container>...</Container>
+</Section>
+```
+
+### Spacing without sectioning semantics
+
+```tsx
+<Section as="div" spacing="sm">
+  Supporting layout content
+</Section>
+```
+
+## Evidence
+
+- [Playground route source](../../../playground/src/components/section/)
+- [Focused component tests](../../../test/components/section/)
+- [Type tests](../../../test/types/components/section.test.ts)
+- [Browser behavior](../../../playground/tests/components/section/behavior.spec.ts)
+- [Visual owner](../../../playground/tests/components/section/visual.spec.ts)
+- [Manual protocol](../../../playground/manual-tests/section.md)
+
+## Changelog
+
+See the [Section changelog](CHANGELOG.md) and
+[package changelog](../../../CHANGELOG.md).
+
+---
+
+# Section changelog
+
+Section follows the package version of `@flowstack-ui/brick`.
+
+## Unreleased
+
+### Added
+
+- Initial one-root Section layout primitive with semantic hosts, six named
+  fluid rhythm recipes, responsive values, independent logical edge
+  overrides, themeable public variables, Agent Knowledge, and complete
+  composition guidance for Surface, Container, Stack, and Grid.
+
+
 # Select
 
 # Select
@@ -12121,9 +13079,10 @@ Slider follows the package version of `@flowstack-ui/brick`.
 
 # Stack
 
-Stack is Brick's one-dimensional layout primitive. Use Stack or VStack for
-vertical flows and HStack for horizontal rows. All three share one rendered
-contract and tokenized spacing scale.
+Stack is Brick's one-dimensional layout primitive. Use VStack for a fixed
+vertical flow, HStack for a fixed horizontal row, and Stack when the axis
+changes at a Brick breakpoint. Stack.Item controls how an individual child
+uses available space.
 
 ## When and where to use
 
@@ -12161,8 +13120,9 @@ Do not combine modular styles with `styles.css` or `tokens.css`.
 
 
 Public exports are `Stack`, `HStack`, `VStack`, `StackProps`, `HStackProps`,
-`VStackProps`, `StackElement`, `StackDirection`, `StackGap`, `StackAlign`, and
-`StackJustify`.
+`VStackProps`, `StackElement`, `StackDirection`, `StackGap`, `StackAlign`,
+`StackJustify`, `Stack.Item`, `StackItemProps`, `StackItemElement`,
+`StackItemAlign`, `StackItemFlex`, `ResponsiveValue`, and `StackBreakpoint`.
 
 ## Quick start
 
@@ -12207,8 +13167,14 @@ The selected element is the ref target.
 | `align` | `stretch`, `start`, `center`, `end`, `baseline` | `stretch` |
 | `justify` | `start`, `center`, `end`, `between`, `around`, `evenly` | `start` |
 | `wrap` | `boolean` | `false` |
+| `startSpacing` | spacing values `0` through `6` | `0` |
+| `endSpacing` | spacing values `0` through `6` | `0` |
 | `slot` | `string` | `stack` |
 | `children` | `ReactNode` | optional |
+
+Direction, gap, align, justify, wrap, and logical edge spacing accept either a
+plain value or `{ initial, sm?, md?, lg?, xl? }`. The breakpoint thresholds
+are 30rem, 48rem, 64rem, and 80rem, matching Show and Hide.
 
 HStack fixes `direction="row"` and defaults `align="center"`. VStack fixes
 `direction="column"` and defaults `align="stretch"`. Their prop types omit
@@ -12225,7 +13191,23 @@ axis; wrapping is opt-in. The root has `min-inline-size: 0` so shrinking and
 truncating children can remain contained.
 
 Stack has no interactive state, animation, background, border, radius,
-typography, size, margin, padding, position, or overflow.
+typography, size, margin, position, or overflow. Padding remains zero except
+for explicitly requested logical main-axis edge spacing.
+
+### Stack.Item
+
+`Stack.Item` renders a `div` by default and supports `asChild` for applying the
+flex recipe to an existing direct child. `content` is content-sized and
+shrinkable, `fixed` neither grows nor shrinks, `auto` grows from its content
+basis, and numeric values `1` through `4` divide available space
+proportionally. Both `flex` and `align` accept responsive values, allowing an
+item to remain content-sized in a mobile column and become proportional in a
+desktop row. `align` overrides the parent's cross-axis alignment.
+
+Use the default Item wrapper when proportional siblings need equal outer
+tracks despite different child padding or borders. Use `asChild` when the
+existing child itself should be the flex item and its own box geometry is an
+intentional part of allocation.
 
 ## Tokens and CSS hooks
 
@@ -12239,6 +13221,8 @@ Stable hooks:
 ```
 
 Optional metadata uses `data-align`, `data-justify`, and `data-wrap`.
+Logical edge spacing uses `data-start-spacing` and `data-end-spacing`, with
+breakpoint-suffixed forms for responsive overrides.
 The root always exposes `data-slot`, `data-direction`, and `data-gap`.
 
 Public variable:
@@ -12267,9 +13251,16 @@ Local sizing and paint remain consumer responsibilities.
 
 ## Responsive behavior
 
-Stack has no responsive objects or internal breakpoints. Use `wrap` for
-content-driven row reflow and application CSS for layout-mode changes.
-Direction and start/end follow the inherited writing direction.
+Use responsive Stack values when the same content changes arrangement. Use
+Show and Hide only when the actual interface changes. Direction and logical
+start/end spacing follow the inherited writing direction.
+
+```tsx
+<Stack direction={{ initial: "column", lg: "row" }} gap={{ initial: "4", lg: "6" }}>
+  <Stack.Item flex={1}><Surface>Copy</Surface></Stack.Item>
+  <Stack.Item flex={2}><Image.Root>...</Image.Root></Stack.Item>
+</Stack>
+```
 
 ## Accessibility
 
@@ -12283,9 +13274,9 @@ localization, and RTL without changing child semantics.
 
 ## Composition, native props, and refs
 
-Use `as` to select an approved semantic host. Stack does not expose `asChild`,
-`render`, child cloning, separators, responsive props, arbitrary gaps, or item
-grow/shrink/order APIs. The `HTMLElement` ref targets the selected host.
+Use `as` to select an approved semantic root. Root does not expose `asChild`;
+Stack.Item does. Reverse direction, item order, arbitrary breakpoints, and raw
+grow/shrink/basis props remain excluded.
 
 ## Examples
 
@@ -12331,6 +13322,11 @@ Stack follows the package version of `@flowstack-ui/brick`.
 
 ### Added
 
+- Added responsive direction, gap, alignment, distribution, wrapping, and
+  logical edge spacing at the canonical Brick breakpoints.
+- Added Stack.Item with content, fixed, auto, and proportional flex recipes,
+  self-alignment, semantic hosts, and optional asChild composition.
+
 - Initial Stack, HStack, and VStack API from one shared implementation.
 - Column and row directions, tokenized gaps zero through six, cross-axis
   alignment, main-axis distribution, and opt-in wrapping.
@@ -12344,8 +13340,10 @@ Stack follows the package version of `@flowstack-ui/brick`.
 # Surface
 
 Surface paints a semantic region with a controlled background level, optional
-border, elevation, radius, and inset. It renders one native element and adds no
-layout, clipping, interaction, role, or runtime color context.
+border, elevation, radius, and inset. Ordinary Surface renders one native
+element. Optional Media, Scrim, and Content parts layer decorative authored
+media behind foreground content without adding interaction or runtime color
+context.
 
 ## When and where to use
 
@@ -12382,8 +13380,10 @@ Add the modular stylesheet for every other Brick component the route renders.
 Do not combine modular styles with `styles.css` or `tokens.css`.
 
 
-Public exports are `Surface`, `SurfaceProps`, `SurfaceElement`,
-`SurfaceLevel`, `SurfaceElevation`, `SurfaceRadius`, and `SurfaceInset`.
+Public exports are `Surface`, `SurfaceRoot`, `SurfaceMedia`, `SurfaceScrim`,
+`SurfaceContent`, their prop types, `SurfaceScrimStrength`,
+`SurfaceScrimDirection`, `SurfaceProps`, `SurfaceElement`, `SurfaceLevel`,
+`SurfaceElevation`, `SurfaceRadius`, and `SurfaceInset`.
 
 ## Quick start
 
@@ -12398,7 +13398,7 @@ Public exports are `Surface`, `SurfaceProps`, `SurfaceElement`,
 
 ## Anatomy and DOM ownership
 
-Surface renders exactly one selected native element:
+Ordinary Surface renders exactly one selected native element:
 
 ```html
 <section
@@ -12415,13 +13415,30 @@ Surface renders exactly one selected native element:
 ```
 
 It never inserts an inner element, clips descendants, or changes child order.
-The selected element is the `HTMLElement` ref target.
+The selected element is the `HTMLElement` ref target. Authored layered parts
+render only when explicitly composed:
+
+| Part | Element | Responsibility |
+| --- | --- | --- |
+| `Surface.Root` / callable `Surface` | selected native host | paint, edge, radius, inset, and layered containing block when needed |
+| `Surface.Media` | `div` | decorative noninteractive image, video, canvas, SVG, or other visual layer |
+| `Surface.Scrim` | `div` | optional contrast-protecting uniform paint or logical gradient |
+| `Surface.Content` | `div` | foreground application content |
+
+`Surface.Content` establishes the foreground layer but deliberately adds no
+padding. When foreground content needs spacing on every edge, set `inset` on
+the Surface root. Stack `startSpacing` and `endSpacing` remain primary-axis
+spacing and are not substitutes for a Surface inset.
+
+Direct named part exports are equivalent to the compound parts and are safe to
+import from React Server Components.
 
 ## API
 
 | Prop | Values | Default |
 | --- | --- | --- |
 | `as` | `div`, `section`, `article`, `aside`, `nav`, `main`, `header`, `footer`, `form`, `li` | `div` |
+| `asChild` | `boolean` | `false` |
 | `level` | `canvas`, `base`, `subtle`, `raised` | `base` |
 | `bordered` | `boolean` | `false` |
 | `elevation` | `none`, `low`, `medium`, `high` | `none` |
@@ -12430,8 +13447,29 @@ The selected element is the `HTMLElement` ref target.
 | `slot` | `string` | `surface` |
 | `children` | `ReactNode` | optional |
 
+### Scrim
+
+| Prop | Values | Default |
+| --- | --- | --- |
+| `strength` | `soft`, `medium`, `strong` | `medium` |
+| `direction` | `uniform`, `inline-start`, `inline-end`, `block-start`, `block-end` | `uniform` |
+| `slot` | `string` | `surface-scrim` |
+
+Media and Content accept authored children, native div attributes, class,
+style, slot, and refs. Media and Scrim are always `aria-hidden` and ignore
+pointer interaction. Scrim accepts no children.
+
+Scrim strength is deliberately perceptual rather than a small numeric step.
+It changes the starting paint intensity and, for directional scrims, the
+gradient reach. Themes normally set only `--brick-surface-scrim-color`; Brick
+keeps the relative `soft`, `medium`, and `strong` ladder consistent.
+
 Native global/ARIA/data attributes, events, `className`, `style`, and an
 `HTMLElement` ref pass through.
+
+With `asChild`, Surface applies its paint recipes to exactly one existing
+non-Fragment element without adding a wrapper. It preserves the child's host,
+class, style, handlers, and ref while composing the forwarded Surface ref.
 
 ## Visual recipes and states
 
@@ -12464,6 +13502,14 @@ Public variables:
 - `--brick-surface-shadow`
 - `--brick-surface-radius`
 - `--brick-surface-padding`
+- `--brick-surface-scrim-color`
+- `--brick-surface-scrim-soft`
+- `--brick-surface-scrim-medium`
+- `--brick-surface-scrim-strong`
+- `--brick-surface-scrim-gradient-stop`
+- `--brick-surface-scrim-gradient-stop-soft`
+- `--brick-surface-scrim-gradient-stop-medium`
+- `--brick-surface-scrim-gradient-stop-strong`
 
 ## Customization
 
@@ -12504,9 +13550,24 @@ Surface paints; Container constrains; Stack and Grid arrange; Card represents a
 self-contained content object. Native props and refs target the one authored
 host.
 
-Surface does not expose `asChild`, `render`, custom-component hosts, tones,
-translucency, clipping, style-system props, runtime context, responsive
-objects, or arbitrary recipe values.
+Surface does not expose `render`, custom-component hosts, tones,
+translucency, generic clipping props, style-system props, runtime context,
+responsive objects, or arbitrary recipe values. Media clipping is limited to
+its own decorative layer.
+
+When another Brick component already owns the semantic or layout host, use
+the narrow wrapper-free composition path:
+
+```tsx
+<Surface asChild level="subtle">
+  <Section spacing="xl">
+    <Container>...</Container>
+  </Section>
+</Surface>
+```
+
+`asChild` requires one element and rejects Fragments. It does not change the
+child's semantics or turn Surface into a generic render-prop API.
 
 ## Examples
 
@@ -12530,6 +13591,30 @@ objects, or arbitrary recipe values.
 </Surface>
 ```
 
+### Decorative media behind content
+
+```tsx
+<Surface as="section" radius="none">
+  <Surface.Media>
+    <ImageRoot src="/workspace.jpg" fill fit="cover">
+      <ImageContent alt="" width={1200} height={675} />
+    </ImageRoot>
+  </Surface.Media>
+  <Surface.Scrim direction="inline-start" strength="strong" />
+  <Surface.Content>
+    <Container>
+      <VStack gap="3">Foreground content</VStack>
+    </Container>
+  </Surface.Content>
+</Surface>
+```
+
+Background media is decorative. Keep meaningful images and controlled video
+in normal document content. The media owner retains loading, fitting, playback,
+poster, caption, and reduced-motion policy. Scrim improves contrast but does
+not replace contrast verification across every media state. When layered parts
+are used, place all foreground children inside Content.
+
 ## Evidence
 
 - [Playground route source](../../../playground/src/components/surface/)
@@ -12552,7 +13637,25 @@ Surface follows the package version of `@flowstack-ui/brick`.
 
 ## Unreleased
 
+### Changed
+
+- Clarified in public and Agent Knowledge guidance that the Surface root's
+  `inset` recipe owns four-sided content spacing, while `Surface.Content` owns
+  foreground layering and Stack edge spacing remains axis-specific.
+- Made `soft`, `medium`, and `strong` Scrim recipes perceptually distinct by
+  widening both paint intensity and directional gradient reach while keeping
+  theme ownership limited to the semantic scrim color.
+
 ### Added
+
+- Added wrapper-free `asChild` composition for applying Surface paint to one
+  existing semantic or layout host, including class/style/event/ref merging
+  and explicit Section composition guidance.
+
+- Added optional `Surface.Media`, `Surface.Scrim`, and `Surface.Content`
+  layered composition with direct RSC-safe part exports, decorative media
+  semantics, logical scrim gradients, public scrim tokens, and unchanged
+  ordinary Surface output.
 
 - Initial one-root `Surface` API with four semantic levels, independent border,
   elevation, radius, and inset recipes, controlled semantic hosts, native
@@ -13192,13 +14295,27 @@ role="tab"`, Content to `div role="tabpanel"`, and Indicator to a decorative
 
 Public exports are `Tabs`, `TabsRoot`, `TabsList`, `TabsTrigger`, `TabsContent`,
 `TabsIndicator`, `TabsRootProps`, `TabsListProps`, `TabsTriggerProps`,
-`TabsContentProps`, `TabsIndicatorProps`, `TabsSize`, and `TabsVariant`.
+`TabsContentProps`, `TabsIndicatorProps`, `TabsContentInset`, `TabsLayout`,
+`TabsListColumns`, `TabsListRadius`, `TabsSize`, and `TabsVariant`.
 
 | Prop | Values | Default |
 | --- | --- | --- |
 | `size` | `sm`, `md`, `lg` | `md` |
 | `variant` | `line`, `solid`, `soft`, `enclosed` | `line` |
 | `fullWidth` | `boolean` | `false` |
+| `layout` | `auto`, `stacked`, `side`, or responsive object | `auto` |
+
+List accepts `columns={1|2|3|4}` or a responsive object. Omission preserves
+the ordinary one-axis list. Explicit columns create equal visual tracks while
+keeping Atom's orientation, DOM order, arrow keys, selection, and ARIA model.
+
+List accepts `radius="default|none"`. `default` preserves the variant recipe;
+`none` removes List and Trigger corners for a solid or soft selector nested
+inside a clipping parent that owns the outer corners.
+
+Content accepts `inset` values `none`, `sm`, `md`, and `lg`. Omission keeps
+the root-size-derived panel spacing; `none` supports edge-to-edge media or a
+nested Surface. The selected value is exposed as `data-inset`.
 
 List, Trigger, Content, and Indicator extend their exact Atom props. Atom also
 supplies `orientation`, `activationMode`, `loop`, controlled/uncontrolled
@@ -13225,7 +14342,10 @@ include `--brick-tabs-foreground`, `--brick-tabs-selected-foreground`,
 `--brick-tabs-border-color`, `--brick-tabs-indicator-color`,
 `--brick-tabs-focus-ring`, `--brick-tabs-gap`, `--brick-tabs-trigger-gap`,
 `--brick-tabs-trigger-height`, `--brick-tabs-trigger-padding`,
-`--brick-tabs-panel-padding`, and `--brick-tabs-radius`.
+`--brick-tabs-panel-padding`, `--brick-tabs-list-padding`, and
+`--brick-tabs-radius`. Solid and soft recipes reserve at least the complete
+focus-ring reach in List padding so a clipping parent cannot crop edge
+Triggers.
 
 ## Customization
 
@@ -13240,12 +14360,31 @@ Horizontal lists stay on one line and scroll when constrained. Vertical layout
 stays vertical because orientation changes keyboard and ARIA behavior; choose a
 responsive orientation in application state rather than CSS alone.
 
+When semantic orientation stays vertical but the surrounding visual
+relationship must adapt, use `layout={{ initial: "stacked", lg: "side" }}`.
+This changes only List/Content placement at Brick breakpoints; arrow-key and
+ARIA orientation remain vertical. Responsive metadata uses `data-layout` and
+breakpoint-suffixed variants.
+
+When that vertical selector should be a compact mobile grid, use
+`Tabs.List columns={{ initial: 2, lg: 1 }}`. Labels may wrap inside equal
+tracks; the selector remains one vertical keyboard sequence.
+
+Use `Tabs.List radius="none"` instead of a class selector when a containing
+Card or Surface owns the visible outer radius. Add `triggerRadius="default"`
+when that square List should retain individually rounded Trigger surfaces;
+omission preserves the existing List-radius relationship. Both radius choices
+change only visual geometry and do not affect layout, columns, focus, or Atom
+behavior.
+
 ## Accessibility
 
 Give every List a useful label, pair each Trigger value with one Content value,
 and choose an initial value. Automatic activation is the default; choose manual
 when activating a panel is costly. Disabled tabs are skipped. Forced colors and
-reduced motion retain selection and focus.
+reduced motion retain selection and focus. Keep the shipped List padding when
+solid or soft Tabs sit inside a clipped Card or Surface; it is part of the
+focus-visible geometry rather than decorative spacing.
 
 ## Composition, native props, and refs
 
@@ -13280,6 +14419,11 @@ Tabs follows the package version of `@flowstack-ui/brick`.
 
 ## Unreleased
 
+### Fixed
+
+- Reserved the complete focus-ring reach inside solid and soft Lists so edge
+  Triggers remain fully visible inside clipped Cards and Surfaces.
+
 ### Changed
 
 - Limited the measured Indicator to the line variant. Solid, soft, and
@@ -13287,6 +14431,17 @@ Tabs follows the package version of `@flowstack-ui/brick`.
   Indicator is present, preventing a late underline during hydration.
 
 ### Added
+
+- Added an independent `Tabs.List triggerRadius="default|none"` override so a
+  square nested List can retain rounded Trigger surfaces without CSS.
+- Added `Tabs.List radius="default|none"` so nested solid and soft selectors
+  can remove inner List and Trigger corners without CSS overrides.
+- Added responsive `Tabs.List columns={1|2|3|4}` for equal visual selector
+  tracks without changing Atom orientation, order, keyboard behavior, or ARIA.
+- Added `Tabs.Content inset="none|sm|md|lg"` so edge-to-edge panels can use a
+  supported recipe while omission preserves the existing size-derived inset.
+- Added responsive `layout="auto|stacked|side"` so vertical semantics can
+  retain their keyboard contract while List and Content adapt visually.
 
 - Added public Agent Knowledge for component selection, composition,
   CSS-delivery, recurring mistakes, and validation.
@@ -13424,6 +14579,12 @@ brand-colored role. Secondary and muted reduce emphasis; info, success,
 warning, and danger add semantic foreground color but never supply meaning
 alone.
 
+Use `tone="inherit"` when Text is intentionally nested in a parent component
+such as Badge that owns its foreground and contrast pair. When two separately
+meaningful inline Text nodes form one row, give them compatible typography
+metrics and use `HStack` gap for their relationship instead of literal spaces
+or positional offsets.
+
 Text has no interactive state or motion.
 
 ## Tokens and CSS hooks
@@ -13528,6 +14689,9 @@ polymorphism; specialized components own those contracts.
 </Text>
 ```
 
+Eyebrow is a content role, not a generic small-text recipe. Use it only for a
+short label that introduces a nearby heading.
+
 ### Supporting and status copy
 
 ```tsx
@@ -13567,6 +14731,10 @@ Text follows the package version of `@flowstack-ui/brick`.
 ## Unreleased
 
 ### Added
+
+- Expanded Agent Knowledge for parent-owned foreground inheritance, semantic
+  eyebrow selection, and gap-based alignment of separately meaningful inline
+  text.
 
 - Added the `eyebrow` Text variant for short uppercase editorial labels.
 
@@ -15138,4 +16306,129 @@ Visually Hidden follows the package version of `@flowstack-ui/brick`.
 ### Added
 
 - Added the one-part Atom-backed Visually Hidden namespace with stable Brick identity, native props, refs, and composition.
+
+
+# ZStack
+
+# ZStack
+
+ZStack is Brick's depth-layout primitive. It places authored children in one shared CSS Grid cell so layers overlap without absolute positioning or visual reordering.
+
+## When and where to use
+
+Use ZStack for general overlays such as labels over artwork, controls over a map, and layered diagrams. Use Stack for linear flow, Grid for distinct tracks, and Surface media anatomy for ordinary image- or video-backed cards and heroes.
+
+## When not to use
+
+Do not use ZStack for ordinary rows, columns, grid tracks, or as a replacement
+for Surface's media anatomy. Do not overlap controls when a decorative layer
+would block their pointer or focus access.
+
+## Installation and imports
+
+```tsx
+import { ZStack } from "@flowstack-ui/brick/z-stack";
+import "@flowstack-ui/brick/styles/core.css";
+import "@flowstack-ui/brick/styles/z-stack.css";
+```
+
+The complete `@flowstack-ui/brick/styles.css` stylesheet also includes ZStack.
+
+Public exports are `ZStack`, `ZStackRoot`, `ZStackItem`, `ZStackRootProps`,
+`ZStackItemProps`, `ZStackElement`, `ZStackItemElement`, `ZStackAlign`,
+`ZStackJustify`, `ZStackItemAlign`, `ZStackItemJustify`, and
+`ResponsiveValue`.
+
+## Quick start
+
+```tsx
+<ZStack.Root align="center" justify="center">
+  <Image.Root><Image.Content alt="Product" src="/product.webp" /></Image.Root>
+  <ZStack.Item align="end" justify="start"><Badge>New</Badge></ZStack.Item>
+</ZStack.Root>
+```
+
+## Anatomy and DOM ownership
+
+Root renders one host. Every direct child occupies the same grid area. Item is
+optional and either renders one selected host or decorates its one child.
+
+## API
+
+Root renders `div` by default and supports the Stack semantic host set. `align` and `justify` accept `stretch`, `start`, `center`, or `end` and default to `stretch`. Item renders `div` by default or decorates one child with `asChild`; its `align` and `justify` add `auto` as the default.
+
+| Prop | Values | Root default |
+| --- | --- | --- |
+| `as` | supported semantic hosts | `div` |
+| `align` | `stretch`, `start`, `center`, `end` | `stretch` |
+| `justify` | `stretch`, `start`, `center`, `end` | `stretch` |
+| `slot` | `string` | `z-stack` |
+
+Root exposes `.brick-z-stack` and `data-slot="z-stack"`. Item exposes `.brick-z-stack-item` and `data-slot="z-stack-item"`. Placement metadata is emitted only for non-default recipes. ZStack exposes no public CSS variables.
+
+## Visual recipes and states
+
+Root and Item alignment independently support stretch, start, center, and end.
+ZStack has no interactive state, paint, radius, spacing, or motion.
+
+## Tokens and CSS hooks
+
+Stable hooks are `.brick-z-stack`, `.brick-z-stack-item`, their `data-slot`
+values, and optional `data-align` and `data-justify`. There are no public
+component variables.
+
+## Customization
+
+Use Brick props for placement. Size and paint the authored children with
+Surface, Image, or application-owned styles rather than painting ZStack.
+
+## Responsive behavior
+
+ZStack follows the size of its children and needs no viewport JavaScript. Root
+and Item alignment accept `{ initial, sm?, md?, lg?, xl? }` values when the
+same authored layers change logical placement. This never changes source,
+paint, reading, or focus order. Use responsive Stack outside it when the
+surrounding section changes linear axis.
+
+## Accessibility
+
+ZStack adds no role or interaction. Authored DOM order remains reading, focus, and paint order. Keep that order meaningful and ensure decorative layers do not block pointer or keyboard access to controls below them.
+
+## Composition, native props, and refs
+
+Native attributes and the root ref pass to the selected host. Item supports
+`asChild` for applying placement to one existing element without another host.
+
+## Examples
+
+Use a bottom-start Item for a caption over authored artwork, or a centered Item
+for non-blocking status content over a diagram. Prefer Surface media anatomy
+when the composition is simply media, scrim, and foreground content.
+
+## Evidence
+
+- [Playground route source](../../../playground/src/components/z-stack/)
+- [Focused component tests](../../../test/components/z-stack/)
+- [Type tests](../../../test/types/components/z-stack.test.ts)
+- [Browser behavior](../../../playground/tests/components/z-stack/behavior.spec.ts)
+- [Visual owner](../../../playground/tests/components/z-stack/visual.spec.ts)
+- [Manual protocol](../../../playground/manual-tests/z-stack.md)
+
+## Changelog
+
+See the [ZStack changelog](CHANGELOG.md).
+
+---
+
+# ZStack changelog
+
+ZStack follows the package version of `@flowstack-ui/brick`.
+
+## Unreleased
+
+### Added
+
+- Added responsive Root and Item logical alignment through Brick's canonical
+  responsive-value grammar without adding coordinates or visual ordering.
+- Added ZStack.Root and ZStack.Item with CSS Grid overlap, natural sizing, nine-position alignment, semantic hosts, and optional asChild composition.
 
