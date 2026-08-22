@@ -2,6 +2,10 @@
 
 Brick UI Website is implemented as a multi-route product and documentation site.
 
+- The website now pins FLOWSTACK's Baseline 2023 browser floor and adds a
+  current Chromium, Firefox, WebKit, and mobile-engine release smoke matrix;
+  physical-platform claims remain separate evidence.
+
 - The GitHub repository is connected to the `flowstack-ui/brick-website`
   Vercel project. Main deploys automatically, reviewed generated previews
   remain SSO-protected and noindexed, and the public production target is live

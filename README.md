@@ -17,6 +17,7 @@ npm run dev             # http://127.0.0.1:3012
 npm run dev:network     # LAN access on port 3012
 npm run content:sync    # refresh public docs from ../package during maintenance
 npm run verify          # content, types, lint, build, rendered routes
+npm run check:release   # repository gate plus portable browser smoke tests
 ```
 
 ## Repository contract
@@ -28,3 +29,8 @@ npm run verify          # content, types, lint, build, rendered routes
 - Local UI search uses the committed component and guide records; no hosted search service is required.
 
 See [docs/README.md](docs/README.md) for the maintenance map.
+
+The website declares the pinned `baseline 2023 with downstream` browser floor
+and qualifies its public shell in current Chromium, Firefox, Playwright WebKit,
+and mobile engine profiles. Physical Safari, iOS, Android, and assistive
+technology remain separate manual evidence.

@@ -6,11 +6,7 @@
     "node": "22.x"
   },
   "browserslist": [
-    "chrome 111",
-    "edge 111",
-    "firefox 111",
-    "safari 16.4",
-    "ios_saf 16.4"
+    "baseline 2023 with downstream"
   ],
   "scripts": {
     "predev": "npm run content:check && npm run styles:sync",
@@ -22,6 +18,9 @@
     "start": "next start --hostname 127.0.0.1 --port 3012",
     "start:test": "next start --hostname 127.0.0.1 --port 4012",
     "test": "npm run build && node --test tests/rendered-html.test.mjs",
+    "test:browser": "npm run build && npm run test:browser:built",
+    "test:browser:built": "npm run test:processes && playwright test",
+    "test:processes": "node scripts/check-test-ports.mjs",
     "lint": "eslint . --ignore-pattern .next",
     "typecheck": "tsc --noEmit",
     "content:sync": "node scripts/sync-brick-docs.mjs && npm run search:sync && npm run syntax:sync",
@@ -36,8 +35,9 @@
     "verify:repository-contract": "node scripts/verify-repository-contract.mjs",
     "check:focused": "npm run content:check && npm run typecheck",
     "check:repository": "npm run verify:repository-contract && npm run content:check && npm run theme:check && npm run typecheck && npm run lint && npm run build && npm run performance:check && node --test tests/rendered-html.test.mjs",
+    "check:release": "npm run check:repository && npm run test:browser:built",
     "verify": "npm run check:repository",
-    "test:all": "npm run check:repository"
+    "test:all": "npm run check:release"
   },
   "dependencies": {
     "@flowstack-ui/brick": "0.1.9",
@@ -51,6 +51,8 @@
     "remark-gfm": "^4.0.1"
   },
   "devDependencies": {
+    "@axe-core/playwright": "^4.12.1",
+    "@playwright/test": "^1.62.0",
     "@shikijs/langs": "^4.4.1",
     "@types/node": "22.19.19",
     "@types/react": "19.2.14",
