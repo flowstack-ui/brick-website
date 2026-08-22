@@ -412,7 +412,7 @@ test("component discovery and rendering remain consumer-first Brick compositions
   assert.match(css, /\.component-styling \.markdown-token-cluster \{[^}]*background: var\(--brick-color-surface-base\);/, "dense classes and tokens must receive a distinct scannable cluster surface");
 });
 
-test("the production CSS preserves the iOS Code Block text-size contract", async () => {
+test("the production CSS preserves the adopted browser floor and iOS Code Block text-size contract", async () => {
   const packageManifest = JSON.parse(await readFile(new URL("../package.json", import.meta.url), "utf8"));
   const chunkDirectory = resolve(root, ".next/static/chunks");
   const cssChunks = (await readdir(chunkDirectory)).filter((file) => file.endsWith(".css"));
@@ -420,7 +420,7 @@ test("the production CSS preserves the iOS Code Block text-size contract", async
     cssChunks.map((file) => readFile(resolve(chunkDirectory, file), "utf8")),
   )).join("\n");
 
-  assert.ok(packageManifest.browserslist.includes("ios_saf 16.4"), "the qualified iOS Safari floor must remain an explicit production target");
+  assert.deepEqual(packageManifest.browserslist, ["baseline 2023 with downstream"], "the adopted browser floor must remain explicit and pinned");
   assert.match(
     productionCss,
     /\.brick-code-block-pre\{[^}]*-webkit-text-size-adjust:none;[^}]*text-size-adjust:none/,

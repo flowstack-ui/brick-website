@@ -78,6 +78,8 @@
 
 ## Unreleased
 
+- Adopted the pinned `baseline 2023 with downstream` browser floor and added
+  Chromium, Firefox, WebKit, and mobile public-shell release evidence.
 - Split synchronized content into server-only component documents and scoped
   catalog, guide, and provenance modules; separated guide and component client
   shells; and moved global search to a deferred interface plus generated
