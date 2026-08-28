@@ -4,18 +4,20 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
-const packageRoot = path.resolve(root, "../package");
+const packageRoot = process.env.FLOWSTACK_BRICK_PACKAGE_ROOT
+  ? path.resolve(process.env.FLOWSTACK_BRICK_PACKAGE_ROOT)
+  : path.resolve(root, "../package");
 const componentRoot = path.join(packageRoot, "docs/components");
 const outputRoot = path.join(root, "content");
 const publicRoot = path.join(root, "public");
 
 const categories = {
-  "Actions & selection": new Set(["button", "icon-button", "toggle", "toggle-group", "toolbar", "pagination"]),
-  "Forms & choices": new Set(["form", "field", "fieldset", "input", "number-input", "otp-field", "password-toggle-field", "textarea", "select", "combobox", "multi-select", "file-upload", "checkbox", "checkbox-group", "radio-group", "switch", "slider", "rating"]),
-  "Content & status": new Set(["text", "icon", "image", "code", "code-block", "avatar", "badge", "notification-badge", "chip", "card", "list", "table", "divider", "collapsible", "accordion", "skeleton", "progress", "progress-circle", "toast"]),
+  "Actions & selection": new Set(["button", "icon-button", "toggle", "toggle-group", "segment-group", "toolbar", "pagination", "reorderable-list"]),
+  "Forms & choices": new Set(["color-picker", "form", "field", "fieldset", "input", "number-input", "otp-field", "password-toggle-field", "textarea", "select", "combobox", "multi-select", "file-upload", "checkbox", "checkbox-group", "radio-group", "switch", "slider", "rating"]),
+  "Content & status": new Set(["text", "icon", "image", "code", "code-block", "avatar", "badge", "notification-badge", "chip", "status", "color-swatch", "card", "list", "table", "divider", "collapsible", "accordion", "skeleton", "progress", "progress-circle", "toast"]),
   "Overlays & menus": new Set(["tooltip", "hover-card", "popover", "dropdown-menu", "context-menu", "menubar", "dialog", "alert-dialog", "drawer"]),
-  "Navigation & layout": new Set(["appearance", "breadcrumb", "tabs", "navigation-menu", "bottom-navigation", "link", "nav-list", "sidebar", "app-bar", "stack", "grid", "container", "section", "frame", "z-stack", "show", "hide", "surface", "scroll-area"]),
-  "Data & collections": new Set(["data-grid", "tree-grid", "tree", "feed", "swipeable-item", "carousel"]),
+  "Navigation & layout": new Set(["appearance", "breadcrumb", "tabs", "navigation-menu", "bottom-navigation", "link", "link-box", "nav-list", "sidebar", "app-bar", "stack", "group", "grid", "container", "section", "frame", "bleed", "z-stack", "show", "hide", "surface", "scroll-area"]),
+  "Data & collections": new Set(["data-list", "data-grid", "tree-grid", "tree", "feed", "swipeable-item", "carousel"]),
   Accessibility: new Set(["skip-link", "visually-hidden", "aspect-ratio"]),
 };
 
@@ -75,8 +77,8 @@ const entries = (await readdir(componentRoot, { withFileTypes: true }))
   .map((entry) => entry.name)
   .sort();
 
-if (entries.length !== 80) {
-  throw new Error(`Expected 80 public component owners, found ${entries.length}`);
+if (entries.length !== 89) {
+  throw new Error(`Expected 89 public component owners, found ${entries.length}`);
 }
 
 const components = [];

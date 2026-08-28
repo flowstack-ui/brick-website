@@ -2,10 +2,15 @@ const verification = {
   schemaVersion: 1,
   id: "brick-website",
   kind: "public-product-website",
+  browserSupport: {
+    query: "baseline 2023 with downstream",
+    portableEngines: ["chromium", "firefox", "webkit"],
+  },
   commands: {
     focused: "check:focused",
     repository: "check:repository",
     release: "test:all",
+    processCheck: "test:processes",
     contract: "verify:repository-contract",
   },
   servers: [
@@ -17,7 +22,7 @@ const verification = {
       strictPort: true,
     },
   ],
-  browserConfigs: [],
+  browserConfigs: ["playwright.config.ts"],
   workflows: { ci: ".github/workflows/ci.yml" },
   impact: {
     strategy: "conservative-repository",

@@ -7,6 +7,7 @@ const manifest = JSON.parse(await readFile(resolve(root, "package.json"), "utf8"
 const rootLayout = await readFile(resolve(root, "app/layout.tsx"), "utf8");
 const styleGenerator = await readFile(resolve(root, "scripts/generate-brick-style-bundles.mjs"), "utf8");
 const errors = [];
+const browserConfigSources = [];
 const requirePath = async (file) => {
   try { await access(resolve(root, file)); } catch { errors.push(`missing ${file}`); }
 };
@@ -96,6 +97,21 @@ for (const server of configuration.servers) {
       errors.push(`${server.name} test command does not pin its port`);
     }
   }
+}
+for (const path of configuration.browserConfigs) {
+  await requirePath(path);
+  try {
+    const source = await readFile(resolve(root, path), "utf8");
+    browserConfigSources.push(source);
+    if (!source.includes("reuseExistingServer: false")) errors.push(`${path} may reuse a stale server`);
+  } catch {}
+}
+if (manifest.browserslist?.length !== 1 || manifest.browserslist[0] !== configuration.browserSupport.query) {
+  errors.push(`package.json must declare ${configuration.browserSupport.query}`);
+}
+const browserConfiguration = browserConfigSources.join("\n");
+for (const engine of configuration.browserSupport.portableEngines) {
+  if (!browserConfiguration.includes(engine)) errors.push(`browser evidence is missing ${engine}`);
 }
 
 if (errors.length) {

@@ -6,3 +6,5 @@
 - [deployment.md](deployment.md) — local ports and hosting handoff
 - [discovery.md](discovery.md) — canonical URLs, metadata, schema, crawl policy, and verification
 - [performance.md](performance.md) — route-scoped previews, social asset, build budgets, and launch verification
+- [testing.md](testing.md) — repository tiers, pinned browser floor, portable
+  engine matrix, and physical-platform boundary

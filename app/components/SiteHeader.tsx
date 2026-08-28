@@ -36,7 +36,7 @@ const nav = [
 const drawerNav = [
   { href: "/", label: "Home", description: "See what Brick makes possible", icon: Home },
   { href: "/docs", label: "Guides", description: "Learn the system", icon: BookOpen },
-  { href: "/components", label: "Components", description: "Explore all 80 component owners", icon: Blocks },
+  { href: "/components", label: "Components", description: "Explore all 89 component owners", icon: Blocks },
   { href: "/themes", label: "Themes", description: "Shape the visual voice", icon: Palette },
   { href: "/atom", label: "Atom", description: "Understand the foundation", icon: Atom },
 ];
@@ -225,7 +225,7 @@ export function SiteHeader() {
                   </div>
                 </Drawer.Body>
                 <Drawer.Footer className="mobile-drawer-footer">
-                  <p className="drawer-proof"><span>80 components</span><span>React 18 + 19</span><span>Static CSS</span></p>
+                  <p className="drawer-proof"><span>89 components</span><span>React 18 + 19</span><span>Static CSS</span></p>
                   <Drawer.Close asChild>
                     <Button href="/docs/getting-started" endIcon={<ArrowRight size={17} />} fullWidth>Get started</Button>
                   </Drawer.Close>
