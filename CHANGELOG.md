@@ -1,5 +1,11 @@
 # Changelog
 
+- Added the first paid Blocks catalog and canonical Threaded Comments Feed
+  detail route with a sandboxed, digest-pinned compiled preview. Added exact
+  artifact allowlists and leak checks that reject source maps, authoring paths,
+  item Agent Knowledge, tokens, and public paid install commands. Purchase and
+  sign-in remain visibly locked until their production services exist.
+
 - Adopted exact published Brick `0.1.11` and Atom `0.24.0`, then expanded the
   public catalog from 80 to 89 owners with Bleed, Color Picker, Color Swatch,
   Data List, Group, Link Box, Reorderable List, Segment Group, and Status.

@@ -15,6 +15,9 @@ Routes are intentionally separated by audience:
 
 - `/` explains and demonstrates the product.
 - `/components/` and `/components/[slug]/` expose the full component catalog.
+- `/blocks/` and `/blocks/application/feed/threaded-comments/` expose a public
+  catalog and detail preview for a paid composition without exposing its
+  installable source.
 - `/docs/` and `/docs/[slug]/` teach core workflows.
 - `/themes/` demonstrates the semantic theme contract.
 - `/atom/` explains the Atom/Brick ownership relationship.
@@ -40,3 +43,12 @@ an independent client module under `components/previews/`; the shared registry
 does not import all 89 implementations into one browser bundle. Build-time
 budgets and the social-asset contract are recorded in
 [performance.md](performance.md).
+
+Paid Block previews cross a separate trust boundary. Private Blocks CI compiles
+one reviewed registry item into a fixed HTML, minified JavaScript, and minified
+CSS artifact without source maps. This repository accepts only those three
+digest-pinned files and allowlisted marketing/access metadata. The iframe is
+sandboxed, cannot make network connections or submit forms, and receives a
+same-origin-only framing policy; ordinary website pages remain non-frameable.
+Source, source paths, item guidance, install commands, tokens, and entitlement
+logic never enter this repository.

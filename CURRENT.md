@@ -2,6 +2,13 @@
 
 Brick UI Website is implemented as a multi-route product and documentation site.
 
+- The public Blocks catalog now presents the paid Threaded Comments Feed as a
+  sandboxed compiled live preview. Only allowlisted marketing/access metadata
+  and digest-pinned HTML, minified JavaScript, and minified CSS are public;
+  source, source maps, item Agent Knowledge, install commands, and tokens remain
+  outside this repository. Purchase and sign-in are visibly locked until their
+  production services exist.
+
 - The website now pins FLOWSTACK's Baseline 2023 browser floor and adds a
   current Chromium, Firefox, WebKit, and mobile-engine release smoke matrix;
   physical-platform claims remain separate evidence.
@@ -38,14 +45,14 @@ Brick UI Website is implemented as a multi-route product and documentation site.
   The Git-linked production target is also Ready and preserves the same SSO,
   noindex, HSTS, and frame-denial boundary before canonical launch.
 - The application now runs on native Next.js 16 App Router. Its production
-  build statically prerenders all 102 routes, including 89 component pages and
+  build statically prerenders all 104 routes, including 89 component pages and
   four guides, while preserving client interaction only where the product
   needs it.
 - The temporary vinext/Vite/Sites/Cloudflare worker shell and its direct
   dependencies are removed. The clean Node 22 install reports zero known npm
   vulnerabilities, and native rendered-route verification owns the reserved
   `4012` server lifecycle.
-- All 98 indexable routes now emit unique titles and descriptions,
+- All 100 indexable routes now emit unique titles and descriptions,
   self-canonicals, page-specific Open Graph and Twitter metadata, and one
   slashless URL contract shared by internal navigation, sitemap, and generated
   AI documentation.
@@ -132,7 +139,7 @@ Brick UI Website is implemented as a multi-route product and documentation site.
   disabled because the current free account permits only one enabled project.
 - Canonical-host qualification confirms valid Vercel domain configuration,
   public TLS delivery, HSTS, application security headers, the permanent `www`
-  redirect, 89 canonical sitemap entries, indexable robots policy, linked AI
+  redirect, 100 canonical sitemap entries, indexable robots policy, linked AI
   discovery, page-specific canonical/social metadata, homepage Organization,
   WebSite, and SoftwareSourceCode JSON-LD, a cache-qualified 110,597-byte social
   image, Vercel Analytics emission, and a real noindex 404.

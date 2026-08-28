@@ -219,6 +219,26 @@ test("Flowstack relationship remains supporting product context", async () => {
   assert.match(css, /\.flowstack-context-copy, \.flowstack-path \{ width: min\(100%, 52rem\); margin-inline: auto; \}/, "stacked Flowstack story must share one centered content lane");
 });
 
+test("paid Blocks render as public previews without source or install commands", async () => {
+  const catalogResponse = await render("/blocks");
+  const catalogHtml = await catalogResponse.text();
+  assert.equal(catalogResponse.status, 200);
+  assert.match(catalogHtml, /Threaded Comments Feed/);
+  assert.match(catalogHtml, /Paid/);
+  assert.match(catalogHtml, /Source locked/);
+
+  const detailResponse = await render("/blocks/application/feed/threaded-comments");
+  const detailHtml = await detailResponse.text();
+  assert.equal(detailResponse.status, 200);
+  assert.match(detailHtml, /Threaded Comments Feed/);
+  assert.match(detailHtml, /Purchase access — coming soon/);
+  assert.match(detailHtml, /Sign in to unlock — coming soon/);
+  assert.match(detailHtml, /sandbox="allow-scripts"/);
+  assert.match(detailHtml, /block-previews\/application-feed-threaded-comments\/index\.html/);
+  assert.doesNotMatch(detailHtml, /npx\s+@flowstack-ui\/blocks/);
+  assert.doesNotMatch(detailHtml, /FLOWSTACK_BLOCKS_TOKEN/);
+});
+
 test("Atom hero retains its readable connected-layer composition", async () => {
   const atomSource = await readFile(new URL("../app/atom/page.tsx", import.meta.url), "utf8");
   const css = await readFile(new URL("../app/globals.css", import.meta.url), "utf8");
@@ -604,6 +624,8 @@ test("every indexable route emits complete unique discovery metadata without int
     "/",
     "/docs",
     "/components",
+    "/blocks",
+    "/blocks/application/feed/threaded-comments",
     "/themes",
     "/atom",
     ...Object.keys(guideEntries).map((slug) => `/docs/${slug}`),
@@ -657,6 +679,8 @@ test("sitemap, robots, and AI documentation expose one canonical crawl policy", 
     "https://brick-ui.com/",
     "https://brick-ui.com/docs",
     "https://brick-ui.com/components",
+    "https://brick-ui.com/blocks",
+    "https://brick-ui.com/blocks/application/feed/threaded-comments",
     "https://brick-ui.com/themes",
     "https://brick-ui.com/atom",
     ...Object.keys(guideEntries).map((slug) => `https://brick-ui.com/docs/${slug}`),
@@ -746,6 +770,8 @@ const routes = [
   ["/", /Build interfaces that already feel/i],
   ["/docs", /Build with Brick/i],
   ["/components", /89 component owners/i],
+  ["/blocks", /Start from a complete interface/i],
+  ["/blocks/application/feed/threaded-comments", /Threaded Comments Feed/i],
   ["/components/button", /Maintainer resources/i],
   ["/components/appearance", /Maintainer resources/i],
   ["/components/carousel", /Maintainer resources/i],
