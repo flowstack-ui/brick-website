@@ -17,11 +17,11 @@ Brick UI Website is implemented as a multi-route product and documentation site.
   social-card caching, application security headers, correct 404 behavior, and
   the representative route matrix.
 - Brick `0.1.2` introduced backward-compatible, self-sufficient modular CSS
-  entrypoints, and exact `0.1.9` retains that contract. A deterministic prebuild
+  entrypoints, and exact `0.1.11` retains that contract. A deterministic prebuild
   step assembles route-owned and preview-owned CSS from those public files;
   production never reads the sibling Brick checkout or package-private source.
 - Brick `0.1.3` introduced the physical-iPhone-confirmed Code Block text-sizing
-  correction. Exact Brick `0.1.9` retains it, and this website keeps only framework-owned
+  correction. Exact Brick `0.1.11` retains it, and this website keeps only framework-owned
   browser-target and optimized-output verification.
 - Getting Started and Theming explain the complete and modular delivery modes,
   and every synchronized component guide names `styles/core.css` plus its
@@ -38,14 +38,14 @@ Brick UI Website is implemented as a multi-route product and documentation site.
   The Git-linked production target is also Ready and preserves the same SSO,
   noindex, HSTS, and frame-denial boundary before canonical launch.
 - The application now runs on native Next.js 16 App Router. Its production
-  build statically prerenders all 93 routes, including 80 component pages and
+  build statically prerenders all 102 routes, including 89 component pages and
   four guides, while preserving client interaction only where the product
   needs it.
 - The temporary vinext/Vite/Sites/Cloudflare worker shell and its direct
   dependencies are removed. The clean Node 22 install reports zero known npm
   vulnerabilities, and native rendered-route verification owns the reserved
   `4012` server lifecycle.
-- All 89 indexable routes now emit unique titles and descriptions,
+- All 98 indexable routes now emit unique titles and descriptions,
   self-canonicals, page-specific Open Graph and Twitter metadata, and one
   slashless URL contract shared by internal navigation, sitemap, and generated
   AI documentation.
@@ -56,7 +56,7 @@ Brick UI Website is implemented as a multi-route product and documentation site.
 - Unknown paths return a designed Brick recovery page with real 404 status,
   explicit noindex/no-follow metadata, no inherited canonical/social identity,
   and useful home, catalog, guide, and theme destinations.
-- All 80 live examples now cross route-scoped dynamic boundaries instead of
+- All 89 live examples now cross route-scoped dynamic boundaries instead of
   sharing one monolithic client implementation. The representative Button
   route is 25.5% smaller raw and 24.3% smaller gzip, and every component route
   is protected by a build-time JavaScript budget.
@@ -77,8 +77,8 @@ Brick UI Website is implemented as a multi-route product and documentation site.
   before it can become another safe optimization candidate.
 
 - Home page demonstrates a composed, stateful website-project workspace made from the published Brick package, with a conversion-first stacked viewport and a compact mobile presentation.
-- All 80 component owners have routes sourced from reviewed package documentation and a dedicated live example built from that component's public package export.
-- All 80 live examples are presented through one light/dark architectural stage with explicit compact, form, overlay, expanding, structural, or interaction geometry; disclosures remain top-anchored and grow only downward.
+- All 89 component owners have routes sourced from reviewed package documentation and a dedicated live example built from that component's public package export.
+- All 89 live examples are presented through one light/dark architectural stage with explicit compact, form, overlay, expanding, structural, or interaction geometry; disclosures remain top-anchored and grow only downward.
 - The component catalog is a full-width, outcome-led discovery hub without documentation rails; scoped search, category filters, source-backed results, and a query-aware empty state replace one undifferentiated card wall.
 - Component routes use a searchable, route-aware category navigator with aligned category groups on desktop and a paired Components/On-this-page toolbar with full-height Brick drawers on narrow screens.
 - Component drawers use Brick's `lg` responsive visibility boundary, close their controlled modal state when that boundary is crossed, and present body-sized category and component navigation on mobile and tablet screens.
@@ -105,7 +105,7 @@ Brick UI Website is implemented as a multi-route product and documentation site.
 - Footer navigation retains full touch targets while its focus indicator wraps only the visible text-and-icon label.
 - Markdown fences are pre-tokenized with a fine-grained build-time Shiki adapter and rendered through the published Brick Code Block with language metadata, a compact stateful copy action, and a WCAG-qualified light/dark syntax palette; the deployed browser does not receive the tokenizer.
 - Code Block overflow landmarks retain keyboard scrolling and receive unique article-scoped names such as `TSX code example 1`, preventing repeated-language examples from sharing one landmark label.
-- Exact Brick `0.1.9` owns automatic mobile text-inflation prevention on Code
+- Exact Brick `0.1.11` owns automatic mobile text-inflation prevention on Code
   Block's native `pre`. The website no longer duplicates that component rule;
   its qualified iOS Safari target and rendered verification still prove that
   Next preserves the required WebKit-prefixed declaration in optimized CSS.
@@ -118,7 +118,7 @@ Brick UI Website is implemented as a multi-route product and documentation site.
 - Every guide ends with one ordered previous/next reading path from Overview
   through Accessibility, while the first and last pages expose only their
   available direction.
-- The website consumes exact Brick `0.1.9` provenance and regenerates previews
+- The website consumes exact Brick `0.1.11` provenance and regenerates previews
   from self-sufficient composed-component CSS entrypoints. Fresh Checkbox
   Group and Toggle Group routes are explicitly guarded against route-history
   styling dependencies.
@@ -148,10 +148,10 @@ Brick UI Website is implemented as a multi-route product and documentation site.
   Next runtime; the two intentional CSS requests estimate 70 ms mobile savings
   and do not justify weakening package/application ownership.
 - The site accent theme explicitly pairs purple solid actions with a white foreground in both appearances and verifies every solid interaction state at WCAG AA contrast.
-- The reviewed dependency is `@flowstack-ui/brick@0.1.9` at source commit
-  `d6ab2c0aea66ddbe2331c0e0be166f438370ee9e`, resolving exact Atom `0.22.6`.
-- Brick `0.1.9` adds Appearance, Carousel, Frame, Section, and ZStack to the
-  public catalog, plus the generated theme-contract revision 2 with 76
-  maintained semantic contrast-pair declarations.
+- The reviewed dependency is `@flowstack-ui/brick@0.1.11` at source commit
+  `2b35112a8ab883b178bc0fb96d68d319218cbb6d`, resolving exact Atom `0.24.0`.
+- Brick `0.1.11` adds Bleed, Color Picker, Color Swatch, Data List, Group,
+  Link Box, Reorderable List, Segment Group, and Status to the website catalog
+  while retaining the generated theme-contract revision 2.
 
 Local development uses port 3012. The paired automated browser-test port is 4012.

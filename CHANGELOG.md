@@ -1,5 +1,12 @@
 # Changelog
 
+- Adopted exact published Brick `0.1.11` and Atom `0.24.0`, then expanded the
+  public catalog from 80 to 89 owners with Bleed, Color Picker, Color Swatch,
+  Data List, Group, Link Box, Reorderable List, Segment Group, and Status.
+- Added one route-scoped live preview and generated modular CSS bundle for each
+  new owner, then refreshed search, syntax, sitemap, and AI-readable content
+  from the exact Brick `v0.1.11` source commit.
+
 - Adopted exact published Brick `0.1.9` and Atom `0.22.6`, verified npm
   provenance and tarball integrity, and refreshed the production lockfile past
   the resolved Nano ID advisory.

@@ -745,7 +745,7 @@ test("unknown routes return the designed non-indexable Brick recovery page", asy
 const routes = [
   ["/", /Build interfaces that already feel/i],
   ["/docs", /Build with Brick/i],
-  ["/components", /80 component owners/i],
+  ["/components", /89 component owners/i],
   ["/components/button", /Maintainer resources/i],
   ["/components/appearance", /Maintainer resources/i],
   ["/components/carousel", /Maintainer resources/i],
