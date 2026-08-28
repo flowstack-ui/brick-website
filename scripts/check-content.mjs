@@ -19,7 +19,7 @@ const [components, docs, provenance, brickManifest, siteManifest, guides, llms, 
 ]);
 const previewFileSet = new Set(previewFiles);
 
-if (components.length !== 80) errors.push(`expected 80 components, found ${components.length}`);
+if (components.length !== 89) errors.push(`expected 89 components, found ${components.length}`);
 const slugs = new Set();
 for (const component of components) {
   if (!component.slug || !component.title || !component.category || !component.description) {

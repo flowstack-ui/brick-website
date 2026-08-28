@@ -42,6 +42,12 @@
     "description": "Badge is a compact passive label for categories, status, or short metadata."
   },
   {
+    "slug": "bleed",
+    "title": "Bleed",
+    "category": "Navigation & layout",
+    "description": "Bleed lets authored content extend beyond the inset of its immediate container using responsive, theme-aware logical spacing."
+  },
+  {
     "slug": "bottom-navigation",
     "title": "Bottom Navigation",
     "category": "Navigation & layout",
@@ -108,6 +114,18 @@
     "description": "Collapsible reveals one independent in-flow content region from a linked button trigger."
   },
   {
+    "slug": "color-picker",
+    "title": "Color Picker",
+    "category": "Forms & choices",
+    "description": "Color Picker provides a finished Atom-backed control for editing, choosing, and submitting one opaque hexadecimal color. It supports editable text, the browser-native chooser, named presets, and optional floating content without application CSS."
+  },
+  {
+    "slug": "color-swatch",
+    "title": "Color Swatch",
+    "category": "Content & status",
+    "description": "Color Swatch provides a finished passive preview for one CSS color or a compact mix of colors. Its checkerboard reveals alpha without requiring application CSS."
+  },
+  {
     "slug": "combobox",
     "title": "Combobox",
     "category": "Forms & choices",
@@ -130,6 +148,12 @@
     "title": "Data Grid",
     "category": "Data & collections",
     "description": "Data Grid presents tabular data with Atom-owned cell navigation, row selection, active-cell semantics, and sortable-header activation. Brick supplies the finished visual recipes; applications own data transforms and surrounding controls."
+  },
+  {
+    "slug": "data-list",
+    "title": "Data List",
+    "category": "Data & collections",
+    "description": "Data List presents repeated term/value metadata with native description-list semantics and responsive Brick recipes."
   },
   {
     "slug": "dialog",
@@ -198,10 +222,16 @@
     "description": "Grid is Brick's two-dimensional layout primitive. `Grid.Root` creates exact equal columns or intrinsic responsive columns. Optional `Grid.Item` adds deliberate spans, line placement, and self-alignment; ordinary children remain valid grid items without wrappers."
   },
   {
+    "slug": "group",
+    "title": "Group",
+    "category": "Navigation & layout",
+    "description": "Group creates a compact inline visual cluster and can attach direct children without changing their semantics or keyboard behavior."
+  },
+  {
     "slug": "hide",
     "title": "Hide",
     "category": "Navigation & layout",
-    "description": "Hide keeps content mounted while removing it from visual layout from one fixed viewport breakpoint. It is CSS layout, not conditional React rendering."
+    "description": "Hide keeps content mounted while removing it from visual layout from one fixed viewport breakpoint. It is CSS layout, not conditional React rendering. When visible, its host is layout-transparent so parent flex and grid spacing continue to apply directly to its children."
   },
   {
     "slug": "hover-card",
@@ -238,6 +268,12 @@
     "title": "Link",
     "category": "Navigation & layout",
     "description": "Link is Brick's finished typographic navigation component. It styles the server-safe Atom Link primitive while preserving one real native anchor, browser navigation behavior, native attributes, and router composition."
+  },
+  {
+    "slug": "link-box",
+    "title": "Link Box",
+    "category": "Navigation & layout",
+    "description": "Link Box expands one real Brick Link across a containing region while keeping secondary controls outside that anchor. It fits product cards, property listings, articles, and result rows with one primary destination."
   },
   {
     "slug": "list",
@@ -291,7 +327,7 @@
     "slug": "pagination",
     "title": "Pagination",
     "category": "Actions & selection",
-    "description": "Pagination navigates a finite, known set of numbered pages with native buttons."
+    "description": "Pagination navigates a finite, known set of numbered pages with native buttons or real URL destinations."
   },
   {
     "slug": "password-toggle-field",
@@ -327,7 +363,13 @@
     "slug": "rating",
     "title": "Rating",
     "category": "Forms & choices",
-    "description": "Rating is Brick's styled small-scale score input, backed by Atom 0.19.6. It exposes one accessible slider with decorative repeated artwork and works alone or as the sole control in `Field`; it does not require `Fieldset`."
+    "description": "Rating is Brick's styled score input and aggregate display. Root and Item expose one accessible Atom-backed slider for choosing a score. Display presents repeated-star aggregate artwork; Summary presents one star beside a visible numeric value."
+  },
+  {
+    "slug": "reorderable-list",
+    "title": "Reorderable List",
+    "category": "Actions & selection",
+    "description": "Reorderable List is Brick's finished manual-order composition, backed by the published `@flowstack-ui/atom@0.23.0` Reorder behavior."
   },
   {
     "slug": "scroll-area",
@@ -342,6 +384,12 @@
     "description": "Section owns responsive logical block rhythm for major page and application regions. It renders one native element and adds no paint, inline measure, child arrangement, content anatomy, role, or behavior."
   },
   {
+    "slug": "segment-group",
+    "title": "Segment Group",
+    "category": "Actions & selection",
+    "description": "Segment Group is Brick's compact single-choice mode control. Atom Radio Group owns semantics and behavior; Brick owns the segmented surface, shared sizes, and moving selected indicator."
+  },
+  {
     "slug": "select",
     "title": "Select",
     "category": "Forms & choices",
@@ -351,7 +399,7 @@
     "slug": "show",
     "title": "Show",
     "category": "Navigation & layout",
-    "description": "Show keeps content mounted and adds it to visual layout from one fixed viewport breakpoint. It is CSS responsive visibility, not conditional React rendering."
+    "description": "Show keeps content mounted and adds it to visual layout from one fixed viewport breakpoint. It is CSS responsive visibility, not conditional React rendering. When visible, its host is layout-transparent so parent flex and grid spacing continue to apply directly to its children."
   },
   {
     "slug": "sidebar",
@@ -384,10 +432,16 @@
     "description": "Stack is Brick's one-dimensional layout primitive. Use VStack for a fixed vertical flow, HStack for a fixed horizontal row, and Stack when the axis changes at a Brick breakpoint. Stack.Item controls how an individual child uses available space."
   },
   {
+    "slug": "status",
+    "title": "Status",
+    "category": "Content & status",
+    "description": "Status presents one compact passive state with a semantic indicator and a visible readable label, or a decorative indicator beside text that already carries the same state."
+  },
+  {
     "slug": "surface",
     "title": "Surface",
     "category": "Navigation & layout",
-    "description": "Surface paints a semantic region with a controlled background level, optional border, elevation, radius, and inset. Ordinary Surface renders one native element. Optional Media, Scrim, and Content parts layer decorative authored media behind foreground content without adding interaction or runtime color context."
+    "description": "Surface paints a semantic region with a controlled tone and background level, optional border, elevation, radius, and inset. Ordinary Surface renders one native element. Optional Media, Scrim, and Content parts layer decorative authored media behind foreground content without adding interaction or runtime color context."
   },
   {
     "slug": "swipeable-item",
@@ -417,7 +471,7 @@
     "slug": "text",
     "title": "Text",
     "category": "Content & status",
-    "description": "Text is Brick's finished component for authored headings, paragraphs, inline copy, captions, supporting descriptions, and status copy. The selected HTML element supplies semantics; the visual recipe supplies typography."
+    "description": "Text is Brick's finished family for authored headings, paragraphs, inline copy, captions, supporting descriptions, and status copy. `Heading`, `Paragraph`, `Caption`, and `Eyebrow` provide common semantic defaults; `Text` keeps the selected HTML element independent from its visual recipe."
   },
   {
     "slug": "textarea",

@@ -2,7 +2,11 @@
 
 Run `npm run content:sync` only from a workspace where `../package` is the reviewed Brick source checkout. The script:
 
-1. Reads the 80 component-owner documentation folders.
+For an isolated release checkout, set `FLOWSTACK_BRICK_PACKAGE_ROOT` to that
+checkout before running the same command. The recorded version and commit must
+identify the exact public release being adopted.
+
+1. Reads the 89 component-owner documentation folders.
 2. Produces committed catalog and full-document records.
 3. Records the package version and exact Git commit.
 4. Regenerates `llms.txt` and `llms-full.txt`.
