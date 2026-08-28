@@ -2,10 +2,11 @@
 
 ## Next
 
-- After `@flowstack-ui/blocks@0.1.2` is public, install
-  `application/feed/threaded-comments` through the public CLI at its default
-  path and complete the `/blocks` qualification route without editing the
-  copied source or provenance.
+- Resolve whether Blocks source is public npm content or delivered from an
+  authenticated hosted registry before installing any Block into this public
+  website. After that product boundary is adopted, qualify the approved client
+  against `application/feed/threaded-comments` without editing copied source
+  or provenance.
 
 - Add the qualified Swifty organization logo and verified public `sameAs`
   profiles to structured data when those final brand inputs are supplied.
