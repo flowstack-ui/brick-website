@@ -35,6 +35,16 @@ HSTS, compression, immutable fingerprinted-asset caching, and preview-level
 a tested Next nonce strategy can preserve static-first rendering and hydration;
 do not substitute a broad `unsafe-inline` script policy merely to claim CSP.
 
+The one exception to page-level frame denial is the compiled artifact namespace
+under `/block-previews/`. Those files use `SAMEORIGIN`, an explicit
+same-origin-only `frame-ancestors` policy, no connections or form actions,
+immutable caching, and a response-level noindex/noarchive policy. Never broaden
+that exception to an application route or add `allow-same-origin` to the public
+preview iframe sandbox. Compiled subresources permit anonymous cross-origin
+reads because the sandbox gives the document an opaque origin; this does not
+change the paid-source boundary because those reviewed compiled files are the
+intentionally public artifact.
+
 Vercel Web Analytics is the approved production measurement dependency. The
 root layout uses `@vercel/analytics/next` only when `VERCEL=1`, so local and
 non-Vercel builds do not request a nonexistent `/_vercel/insights/` endpoint.

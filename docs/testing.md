@@ -9,3 +9,10 @@ current Chromium, Firefox, Playwright WebKit, mobile Chromium, and mobile
 WebKit. These profiles prove engine behavior and responsive containment; they
 do not replace physical Safari, iOS, Android, browser-chrome, permission, or
 assistive-technology evidence.
+
+`npm run blocks:check` independently verifies the paid preview boundary before
+the application build: exact artifact allowlist, deterministic digest, no
+source maps or authoring paths, no item Agent Knowledge, no token material, and
+no public paid install command. Browser release coverage then verifies that
+the sandbox renders, the paid source remains locked, and preview/page response
+headers preserve their different framing policies.

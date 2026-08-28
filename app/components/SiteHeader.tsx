@@ -11,6 +11,7 @@ import { MarkGithubIcon } from "@primer/octicons-react";
 import {
   ArrowRight,
   ArrowUpRight,
+  AppWindow,
   Atom,
   Blocks,
   BookOpen,
@@ -29,6 +30,7 @@ import { source } from "@/app/lib/source";
 const nav = [
   { href: "/docs", label: "Guides" },
   { href: "/components", label: "Components" },
+  { href: "/blocks", label: "Blocks" },
   { href: "/themes", label: "Themes" },
   { href: "/atom", label: "Atom" },
 ];
@@ -37,6 +39,7 @@ const drawerNav = [
   { href: "/", label: "Home", description: "See what Brick makes possible", icon: Home },
   { href: "/docs", label: "Guides", description: "Learn the system", icon: BookOpen },
   { href: "/components", label: "Components", description: "Explore all 89 component owners", icon: Blocks },
+  { href: "/blocks", label: "Blocks", description: "Preview complete paid compositions", icon: AppWindow },
   { href: "/themes", label: "Themes", description: "Shape the visual voice", icon: Palette },
   { href: "/atom", label: "Atom", description: "Understand the foundation", icon: Atom },
 ];

@@ -2,11 +2,10 @@
 
 ## Next
 
-- Resolve whether Blocks source is public npm content or delivered from an
-  authenticated hosted registry before installing any Block into this public
-  website. After that product boundary is adopted, qualify the approved client
-  against `application/feed/threaded-comments` without editing copied source
-  or provenance.
+- Connect the disabled Blocks purchase and sign-in actions only after the
+  production payment provider, identity boundary, entitlement service, and
+  recovery paths are deployed and qualified. Keep paid source and the usable
+  install command out of this public repository.
 
 - Add the qualified Swifty organization logo and verified public `sameAs`
   profiles to structured data when those final brand inputs are supplied.
@@ -42,5 +41,6 @@
 - Test the website-owned Shiki-to-Brick adapter, syntax palette, and stateful copy presentation in a second documentation product before deciding on a reusable adapter or Brick Theme contract.
 - Test the searchable category navigator, narrow-screen documentation toolbar, and structured consumer-document adapter in Atom before deciding whether any anatomy belongs in a reusable Docs Block or content adapter.
 - Introduce installable Brick themes when their package boundary is approved.
-- Add Blocks as a first-class catalog only after the block contract exists.
+- Expand the Blocks catalog only through the private deterministic preview
+  exporter and one-item-at-a-time public leak review.
 - Link to future Flowstack packs without moving their ownership into this repository.

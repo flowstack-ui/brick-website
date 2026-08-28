@@ -1,0 +1,21 @@
+{
+  "$schema": "flowstack.blocks.public-catalog.v1",
+  "items": [
+    {
+      "id": "application/feed/threaded-comments",
+      "slug": "application/feed/threaded-comments",
+      "name": "Threaded Comments Feed",
+      "description": "A focused product-feedback thread with clear parent and reply context, identity, timestamps, and item-level actions.",
+      "accessTier": "paid",
+      "license": "lifetime",
+      "entitlementScopes": ["individual", "team"],
+      "preview": {
+        "src": "/block-previews/application-feed-threaded-comments/index.html",
+        "sha256": "2f71554fec43df802386553c1b1966853d70b326f0fc37115af8fb0fee57effc",
+        "sourceCommit": "3ba42297e6c5d664e5aa9a335f2af3c430d1fdcd"
+      },
+      "purchase": { "state": "coming-soon" },
+      "signIn": { "state": "coming-soon" }
+    }
+  ]
+}

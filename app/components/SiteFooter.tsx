@@ -16,6 +16,7 @@ export function SiteFooter() {
       <div className="footer-links">
         <Link href="/docs/getting-started"><span className="footer-link-label">Get started</span></Link>
         <Link href="/components"><span className="footer-link-label">Components</span></Link>
+        <Link href="/blocks"><span className="footer-link-label">Blocks</span></Link>
         <Link href="/themes"><span className="footer-link-label">Themes</span></Link>
         <a href="https://atom-ui.com/"><span className="footer-link-label">Atom <ArrowUpRight size={13} aria-hidden="true" /></span></a>
         <a href="https://www.npmjs.com/package/@flowstack-ui/brick"><span className="footer-link-label">npm <ArrowUpRight size={13} aria-hidden="true" /></span></a>
