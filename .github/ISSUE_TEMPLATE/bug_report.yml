@@ -1,0 +1,66 @@
+name: Website bug
+description: Report a content, visual, accessibility, or interaction problem.
+title: "[Website bug]: "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for helping improve the Brick documentation website. Security vulnerabilities belong in a private advisory.
+  - type: input
+    id: url
+    attributes:
+      label: Page URL
+      placeholder: https://
+    validations:
+      required: true
+  - type: dropdown
+    id: category
+    attributes:
+      label: Problem area
+      options:
+        - Content or code example
+        - Visual layout or responsive behavior
+        - Interaction
+        - Accessibility
+        - Performance
+        - Navigation or search
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Steps to reproduce
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Browser and device
+      description: Include browser version, operating system, device, viewport, and assistive technology when relevant.
+    validations:
+      required: true
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Checks
+      options:
+        - label: I searched for an existing issue.
+          required: true
+        - label: This report contains no secrets or private user data.
+          required: true
+        - label: This is not a security vulnerability.
+          required: true
+

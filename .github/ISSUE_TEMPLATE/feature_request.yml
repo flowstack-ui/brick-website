@@ -1,0 +1,37 @@
+name: Website improvement
+description: Propose a documentation or website capability.
+title: "[Website improvement]: "
+body:
+  - type: textarea
+    id: need
+    attributes:
+      label: Visitor need
+      description: What should a visitor be able to understand or accomplish?
+    validations:
+      required: true
+  - type: input
+    id: route
+    attributes:
+      label: Related page or route
+      placeholder: https:// or /route
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed improvement
+    validations:
+      required: true
+  - type: textarea
+    id: implications
+    attributes:
+      label: Accessibility, responsive, and discovery implications
+      description: Note keyboard, screen-reader, viewport, navigation, search, or SEO considerations.
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Checks
+      options:
+        - label: I searched for an existing request.
+          required: true
+        - label: I have described the visitor need independently of the proposed solution.
+          required: true
+
