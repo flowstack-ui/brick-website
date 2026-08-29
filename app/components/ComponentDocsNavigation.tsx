@@ -152,24 +152,26 @@ export function ComponentDocsNavigation({ currentSlug, toc }: { currentSlug: str
       >
         <ComponentNavigationList currentSlug={currentSlug} />
       </aside>
-      <Hide as="div" className="docs-mobile-toolbar" from="lg" aria-label="Component documentation tools">
-        <DocsDrawer
-          description="Search all 89 components or browse by category."
-          title="Components"
-          trigger={<Button startIcon={<Menu size={16} aria-hidden="true" />} tone="neutral" variant="soft">Components</Button>}
-        >
-          <ComponentNavigationList closeOnNavigate currentSlug={currentSlug} />
-        </DocsDrawer>
-        <span aria-current="page">{current?.title}</span>
-        <DocsDrawer
-          description={`Jump to a section in the ${current?.title ?? "component"} guide.`}
-          title="On this page"
-          trigger={<Button aria-label="Open sections on this page" tone="neutral" variant="soft"><ListTree size={17} aria-hidden="true" /></Button>}
-        >
-          <nav className="docs-mobile-toc" aria-label="Sections on this page">
-            {toc.map((item) => <Drawer.Close asChild key={item.id}><a href={`#${item.id}`}>{item.label}</a></Drawer.Close>)}
-          </nav>
-        </DocsDrawer>
+      <Hide from="lg">
+        <div className="docs-mobile-toolbar" aria-label="Component documentation tools">
+          <DocsDrawer
+            description="Search all 89 components or browse by category."
+            title="Components"
+            trigger={<Button startIcon={<Menu size={16} aria-hidden="true" />} tone="neutral" variant="soft">Components</Button>}
+          >
+            <ComponentNavigationList closeOnNavigate currentSlug={currentSlug} />
+          </DocsDrawer>
+          <span aria-current="page">{current?.title}</span>
+          <DocsDrawer
+            description={`Jump to a section in the ${current?.title ?? "component"} guide.`}
+            title="On this page"
+            trigger={<Button aria-label="Open sections on this page" tone="neutral" variant="soft"><ListTree size={17} aria-hidden="true" /></Button>}
+          >
+            <nav className="docs-mobile-toc" aria-label="Sections on this page">
+              {toc.map((item) => <Drawer.Close asChild key={item.id}><a href={`#${item.id}`}>{item.label}</a></Drawer.Close>)}
+            </nav>
+          </DocsDrawer>
+        </div>
       </Hide>
     </>
   );

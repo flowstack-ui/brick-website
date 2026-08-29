@@ -123,13 +123,14 @@
   .blocks-catalog { display: grid; gap: 1.5rem; margin-block-start: clamp(4rem, 8vw, 7rem); }
   .blocks-section-heading { width: min(100%, 48rem); }
   .block-catalog-card { min-height: 100%; overflow: hidden; }
-  .block-catalog-preview { block-size: 23rem; overflow: hidden; border-block-end: 1px solid var(--brick-color-border-subtle); background: #fbfaf8; }
+  .block-catalog-preview { block-size: clamp(15rem, 22vw, 16rem); overflow: hidden; border-block-end: 1px solid var(--brick-color-border-subtle); background: #fbfaf8; }
   .block-catalog-preview iframe { width: 150%; height: 150%; border: 0; pointer-events: none; transform: scale(.6667); transform-origin: top left; }
   .block-catalog-card .brick-card-footer { align-items: center; justify-content: space-between; gap: 1rem; }
   .block-locked-note { display: inline-flex; align-items: center; gap: .4rem; color: var(--brick-color-text-secondary); font-size: .78rem; font-weight: 650; }
 
-  .block-detail-header { display: grid; grid-template-columns: minmax(0, 1fr) minmax(18rem, 26rem); align-items: center; gap: clamp(2rem, 6vw, 6rem); }
-  .block-detail-header > .brick-stack { max-width: 50rem; }
+  .block-detail-page { display: grid; grid-template-columns: minmax(0, 1fr) minmax(18rem, 26rem); align-items: start; column-gap: clamp(2rem, 6vw, 6rem); }
+  .block-detail-header { display: grid; max-width: 50rem; gap: 1rem; }
+  .block-access-panel { grid-column: 2; grid-row: 1; }
   .block-access-card { min-width: 0; }
   .block-access-icon { display: grid; width: 2.75rem; height: 2.75rem; place-items: center; border: 1px solid var(--brick-color-accent-border); border-radius: var(--brick-radius-control); background: var(--brick-color-accent-soft); color: var(--brick-color-accent-text); }
   .block-access-icon svg { width: 1.2rem; height: 1.2rem; }
@@ -137,7 +138,7 @@
   .block-access-list li { display: flex; align-items: center; gap: .55rem; }
   .block-access-list svg { flex: 0 0 auto; color: var(--brick-color-accent-text); }
   .block-access-actions { display: grid; gap: .65rem; }
-  .block-live-preview { margin-block-start: clamp(4rem, 8vw, 7rem); }
+  .block-live-preview { grid-column: 1 / -1; margin-block-start: clamp(4rem, 8vw, 7rem); }
   .block-preview-heading { display: flex; align-items: end; justify-content: space-between; gap: 1.5rem; margin-block-end: 1.25rem; }
   .block-preview-heading > div { display: grid; gap: .5rem; }
   .block-preview-frame { overflow: hidden; min-height: 28rem; border: 1px solid var(--brick-color-border-default); border-radius: clamp(1rem, 2vw, 1.5rem); background: #fbfaf8; box-shadow: 0 2rem 5rem color-mix(in srgb, var(--brick-color-shadow), transparent 78%); }
@@ -878,7 +879,9 @@
     .not-found-visual { min-height: 20rem; border-inline-end: 0; border-block-end: 1px solid var(--brick-color-border-subtle); }
     .not-found-wall { width: min(100%, 19rem); }
     .not-found-wall span { min-height: 3rem; }
-    .block-detail-header { grid-template-columns: 1fr; align-items: start; }
+    .block-detail-page { grid-template-columns: 1fr; }
+    .block-detail-header, .block-live-preview, .block-access-panel { grid-column: 1; }
+    .block-access-panel { grid-row: auto; margin-block-start: 3rem; }
     .block-access-card { width: min(100%, 34rem); }
   }
 
@@ -945,12 +948,10 @@
     .not-found-actions, .not-found-actions .brick-button { width: 100%; }
     .not-found-links { grid-template-columns: 1fr; }
     .blocks-page, .block-detail-page { padding-block: 2.25rem 4rem; }
-    .block-catalog-preview { block-size: 20rem; }
     .block-catalog-card .brick-card-footer { align-items: stretch; flex-direction: column; }
     .block-catalog-card .brick-button { width: 100%; }
     .block-preview-heading { align-items: start; flex-direction: column; }
-    .block-preview-frame { min-height: 34rem; margin-inline: -0.5rem; border-radius: 1rem; }
-    .block-preview-frame iframe { height: 34rem; }
+    .block-preview-frame { margin-inline: -0.5rem; border-radius: 1rem; }
     .component-pagination { grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); gap: .35rem; }
     .component-pagination > span:empty { display: block; }
     .component-pagination a { min-width: 0; gap: .35rem; }

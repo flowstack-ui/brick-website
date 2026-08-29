@@ -91,6 +91,10 @@
 
 ## Unreleased
 
+- Corrected the narrow component toolbar by placing sticky grid geometry on a
+  child of Brick's layout-transparent Hide owner. Tightened paid Block preview
+  frames to their rendered composition and moved the live preview ahead of the
+  locked purchase card on narrow screens while preserving the desktop split.
 - Adopted the pinned `baseline 2023 with downstream` browser floor and added
   Chromium, Firefox, WebKit, and mobile public-shell release evidence.
 - Split synchronized content into server-only component documents and scoped

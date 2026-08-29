@@ -88,6 +88,9 @@ Brick UI Website is implemented as a multi-route product and documentation site.
 - All 89 live examples are presented through one light/dark architectural stage with explicit compact, form, overlay, expanding, structural, or interaction geometry; disclosures remain top-anchored and grow only downward.
 - The component catalog is a full-width, outcome-led discovery hub without documentation rails; scoped search, category filters, source-backed results, and a query-aware empty state replace one undifferentiated card wall.
 - Component routes use a searchable, route-aware category navigator with aligned category groups on desktop and a paired Components/On-this-page toolbar with full-height Brick drawers on narrow screens.
+- The narrow component toolbar now gives its sticky grid geometry to a child of
+  Brick's layout-transparent Hide owner, preventing the page title from
+  colliding with either drawer trigger.
 - Component drawers use Brick's `lg` responsive visibility boundary, close their controlled modal state when that boundary is crossed, and present body-sized category and component navigation on mobile and tablet screens.
 - Component guides present source-backed consumer guidance, setup, examples, a single-lane usage decision, roomier multi-part API sections, accessibility, responsive behavior, grouped styling references, and optional advanced reference before linking to maintainer evidence and changelogs.
 - Source sections that only redirect to a playground are routed to the shared Maintainer resources footer; real Examples sections with code or additional consumer guidance remain in the reading path.
@@ -134,6 +137,10 @@ Brick UI Website is implemented as a multi-route product and documentation site.
 - Local search, light/dark appearance, responsive navigation, sitemap, robots,
   complete page metadata, structured data, social card, favicon, and
   AI-readable documentation are present.
+- Paid Block catalog previews use a content-matched compact frame instead of a
+  fixed oversized viewport. On narrow detail pages, the live composition now
+  follows the Block introduction before the locked purchase card, and the
+  sandbox height no longer reserves an unnecessary mobile-only blank region.
 - Vercel Web Analytics is integrated through its native Next.js entrypoint and
   is emitted only in Vercel builds. Speed Insights remains intentionally
   disabled because the current free account permits only one enabled project.
