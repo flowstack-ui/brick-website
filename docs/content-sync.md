@@ -11,6 +11,12 @@ identify the exact public release being adopted.
 3. Records the package version and exact Git commit.
 4. Regenerates `llms.txt` and `llms-full.txt`.
 
+`llms.txt` remains Brick's concise website mirror. It links to
+`https://agents.brick-ui.com/llms.txt` as the unified, version-aware public
+Agent Knowledge entrypoint without copying that corpus or changing package
+authority. `llms-full.txt` remains a website-only consolidation of synchronized
+human component documentation; it is not a unified FLOWSTACK knowledge dump.
+
 Review and commit every generated change. `npm run content:check` verifies the committed records against the installed package without requiring the sibling checkout.
 
 The committed full-document record is intentionally broader than the primary

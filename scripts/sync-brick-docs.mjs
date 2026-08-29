@@ -97,7 +97,25 @@ for (const slug of entries) {
 }
 
 const packageJson = JSON.parse(await readFile(path.join(packageRoot, "package.json"), "utf8"));
+const sitePackageJson = JSON.parse(await readFile(path.join(root, "package.json"), "utf8"));
+if (packageJson.name !== "@flowstack-ui/brick") {
+  throw new Error(`Expected @flowstack-ui/brick source, found ${packageJson.name ?? "an unnamed package"}`);
+}
+if (sitePackageJson.dependencies?.["@flowstack-ui/brick"] !== packageJson.version) {
+  throw new Error(`Brick source ${packageJson.version} does not match the website's exact dependency`);
+}
+const dirtySource = execFileSync(
+  "git",
+  ["-C", packageRoot, "status", "--porcelain", "--untracked-files=all", "--", "package.json", "docs/components"],
+  { encoding: "utf8" },
+).trim();
+if (dirtySource) {
+  throw new Error(`Brick source documentation is not committed:\n${dirtySource}`);
+}
 const sourceCommit = execFileSync("git", ["-C", packageRoot, "rev-parse", "HEAD"], { encoding: "utf8" }).trim();
+if (!/^[0-9a-f]{40}$/.test(sourceCommit)) {
+  throw new Error("Brick source HEAD is not an exact commit");
+}
 const source = {
   package: "@flowstack-ui/brick",
   version: packageJson.version,
@@ -118,6 +136,7 @@ const llmsIndex = [
   "## Documentation",
   "",
   "- [Brick UI overview](https://brick-ui.com/docs): Understand the package, its layers, and where to begin.",
+  "- [Unified version-aware FLOWSTACK Agent Knowledge](https://agents.brick-ui.com/llms.txt): Resolve exact-version Atom, Brick, Colors, and Theme guidance without changing package ownership.",
   "- [Getting started](https://brick-ui.com/docs/getting-started): Install Brick and compose a finished interface.",
   "- [Theming](https://brick-ui.com/docs/theming): Customize Brick through its semantic CSS contract.",
   "- [Accessibility](https://brick-ui.com/docs/accessibility): Learn the responsibilities shared by Atom, Brick, and applications.",

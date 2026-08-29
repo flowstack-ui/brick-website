@@ -91,6 +91,14 @@
 
 ## Unreleased
 
+- Kept the paid Blocks catalog and detail headings proportional at the 320px
+  minimum, and prevented the single-column detail grid, preview, and locked
+  access panel from expanding past the narrow page lane.
+- Refreshed the 89-owner AI-readable documentation mirror from the current
+  Brick `0.1.11` sibling commit and linked the concise `llms.txt` index to the
+  unified version-aware FLOWSTACK Agent Knowledge entrypoint. Kept
+  `llms-full.txt` scoped to synchronized human Brick documentation and added
+  exact dependency, lockfile, provenance, and delivery-boundary checks.
 - Corrected the narrow component toolbar by placing sticky grid geometry on a
   child of Brick's layout-transparent Hide owner. Tightened paid Block preview
   frames to their rendered composition and moved the live preview ahead of the

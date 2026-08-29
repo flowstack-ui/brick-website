@@ -141,6 +141,9 @@ Brick UI Website is implemented as a multi-route product and documentation site.
   fixed oversized viewport. On narrow detail pages, the live composition now
   follows the Block introduction before the locked purchase card, and the
   sandbox height no longer reserves an unnecessary mobile-only blank region.
+- The supported 320px minimum keeps paid Block headings on responsive Brick
+  type recipes and constrains the detail header, live preview, and locked
+  access card to the page lane without clipped min-content overflow.
 - Vercel Web Analytics is integrated through its native Next.js entrypoint and
   is emitted only in Vercel builds. Speed Insights remains intentionally
   disabled because the current free account permits only one enabled project.
@@ -162,8 +165,9 @@ Brick UI Website is implemented as a multi-route product and documentation site.
   Next runtime; the two intentional CSS requests estimate 70 ms mobile savings
   and do not justify weakening package/application ownership.
 - The site accent theme explicitly pairs purple solid actions with a white foreground in both appearances and verifies every solid interaction state at WCAG AA contrast.
-- The reviewed dependency is `@flowstack-ui/brick@0.1.11` at source commit
-  `2b35112a8ab883b178bc0fb96d68d319218cbb6d`, resolving exact Atom `0.24.0`.
+- The reviewed dependency is `@flowstack-ui/brick@0.1.11`; synchronized human
+  documentation now records sibling source commit
+  `4e1e48f797f42885de23c0c37ff073bae5468b7e`, resolving exact Atom `0.24.0`.
 - Brick `0.1.11` adds Bleed, Color Picker, Color Swatch, Data List, Group,
   Link Box, Reorderable List, Segment Group, and Status to the website catalog
   while retaining the generated theme-contract revision 2.

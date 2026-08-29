@@ -26,7 +26,7 @@ export default function BlocksCatalogPage() {
       <main id="main-content" className="blocks-page section-shell">
         <header className="blocks-hero">
           <Badge tone="accent" variant="soft">Built with Brick</Badge>
-          <Heading level={1} variant="display-lg" wrap="balance">Start from a complete interface, then make the source yours.</Heading>
+          <Heading level={1} variant={{ initial: "display-sm", sm: "display-md", lg: "display-lg" }} wrap="balance">Start from a complete interface, then make the source yours.</Heading>
           <Paragraph tone="secondary" variant="body-lg" wrap="pretty">
             Blocks are paid, editable React compositions assembled from Brick’s public components. Preview the finished result here; source and installation unlock only with an active lifetime entitlement.
           </Paragraph>

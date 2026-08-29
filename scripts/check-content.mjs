@@ -5,12 +5,13 @@ const root = path.resolve(import.meta.dirname, "..");
 const errors = [];
 const readJson = async (file) => JSON.parse(await readFile(path.join(root, file), "utf8"));
 
-const [components, docs, provenance, brickManifest, siteManifest, guides, llms, llmsFull, previewSource, previewFiles] = await Promise.all([
+const [components, docs, provenance, brickManifest, siteManifest, packageLock, guides, llms, llmsFull, previewSource, previewFiles] = await Promise.all([
   readJson("content/components.json"),
   readJson("content/component-docs.json"),
   readJson("content/brick-source.json"),
   readJson("node_modules/@flowstack-ui/brick/package.json"),
   readJson("package.json"),
+  readJson("package-lock.json"),
   readJson("content/guides.json"),
   readFile(path.join(root, "public/llms.txt"), "utf8"),
   readFile(path.join(root, "public/llms-full.txt"), "utf8"),
@@ -35,6 +36,7 @@ for (const component of components) {
   if (!docs[component.slug]?.includes('@flowstack-ui/brick/styles/core.css')) errors.push(`component is missing the modular CSS foundation: ${component.slug}`);
   if (!docs[component.slug]?.includes(`@flowstack-ui/brick/styles/${exportSlug}.css`)) errors.push(`component is missing its modular stylesheet: ${component.slug}`);
   if (!llms.includes(`/components/${component.slug}`)) errors.push(`component missing from llms.txt: ${component.slug}`);
+  if (!llmsFull.includes(docs[component.slug])) errors.push(`component documentation missing from llms-full.txt: ${component.slug}`);
   if (!previewFileSet.has(`${component.slug}.tsx`)) errors.push(`component has no route-scoped live preview: ${component.slug}`);
   if (!previewSource.includes(`previews/${component.slug}`)) errors.push(`component preview is not registered: ${component.slug}`);
 }
@@ -51,10 +53,18 @@ for (const [slug, guide] of Object.entries(guides)) {
 if (!guides["getting-started"].body.includes('@flowstack-ui/brick/styles/core.css')) errors.push("getting started is missing the modular CSS path");
 if (!guides.theming.body.includes("One theme contract, two delivery modes")) errors.push("theming is missing CSS delivery-mode guidance");
 if (provenance.package !== "@flowstack-ui/brick") errors.push("provenance has the wrong package name");
+if (provenance.repository !== "https://github.com/flowstack-ui/brick") errors.push("provenance has the wrong source repository");
+if (brickManifest.name !== provenance.package) errors.push("installed Brick package identity does not match provenance");
+const installedRepository = brickManifest.repository?.url?.replace(/^git\+/u, "").replace(/\.git$/u, "");
+if (installedRepository !== provenance.repository) errors.push("installed Brick repository does not match provenance");
 if (provenance.version !== brickManifest.version) errors.push(`content reviewed for Brick ${provenance.version}, installed ${brickManifest.version}`);
 if (siteManifest.dependencies["@flowstack-ui/brick"] !== brickManifest.version) errors.push("Brick must be installed as the exact reviewed version");
+if (packageLock.packages?.[""]?.dependencies?.["@flowstack-ui/brick"] !== provenance.version) errors.push("package-lock root does not pin the reviewed Brick version");
+if (packageLock.packages?.["node_modules/@flowstack-ui/brick"]?.version !== provenance.version) errors.push("package-lock archive does not match the reviewed Brick version");
 if (!/^[0-9a-f]{40}$/.test(provenance.commit)) errors.push("provenance has no exact source commit");
-if (!llmsFull.includes(`Source commit: ${provenance.commit}`)) errors.push("llms-full.txt has stale provenance");
+if (typeof provenance.reviewedAt !== "string" || Number.isNaN(Date.parse(provenance.reviewedAt)) || new Date(provenance.reviewedAt).toISOString() !== provenance.reviewedAt) errors.push("provenance has no exact ISO review time");
+const fullHeader = `# Brick UI — complete public documentation\n\nPackage version: ${provenance.version}\nSource commit: ${provenance.commit}\n`;
+if (!llmsFull.startsWith(fullHeader)) errors.push("llms-full.txt has stale package provenance");
 if (!llms.startsWith("# Brick UI\n\n> ")) errors.push("llms.txt must begin with an H1 and blockquote summary");
 if (!llms.includes("## Documentation") || !llms.includes("## Components") || !llms.includes("## Optional")) {
   errors.push("llms.txt is missing its documented link sections");
@@ -62,6 +72,9 @@ if (!llms.includes("## Documentation") || !llms.includes("## Components") || !ll
 const llmsLinks = [...llms.matchAll(/^- \[[^\]]+\]\(https:\/\/[^)]+\)(?:: .+)?$/gm)];
 if (llmsLinks.length < components.length + 10) errors.push("llms.txt must expose descriptive Markdown links");
 if (/^- https?:\/\//m.test(llms)) errors.push("llms.txt must not expose unlabeled bare-URL list items");
+const unifiedKnowledgeLink = "- [Unified version-aware FLOWSTACK Agent Knowledge](https://agents.brick-ui.com/llms.txt): Resolve exact-version Atom, Brick, Colors, and Theme guidance without changing package ownership.";
+if (llms.split(unifiedKnowledgeLink).length !== 2) errors.push("llms.txt must link the unified version-aware Agent Knowledge entrypoint exactly once");
+if (llmsFull.includes("agents.brick-ui.com")) errors.push("llms-full.txt must remain the website-owned human documentation corpus");
 
 if (errors.length) {
   console.error(`Content contract failed:\n- ${errors.join("\n- ")}`);
