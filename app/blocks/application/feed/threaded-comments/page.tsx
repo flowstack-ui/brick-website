@@ -35,7 +35,7 @@ export default function ThreadedCommentsBlockPage() {
             <Badge tone="accent" variant="soft">Paid Block</Badge>
             <Badge tone="neutral" variant="outline">Lifetime license</Badge>
           </HStack>
-          <Heading level={1} variant="display-lg" wrap="balance">{block.name}</Heading>
+          <Heading level={1} variant={{ initial: "display-sm", sm: "display-md", lg: "display-lg" }} wrap="balance">{block.name}</Heading>
           <Paragraph tone="secondary" variant="body-lg" wrap="pretty">{block.description}</Paragraph>
         </header>
 
@@ -43,7 +43,7 @@ export default function ThreadedCommentsBlockPage() {
           <div className="block-preview-heading">
             <div>
               <Text tone="accent" variant="eyebrow">Compiled live preview</Text>
-              <Heading id="threaded-comments-preview-title" level={2} variant="display-sm">Follow the parent-and-reply relationship.</Heading>
+              <Heading id="threaded-comments-preview-title" level={2} variant={{ initial: "title-lg", sm: "display-sm" }}>Follow the parent-and-reply relationship.</Heading>
             </div>
             <Badge tone="success" variant="soft">No source map</Badge>
           </div>

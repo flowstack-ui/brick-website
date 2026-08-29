@@ -5,6 +5,7 @@
 ## Documentation
 
 - [Brick UI overview](https://brick-ui.com/docs): Understand the package, its layers, and where to begin.
+- [Unified version-aware FLOWSTACK Agent Knowledge](https://agents.brick-ui.com/llms.txt): Resolve exact-version Atom, Brick, Colors, and Theme guidance without changing package ownership.
 - [Getting started](https://brick-ui.com/docs/getting-started): Install Brick and compose a finished interface.
 - [Theming](https://brick-ui.com/docs/theming): Customize Brick through its semantic CSS contract.
 - [Accessibility](https://brick-ui.com/docs/accessibility): Learn the responsibilities shared by Atom, Brick, and applications.

@@ -1,0 +1,5 @@
+[mcp_servers.flowstack]
+command = "npx"
+args = ["--yes", "@flowstack-ui/mcp@0.1.0", "--project-root", "."]
+cwd = "."
+required = true

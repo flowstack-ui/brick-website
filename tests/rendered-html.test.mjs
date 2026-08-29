@@ -220,6 +220,9 @@ test("Flowstack relationship remains supporting product context", async () => {
 });
 
 test("paid Blocks render as public previews without source or install commands", async () => {
+  const catalogSource = await readFile(new URL("../app/blocks/page.tsx", import.meta.url), "utf8");
+  const detailSource = await readFile(new URL("../app/blocks/application/feed/threaded-comments/page.tsx", import.meta.url), "utf8");
+  const css = await readFile(new URL("../app/globals.css", import.meta.url), "utf8");
   const catalogResponse = await render("/blocks");
   const catalogHtml = await catalogResponse.text();
   assert.equal(catalogResponse.status, 200);
@@ -237,6 +240,10 @@ test("paid Blocks render as public previews without source or install commands",
   assert.match(detailHtml, /block-previews\/application-feed-threaded-comments\/index\.html/);
   assert.doesNotMatch(detailHtml, /npx\s+@flowstack-ui\/blocks/);
   assert.doesNotMatch(detailHtml, /FLOWSTACK_BLOCKS_TOKEN/);
+  assert.match(catalogSource, /variant=\{\{ initial: "display-sm", sm: "display-md", lg: "display-lg" \}\}/, "the Blocks catalog heading must use Brick's responsive type recipe at the 320px minimum");
+  assert.match(detailSource, /variant=\{\{ initial: "display-sm", sm: "display-md", lg: "display-lg" \}\}/, "the Block detail title must use Brick's responsive type recipe at the 320px minimum");
+  assert.match(detailSource, /variant=\{\{ initial: "title-lg", sm: "display-sm" \}\}/, "the live-preview heading must remain proportional at the 320px minimum");
+  assert.match(css, /@media \(max-width: 900px\)[\s\S]*\.block-detail-page \{ grid-template-columns: minmax\(0, 1fr\); \}/, "the narrow Block detail track must contain long min-content within the page lane");
 });
 
 test("Atom hero retains its readable connected-layer composition", async () => {
