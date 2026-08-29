@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import { Badge } from "@flowstack-ui/brick/badge";
 import { Button } from "@flowstack-ui/brick/button";
 import { Card } from "@flowstack-ui/brick/card";
-import { HStack, VStack } from "@flowstack-ui/brick/stack";
+import { HStack } from "@flowstack-ui/brick/stack";
 import { Heading, Paragraph, Text } from "@flowstack-ui/brick/text";
 import { Check, LockKeyhole } from "lucide-react";
 import { StructuredData } from "@/app/components/StructuredData";
@@ -31,34 +31,12 @@ export default function ThreadedCommentsBlockPage() {
       ])} />
       <main id="main-content" className="block-detail-page section-shell">
         <header className="block-detail-header">
-          <VStack align="start" gap="4">
-            <HStack gap="2" wrap>
-              <Badge tone="accent" variant="soft">Paid Block</Badge>
-              <Badge tone="neutral" variant="outline">Lifetime license</Badge>
-            </HStack>
-            <Heading level={1} variant="display-lg" wrap="balance">{block.name}</Heading>
-            <Paragraph tone="secondary" variant="body-lg" wrap="pretty">{block.description}</Paragraph>
-          </VStack>
-          <Card.Root className="block-access-card" variant="elevated">
-            <Card.Header>
-              <span className="block-access-icon"><LockKeyhole aria-hidden="true" /></span>
-              <Card.Title as="h2">Source is locked</Card.Title>
-              <Card.Description>
-                The live compiled preview is public. Editable source and its install command require an active individual or team entitlement.
-              </Card.Description>
-            </Card.Header>
-            <Card.Content>
-              <ul className="block-access-list">
-                <li><Check size={15} aria-hidden="true" /> Lifetime access</li>
-                <li><Check size={15} aria-hidden="true" /> Individual or team ownership</li>
-                <li><Check size={15} aria-hidden="true" /> Consumer-owned React source</li>
-              </ul>
-            </Card.Content>
-            <Card.Footer className="block-access-actions">
-              <Button disabled fullWidth>Purchase access — coming soon</Button>
-              <Button disabled fullWidth tone="neutral" variant="soft">Sign in to unlock — coming soon</Button>
-            </Card.Footer>
-          </Card.Root>
+          <HStack gap="2" wrap>
+            <Badge tone="accent" variant="soft">Paid Block</Badge>
+            <Badge tone="neutral" variant="outline">Lifetime license</Badge>
+          </HStack>
+          <Heading level={1} variant="display-lg" wrap="balance">{block.name}</Heading>
+          <Paragraph tone="secondary" variant="body-lg" wrap="pretty">{block.description}</Paragraph>
         </header>
 
         <section aria-labelledby="threaded-comments-preview-title" className="block-live-preview">
@@ -81,6 +59,29 @@ export default function ThreadedCommentsBlockPage() {
             This sandbox contains a reviewed compiled artifact only. The installable files, item guidance, source text, and installation token are not part of this public website.
           </Paragraph>
         </section>
+
+        <aside className="block-access-panel" aria-label="Block access">
+          <Card.Root className="block-access-card" variant="elevated">
+            <Card.Header>
+              <span className="block-access-icon"><LockKeyhole aria-hidden="true" /></span>
+              <Card.Title as="h2">Source is locked</Card.Title>
+              <Card.Description>
+                The live compiled preview is public. Editable source and its install command require an active individual or team entitlement.
+              </Card.Description>
+            </Card.Header>
+            <Card.Content>
+              <ul className="block-access-list">
+                <li><Check size={15} aria-hidden="true" /> Lifetime access</li>
+                <li><Check size={15} aria-hidden="true" /> Individual or team ownership</li>
+                <li><Check size={15} aria-hidden="true" /> Consumer-owned React source</li>
+              </ul>
+            </Card.Content>
+            <Card.Footer className="block-access-actions">
+              <Button disabled fullWidth>Purchase access — coming soon</Button>
+              <Button disabled fullWidth tone="neutral" variant="soft">Sign in to unlock — coming soon</Button>
+            </Card.Footer>
+          </Card.Root>
+        </aside>
       </main>
     </>
   );

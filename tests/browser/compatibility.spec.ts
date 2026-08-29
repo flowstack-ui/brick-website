@@ -51,3 +51,42 @@ test("the paid Block page has no serious or critical automated accessibility vio
     .analyze();
   expect(results.violations.filter(({ impact }) => impact === "serious" || impact === "critical")).toEqual([]);
 });
+
+test("narrow documentation and Block compositions preserve their intended rhythm", async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+
+  await page.goto("/components/color-picker");
+  const toolbar = page.locator(".docs-mobile-toolbar");
+  await expect(toolbar).toBeVisible();
+  const [componentsBox, titleBox, sectionsBox] = await Promise.all([
+    toolbar.getByRole("button", { name: "Components" }).boundingBox(),
+    toolbar.locator(":scope > span").boundingBox(),
+    toolbar.getByRole("button", { name: "Open sections on this page" }).boundingBox(),
+  ]);
+  expect(componentsBox).not.toBeNull();
+  expect(titleBox).not.toBeNull();
+  expect(sectionsBox).not.toBeNull();
+  expect(componentsBox!.x + componentsBox!.width).toBeLessThanOrEqual(titleBox!.x);
+  expect(titleBox!.x + titleBox!.width).toBeLessThanOrEqual(sectionsBox!.x);
+
+  await page.goto("/blocks");
+  const catalogPreview = await page.locator(".block-catalog-preview").boundingBox();
+  expect(catalogPreview).not.toBeNull();
+  expect(catalogPreview!.height).toBeGreaterThanOrEqual(240);
+  expect(catalogPreview!.height).toBeLessThanOrEqual(256);
+
+  await page.goto("/blocks/application/feed/threaded-comments");
+  const [headerBox, previewBox, accessBox, iframeBox] = await Promise.all([
+    page.locator(".block-detail-header").boundingBox(),
+    page.locator(".block-live-preview").boundingBox(),
+    page.locator(".block-access-panel").boundingBox(),
+    page.locator(".block-preview-frame iframe").boundingBox(),
+  ]);
+  expect(headerBox).not.toBeNull();
+  expect(previewBox).not.toBeNull();
+  expect(accessBox).not.toBeNull();
+  expect(iframeBox).not.toBeNull();
+  expect(headerBox!.y + headerBox!.height).toBeLessThan(previewBox!.y);
+  expect(previewBox!.y + previewBox!.height).toBeLessThan(accessBox!.y);
+  expect(iframeBox!.height).toBeCloseTo(448, 2);
+});
