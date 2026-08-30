@@ -6,6 +6,7 @@ import { Button } from "@flowstack-ui/brick/button";
 import { Card } from "@flowstack-ui/brick/card";
 import { Code } from "@flowstack-ui/brick/code";
 import { Input } from "@flowstack-ui/brick/input";
+import { HStack } from "@flowstack-ui/brick/stack";
 import { Text } from "@flowstack-ui/brick/text";
 import {
   ArrowRight,
@@ -16,12 +17,14 @@ import {
   MessageSquareWarning,
   MousePointerClick,
   Search,
+  Type,
 } from "lucide-react";
 import { categories, components } from "@/app/lib/catalog";
 
 const outcomes = [
   { category: "Forms & choices", icon: CheckSquare, label: "Collect input", examples: "Field, Input, Select" },
   { category: "Actions & selection", icon: MousePointerClick, label: "Trigger actions", examples: "Button, Toggle, Toolbar" },
+  { category: "Typography", icon: Type, label: "Shape content", examples: "Text, Prose, Highlight" },
   { category: "Content & status", icon: MessageSquareWarning, label: "Show feedback", examples: "Alert, Badge, Progress" },
   { category: "Overlays & menus", icon: MenuSquare, label: "Open an overlay", examples: "Dialog, Drawer, Popover" },
   { category: "Navigation & layout", icon: LayoutDashboard, label: "Shape navigation", examples: "Tabs, Sidebar, Breadcrumb" },
@@ -130,7 +133,7 @@ export function ComponentCatalog() {
                     {categoryComponents.map((component) => (
                       <Card.Root key={component.slug} as="article" size="sm" variant="outline" className="component-result-card">
                         <Card.Header>
-                          <div><Card.Title as="h4">{component.title}</Card.Title><Badge tone="neutral" variant="soft" size="sm">{entry}</Badge></div>
+                          <div><Card.Title as="h4">{component.title}</Card.Title><HStack gap={2} wrap><Badge tone="neutral" variant="soft" size="sm">{entry}</Badge>{component.delivery === "source" && <Badge tone="accent" variant="outline" size="sm">Source</Badge>}</HStack></div>
                           <Card.Action><ArrowRight size={16} aria-hidden="true" /></Card.Action>
                         </Card.Header>
                         <Card.Content><Text variant="body-sm" tone="secondary">{conciseDescription(component.description)}</Text></Card.Content>

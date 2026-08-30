@@ -52,6 +52,34 @@ test("the paid Block page has no serious or critical automated accessibility vio
   expect(results.violations.filter(({ impact }) => impact === "serious" || impact === "critical")).toEqual([]);
 });
 
+test("the paid source component exposes a usable compiled preview without source", async ({ page }) => {
+  const response = await page.goto("/components/rich-text-editor");
+  expect(response?.status()).toBe(200);
+  await expect(page.getByRole("heading", { level: 1, name: "Rich Text Editor" })).toBeVisible();
+  await expect(page.getByText("Editable source is locked")).toBeVisible();
+  await expect(page.getByText(/npx @flowstack-ui\/blocks/u)).toHaveCount(0);
+
+  const previewResponse = await page.request.get("/component-previews/rich-text-editor/index.html");
+  expect(previewResponse.status()).toBe(200);
+  expect(previewResponse.headers()["x-frame-options"]).toBe("SAMEORIGIN");
+  expect(previewResponse.headers()["content-security-policy"]).toContain("connect-src 'none'");
+  expect(previewResponse.headers()["x-robots-tag"]).toContain("noindex");
+
+  const preview = page.frameLocator('iframe[title="Rich Text Editor compiled live preview"]');
+  await expect(preview.getByRole("toolbar", { name: "Text formatting" })).toBeVisible();
+  const editor = preview.getByRole("textbox", { name: "Document content" });
+  await expect(editor).toBeVisible();
+  await expect(editor).toContainText("Write with clarity");
+});
+
+test("the paid source component page has no serious or critical automated accessibility violations", async ({ page }) => {
+  await page.goto("/components/rich-text-editor");
+  const results = await new AxeBuilder({ page })
+    .withTags(["wcag2a", "wcag2aa", "wcag21a", "wcag21aa", "wcag22aa"])
+    .analyze();
+  expect(results.violations.filter(({ impact }) => impact === "serious" || impact === "critical")).toEqual([]);
+});
+
 test("narrow documentation and Block compositions preserve their intended rhythm", async ({ page }) => {
   for (const width of [320, 390]) {
     await page.setViewportSize({ width, height: 844 });
@@ -69,6 +97,17 @@ test("narrow documentation and Block compositions preserve their intended rhythm
     expect(sectionsBox).not.toBeNull();
     expect(componentsBox!.x + componentsBox!.width).toBeLessThanOrEqual(titleBox!.x);
     expect(titleBox!.x + titleBox!.width).toBeLessThanOrEqual(sectionsBox!.x);
+    expect(await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth)).toBeLessThanOrEqual(1);
+
+    await page.goto("/components/rich-text-editor");
+    const [sourcePage, sourceFrame] = await Promise.all([
+      page.locator(".component-doc").boundingBox(),
+      page.locator('iframe[title="Rich Text Editor compiled live preview"]').boundingBox(),
+    ]);
+    expect(sourcePage).not.toBeNull();
+    expect(sourceFrame).not.toBeNull();
+    expect(sourceFrame!.x).toBeGreaterThanOrEqual(sourcePage!.x - 1);
+    expect(sourceFrame!.x + sourceFrame!.width).toBeLessThanOrEqual(sourcePage!.x + sourcePage!.width + 1);
     expect(await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth)).toBeLessThanOrEqual(1);
 
     await page.goto("/blocks");

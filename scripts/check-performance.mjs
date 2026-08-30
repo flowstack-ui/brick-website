@@ -13,7 +13,9 @@ const representativeRouteBudgets = [
   { name: "guide", file: "server/app/docs/getting-started.html", raw: 790_000, gzip: 235_000 },
 ];
 const socialCardBudget = 200_000;
-const searchIndexBudget = { raw: 25_000, gzip: 7_000 };
+// The 96-entry catalog includes seven new typography/source records. Keep a
+// narrow measured ceiling above the committed 27,646 / 7,280-byte artifact.
+const searchIndexBudget = { raw: 30_000, gzip: 8_000 };
 let largest = { slug: "", raw: 0, gzip: 0 };
 
 async function initialJavaScript(file) {

@@ -14,7 +14,8 @@ The sibling `../package` repository is an input to the maintainer-only synchroni
 Routes are intentionally separated by audience:
 
 - `/` explains and demonstrates the product.
-- `/components/` and `/components/[slug]/` expose the full component catalog.
+- `/components/` and `/components/[slug]/` expose 95 exact-version Brick
+  package owners and one clearly labeled paid source-installed component.
 - `/blocks/` and `/blocks/application/feed/threaded-comments/` expose a public
   catalog and detail preview for a paid composition without exposing its
   installable source.
@@ -38,9 +39,9 @@ The document parser, section ordering, syntax tokens, and Markdown rendering
 remain build/server work. Published Brick components own the resulting visual
 anatomy; application routing and content selection remain website-owned.
 
-Live examples use a route-scoped dynamic registry. Every component preview is
+Live examples use a route-scoped dynamic registry. Every package component preview is
 an independent client module under `components/previews/`; the shared registry
-does not import all 89 implementations into one browser bundle. Build-time
+does not import all 95 implementations into one browser bundle. Build-time
 budgets and the social-asset contract are recorded in
 [performance.md](performance.md).
 
@@ -52,3 +53,9 @@ sandboxed, cannot make network connections or submit forms, and receives a
 same-origin-only framing policy; ordinary website pages remain non-frameable.
 Source, source paths, item guidance, install commands, tokens, and entitlement
 logic never enter this repository.
+
+The Rich Text Editor uses the same trust model through
+`public/component-previews/`: its private owning revision exports three
+deterministic compiled files, and the public catalog records only allowlisted
+metadata, provenance, and the aggregate digest. The route labels source
+delivery explicitly and never presents it as a Brick package export.

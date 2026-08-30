@@ -1,12 +1,14 @@
-import components from "@/content/components.json";
+import componentRecords from "@/content/components.json";
 
-export type ComponentEntry = (typeof components)[number];
+export type ComponentDelivery = "package" | "source";
+export type ComponentEntry = Omit<(typeof componentRecords)[number], "delivery"> & { delivery: ComponentDelivery };
 
-export { components };
+export const components = componentRecords as ComponentEntry[];
 
 export const categories = [
   "Actions & selection",
   "Forms & choices",
+  "Typography",
   "Content & status",
   "Overlays & menus",
   "Navigation & layout",

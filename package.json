@@ -33,15 +33,16 @@
     "theme:check": "node scripts/check-theme-contrast.mjs",
     "performance:check": "node scripts/check-performance.mjs",
     "blocks:check": "node scripts/verify-block-preview-boundary.mjs",
+    "source-components:check": "node scripts/verify-source-component-preview-boundary.mjs",
     "verify:repository-contract": "node scripts/verify-repository-contract.mjs",
     "check:focused": "npm run content:check && npm run typecheck",
-    "check:repository": "npm run verify:repository-contract && npm run blocks:check && npm run content:check && npm run theme:check && npm run typecheck && npm run lint && npm run build && npm run performance:check && node --test tests/rendered-html.test.mjs",
+    "check:repository": "npm run verify:repository-contract && npm run blocks:check && npm run source-components:check && npm run content:check && npm run theme:check && npm run typecheck && npm run lint && npm run build && npm run performance:check && node --test tests/rendered-html.test.mjs",
     "check:release": "npm run check:repository && npm run test:browser:built",
     "verify": "npm run check:repository",
     "test:all": "npm run check:release"
   },
   "dependencies": {
-    "@flowstack-ui/brick": "0.1.11",
+    "@flowstack-ui/brick": "0.1.12",
     "@primer/octicons-react": "^19.32.0",
     "@vercel/analytics": "^2.0.1",
     "lucide-react": "^1.24.0",

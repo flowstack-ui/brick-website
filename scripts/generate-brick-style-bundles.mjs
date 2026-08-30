@@ -106,6 +106,7 @@ await Promise.all(previewFiles.map(async (file) => {
   const preview = await readFile(resolve(previewsRoot, file), "utf8");
   const components = [...preview.matchAll(/from "@flowstack-ui\/brick\/([^"/]+)"/gu)].map((match) => match[1]);
   const styles = [...new Set(components)].map((component) => `styles/${component}.css`);
+  if (!styles.length && preview.includes("brick-preview-style-boundary: compiled-iframe")) return;
   if (!styles.length) throw new Error(`${file} has no Brick component styles`);
   await writeBundle(`previews/${file.slice(0, -4)}.css`, styles);
 }));

@@ -6,10 +6,16 @@ Lighthouse lab results, or post-launch field Core Web Vitals.
 
 ## Component previews
 
-Each of the 89 live examples owns a client module under `components/previews/`.
+Each of the 96 live examples owns a client module under `components/previews/`.
 `ComponentPreview.tsx` contains only the dynamic registry and fallback, so a
 component route loads its own preview rather than the implementation and Brick
 subpaths for the entire catalog.
+
+The Rich Text Editor is a source-installed exception: its route-scoped module
+contains only a sandboxed iframe boundary, while the independently compiled
+artifact owns Tiptap and its exact Brick styles. The private exporter uses
+modular Prose, Stack, Surface, and Toolbar CSS rather than the complete Brick
+stylesheet, reducing the compiled preview CSS from 606,222 to 60,924 bytes.
 
 The August 4, 2026 native Next production build first changed the
 representative Button route from 1,802,367 raw / 501,885 gzip JavaScript bytes
@@ -32,7 +38,7 @@ the client-only component navigator.
 
 Global search is split into two deferred layers. Its interface module loads
 only after focus, pointer intent, Command/Control-K, or an explicit open. Its
-20,289-byte raw / 5,732-byte gzip generated index is fetched only after the
+27,646-byte raw / 7,280-byte gzip generated index is fetched only after the
 dialog mounts. The content gate proves that the index is synchronized; the
 performance gate proves that representative initial bundles contain neither
 the dialog nor the full catalog or component-document payload.

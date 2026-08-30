@@ -1,5 +1,16 @@
 # Changelog
 
+- Adopted exact Brick `0.1.12` and Atom `0.25.1`, expanding the package catalog
+  to 95 owners with Blockquote, Em, Highlight, Kbd, Mark, Prose, and the
+  completed Code Block typography path. Added dedicated route-scoped examples,
+  exact provenance, synchronized human/LLM documentation, search, syntax, and
+  generated modular styles.
+- Added the paid source-installed Rich Text Editor as the 96th catalog entry.
+  Its public page uses a sandboxed, same-origin, no-network, digest-pinned
+  compiled preview while source, dependencies, API details, item Agent
+  Knowledge, receipts, tokens, and install commands remain private. The
+  exporter uses modular Brick styles and exact React 18/19 Consumer evidence.
+
 - Added the first paid Blocks catalog and canonical Threaded Comments Feed
   detail route with a sandboxed, digest-pinned compiled preview. Added exact
   artifact allowlists and leak checks that reject source maps, authoring paths,

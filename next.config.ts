@@ -11,7 +11,7 @@ const pageSecurityHeaders = [
   { key: "X-Frame-Options", value: "DENY" },
 ];
 
-const blockPreviewHeaders = [
+const compiledPreviewHeaders = [
   ...sharedSecurityHeaders,
   { key: "Access-Control-Allow-Origin", value: "*" },
   { key: "X-Frame-Options", value: "SAMEORIGIN" },
@@ -28,8 +28,9 @@ const nextConfig: NextConfig = {
   reactStrictMode: true,
   async headers() {
     return [
-      { source: "/block-previews/:path*", headers: blockPreviewHeaders },
-      { source: "/:path((?!block-previews/).*)", headers: pageSecurityHeaders },
+      { source: "/block-previews/:path*", headers: compiledPreviewHeaders },
+      { source: "/component-previews/:path*", headers: compiledPreviewHeaders },
+      { source: "/:path((?!block-previews/|component-previews/).*)", headers: pageSecurityHeaders },
       ...["/llms.txt", "/llms-full.txt"].map((source) => ({
         source,
         headers: [{ key: "X-Robots-Tag", value: "noindex" }],
