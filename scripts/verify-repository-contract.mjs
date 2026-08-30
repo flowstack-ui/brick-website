@@ -5,6 +5,7 @@ import configuration from "../verification.config.mjs";
 const root = resolve(import.meta.dirname, "..");
 const manifest = JSON.parse(await readFile(resolve(root, "package.json"), "utf8"));
 const rootLayout = await readFile(resolve(root, "app/layout.tsx"), "utf8");
+const blocksLayout = await readFile(resolve(root, "app/blocks/layout.tsx"), "utf8");
 const styleGenerator = await readFile(resolve(root, "scripts/generate-brick-style-bundles.mjs"), "utf8");
 const errors = [];
 const browserConfigSources = [];
@@ -46,6 +47,12 @@ if (!rootLayout.includes('process.env.VERCEL === "1" ? <Analytics /> : null')) {
 }
 if (!rootLayout.includes('./.generated/brick-shell.css')) {
   errors.push("root layout must load the generated Brick shell bundle");
+}
+if (!blocksLayout.includes('../.generated/brick-blocks.css')) {
+  errors.push("Blocks layout must load the generated Brick Blocks bundle");
+}
+if (!styleGenerator.includes('"brick-blocks.css": ["styles/card.css", "styles/grid.css", "styles/stack.css"]')) {
+  errors.push("Brick style generator must include Card, Grid, and Stack on Blocks routes");
 }
 if (styleGenerator.includes('"styles.css"')) {
   errors.push("Brick style bundles must not load the complete stylesheet");

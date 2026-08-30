@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import { Badge } from "@flowstack-ui/brick/badge";
 import { Button } from "@flowstack-ui/brick/button";
 import { Card } from "@flowstack-ui/brick/card";
-import { HStack } from "@flowstack-ui/brick/stack";
+import { HStack, Stack, VStack } from "@flowstack-ui/brick/stack";
 import { Heading, Paragraph, Text } from "@flowstack-ui/brick/text";
 import { Check, LockKeyhole } from "lucide-react";
 import { StructuredData } from "@/app/components/StructuredData";
@@ -30,23 +30,29 @@ export default function ThreadedCommentsBlockPage() {
         { name: block.name, path: `/blocks/${block.slug}` },
       ])} />
       <main id="main-content" className="block-detail-page section-shell">
-        <header className="block-detail-header">
-          <HStack gap="2" wrap>
+        <VStack as="header" align="start" gap={4} className="block-detail-header">
+          <HStack className="block-license-badges" gap={3} wrap>
             <Badge tone="accent" variant="soft">Paid Block</Badge>
             <Badge tone="neutral" variant="outline">Lifetime license</Badge>
           </HStack>
           <Heading level={1} variant={{ initial: "display-sm", sm: "display-md", lg: "display-lg" }} wrap="balance">{block.name}</Heading>
           <Paragraph tone="secondary" variant="body-lg" wrap="pretty">{block.description}</Paragraph>
-        </header>
+        </VStack>
 
         <section aria-labelledby="threaded-comments-preview-title" className="block-live-preview">
-          <div className="block-preview-heading">
-            <div>
+          <Stack
+            align={{ initial: "start", sm: "end" }}
+            className="block-preview-heading"
+            direction={{ initial: "column", sm: "row" }}
+            gap={4}
+            justify="between"
+          >
+            <VStack align="start" gap={2}>
               <Text tone="accent" variant="eyebrow">Compiled live preview</Text>
               <Heading id="threaded-comments-preview-title" level={2} variant={{ initial: "title-lg", sm: "display-sm" }}>Follow the parent-and-reply relationship.</Heading>
-            </div>
+            </VStack>
             <Badge tone="success" variant="soft">No source map</Badge>
-          </div>
+          </Stack>
           <div className="block-preview-frame">
             <iframe
               loading="eager"
@@ -63,22 +69,26 @@ export default function ThreadedCommentsBlockPage() {
         <aside className="block-access-panel" aria-label="Block access">
           <Card.Root className="block-access-card" variant="elevated">
             <Card.Header>
-              <span className="block-access-icon"><LockKeyhole aria-hidden="true" /></span>
-              <Card.Title as="h2">Source is locked</Card.Title>
-              <Card.Description>
-                The live compiled preview is public. Editable source and its install command require an active individual or team entitlement.
-              </Card.Description>
+              <VStack align="start" gap={3}>
+                <span className="block-access-icon"><LockKeyhole aria-hidden="true" /></span>
+                <Card.Title as="h2">Source is locked</Card.Title>
+                <Card.Description>
+                  The live compiled preview is public. Editable source and its install command require an active individual or team entitlement.
+                </Card.Description>
+              </VStack>
             </Card.Header>
             <Card.Content>
-              <ul className="block-access-list">
-                <li><Check size={15} aria-hidden="true" /> Lifetime access</li>
-                <li><Check size={15} aria-hidden="true" /> Individual or team ownership</li>
-                <li><Check size={15} aria-hidden="true" /> Consumer-owned React source</li>
-              </ul>
+              <VStack as="ul" gap={3} className="block-access-list">
+                <HStack as="li" align="center" gap={2}><Check size={15} aria-hidden="true" /> Lifetime access</HStack>
+                <HStack as="li" align="center" gap={2}><Check size={15} aria-hidden="true" /> Individual or team ownership</HStack>
+                <HStack as="li" align="center" gap={2}><Check size={15} aria-hidden="true" /> Consumer-owned React source</HStack>
+              </VStack>
             </Card.Content>
-            <Card.Footer className="block-access-actions">
-              <Button disabled fullWidth>Purchase access — coming soon</Button>
-              <Button disabled fullWidth tone="neutral" variant="soft">Sign in to unlock — coming soon</Button>
+            <Card.Footer>
+              <VStack align="stretch" gap={4} className="block-access-actions">
+                <Button disabled fullWidth>Purchase access — coming soon</Button>
+                <Button disabled fullWidth tone="neutral" variant="soft">Sign in to unlock — coming soon</Button>
+              </VStack>
             </Card.Footer>
           </Card.Root>
         </aside>

@@ -82,6 +82,9 @@ test("narrow documentation and Block compositions preserve their intended rhythm
     expect(catalogPreview!.height).toBeLessThanOrEqual(256);
     expect(catalogCard!.x + catalogCard!.width).toBeLessThanOrEqual(width - 15);
     expect(Number.parseFloat(await page.locator(".blocks-hero h1").evaluate((element) => getComputedStyle(element).fontSize))).toBeLessThanOrEqual(40);
+    expect(await page.locator(".block-catalog-card").evaluate((element) => getComputedStyle(element).display)).toBe("flex");
+    expect(Number.parseFloat(await page.locator(".block-catalog-card .block-license-badges").evaluate((element) => getComputedStyle(element).gap))).toBeGreaterThanOrEqual(12);
+    expect(Number.parseFloat(await page.locator(".block-catalog-actions").evaluate((element) => getComputedStyle(element).gap))).toBeGreaterThanOrEqual(16);
 
     await page.goto("/blocks/application/feed/threaded-comments");
     const [mainBox, headerBox, previewBox, accessBox, iframeBox] = await Promise.all([
@@ -105,6 +108,9 @@ test("narrow documentation and Block compositions preserve their intended rhythm
     expect(iframeBox!.height).toBeCloseTo(448, 2);
     expect(Number.parseFloat(await page.locator(".block-detail-header h1").evaluate((element) => getComputedStyle(element).fontSize))).toBeLessThanOrEqual(40);
     expect(Number.parseFloat(await page.locator(".block-preview-heading h2").evaluate((element) => getComputedStyle(element).fontSize))).toBeLessThanOrEqual(32);
+    expect(await page.locator(".block-access-card").evaluate((element) => getComputedStyle(element).display)).toBe("flex");
+    expect(Number.parseFloat(await page.locator(".block-detail-header .block-license-badges").evaluate((element) => getComputedStyle(element).gap))).toBeGreaterThanOrEqual(12);
+    expect(Number.parseFloat(await page.locator(".block-access-actions").evaluate((element) => getComputedStyle(element).gap))).toBeGreaterThanOrEqual(16);
     expect(await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth)).toBeLessThanOrEqual(1);
   }
 });

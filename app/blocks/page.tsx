@@ -24,20 +24,20 @@ export default function BlocksCatalogPage() {
         { name: "Blocks", path: "/blocks" },
       ])} />
       <main id="main-content" className="blocks-page section-shell">
-        <header className="blocks-hero">
+        <VStack as="header" align="start" gap={4} className="blocks-hero">
           <Badge tone="accent" variant="soft">Built with Brick</Badge>
           <Heading level={1} variant={{ initial: "display-sm", sm: "display-md", lg: "display-lg" }} wrap="balance">Start from a complete interface, then make the source yours.</Heading>
           <Paragraph tone="secondary" variant="body-lg" wrap="pretty">
             Blocks are paid, editable React compositions assembled from Brick’s public components. Preview the finished result here; source and installation unlock only with an active lifetime entitlement.
           </Paragraph>
-          <HStack gap="2" wrap>
+          <HStack className="block-license-badges" gap={3} wrap>
             <Badge tone="neutral" variant="outline">Individual lifetime access</Badge>
             <Badge tone="neutral" variant="outline">Team lifetime access</Badge>
           </HStack>
-        </header>
+        </VStack>
 
         <section aria-labelledby="blocks-catalog-title" className="blocks-catalog">
-          <VStack align="start" gap="2" className="blocks-section-heading">
+          <VStack align="start" gap={3} className="blocks-section-heading">
             <Text tone="accent" variant="eyebrow">Live catalog</Text>
             <Heading id="blocks-catalog-title" level={2} variant="display-sm">See the composition before you buy.</Heading>
           </VStack>
@@ -54,18 +54,25 @@ export default function BlocksCatalogPage() {
                   />
                 </div>
                 <Card.Header>
-                  <HStack gap="2" wrap>
-                    <Badge tone="accent" variant="soft">Paid</Badge>
-                    <Badge tone="neutral" variant="outline">Lifetime</Badge>
-                  </HStack>
-                  <Card.Title as="h3">{block.name}</Card.Title>
-                  <Card.Description>{block.description}</Card.Description>
+                  <VStack align="start" gap={3}>
+                    <HStack className="block-license-badges" gap={3} wrap>
+                      <Badge tone="accent" variant="soft">Paid</Badge>
+                      <Badge tone="neutral" variant="outline">Lifetime</Badge>
+                    </HStack>
+                    <Card.Title as="h3">{block.name}</Card.Title>
+                    <Card.Description>{block.description}</Card.Description>
+                  </VStack>
                 </Card.Header>
                 <Card.Footer>
-                  <WebsiteButton href={`/blocks/${block.slug}`} endIcon={<ArrowRight size={16} />}>
-                    View live preview
-                  </WebsiteButton>
-                  <span className="block-locked-note"><LockKeyhole size={14} aria-hidden="true" /> Source locked</span>
+                  <VStack align="stretch" gap={4} className="block-catalog-actions">
+                    <WebsiteButton fullWidth href={`/blocks/${block.slug}`} endIcon={<ArrowRight size={16} />}>
+                      View live preview
+                    </WebsiteButton>
+                    <HStack align="center" gap={2}>
+                      <LockKeyhole size={14} aria-hidden="true" />
+                      <Text as="span" tone="secondary" variant="caption" weight="semibold">Source locked</Text>
+                    </HStack>
+                  </VStack>
                 </Card.Footer>
               </Card.Root>
             ))}
