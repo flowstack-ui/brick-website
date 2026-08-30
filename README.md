@@ -9,6 +9,11 @@ compositions. It contains no installable Block source, item Agent Knowledge,
 source maps, install commands, or access tokens. Those remain behind the
 separate authenticated Blocks registry.
 
+The component catalog also presents one reviewed paid source-installed Rich
+Text Editor. Its public route contains only safe documentation and a
+digest-pinned compiled preview; editable React source, item Agent Knowledge,
+dependencies, API details, and the usable install command remain private.
+
 ## Requirements
 
 - Node.js 22.13 or newer
@@ -29,11 +34,16 @@ npm run check:release   # repository gate plus portable browser smoke tests
 
 - Production reads only committed files and the exact npm dependency. It never reads the sibling package checkout.
 - `content/brick-source.json` records the reviewed Brick version and source commit.
-- `content/components.json` and `content/component-docs.json` are generated from the 89 public component owners.
+- `content/components.json` and `content/component-docs.json` contain 95
+  exact-version Brick package owners plus one reviewed source-installed
+  component.
 - `public/llms.txt` and `public/llms-full.txt` expose AI-readable public documentation.
 - `content/blocks.json` contains only allowlisted public marketing and access
   metadata. `public/block-previews/` contains only digest-pinned compiled
   preview artifacts produced by the private Blocks repository.
+- `content/source-components.json` and `public/component-previews/` apply the
+  same allowlist, provenance, digest, and leak boundary to paid source-installed
+  components.
 - Local UI search uses the committed component and guide records; no hosted search service is required.
 
 See [docs/README.md](docs/README.md) for the maintenance map.

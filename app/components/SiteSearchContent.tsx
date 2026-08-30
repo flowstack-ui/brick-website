@@ -71,7 +71,7 @@ export function SiteSearchContent() {
             ref={searchInputRef}
             value={query}
             onChange={(event) => setQuery(event.currentTarget.value)}
-            placeholder="Search 89 components…"
+            placeholder="Search 96 components…"
             startAdornment={<Search size={16} aria-hidden="true" />}
             type="search"
             clearable

@@ -6,8 +6,9 @@ For an isolated release checkout, set `FLOWSTACK_BRICK_PACKAGE_ROOT` to that
 checkout before running the same command. The recorded version and commit must
 identify the exact public release being adopted.
 
-1. Reads the 89 component-owner documentation folders.
-2. Produces committed catalog and full-document records.
+1. Reads the 95 package-owner documentation folders.
+2. Produces committed catalog and full-document records, then appends only the
+   reviewed allowlisted metadata for source-installed components.
 3. Records the package version and exact Git commit.
 4. Regenerates `llms.txt` and `llms-full.txt`.
 
@@ -18,6 +19,13 @@ authority. `llms-full.txt` remains a website-only consolidation of synchronized
 human component documentation; it is not a unified FLOWSTACK knowledge dump.
 
 Review and commit every generated change. `npm run content:check` verifies the committed records against the installed package without requiring the sibling checkout.
+
+Source-installed component metadata is maintained separately in
+`content/source-components.json`. Its compiled preview must be exported from
+the pinned private Blocks revision, copied into `public/component-previews/`,
+and pass `npm run source-components:check`. Never synchronize editable source,
+item Agent Knowledge, private dependency/API details, or usable install
+commands into this repository.
 
 The committed full-document record is intentionally broader than the primary
 website reading path. Component routes parse its named sections at render time:

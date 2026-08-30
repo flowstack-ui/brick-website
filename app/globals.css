@@ -578,6 +578,9 @@
   .example-canvas[data-layout="expanding"] { min-height: 0; align-content: start; place-items: start center; padding-block: clamp(3rem, 6vw, 4.5rem); }
   .example-canvas[data-layout="structural"] { min-height: 17rem; align-content: start; place-items: start stretch; padding: clamp(1.25rem, 3vw, 2.25rem); }
   .example-canvas[data-layout="structural"] > .example-specimen { width: 100%; }
+  /* The iframe is an application-owned trust boundary for reviewed compiled source, not a replacement for a Brick layout owner. */
+  .source-component-preview { overflow: hidden; width: 100%; border: 1px solid var(--brick-color-border-subtle); border-radius: var(--brick-radius-surface); background: #fbfaf8; box-shadow: 0 1rem 3rem color-mix(in srgb, var(--brick-color-shadow), transparent 68%); }
+  .source-component-preview iframe { display: block; width: 100%; height: clamp(28rem, 58dvb, 36rem); border: 0; background: #fbfaf8; }
   .preview-form { width: min(100%, 25rem); }.preview-card { width: min(100%, 28rem); }
   .preview-collapsible { width: min(100%, 30rem); }
   .preview-hover-trigger { display: inline-flex; align-items: center; gap: 1.25rem; padding: .65rem .7rem .65rem .8rem; border: 1px solid var(--brick-color-border-subtle); border-radius: .75rem; background: var(--brick-color-surface-raised); text-decoration: none; }

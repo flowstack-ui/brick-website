@@ -5,10 +5,11 @@ const root = path.resolve(import.meta.dirname, "..");
 const errors = [];
 const readJson = async (file) => JSON.parse(await readFile(path.join(root, file), "utf8"));
 
-const [components, docs, provenance, brickManifest, siteManifest, packageLock, guides, llms, llmsFull, previewSource, previewFiles] = await Promise.all([
+const [components, docs, provenance, sourceComponents, brickManifest, siteManifest, packageLock, guides, llms, llmsFull, previewSource, previewFiles] = await Promise.all([
   readJson("content/components.json"),
   readJson("content/component-docs.json"),
   readJson("content/brick-source.json"),
+  readJson("content/source-components.json"),
   readJson("node_modules/@flowstack-ui/brick/package.json"),
   readJson("package.json"),
   readJson("package-lock.json"),
@@ -20,26 +21,35 @@ const [components, docs, provenance, brickManifest, siteManifest, packageLock, g
 ]);
 const previewFileSet = new Set(previewFiles);
 
-if (components.length !== 89) errors.push(`expected 89 components, found ${components.length}`);
+const packageComponents = components.filter((component) => component.delivery === "package");
+const installedSourceComponents = components.filter((component) => component.delivery === "source");
+if (packageComponents.length !== 95) errors.push(`expected 95 package components, found ${packageComponents.length}`);
+if (installedSourceComponents.length !== 1) errors.push(`expected one source component, found ${installedSourceComponents.length}`);
+if (components.length !== 96) errors.push(`expected 96 catalog components, found ${components.length}`);
 const slugs = new Set();
 for (const component of components) {
-  if (!component.slug || !component.title || !component.category || !component.description) {
+  if (!component.slug || !component.title || !component.category || !component.description || !["package", "source"].includes(component.delivery)) {
     errors.push(`incomplete component record: ${JSON.stringify(component)}`);
     continue;
   }
   if (slugs.has(component.slug)) errors.push(`duplicate component slug: ${component.slug}`);
   slugs.add(component.slug);
   const exportSlug = component.slug === "notification-badge" ? "badge" : component.slug;
-  if (!brickManifest.exports[`./${exportSlug}`]) errors.push(`component is not a public Brick export: ${component.slug}`);
+  if (component.delivery === "package" && !brickManifest.exports[`./${exportSlug}`]) errors.push(`component is not a public Brick export: ${component.slug}`);
   if (!docs[component.slug]?.startsWith("# ")) errors.push(`component has no synchronized documentation: ${component.slug}`);
-  if (!docs[component.slug]?.includes('@flowstack-ui/brick/styles.css')) errors.push(`component is missing the complete stylesheet default: ${component.slug}`);
-  if (!docs[component.slug]?.includes('@flowstack-ui/brick/styles/core.css')) errors.push(`component is missing the modular CSS foundation: ${component.slug}`);
-  if (!docs[component.slug]?.includes(`@flowstack-ui/brick/styles/${exportSlug}.css`)) errors.push(`component is missing its modular stylesheet: ${component.slug}`);
+  if (component.delivery === "package" && !docs[component.slug]?.includes('@flowstack-ui/brick/styles.css')) errors.push(`component is missing the complete stylesheet default: ${component.slug}`);
+  if (component.delivery === "package" && !docs[component.slug]?.includes('@flowstack-ui/brick/styles/core.css')) errors.push(`component is missing the modular CSS foundation: ${component.slug}`);
+  if (component.delivery === "package" && !docs[component.slug]?.includes(`@flowstack-ui/brick/styles/${exportSlug}.css`)) errors.push(`component is missing its modular stylesheet: ${component.slug}`);
   if (!llms.includes(`/components/${component.slug}`)) errors.push(`component missing from llms.txt: ${component.slug}`);
   if (!llmsFull.includes(docs[component.slug])) errors.push(`component documentation missing from llms-full.txt: ${component.slug}`);
   if (!previewFileSet.has(`${component.slug}.tsx`)) errors.push(`component has no route-scoped live preview: ${component.slug}`);
   if (!previewSource.includes(`previews/${component.slug}`)) errors.push(`component preview is not registered: ${component.slug}`);
 }
+
+if (sourceComponents.$schema !== "flowstack.components.source-catalog.v1" || sourceComponents.items.length !== 1) errors.push("source component catalog must contain one reviewed item");
+const [sourceComponent] = sourceComponents.items;
+if (sourceComponent?.slug !== "rich-text-editor" || sourceComponent?.delivery !== "source" || sourceComponent?.accessTier !== "paid") errors.push("Rich Text Editor source delivery metadata is incomplete");
+if (!installedSourceComponents.some((component) => component.slug === sourceComponent?.slug)) errors.push("source component is missing from the public component catalog");
 
 if (previewFileSet.size !== components.length) errors.push(`expected ${components.length} route-scoped previews, found ${previewFileSet.size}`);
 

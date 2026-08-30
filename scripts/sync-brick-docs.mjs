@@ -10,11 +10,14 @@ const packageRoot = process.env.FLOWSTACK_BRICK_PACKAGE_ROOT
 const componentRoot = path.join(packageRoot, "docs/components");
 const outputRoot = path.join(root, "content");
 const publicRoot = path.join(root, "public");
+const packageOwnerCount = 95;
+const sourceComponents = JSON.parse(await readFile(path.join(outputRoot, "source-components.json"), "utf8"));
 
 const categories = {
   "Actions & selection": new Set(["button", "icon-button", "toggle", "toggle-group", "segment-group", "toolbar", "pagination", "reorderable-list"]),
   "Forms & choices": new Set(["color-picker", "form", "field", "fieldset", "input", "number-input", "otp-field", "password-toggle-field", "textarea", "select", "combobox", "multi-select", "file-upload", "checkbox", "checkbox-group", "radio-group", "switch", "slider", "rating"]),
-  "Content & status": new Set(["text", "icon", "image", "code", "code-block", "avatar", "badge", "notification-badge", "chip", "status", "color-swatch", "card", "list", "table", "divider", "collapsible", "accordion", "skeleton", "progress", "progress-circle", "toast"]),
+  Typography: new Set(["text", "em", "mark", "kbd", "blockquote", "highlight", "prose", "code", "code-block"]),
+  "Content & status": new Set(["icon", "image", "avatar", "badge", "notification-badge", "chip", "status", "color-swatch", "card", "list", "table", "divider", "collapsible", "accordion", "skeleton", "progress", "progress-circle", "toast"]),
   "Overlays & menus": new Set(["tooltip", "hover-card", "popover", "dropdown-menu", "context-menu", "menubar", "dialog", "alert-dialog", "drawer"]),
   "Navigation & layout": new Set(["appearance", "breadcrumb", "tabs", "navigation-menu", "bottom-navigation", "link", "link-box", "nav-list", "sidebar", "app-bar", "stack", "group", "grid", "container", "section", "frame", "bleed", "z-stack", "show", "hide", "surface", "scroll-area"]),
   "Data & collections": new Set(["data-list", "data-grid", "tree-grid", "tree", "feed", "swipeable-item", "carousel"]),
@@ -77,8 +80,8 @@ const entries = (await readdir(componentRoot, { withFileTypes: true }))
   .map((entry) => entry.name)
   .sort();
 
-if (entries.length !== 89) {
-  throw new Error(`Expected 89 public component owners, found ${entries.length}`);
+if (entries.length !== packageOwnerCount) {
+  throw new Error(`Expected ${packageOwnerCount} public component owners, found ${entries.length}`);
 }
 
 const components = [];
@@ -92,8 +95,58 @@ for (const slug of entries) {
   } catch {}
 
   const title = titleize(slug);
-  components.push({ slug, title, category: categoryFor(slug), description: descriptionFrom(readme) });
+  components.push({ slug, title, category: categoryFor(slug), description: descriptionFrom(readme), delivery: "package" });
   docs[slug] = `${readme.trim()}\n\n---\n\n${changelog.trim()}\n`;
+}
+
+if (sourceComponents.$schema !== "flowstack.components.source-catalog.v1" || sourceComponents.items.length !== 1) {
+  throw new Error("Expected one reviewed public source component");
+}
+for (const item of sourceComponents.items) {
+  components.push({
+    slug: item.slug,
+    title: item.name,
+    category: item.category,
+    description: item.description,
+    delivery: "source",
+  });
+  docs[item.slug] = `# ${item.name}
+
+${item.description}
+
+## When and where to use
+
+Use this source component when a product needs a focused rich-text writing
+surface with headings, paragraphs, inline emphasis, lists, and undo or redo.
+The installed composition becomes consumer-owned application source.
+
+## When not to use
+
+Use Textarea for plain text, Prose for read-only trusted editorial content,
+and an application-selected editor platform when collaboration, comments,
+tables, media, or other product-specific authoring behavior is required.
+
+## Delivery model
+
+Rich Text Editor is not exported by the Brick runtime package. It is a paid,
+source-installed component composed from published Brick parts and Tiptap. The
+public page serves only a reviewed compiled sandbox; editable files, the API
+contract, item guidance, and the usable install command remain behind the
+entitlement boundary.
+
+## Responsive behavior
+
+The document surface stays within the available inline size. The formatting
+toolbar owns deliberate horizontal command reachability at compact widths
+without creating page-level overflow.
+
+## Accessibility
+
+The compiled preview exposes one named formatting toolbar followed by one
+named multiline document textbox. Brick owns the finished controls and focus
+presentation; Tiptap owns document editing; the application owns content
+policy, persistence, validation, collaboration, and submission.
+`;
 }
 
 const packageJson = JSON.parse(await readFile(path.join(packageRoot, "package.json"), "utf8"));
@@ -146,7 +199,7 @@ const llmsIndex = [
   "",
   "## Components",
   "",
-  ...components.map((component) => `- [${component.title}](https://brick-ui.com/components/${component.slug}): ${component.description}`),
+  ...components.map((component) => `- [${component.title}](https://brick-ui.com/components/${component.slug}): ${component.delivery === "source" ? "Source-installed component with a public compiled preview. " : ""}${component.description}`),
   "",
   "## Optional",
   "",
@@ -173,4 +226,4 @@ const llmsFull = [
 await writeFile(path.join(publicRoot, "llms.txt"), llmsIndex);
 await writeFile(path.join(publicRoot, "llms-full.txt"), llmsFull);
 
-console.log(`Synchronized ${components.length} Brick component owners from ${source.version}.`);
+console.log(`Synchronized ${entries.length} Brick component owners and ${sourceComponents.items.length} source component from ${source.version}.`);

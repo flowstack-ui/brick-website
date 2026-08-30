@@ -64,7 +64,7 @@ export default function Home() {
             </Text>
             <HStack gap="3" wrap className="hero-actions">
               <WebsiteButton href="/docs/getting-started" size="lg" endIcon={<ArrowRight size={17} />}>Get started</WebsiteButton>
-              <WebsiteButton href="/components" size="lg" tone="neutral" variant="soft">Explore 89 components</WebsiteButton>
+              <WebsiteButton href="/components" size="lg" tone="neutral" variant="soft">Explore 96 components</WebsiteButton>
             </HStack>
             <InstallCommand />
             <ul className="hero-proof" aria-label="Brick package qualities">

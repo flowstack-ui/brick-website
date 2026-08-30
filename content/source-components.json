@@ -1,0 +1,19 @@
+{
+  "$schema": "flowstack.components.source-catalog.v1",
+  "items": [
+    {
+      "id": "components/rich-text-editor/basic",
+      "slug": "rich-text-editor",
+      "name": "Rich Text Editor",
+      "category": "Typography",
+      "description": "A source-installed rich-text writing surface composed from Brick controls and Tiptap editing behavior.",
+      "accessTier": "paid",
+      "delivery": "source",
+      "preview": {
+        "src": "/component-previews/rich-text-editor/index.html",
+        "sha256": "b8bd31e32cb979b54cc22a603fed573f4194f2852727fe50401240ca154f626a",
+        "sourceCommit": "0d651ed6ac98fde1fb7e7da7b50ca18baf17cbb5"
+      }
+    }
+  ]
+}

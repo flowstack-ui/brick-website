@@ -776,7 +776,7 @@ test("unknown routes return the designed non-indexable Brick recovery page", asy
 const routes = [
   ["/", /Build interfaces that already feel/i],
   ["/docs", /Build with Brick/i],
-  ["/components", /89 component owners/i],
+  ["/components", /95 package owners \+ source components/i],
   ["/blocks", /Start from a complete interface/i],
   ["/blocks/application/feed/threaded-comments", /Threaded Comments Feed/i],
   ["/components/button", /Maintainer resources/i],
@@ -786,6 +786,14 @@ const routes = [
   ["/components/section", /Maintainer resources/i],
   ["/components/z-stack", /Maintainer resources/i],
   ["/components/visually-hidden", /Maintainer resources/i],
+  ["/components/em", /Built from the published package/i],
+  ["/components/mark", /Built from the published package/i],
+  ["/components/kbd", /Built from the published package/i],
+  ["/components/blockquote", /Built from the published package/i],
+  ["/components/highlight", /Built from the published package/i],
+  ["/components/prose", /Built from the published package/i],
+  ["/components/code-block", /Built from the published package/i],
+  ["/components/rich-text-editor", /Reviewed compiled source preview/i],
   ["/docs/getting-started", /Getting started/i],
   ["/themes", /Change the voice, not the component/i],
   ["/atom", /Behavior beneath the surface/i],
@@ -820,6 +828,14 @@ for (const [pathname, expected] of routes) {
     if (pathname === "/components/visually-hidden") {
       assert.doesNotMatch(html, /<h2[^>]*>Examples<\/h2>/, "a playground redirect must not appear as a consumer Examples section");
       assert.match(html, />Playground<\/span>/, "the playground destination must remain available in Maintainer resources");
+    }
+    if (pathname === "/components/rich-text-editor") {
+      assert.match(html, /Source component/, "source-installed components must identify their delivery boundary");
+      assert.match(html, /Source installed/, "the live example must identify source delivery");
+      assert.match(html, /Editable source is locked/, "the public route must explain its entitlement boundary");
+      assert.match(html, /Rich Text Editor compiled live preview/, "the public route must embed only the reviewed compiled preview");
+      assert.doesNotMatch(html, /npx\s+@flowstack-ui\/blocks|@tiptap\/react|RichTextEditorProps/, "the public route must not expose install commands, private dependencies, or source API");
+      assert.doesNotMatch(html, /Maintainer resources/, "source-installed components must not link to private maintainer material");
     }
     if (pathname === "/") {
       assert.match(html, /<link rel="icon" href="\/favicon\.svg" type="image\/svg\+xml"\s*\/?>/, "favicon must resolve against the current host");

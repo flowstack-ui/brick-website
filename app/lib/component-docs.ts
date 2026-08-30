@@ -19,6 +19,7 @@ const advancedTitles = new Set([
 const publicOrder = [
   "When and where to use",
   "When not to use",
+  "Delivery model",
   "Installation and imports",
   "Quick start",
   "Visual recipes and states",
@@ -74,6 +75,7 @@ export function componentDocToc(markdown: string): TocItem[] {
     items.push({ id: "choose-this-component", label: "When to use it" });
   }
   for (const title of [
+    "Delivery model",
     "Installation and imports",
     "Quick start",
     "Visual recipes and states",
@@ -89,6 +91,8 @@ export function componentDocToc(markdown: string): TocItem[] {
     items.push({ id: "styling-and-tokens", label: "Styling and tokens" });
   }
   if (advanced.length > 0) items.push({ id: "advanced-reference", label: "Advanced reference" });
-  items.push({ id: "maintainer-resources", label: "Maintainer resources" });
+  items.push(sections.has("Delivery model")
+    ? { id: "source-access", label: "Source access" }
+    : { id: "maintainer-resources", label: "Maintainer resources" });
   return items;
 }

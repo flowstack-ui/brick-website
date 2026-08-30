@@ -39,6 +39,7 @@ export default async function ComponentPage({ params }: { params: Promise<{ slug
   const index = categoryComponents.findIndex((entry) => entry.slug === slug);
   const previous = categoryComponents[index - 1];
   const next = categoryComponents[index + 1];
+  const sourceDelivery = component.delivery === "source";
   return (
     <>
       <StructuredData data={breadcrumbStructuredData([
@@ -50,14 +51,14 @@ export default async function ComponentPage({ params }: { params: Promise<{ slug
     <ComponentDocsShell componentSlug={slug} toc={componentDocToc(consumerMarkdown)}>
       <article className="docs-article component-doc">
         <ComponentBreadcrumb category={component.category} categoryHref={`/components#${categoryId(component.category)}`} title={component.title} />
-        <div className="component-kicker"><Badge tone="accent" variant="soft">{component.category}</Badge><span>Brick {source.version}</span></div>
+        <div className="component-kicker"><Badge tone="accent" variant="soft">{component.category}</Badge><span>{sourceDelivery ? "Source component" : `Brick ${source.version}`}</span></div>
         <Text as="h1" className="page-title">{component.title}</Text>
         <Text as="p" variant="body-lg" tone="secondary" className="page-lede">{component.description}</Text>
         <section className="live-example" id="live-example" aria-labelledby="live-example-title">
-          <div className="example-header"><div><span>Live example</span><Text as="h2" id="live-example-title" variant="title-sm">Built from the published package</Text></div><Badge tone="success" variant="outline">Interactive</Badge></div>
+          <div className="example-header"><div><span>Live example</span><Text as="h2" id="live-example-title" variant="title-sm">{sourceDelivery ? "Reviewed compiled source preview" : "Built from the published package"}</Text></div><Badge tone={sourceDelivery ? "accent" : "success"} variant="outline">{sourceDelivery ? "Source installed" : "Interactive"}</Badge></div>
           <ComponentExampleCanvas slug={component.slug} />
         </section>
-        <ComponentDocument componentSlug={slug} componentTitle={component.title} markdown={consumerMarkdown} />
+        <ComponentDocument componentSlug={slug} componentTitle={component.title} delivery={component.delivery} markdown={consumerMarkdown} />
         <nav className="component-pagination" aria-label={`${component.category} component pages`}>
           {previous ? <a href={`/components/${previous.slug}`}><ArrowLeft size={15} /><span><small>Previous</small>{previous.title}</span></a> : <span />}
           <a className="component-category-return" href={`/components#${categoryId(component.category)}`}><span><small>Back to category</small><strong>{component.category}</strong></span></a>

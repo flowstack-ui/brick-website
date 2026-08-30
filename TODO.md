@@ -21,13 +21,8 @@
   negligible. Preserve the exact published-package boundary and do not pursue
   a rounded 100 by hiding content, broad CSS range extraction, or patching
   Next's generated runtime.
-- Review page-level spacing rhythm across the home, catalog, guide, and component layouts.
 - Deepen component examples with additional states and recipes as component work evolves.
 - Complete owner visual review of the refined full-width component discovery, behavior-aware example stage, aligned navigator, usage guidance, API, token, and advanced-reference layouts across representative compact, expanding, overlay, form, interaction, and structural components.
-- Complete owner interaction and responsive review of the new Appearance,
-  Carousel, Frame, Section, and ZStack routes on the release preview before
-  promoting Brick `0.1.9` to the canonical host.
-- Add automated cross-browser visual and accessibility coverage when the browser runtime is available in CI.
 - Observe Search Console sitemap ingestion and indexing after Google's crawler
   refresh. Submission, indexing requests, Rich Results validation, and social
   unfurl validation are complete; crawl timing is not a launch blocker.

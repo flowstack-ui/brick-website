@@ -1,7 +1,7 @@
 # Brick UI — complete public documentation
 
-Package version: 0.1.11
-Source commit: 4e1e48f797f42885de23c0c37ff073bae5468b7e
+Package version: 0.1.12
+Source commit: 2780d0e47ecc1f8f754afecdc3c6a00ae3f3a3bb
 
 # Accordion
 
@@ -1595,6 +1595,138 @@ Bleed follows the package version of `@flowstack-ui/brick`.
 ### Added
 
 - Added the responsive logical Bleed layout primitive.
+
+
+# Blockquote
+
+# Blockquote
+
+Blockquote composes a semantic extended quotation, optional source URL, and attribution with finished Brick styling.
+
+## When and where to use
+
+Use Blockquote when an extended quotation and optional attribution form one self-contained content unit.
+
+## When not to use
+
+Use native `q` inside the surrounding content owner for an inline quotation. Use Card or a product Block when media, ratings, actions, or testimonial layout own the experience.
+
+## Installation and imports
+
+```tsx
+import { Blockquote } from "@flowstack-ui/brick/blockquote";
+import "@flowstack-ui/brick/styles.css";
+```
+
+For modular CSS:
+
+```tsx
+import "@flowstack-ui/brick/styles/core.css";
+import "@flowstack-ui/brick/styles/blockquote.css";
+```
+
+`Blockquote` and every named part are also available from `@flowstack-ui/brick`.
+
+## Quick start
+
+```tsx
+<Blockquote.Root>
+  <Blockquote.Content cite="https://example.com/design-systems">
+    A system should make the correct decision easier to repeat.
+  </Blockquote.Content>
+  <Blockquote.Caption>
+    Pat Lee, <Blockquote.Cite>Designing Durable Systems</Blockquote.Cite>
+  </Blockquote.Caption>
+</Blockquote.Root>
+```
+
+## Anatomy and DOM ownership
+
+Root is `figure`. Content is its native `blockquote` child. Caption is a sibling `figcaption`, keeping attribution outside the quoted words. Cite is native `cite` for a work or source. Icon is a decorative `span` with a default curly quote.
+
+## API
+
+| Prop | Values | Default |
+| --- | --- | --- |
+| `variant` | `accent`, `surface`, `plain` | `accent` |
+| `align` | `start`, `center`, `end` | `start` |
+| `data-slot` | `string` | `blockquote` |
+| Content `cite` | source URL string | none |
+| Icon children | React content | `“` |
+
+Public exports are `Blockquote`, `BlockquoteRoot`, `BlockquoteIcon`,
+`BlockquoteContent`, `BlockquoteCaption`, `BlockquoteCite`,
+`BlockquoteRootProps`, `BlockquoteIconProps`, `BlockquoteContentProps`,
+`BlockquoteCaptionProps`, `BlockquoteCiteProps`, `BlockquoteVariant`, and
+`BlockquoteAlign`.
+
+## Visual recipes and states
+
+Accent uses a logical quotation rule, surface adds a quiet framed background, and plain keeps only typography. Alignment is logical and works in LTR and RTL. The component is passive and has no interactive state.
+
+## Tokens and CSS hooks
+
+Use `.brick-blockquote`, `.brick-blockquote__icon`, `.brick-blockquote__content`, `.brick-blockquote__caption`, `.brick-blockquote__cite`, `data-align`, `data-variant`, and these variables:
+
+`--brick-blockquote-background`, `--brick-blockquote-foreground`, `--brick-blockquote-muted-foreground`, `--brick-blockquote-accent`, `--brick-blockquote-border-color`, `--brick-blockquote-border-width`, `--brick-blockquote-radius`, `--brick-blockquote-padding-block`, `--brick-blockquote-padding-inline`, `--brick-blockquote-gap`, `--brick-blockquote-icon-font-family`, `--brick-blockquote-icon-size`, `--brick-blockquote-icon-font-weight`, `--brick-blockquote-icon-line-height`, `--brick-blockquote-content-font-family`, `--brick-blockquote-content-font-size`, `--brick-blockquote-content-font-weight`, `--brick-blockquote-content-line-height`, `--brick-blockquote-content-letter-spacing`, `--brick-blockquote-caption-font-family`, `--brick-blockquote-caption-font-size`, `--brick-blockquote-caption-font-weight`, `--brick-blockquote-caption-line-height`, and `--brick-blockquote-caption-letter-spacing`.
+
+## Customization
+
+Choose variant and alignment first. Override documented variables for a deliberate local quotation recipe. Compose Link separately when the source should be an actionable destination.
+
+## Responsive behavior
+
+Blockquote occupies available inline space and wraps its content naturally. Logical padding, border placement, and alignment adapt to writing direction without JavaScript.
+
+## Accessibility
+
+Native elements carry quotation and caption semantics. Icon is decorative by default and adds no announcement. Keep Caption outside Content. Use Content's `cite` for the source URL; use Cite for a referenced work or source title rather than merely a person's name.
+
+## Composition, native props, and refs
+
+Every part forwards native attributes, events, class, style, children, slot, and its native ref. Keep Content and optional Caption as siblings inside Root. Icon may appear before Content and remains decorative unless intentionally changed.
+
+## Examples
+
+```tsx
+<Blockquote.Root align="center" variant="surface">
+  <Blockquote.Icon />
+  <Blockquote.Content>Clarity compounds.</Blockquote.Content>
+  <Blockquote.Caption>— Rowan Chen</Blockquote.Caption>
+</Blockquote.Root>
+```
+
+## Evidence
+
+- [Playground route source](../../../playground/src/components/blockquote/)
+- [Focused component tests](../../../test/components/blockquote/)
+- [Type tests](../../../test/types/components/blockquote.test.ts)
+- [Browser behavior](../../../playground/tests/components/blockquote/behavior.spec.ts)
+- [Visual owner](../../../playground/tests/components/blockquote/visual.spec.ts)
+- [Manual protocol](../../../playground/manual-tests/blockquote.md)
+
+## Changelog
+
+See the [Blockquote changelog](CHANGELOG.md) and [package changelog](../../../CHANGELOG.md).
+
+---
+
+# Blockquote changelog
+
+Blockquote follows the package version of `@flowstack-ui/brick`.
+
+## Unreleased
+
+### Added
+
+- No unreleased changes.
+
+## 0.1.12 — 2026-08-30
+
+### Added
+
+- Added the semantic compound Blockquote owner with figure, quotation, caption, cite, and optional decorative icon parts.
+- Added accent, surface, and plain recipes plus logical alignment and forced-color treatment.
 
 
 # Bottom Navigation
@@ -3865,7 +3997,11 @@ Do not combine modular styles with `styles.css` or `tokens.css`.
 
 Root owns Atom Clipboard state and the outer `div`. Header groups optional
 Title, Language, and Actions. Content owns the one focusable Scroll Area
-viewport and renders canonical `pre > code` markup. CopyTrigger is an Atom
+viewport and renders canonical `pre > code` markup. Line optionally carries
+authored visual metadata. CollapsePreview, CollapseContent, and CollapseTrigger
+compose Brick Collapsible around bounded and full Content views without adding
+a second state model.
+CopyTrigger is an Atom
 Clipboard Trigger rendered through Brick Button. CopyIndicator and CopyStatus
 expose authored progress and live-result wording. Optional parts render only
 when authored.
@@ -3880,17 +4016,30 @@ when authored.
 | `Root.language` | explicit string | none |
 | `wrap` | `scroll`, `wrap` | `scroll` |
 | `focusable` | `boolean` | `true` |
+| `Content.maxLines` | positive whole number | unbounded |
+| `Root.adapter` | synchronous trusted-node adapter | none |
+| `Line.lineNumber` | positive whole number | none |
+| `Line.highlighted`, `Line.focused` | `boolean` | `false` |
+| `Line.change` | `added`, `removed` | none |
 | Clipboard behavior | `disabled`, `timeout`, `writeValue`, `onStatusChange` | Atom defaults |
 
 Public parts are `Root`, `Header`, `Title`, `Language`, `Actions`, `Content`,
-`CopyTrigger`, `CopyIndicator`, and `CopyStatus`. Direct exports are
+`Line`, `Collapse`, `CollapsePreview`, `CollapseContent`, `CollapseTrigger`,
+`CopyTrigger`, `CopyIndicator`, and
+`CopyStatus`. Direct exports are
 `CodeBlockRoot`, `CodeBlockHeader`, `CodeBlockTitle`, `CodeBlockLanguage`,
-`CodeBlockActions`, `CodeBlockContent`, `CodeBlockCopyTrigger`,
+`CodeBlockActions`, `CodeBlockContent`, `CodeBlockLine`, `CodeBlockCollapse`,
+`CodeBlockCollapsePreview`, `CodeBlockCollapseContent`,
+`CodeBlockCollapseTrigger`, `CodeBlockCopyTrigger`,
 `CodeBlockCopyIndicator`, and `CodeBlockCopyStatus`. Their prop types are
 `CodeBlockRootProps`, `CodeBlockHeaderProps`, `CodeBlockTitleProps`,
 `CodeBlockLanguageProps`, `CodeBlockActionsProps`, `CodeBlockContentProps`,
+`CodeBlockLineProps`, `CodeBlockCollapseProps`,
+`CodeBlockCollapsePreviewProps`, `CodeBlockCollapseContentProps`,
+`CodeBlockCollapseTriggerProps`,
 `CodeBlockCopyTriggerProps`, `CodeBlockCopyIndicatorProps`, and
-`CodeBlockCopyStatusProps`. Type exports also include `CodeBlockVariant`,
+`CodeBlockCopyStatusProps`. Type exports also include `CodeBlockAdapter`,
+`CodeBlockAdapterContext`, `CodeBlockLineChange`, `CodeBlockVariant`,
 `CodeBlockSize`, and `CodeBlockWrap`.
 
 ## Visual recipes and states
@@ -3899,21 +4048,37 @@ Public parts are `Root`, `Header`, `Title`, `Language`, `Actions`, `Content`,
 surface, and `plain` removes surrounding paint. Size changes only component
 rhythm and technical typography. Atom supplies `idle`, `copying`, `copied`,
 and `error` copy states; the trigger is disabled when the clipboard contract
-is disabled. Scroll and wrap differ only in long-line handling.
+is disabled. Scroll and wrap differ only in long-line handling. Line metadata
+can combine highlighting or focus with an added/removed state. Bounded Content
+scrolls independently. An expandable composition swaps its bounded preview for
+real Collapsible Content, so only one source view is exposed at a time.
 
 ## Tokens and CSS hooks
 
 Hooks include `.brick-code-block` and its part classes, Atom `data-state`, plus
-`data-slot`, `data-language`, `data-size`, `data-variant`, and `data-wrap`.
+`data-slot`, `data-language`, `data-size`, `data-variant`, `data-wrap`,
+`data-max-lines`, `data-line-number`, `data-highlighted`, `data-focused`, and
+`data-change`.
 Public variables are `--brick-code-block-background`,
 `--brick-code-block-foreground`, `--brick-code-block-border-color`,
 `--brick-code-block-border-width`, `--brick-code-block-radius`,
 `--brick-code-block-header-padding`, `--brick-code-block-content-padding`,
-`--brick-code-block-gap`, `--brick-code-block-font-family`,
+`--brick-code-block-content-padding-block`,
+`--brick-code-block-content-padding-inline`, `--brick-code-block-gap`,
+`--brick-code-block-font-family`,
 `--brick-code-block-font-size`, `--brick-code-block-font-weight`,
 `--brick-code-block-line-height`, `--brick-code-block-letter-spacing`,
-`--brick-code-block-selection-background`, and
-`--brick-code-block-selection-foreground`.
+`--brick-code-block-selection-background`,
+`--brick-code-block-selection-foreground`, and
+`--brick-code-block-max-block-size`. Line variables are
+`--brick-code-block-line-number-foreground`,
+`--brick-code-block-line-number-width`,
+`--brick-code-block-line-highlight-background`,
+`--brick-code-block-line-focus-background`,
+`--brick-code-block-line-added-background`,
+`--brick-code-block-line-added-border`,
+`--brick-code-block-line-removed-background`, and
+`--brick-code-block-line-removed-border`.
 
 ## Customization
 
@@ -3927,14 +4092,21 @@ Public variables are `--brick-code-block-background`,
 ```
 
 Language highlighting is consumer-owned. Pass trusted highlighted React nodes
-to Content while keeping Root `value` as the matching plain text. Unsafe HTML
-is not accepted and Brick does not bundle a tokenizer.
+to Content, or provide a synchronous adapter that receives Root's exact
+`value` and `language`. Keep Root `value` as the matching plain text. Explicit
+Content children override the adapter. Unsafe HTML is not accepted and Brick
+does not bundle or load a tokenizer. Keep the adapter pure; Root evaluates it
+lazily at most once per source/language/adapter identity and reuses its result
+across views. Explicit children do not invoke it.
 
 ## Responsive behavior
 
 The root fills available inline space but owns no external dimensions or
 breakpoints. `scroll` preserves long lines in the horizontal viewport; `wrap`
-reflows them. Scrollable source normalizes mobile browser text adjustment so
+reflows them. `maxLines` bounds the same named viewport and remains vertically
+scrollable when used alone. CollapsePreview deliberately clips that bounded
+view because CollapseContent provides the full source through its native
+disclosure lifecycle. Scrollable source normalizes mobile browser text adjustment so
 short and long examples retain the selected Code Block size. Code defaults to
 LTR inside an RTL page while Header follows page direction.
 
@@ -3943,7 +4115,11 @@ LTR inside an RTL page while Header follows page direction.
 Give focusable Content a specific `aria-label` or `aria-labelledby`; it is the
 only scroll-region keyboard stop. CopyTrigger retains focus. Author concise
 CopyStatus text for copying, success, and failure so Atom can announce truthful
-results. Do not add `role="application"`.
+results. When initially clipping bounded source, pair CollapsePreview and
+CollapseContent with CollapseTrigger so the full source has a keyboard and
+screen-reader path. The real Collapsible Content owns `aria-controls`, labeling,
+mounting, and hidden state. Do not add
+`role="application"`.
 
 ## Composition, native props, and refs
 
@@ -3951,7 +4127,8 @@ Root forwards Atom Clipboard props and its `HTMLDivElement` ref. Structural
 parts forward their native attributes and refs. Content's ref targets the
 native Scroll Area viewport. Root `value` is authoritative for copying even
 when Content receives highlighted nodes. The component composes Brick Code,
-Scroll Area, and Button; consumers do not need to recreate those internals.
+Scroll Area, Button, and optional Collapsible; consumers do not need to
+recreate those internals.
 
 ## Examples
 
@@ -3971,6 +4148,42 @@ Scroll Area, and Button; consumers do not need to recreate those internals.
 <CodeBlock.Root value={longLine} language="text">
   <CodeBlock.Content wrap="wrap" aria-label="Wrapped example" />
 </CodeBlock.Root>
+```
+
+### Trusted adapter and line metadata
+
+```tsx
+const adapter: CodeBlockAdapter = ({ value }) =>
+  value.split("\n").map((line, index) => (
+    <CodeBlock.Line
+      key={index}
+      lineNumber={index + 1}
+      highlighted={index === 2}
+      change={index === 4 ? "added" : undefined}
+    >
+      {line}
+    </CodeBlock.Line>
+  ));
+
+<CodeBlock.Root adapter={adapter} value={source} language="tsx">
+  <CodeBlock.Content aria-label="Adapted TypeScript source" />
+</CodeBlock.Root>
+```
+
+### Bounded source with expansion
+
+```tsx
+<CodeBlock.Collapse>
+  <CodeBlock.Root value={source}>
+    <CodeBlock.CollapsePreview>
+      <CodeBlock.Content aria-label="Configuration source preview" maxLines={8} />
+    </CodeBlock.CollapsePreview>
+    <CodeBlock.CollapseContent>
+      <CodeBlock.Content aria-label="Full configuration source" />
+    </CodeBlock.CollapseContent>
+    <CodeBlock.CollapseTrigger>Show full source</CodeBlock.CollapseTrigger>
+  </CodeBlock.Root>
+</CodeBlock.Collapse>
 ```
 
 ## Evidence
@@ -3995,6 +4208,12 @@ Code Block follows the package version of `@flowstack-ui/brick`.
 
 ## Unreleased
 
+### Added
+
+- No unreleased changes.
+
+## 0.1.12 — 2026-08-30
+
 ### Fixed
 
 - Moved the historical WebKit text-size-adjustment declaration to Brick's
@@ -4004,6 +4223,9 @@ Code Block follows the package version of `@flowstack-ui/brick`.
 
 ### Added
 
+- Added adapter-neutral trusted token rendering, authored line numbers,
+  highlighted/focused/add/remove line metadata, bounded line presentation, and
+  an accessible expansion path composed from Brick Collapsible.
 - Added public Agent Knowledge for selecting Code Block, preserving canonical
   copied source, composing optional anatomy, and keeping syntax tokenization in
   a safe consumer adapter.
@@ -6324,6 +6546,128 @@ Dropdown Menu follows the package version of `@flowstack-ui/brick`.
 - Added the complete styled Dropdown Menu family with three sizes, structured rows, choices, danger emphasis, nested menus, composition, and Atom-owned behavior.
 
 
+# Em
+
+# Em
+
+Em renders native stress emphasis while inheriting the surrounding Brick
+typography and foreground.
+
+## When and where to use
+
+Use Em inside a sentence when stress emphasis changes meaning or spoken
+cadence.
+
+## When not to use
+
+Do not use Em only to obtain italic paint, for important text that needs
+`strong`, or as a standalone typography owner.
+
+## Installation and imports
+
+```tsx
+import { Em } from "@flowstack-ui/brick/em";
+import "@flowstack-ui/brick/styles.css";
+```
+
+For modular CSS, load:
+
+```tsx
+import "@flowstack-ui/brick/styles/core.css"; // once at the application root
+import "@flowstack-ui/brick/styles/em.css";
+```
+
+`Em` is also available from `@flowstack-ui/brick`.
+
+## Quick start
+
+```tsx
+<Text as="p">Review this <Em>before</Em> publishing.</Text>
+```
+
+## Anatomy and DOM ownership
+
+Em owns exactly one native `em` element. It adds no wrapper, role, state, or
+interaction.
+
+## API
+
+| Prop | Values | Default |
+| --- | --- | --- |
+| `slot` | `string` | `em` |
+
+`EmProps` forwards native `HTMLElement` attributes and requires `children`.
+Public exports are `Em` and `EmProps`. The host is intentionally fixed.
+
+## Visual recipes and states
+
+Em has one inherited recipe: surrounding family, size, weight, line height,
+tracking, and foreground with italic font style. It has no variants or states.
+
+## Tokens and CSS hooks
+
+Use `.brick-em`, `data-slot`, and `--brick-em-font-style`.
+
+## Customization
+
+Prefer the inherited default. A theme may set the documented variable for a
+deliberate typographic system decision.
+
+## Responsive behavior
+
+Em stays in surrounding inline flow and introduces no breakpoint behavior.
+
+## Accessibility
+
+Native `em` conveys stress emphasis. Do not add a role or tab stop. Em remains
+selectable, copyable, and readable in forced colors.
+
+## Composition, native props, and refs
+
+Compose Em inside Text, Heading, Link, Prose, or another content owner. Native
+attributes, events, class, style, slot, children, and an `HTMLElement` ref pass
+to the `em` host.
+
+## Examples
+
+```tsx
+<Heading level={2}>Read this <Em>first</Em></Heading>
+```
+
+## Evidence
+
+- [Playground route source](../../../playground/src/components/em/)
+- [Focused component tests](../../../test/components/em/)
+- [Type tests](../../../test/types/components/em.test.ts)
+- [Browser behavior](../../../playground/tests/components/em/behavior.spec.ts)
+- [Visual owner](../../../playground/tests/components/em/visual.spec.ts)
+- [Manual protocol](../../../playground/manual-tests/em.md)
+
+## Changelog
+
+See the [Em changelog](CHANGELOG.md) and
+[package changelog](../../../CHANGELOG.md).
+
+---
+
+# Em changelog
+
+Em follows the package version of `@flowstack-ui/brick`.
+
+## Unreleased
+
+### Added
+
+- No unreleased changes.
+
+## 0.1.12 — 2026-08-30
+
+### Added
+
+- Added Em with native stress emphasis, inherited Brick typography, a stable
+  public hook, forced-color support, native props, and ref forwarding.
+
+
 # Feed
 
 # Feed
@@ -8069,6 +8413,129 @@ Hide follows the package version of `@flowstack-ui/brick`.
 - Initial CSS-only `Hide` API with fixed `from` breakpoints, semantic native hosts, natural visible display, and always-mounted children.
 
 
+# Highlight
+
+# Highlight
+
+Highlight discovers literal queries in plain text through exact Atom behavior and renders finished semantic match styling.
+
+## When and where to use
+
+Use Highlight when one plain text string needs deterministic visible query matches.
+
+## When not to use
+
+Use Mark when relevance is already authored. Keep arbitrary React-node traversal, active-result navigation, result counts, search input state, and announcements in the application.
+
+## Installation and imports
+
+```tsx
+import { Highlight } from "@flowstack-ui/brick/highlight";
+import "@flowstack-ui/brick/styles.css";
+```
+
+For modular CSS:
+
+```tsx
+import "@flowstack-ui/brick/styles/core.css";
+import "@flowstack-ui/brick/styles/highlight.css";
+```
+
+`Highlight` and its public types are also available from `@flowstack-ui/brick`.
+
+## Quick start
+
+```tsx
+<Highlight text="Build durable interfaces" query="durable" />
+```
+
+## Anatomy and DOM ownership
+
+Highlight wraps exact Atom Highlight 0.25.1. It owns one native `span`; Atom creates one native `mark` with `data-slot="highlight-match"` for every selected segment. Original text order remains intact.
+
+## API
+
+| Prop | Values | Default |
+| --- | --- | --- |
+| `text` | plain `string` | required |
+| `query` | `string` or readonly string array | required |
+| `ignoreCase` | `boolean` | `true` |
+| `matchAll` | `boolean` | `true` |
+| `exactMatch` | `boolean` | `false` |
+| `variant` | `subtle`, `solid`, `underline` | `subtle` |
+| `tone` | `accent`, `neutral` | `accent` |
+
+Public exports are `Highlight`, `HighlightProps`, `HighlightVariant`, and `HighlightTone`.
+
+## Visual recipes and states
+
+Subtle provides quiet filled relevance, solid provides stronger contrast, and underline preserves an unfilled reading surface. Accent and neutral are semantic tones. These are passive recipes, not active-search-result state.
+
+## Tokens and CSS hooks
+
+Use `.brick-highlight`, `[data-slot="highlight-match"]`, `data-slot`, `data-tone`, `data-variant`, `--brick-highlight-background`, `--brick-highlight-foreground`, `--brick-highlight-radius`, `--brick-highlight-padding-inline`, `--brick-highlight-decoration-color`, `--brick-highlight-decoration-thickness`, and `--brick-highlight-decoration-offset`.
+
+## Customization
+
+Choose variant and tone first, then documented variables for a deliberate local recipe. Do not restyle Atom internals other than the documented match slot.
+
+## Responsive behavior
+
+Highlight stays inline, preserves whitespace and text order, and wraps with surrounding copy. Each marked fragment uses cloned inline decoration across line breaks.
+
+## Accessibility
+
+Native `mark` communicates relevance in context. Highlight adds no focus, role, live region, search result count, or keyboard behavior. Forced colors uses system highlight colors for filled recipes and system underline visibility for underline.
+
+## Composition, native props, and refs
+
+Keep Highlight inside its surrounding content owner. Pass only plain text through `text`; do not flatten JSX. Native span props, class, style, data slot, and an `HTMLSpanElement` ref pass through Atom. Brick fixes the host to native `span` and does not expose Atom's polymorphic render override.
+
+## Examples
+
+```tsx
+<Text as="p">
+  <Highlight
+    exactMatch
+    query={["design", "system"]}
+    text="A design system makes design decisions repeatable."
+    variant="underline"
+  />
+</Text>
+```
+
+## Evidence
+
+- [Playground route source](../../../playground/src/components/highlight/)
+- [Focused component tests](../../../test/components/highlight/)
+- [Type tests](../../../test/types/components/highlight.test.ts)
+- [Browser behavior](../../../playground/tests/components/highlight/behavior.spec.ts)
+- [Visual owner](../../../playground/tests/components/highlight/visual.spec.ts)
+- [Manual protocol](../../../playground/manual-tests/highlight.md)
+
+## Changelog
+
+See the [Highlight changelog](CHANGELOG.md) and [package changelog](../../../CHANGELOG.md).
+
+---
+
+# Highlight changelog
+
+Highlight follows the package version of `@flowstack-ui/brick`.
+
+## Unreleased
+
+### Added
+
+- No unreleased changes.
+
+## 0.1.12 — 2026-08-30
+
+### Added
+
+- Added the exact Atom 0.25.1-backed plain-text Highlight adapter with subtle, solid, and underline recipes plus accent and neutral tones.
+
+
 # Hover Card
 
 # Hover Card
@@ -9438,6 +9905,127 @@ Input follows the package version of `@flowstack-ui/brick`.
   field-value typography recipes.
 
 
+# Kbd
+
+# Kbd
+
+Kbd renders native keyboard-input notation with finished Brick sizing and visual recipes.
+
+## When and where to use
+
+Use Kbd inside meaningful copy to name one key, or repeat it for an authored key sequence.
+
+## When not to use
+
+Do not use Kbd to register shortcuts, listen for keys, translate platform labels, or render ordinary technical literals. Application behavior owns shortcuts; use Code for literals.
+
+## Installation and imports
+
+```tsx
+import { Kbd } from "@flowstack-ui/brick/kbd";
+import "@flowstack-ui/brick/styles.css";
+```
+
+For modular CSS:
+
+```tsx
+import "@flowstack-ui/brick/styles/core.css";
+import "@flowstack-ui/brick/styles/kbd.css";
+```
+
+`Kbd` is also available from `@flowstack-ui/brick`.
+
+## Quick start
+
+```tsx
+<Text as="p">Press <Kbd>F12</Kbd> to open developer tools.</Text>
+```
+
+## Anatomy and DOM ownership
+
+Kbd owns exactly one native `kbd` element and no wrapper, separator, state, or interaction.
+
+## API
+
+| Prop | Values | Default |
+| --- | --- | --- |
+| `variant` | `raised`, `outline`, `subtle`, `plain` | `raised` |
+| `size` | `sm`, `md`, `lg` | `md` |
+| `slot` | `string` | `kbd` |
+
+Public exports are `Kbd`, `KbdProps`, `KbdVariant`, and `KbdSize`.
+
+## Visual recipes and states
+
+Raised suggests a physical key, outline preserves a lighter boundary, subtle uses a quiet filled surface, and plain keeps only typographic notation. Sizes adjust the compact key footprint without creating a control target.
+
+## Tokens and CSS hooks
+
+Use `.brick-kbd`, `data-slot`, `data-size`, `data-variant`,
+`--brick-kbd-background`, `--brick-kbd-foreground`,
+`--brick-kbd-border-color`, `--brick-kbd-border-block-end-color`,
+`--brick-kbd-radius`, `--brick-kbd-font-family`, `--brick-kbd-font-size`,
+`--brick-kbd-font-weight`, `--brick-kbd-line-height`,
+`--brick-kbd-letter-spacing`,
+`--brick-kbd-min-block-size`, `--brick-kbd-padding-inline`, and
+`--brick-kbd-shadow`.
+
+## Customization
+
+Choose size and variant first, then documented variables for a deliberate local recipe.
+
+## Responsive behavior
+
+Kbd stays inline and prevents one key label from wrapping. Sequences wrap between separately authored key hosts and separators.
+
+## Accessibility
+
+Native `kbd` communicates keyboard input. Kbd adds no role, tab stop, or shortcut behavior. Forced colors restores a system-readable boundary for every variant.
+
+## Composition, native props, and refs
+
+Keep Kbd inside its sentence-level content owner. For sequences, author one Kbd per key and visible separators outside the key hosts. Native attributes, events, class, style, slot, children, and an `HTMLElement` ref pass to the host.
+
+## Examples
+
+```tsx
+<Text as="p">
+  Press <Kbd>Ctrl</Kbd> + <Kbd>Shift</Kbd> + <Kbd>P</Kbd>.
+</Text>
+```
+
+## Evidence
+
+- [Playground route source](../../../playground/src/components/kbd/)
+- [Focused component tests](../../../test/components/kbd/)
+- [Type tests](../../../test/types/components/kbd.test.ts)
+- [Browser behavior](../../../playground/tests/components/kbd/behavior.spec.ts)
+- [Visual owner](../../../playground/tests/components/kbd/visual.spec.ts)
+- [Manual protocol](../../../playground/manual-tests/kbd.md)
+
+## Changelog
+
+See the [Kbd changelog](CHANGELOG.md) and [package changelog](../../../CHANGELOG.md).
+
+---
+
+# Kbd changelog
+
+Kbd follows the package version of `@flowstack-ui/brick`.
+
+## Unreleased
+
+### Added
+
+- No unreleased changes.
+
+## 0.1.12 — 2026-08-30
+
+### Added
+
+- Added Kbd with native keyboard-input semantics, four visual variants, three sizes, public CSS variables, and forced colors.
+
+
 # Link
 
 # Link
@@ -10289,6 +10877,128 @@ List follows the package version of `@flowstack-ui/brick`.
 - Added the Atom-backed seven-part `List` family with native ordered and
   unordered semantics, structured rows, marker, variant, size, density,
   disabled presentation, nesting, composition, and public CSS properties.
+
+
+# Mark
+
+# Mark
+
+Mark renders a native static marked passage with restrained, theme-aware Brick
+paint.
+
+## When and where to use
+
+Use Mark for authored content whose relevance is already known.
+
+## When not to use
+
+Do not use Mark for query matching, document-search state, stress emphasis, or
+selection behavior. Use Highlight for matching and Em for stress emphasis.
+
+## Installation and imports
+
+```tsx
+import { Mark } from "@flowstack-ui/brick/mark";
+import "@flowstack-ui/brick/styles.css";
+```
+
+For modular CSS:
+
+```tsx
+import "@flowstack-ui/brick/styles/core.css";
+import "@flowstack-ui/brick/styles/mark.css";
+```
+
+`Mark` is also available from `@flowstack-ui/brick`.
+
+## Quick start
+
+```tsx
+<Text as="p">Deploy during the <Mark>approved window</Mark>.</Text>
+```
+
+## Anatomy and DOM ownership
+
+Mark owns exactly one native `mark` element and no wrapper, generated text,
+state, or interaction.
+
+## API
+
+| Prop | Values | Default |
+| --- | --- | --- |
+| `variant` | `subtle`, `solid`, `plain` | `subtle` |
+| `tone` | `accent`, `neutral` | `accent` |
+| `slot` | `string` | `mark` |
+
+Public exports are `Mark`, `MarkProps`, `MarkVariant`, and `MarkTone`.
+
+## Visual recipes and states
+
+Subtle is a quiet marked surface, solid is high emphasis, and plain preserves
+semantic marking without background paint. Accent and neutral choose closed
+semantic color relationships.
+
+## Tokens and CSS hooks
+
+Use `.brick-mark`, `data-slot`, `data-tone`, `data-variant`,
+`--brick-mark-background`, `--brick-mark-foreground`,
+`--brick-mark-radius`, and `--brick-mark-padding-inline`.
+
+## Customization
+
+Choose props first, then documented variables for a deliberate local recipe.
+
+## Responsive behavior
+
+Mark follows surrounding inline flow and wraps with the marked passage.
+
+## Accessibility
+
+Native `mark` expresses relevance. Mark adds no role or focus. Forced colors
+uses system highlight colors; plain remains distinguishable with an underline.
+
+## Composition, native props, and refs
+
+Keep Mark inside its sentence-level content owner. Native attributes, events,
+class, style, slot, children, and an `HTMLElement` ref pass to the mark host.
+
+## Examples
+
+```tsx
+<Mark variant="solid" tone="neutral">Scheduled maintenance</Mark>
+```
+
+## Evidence
+
+- [Playground route source](../../../playground/src/components/mark/)
+- [Focused component tests](../../../test/components/mark/)
+- [Type tests](../../../test/types/components/mark.test.ts)
+- [Browser behavior](../../../playground/tests/components/mark/behavior.spec.ts)
+- [Visual owner](../../../playground/tests/components/mark/visual.spec.ts)
+- [Manual protocol](../../../playground/manual-tests/mark.md)
+
+## Changelog
+
+See the [Mark changelog](CHANGELOG.md) and [package changelog](../../../CHANGELOG.md).
+
+---
+
+# Mark changelog
+
+Mark follows the package version of `@flowstack-ui/brick`.
+
+## Unreleased
+
+### Added
+
+- No unreleased changes.
+
+## 0.1.12 — 2026-08-30
+
+### Added
+
+- Added Mark with native static relevance semantics, subtle/solid/plain
+  variants, accent/neutral tones, public CSS variables, and forced colors.
 
 
 # Menubar
@@ -12650,6 +13360,174 @@ Progress Circle follows the package version of `@flowstack-ui/brick`.
 - Added Atom-backed circular determinate and indeterminate progress with five
   sizes, three thicknesses, two caps, six tones, visible naming/value parts,
   clockwise RTL behavior, preferences, and public CSS hooks.
+
+
+# Prose
+
+# Prose
+
+Prose applies coherent descendant typography, rhythm, and readable measure to
+trusted React content.
+
+## When and where to use
+
+Use Prose after an application, CMS adapter, or Markdown renderer has produced
+trusted React children. Use Text or a direct Brick component for smaller or
+more structured interface copy.
+
+## When not to use
+
+Do not use Prose to parse or sanitize content, inject HTML strings, style a
+control layout, or replace the direct component that owns richer anatomy.
+
+## Installation and imports
+
+```tsx
+import { Prose } from "@flowstack-ui/brick/prose";
+import "@flowstack-ui/brick/styles.css";
+```
+
+For modular CSS:
+
+```tsx
+import "@flowstack-ui/brick/styles/core.css";
+import "@flowstack-ui/brick/styles/prose.css";
+```
+
+Prose and its public types are also exported from `@flowstack-ui/brick`.
+
+## Quick start
+
+```tsx
+<Prose as="article">
+  <h1>Release notes</h1>
+  <p>Build dependable interfaces with exact package guidance.</p>
+</Prose>
+```
+
+## Anatomy and DOM ownership
+
+Prose renders exactly one selected native root and does not add or rewrite any
+descendant. Stable output includes `.brick-prose`, `data-slot="prose"`,
+`data-size`, and `data-measure`.
+
+## API
+
+| Prop | Values | Default |
+| --- | --- | --- |
+| `as` | `div`, `article`, `section` | `div` |
+| `size` | `sm`, `md`, `lg` | `md` |
+| `measure` | `narrow`, `default`, `wide`, `none` | `default` |
+| `slot` | string data-slot override | `prose` |
+| `children` | trusted React nodes | — |
+
+Native attributes, class, style, data slot, and an `HTMLElement` ref pass
+through. Prose never accepts an HTML string, parses Markdown, injects markup,
+fetches content, or sanitizes content.
+
+Public exports are `Prose`, `ProseProps`, `ProseElement`, `ProseSize`, and
+`ProseMeasure`.
+
+## Visual recipes and states
+
+Prose styles native headings, paragraphs, links, lists, quotes, citations,
+tables, inline code, preformatted code, rules, media, figures, captions,
+strong/emphasis, mark, and keyboard notation. Direct Brick components retain
+their own stronger class contracts when composed inside Prose.
+
+## Tokens and CSS hooks
+
+Use `.brick-prose`, `data-slot`, `data-size`, `data-measure`, and the documented
+`--brick-prose-*` variables for measure, rhythm, foregrounds, accent, border,
+surface, body/heading/code typography, table cells, and media radius.
+Descendant selectors use `:where()` so consumer and direct Brick component
+styles can override them without specificity escalation.
+
+The complete token surface is `--brick-prose-measure`,
+`--brick-prose-flow-space`, `--brick-prose-section-space`,
+`--brick-prose-foreground`, `--brick-prose-muted-foreground`,
+`--brick-prose-link-foreground`, `--brick-prose-accent`,
+`--brick-prose-border-color`, `--brick-prose-surface`,
+`--brick-prose-body-font-family`, `--brick-prose-body-font-size`,
+`--brick-prose-body-font-weight`, `--brick-prose-body-line-height`,
+`--brick-prose-body-letter-spacing`, `--brick-prose-heading-font-family`,
+`--brick-prose-heading-font-weight`, `--brick-prose-heading-letter-spacing`,
+`--brick-prose-code-font-family`, `--brick-prose-code-font-size`,
+`--brick-prose-code-radius`, `--brick-prose-media-radius`,
+`--brick-prose-table-cell-padding-block`, and
+`--brick-prose-table-cell-padding-inline`.
+
+## Customization
+
+Choose size and measure first. Use documented `--brick-prose-*` variables for
+a deliberate local editorial recipe; use a Theme for reusable brand values.
+Do not increase selector specificity to override a direct Brick component.
+
+## Responsive behavior
+
+The root never exceeds its selected reading measure. Native tables and
+preformatted code wrap within the region; use Table or Code Block when content
+must preserve horizontal scrolling through an accessible dedicated owner.
+Media scales within the region. Logical spacing, natural height, safe wrapping,
+text spacing, zoom, RTL, dark appearance, and forced colors remain supported.
+
+## Accessibility
+
+React children are the boundary. If an application starts with untrusted HTML,
+it must sanitize and parse that content before rendering it. The application
+also owns heading hierarchy, link destinations, alternative text, table
+headers, language, and document landmarks. Prose adds no role, focus target,
+keyboard behavior, or ARIA state.
+
+## Composition, native props, and refs
+
+Compose trusted native descendants directly. Use Brick Link, List, Blockquote,
+Code Block, Table, or Image when their richer public anatomy is required.
+Native root attributes, class, style, slot data, and an `HTMLElement` ref pass
+through.
+
+## Examples
+
+```tsx
+<Prose as="section" measure="wide" size="lg">
+  <h2>Architecture notes</h2>
+  <p>Keep parsing and content trust in the application.</p>
+</Prose>
+```
+
+## Evidence
+
+- [Playground route](../../../playground/src/components/prose/)
+- [Unit tests](../../../test/components/prose/)
+- [Type tests](../../../test/types/components/prose.test.ts)
+- [Browser behavior](../../../playground/tests/components/prose/behavior.spec.ts)
+- [Visual owner](../../../playground/tests/components/prose/visual.spec.ts)
+- [Manual protocol](../../../playground/manual-tests/prose.md)
+
+## Changelog
+
+See the [Prose changelog](CHANGELOG.md) and [package changelog](../../../CHANGELOG.md).
+
+---
+
+# Prose changelog
+
+Prose follows the package version of `@flowstack-ui/brick`.
+
+## Unreleased
+
+### Added
+
+- No unreleased changes.
+
+## 0.1.12 — 2026-08-30
+
+### Added
+
+- Added the server-safe Prose owner for trusted React content with closed size
+  and readable-measure choices.
+- Added low-specificity descendant typography for editorial HTML without a
+  parser, sanitizer, or raw-HTML shortcut.
 
 
 # Radio Group
@@ -18915,4 +19793,44 @@ ZStack follows the package version of `@flowstack-ui/brick`.
 - Added responsive Root and Item logical alignment through Brick's canonical
   responsive-value grammar without adding coordinates or visual ordering.
 - Added ZStack.Root and ZStack.Item with CSS Grid overlap, natural sizing, nine-position alignment, semantic hosts, and optional asChild composition.
+
+
+# Rich Text Editor
+
+# Rich Text Editor
+
+A source-installed rich-text writing surface composed from Brick controls and Tiptap editing behavior.
+
+## When and where to use
+
+Use this source component when a product needs a focused rich-text writing
+surface with headings, paragraphs, inline emphasis, lists, and undo or redo.
+The installed composition becomes consumer-owned application source.
+
+## When not to use
+
+Use Textarea for plain text, Prose for read-only trusted editorial content,
+and an application-selected editor platform when collaboration, comments,
+tables, media, or other product-specific authoring behavior is required.
+
+## Delivery model
+
+Rich Text Editor is not exported by the Brick runtime package. It is a paid,
+source-installed component composed from published Brick parts and Tiptap. The
+public page serves only a reviewed compiled sandbox; editable files, the API
+contract, item guidance, and the usable install command remain behind the
+entitlement boundary.
+
+## Responsive behavior
+
+The document surface stays within the available inline size. The formatting
+toolbar owns deliberate horizontal command reachability at compact widths
+without creating page-level overflow.
+
+## Accessibility
+
+The compiled preview exposes one named formatting toolbar followed by one
+named multiline document textbox. Brick owns the finished controls and focus
+presentation; Tiptap owns document editing; the application owns content
+policy, persistence, validation, collaboration, and submission.
 

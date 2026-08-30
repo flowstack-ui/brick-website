@@ -1,6 +1,6 @@
 import { Card } from "@flowstack-ui/brick/card";
 import { Text } from "@flowstack-ui/brick/text";
-import { ArrowUpRight, CheckCircle2, GitBranch, Route, ShieldCheck } from "lucide-react";
+import { ArrowUpRight, CheckCircle2, GitBranch, LockKeyhole, Route, ShieldCheck } from "lucide-react";
 import { ComponentAdvancedDisclosure } from "@/app/components/ComponentAdvancedDisclosure";
 import { MarkdownArticle } from "@/app/components/MarkdownArticle";
 import { WebsiteButton } from "@/app/components/WebsiteButton";
@@ -20,7 +20,7 @@ function StandardSection({ componentSlug, section }: { componentSlug: string; se
   );
 }
 
-export function ComponentDocument({ componentSlug, componentTitle, markdown }: { componentSlug: string; componentTitle: string; markdown: string }) {
+export function ComponentDocument({ componentSlug, componentTitle, delivery, markdown }: { componentSlug: string; componentTitle: string; delivery: "package" | "source"; markdown: string }) {
   const { advanced, sections } = structureComponentDoc(markdown);
   const useSection = sections.get("When and where to use");
   const avoidSection = sections.get("When not to use");
@@ -52,6 +52,7 @@ export function ComponentDocument({ componentSlug, componentTitle, markdown }: {
         </section>
       )}
 
+      {delivery === "source" && <StandardSection componentSlug={componentSlug} section={sections.get("Delivery model")} />}
       <StandardSection componentSlug={componentSlug} section={sections.get("Installation and imports")} />
       <StandardSection componentSlug={componentSlug} section={sections.get("Quick start")} />
       <StandardSection componentSlug={componentSlug} section={sections.get("Visual recipes and states")} />
@@ -101,17 +102,26 @@ export function ComponentDocument({ componentSlug, componentTitle, markdown }: {
         </section>
       )}
 
-      <section className="component-doc-section component-maintainer" id="maintainer-resources">
-        <Card.Root as="article" size="md" variant="outline">
-          <Card.Header><div><span className="component-maintainer-icon"><GitBranch size={18} aria-hidden="true" /></span><Card.Title as="h2">Maintainer resources</Card.Title></div></Card.Header>
-          <Card.Content><Text tone="secondary">Tests, playground evidence, source notes, and release history remain available without crowding the plug-and-play guide.</Text></Card.Content>
-          <Card.Footer className="component-maintainer-actions">
-            <WebsiteButton href={`https://github.com/flowstack-ui/brick/tree/main/docs/components/${componentSlug}`} target="_blank" rel="noreferrer" tone="neutral" variant="ghost" endIcon={<ArrowUpRight size={15} aria-hidden="true" />}>Source docs</WebsiteButton>
-            <WebsiteButton href={`https://github.com/flowstack-ui/brick/blob/main/docs/components/${componentSlug}/CHANGELOG.md`} target="_blank" rel="noreferrer" tone="neutral" variant="ghost" endIcon={<ArrowUpRight size={15} aria-hidden="true" />}>Changelog</WebsiteButton>
-            <WebsiteButton href={`https://github.com/flowstack-ui/brick/tree/main/playground/src/components/${componentSlug}`} target="_blank" rel="noreferrer" tone="neutral" variant="ghost" endIcon={<ArrowUpRight size={15} aria-hidden="true" />}>Playground</WebsiteButton>
-          </Card.Footer>
-        </Card.Root>
-      </section>
+      {delivery === "package" ? (
+        <section className="component-doc-section component-maintainer" id="maintainer-resources">
+          <Card.Root as="article" size="md" variant="outline">
+            <Card.Header><div><span className="component-maintainer-icon"><GitBranch size={18} aria-hidden="true" /></span><Card.Title as="h2">Maintainer resources</Card.Title></div></Card.Header>
+            <Card.Content><Text tone="secondary">Tests, playground evidence, source notes, and release history remain available without crowding the plug-and-play guide.</Text></Card.Content>
+            <Card.Footer className="component-maintainer-actions">
+              <WebsiteButton href={`https://github.com/flowstack-ui/brick/tree/main/docs/components/${componentSlug}`} target="_blank" rel="noreferrer" tone="neutral" variant="ghost" endIcon={<ArrowUpRight size={15} aria-hidden="true" />}>Source docs</WebsiteButton>
+              <WebsiteButton href={`https://github.com/flowstack-ui/brick/blob/main/docs/components/${componentSlug}/CHANGELOG.md`} target="_blank" rel="noreferrer" tone="neutral" variant="ghost" endIcon={<ArrowUpRight size={15} aria-hidden="true" />}>Changelog</WebsiteButton>
+              <WebsiteButton href={`https://github.com/flowstack-ui/brick/tree/main/playground/src/components/${componentSlug}`} target="_blank" rel="noreferrer" tone="neutral" variant="ghost" endIcon={<ArrowUpRight size={15} aria-hidden="true" />}>Playground</WebsiteButton>
+            </Card.Footer>
+          </Card.Root>
+        </section>
+      ) : (
+        <section className="component-doc-section component-maintainer" id="source-access">
+          <Card.Root as="article" size="md" variant="outline">
+            <Card.Header><div><span className="component-maintainer-icon"><LockKeyhole size={18} aria-hidden="true" /></span><Card.Title as="h2">Editable source is locked</Card.Title></div></Card.Header>
+            <Card.Content><Text tone="secondary">The compiled preview is public. Editable React files, source-component guidance, the API contract, and the usable install command will unlock through the paid individual or team entitlement flow.</Text></Card.Content>
+          </Card.Root>
+        </section>
+      )}
     </div>
   );
 }

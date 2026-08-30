@@ -68,12 +68,19 @@ for (const file of await readdir(previewsDirectory)) {
   if (!file.endsWith(".tsx")) continue;
   const source = await readFile(resolve(previewsDirectory, file), "utf8");
   const owner = file.slice(0, -4);
-  if (!source.includes(`"../../app/.generated/previews/${owner}.css"`)) {
+  const compiledIframeBoundary = source.includes("brick-preview-style-boundary: compiled-iframe");
+  if (!compiledIframeBoundary && !source.includes(`"../../app/.generated/previews/${owner}.css"`)) {
     errors.push(`${file} does not load its generated preview style bundle`);
   }
   if (source.includes('"@flowstack-ui/brick/styles/')) {
     errors.push(`${file} bypasses the generated preview style bundle`);
   }
+}
+if (manifest.scripts?.["source-components:check"] !== "node scripts/verify-source-component-preview-boundary.mjs") {
+  errors.push("source component previews require a deterministic public-boundary check");
+}
+if (!manifest.scripts?.["check:repository"]?.includes("source-components:check")) {
+  errors.push("repository verification must enforce the source component public boundary");
 }
 for (const [role, script] of Object.entries(configuration.commands)) {
   if (!manifest.scripts?.[script]) errors.push(`${role} requires npm script ${script}`);
