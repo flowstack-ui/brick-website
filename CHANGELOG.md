@@ -91,6 +91,11 @@
 
 ## Unreleased
 
+- Added a dedicated generated Blocks route stylesheet so Card, Grid, and Stack
+  retain their published Brick `0.1.11` anatomy on direct loads. Rebuilt the
+  catalog and detail rhythm with responsive Brick stacks, 12px badge groups,
+  16px action separation, and explicit card-content grouping, with browser
+  regressions at the supported 320px and 390px widths.
 - Kept the paid Blocks catalog and detail headings proportional at the 320px
   minimum, and prevented the single-column detail grid, preview, and locked
   access panel from expanding past the narrow page lane.

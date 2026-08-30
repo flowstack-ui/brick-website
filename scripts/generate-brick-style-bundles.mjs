@@ -56,6 +56,7 @@ const bundles = {
     "styles/nav-list.css",
     "styles/text.css",
   ],
+  "brick-blocks.css": ["styles/card.css", "styles/grid.css", "styles/stack.css"],
   "brick-home.css": [
     "styles/avatar.css",
     "styles/card.css",

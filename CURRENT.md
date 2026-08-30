@@ -7,7 +7,9 @@ Brick UI Website is implemented as a multi-route product and documentation site.
   and digest-pinned HTML, minified JavaScript, and minified CSS are public;
   source, source maps, item Agent Knowledge, install commands, and tokens remain
   outside this repository. Purchase and sign-in are visibly locked until their
-  production services exist.
+  production services exist. A dedicated generated Blocks route bundle now
+  loads Card, Grid, and Stack CSS, while explicit Brick Stack composition owns
+  badge, header, metadata, list, and action rhythm at narrow and wide widths.
 
 - The website now pins FLOWSTACK's Baseline 2023 browser floor and adds a
   current Chromium, Firefox, WebKit, and mobile-engine release smoke matrix;
